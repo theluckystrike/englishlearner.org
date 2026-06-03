@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Level Assessment Quiz — Find Your CEFR Level</title>
+    <meta name="description" content="30-question adaptive English quiz: grammar, vocabulary & comprehension. Get your CEFR level (A1–C2), strengths & history.">
+    <link rel="canonical" href="https://englishlearner.org/tools/level-assessment">
+    <!-- JSON-LD structured data: WebApplication + FAQPage + BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "English Level Assessment Quiz",
+          "url": "https://englishlearner.org/level-assessment",
+          "description": "Adaptive 30-question quiz to determine your CEFR English level (A1–C2).",
+          "applicationCategory": "Educational Application",
+          "operatingSystem": "All",
+          "browserRequirements": "JavaScript enabled"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "What is CEFR?", "acceptedAnswer": { "@type": "Answer", "text": "Common European Framework of Reference for Languages, from A1 (beginner) to C2 (mastery)." } },
+            { "@type": "Question", "name": "How is my level calculated?", "acceptedAnswer": { "@type": "Answer", "text": "Adaptive algorithm: correct answers increase difficulty, wrong answers decrease. Final level based on performance across grammar, vocabulary, and comprehension." } }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://englishlearner.org/" },
+            { "@type": "ListItem", "position": 2, "name": "Level Assessment", "item": "https://englishlearner.org/level-assessment" }
+          ]
+        }
+      ]
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: #111;
+            padding: 2rem;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            border: 1px solid #2a2a2a;
+        }
+        h1, h2, h3 {
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.25rem;
+            color: #f0f0f0;
+        }
+        .subhead {
+            color: #aaa;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 0.75rem;
+        }
+        .progress-bar {
+            background: #2a2a2a;
+            height: 8px;
+            border-radius: 20px;
+            margin: 1.5rem 0 1rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #66bb6a;
+            transition: width 0.3s ease;
+        }
+        .question-area {
+            background: #141414;
+            padding: 1.8rem;
+            border-radius: 24px;
+            margin: 1.2rem 0;
+            border: 1px solid #2a2a2a;
+        }
+        .question-text {
+            font-size: 1.3rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .option-btn {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            color: #e0e0e0;
+            padding: 0.9rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .option-btn:hover:not(:disabled) {
+            background: #2a2a2a;
+            border-color: #66bb6a;
+        }
+        .option-btn.selected {
+            border-color: #66bb6a;
+            background: #1e3a1e;
+        }
+        .option-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .fill-input {
+            background: #1e1e1e;
+            border: 1px solid #444;
+            color: #e0e0e0;
+            padding: 0.9rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            width: 100%;
+            outline: none;
+        }
+        .fill-input:focus {
+            border-color: #66bb6a;
+        }
+        .action-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.8rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .btn {
+            background: #2a2a2a;
+            border: none;
+            color: #e0e0e0;
+            padding: 0.7rem 1.8rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.15s;
+            border: 1px solid #3a3a3a;
+        }
+        .btn-primary {
+            background: #66bb6a;
+            color: #0a0a0a;
+            font-weight: 600;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: #7ecf7e;
+        }
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .feedback {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 30px;
+            background: #1a1a1a;
+            border-left: 4px solid #66bb6a;
+        }
+        .result-card {
+            background: #141414;
+            padding: 2rem;
+            border-radius: 28px;
+            border: 1px solid #2a2a2a;
+            margin: 1.5rem 0;
+        }
+        .level-badge {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #66bb6a;
+            display: inline-block;
+            margin-right: 1rem;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .stat-box {
+            background: #1a1a1a;
+            padding: 1.2rem;
+            border-radius: 20px;
+        }
+        .weakness {
+            color: #f5a623;
+        }
+        .strength {
+            color: #66bb6a;
+        }
+        .history-item {
+            background: #1a1a1a;
+            padding: 0.8rem 1.2rem;
+            border-radius: 40px;
+            margin: 0.4rem 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer-link {
+            margin-top: 2.5rem;
+            text-align: center;
+            color: #666;
+        }
+        .footer-link a {
+            color: #66bb6a;
+            text-decoration: none;
+        }
+        .cefr-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin: 1rem 0;
+        }
+        .chart-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .chart-label {
+            width: 40px;
+            font-weight: 600;
+        }
+        .chart-bar {
+            height: 12px;
+            background: #2a2a2a;
+            border-radius: 20px;
+            flex: 1;
+        }
+        .chart-fill {
+            height: 100%;
+            background: #66bb6a;
+            border-radius: 20px;
+            width: 0%;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 1.2rem; }
+            h1 { font-size: 1.6rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+
+    <meta property="og:title" content="English Level Assessment Quiz — Find Your CEFR Level">
+    <meta property="og:description" content="30-question adaptive English quiz: grammar, vocabulary & comprehension. Get your CEFR level (A1–C2), strengths & history.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://englishlearner.org/tools/level-assessment">
+</head>
+<body>
+<div class="container">
+    <h1>📘 Level Assessment</h1>
+    <div class="subhead">Find your CEFR level · 30 adaptive questions</div>
+
+    <!-- progress -->
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div style="display:flex; justify-content:space-between; font-size:0.9rem; color:#aaa;">
+        <span id="qCounter">Question 1 / 30</span>
+        <span id="difficultyIndicator">Difficulty: A1</span>
+    </div>
+
+    <!-- question area -->
+    <div class="question-area" id="questionArea">
+        <div class="question-text" id="questionText">Loading question...</div>
+        <div id="answerContainer"></div>
+        <div id="feedbackArea" class="feedback" style="display:none;"></div>
+        <div class="action-row">
+            <button class="btn" id="nextBtn" disabled>Next →</button>
+            <button class="btn" id="resetBtn" style="background:#2a2a2a;">↻ Restart</button>
+        </div>
+    </div>
+
+    <!-- result panel (hidden) -->
+    <div id="resultPanel" style="display:none;"></div>
+
+    <!-- history -->
+    <div style="margin-top:2rem;" id="historySection">
+        <h3 style="margin-bottom:0.5rem;">📋 Assessment history</h3>
+        <div id="historyList"></div>
+    </div>
+
+    <div class="footer-link">
+        <a href="https://englishlearner.org/">← englishlearner.org</a>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // ---------- DATABASE ----------
+        const questionsDB = [
+            // A1 (level 0)
+            { level:0, type:'mc', question:'I ___ a student.', options:['am','is','are','be'], correct:0 },
+            { level:0, type:'mc', question:'She ___ from Spain.', options:['am','is','are','be'], correct:1 },
+            { level:0, type:'fill', question:'I ___ (have) a cat.', correct:'have' },
+            { level:0, type:'mc', question:'What is this? ___ apple.', options:['A','An','The','None'], correct:1 },
+            // A2 (level 1)
+            { level:1, type:'mc', question:'He ___ to school every day.', options:['go','goes','going','went'], correct:1 },
+            { level:1, type:'fill', question:'She ___ (watch) TV every evening.', correct:'watches' },
+            { level:1, type:'mc', question:'___ you like coffee?', options:['Do','Does','Are','Is'], correct:0 },
+            { level:1, type:'comprehension', question:'Tom usually wakes up at 7am. He has breakfast and then goes to work. What does Tom do after breakfast?', options:['Wakes up','Has breakfast','Goes to work','Sleeps'], correct:2 },
+            // B1 (level 2)
+            { level:2, type:'mc', question:'If it rains, I ___ stay home.', options:['will','would','am','was'], correct:0 },
+            { level:2, type:'fill', question:'They have ___ (live) here for 5 years.', correct:'lived' },
+            { level:2, type:'mc', question:'I ___ my keys yesterday.', options:['lose','lost','have lost','was losing'], correct:1 },
+            { level:2, type:'comprehension', question:'The restaurant was fully booked, so we decided to eat at a small café instead. Why didn\'t they eat at the restaurant?', options:['Too expensive','Fully booked','Closed','Too far'], correct:1 },
+            // B2 (level 3)
+            { level:3, type:'mc', question:'By the time we arrived, they ___ dinner.', options:['finished','had finished','have finished','were finishing'], correct:1 },
+            { level:3, type:'fill', question:'She wishes she ___ (can) fly.', correct:'could' },
+            { level:3, type:'mc', question:'The report ___ by the manager tomorrow.', options:['will review','will be reviewed','reviews','reviewed'], correct:1 },
+            { level:3, type:'comprehension', question:'Despite the heavy traffic, we managed to reach the airport on time. However, our flight was delayed by two hours. What can be inferred?', options:['We missed the flight','Flight was on time','We arrived on time but flight delayed','Traffic was light'], correct:2 },
+            // C1 (level 4)
+            { level:4, type:'mc', question:'Had it not been for your help, I ___ succeeded.', options:['would not have','will not have','had not','would have'], correct:0 },
+            { level:4, type:'fill', question:'It’s high time you ___ (make) a decision.', correct:'made' },
+            { level:4, type:'mc', question:'The phenomenon, ___ has been widely debated, remains unexplained.', options:['that','which','what','who'], correct:1 },
+            { level:4, type:'comprehension', question:'The author’s critique of neoliberalism is not merely economic but extends to its cultural consequences. Which is most consistent?', options:['Only economic','Only cultural','Both economic and cultural','Neither'], correct:2 },
+            // C2 (level 5)
+            { level:5, type:'mc', question:'Were it not for the funding, the project ___ abandoned.', options:['would have been','would be','had been','will be'], correct:0 },
+            { level:5, type:'fill', question:'Not until she arrived ___ (he / realize) the truth.', correct:'did he realize' },
+            { level:5, type:'mc', question:'The obfuscation of the data rendered the analysis ___ .', options:['meaningful','meaningless','profound','transparent'], correct:1 },
+            { level:5, type:'comprehension', question:'The subtext of the dialogue suggests a deep-seated ambivalence towards modernity. The characters\' nostalgia is not for the past but for a future that never materialized. Which is implied?', options:['They love modernity','They are ambivalent','They want the past','Future is bright'], correct:1 }
+        ];
+        // ensure we have 30 questions by repeating / extending (we have 24 unique – add 6 more)
+        const extra = [
+            { level:0, type:'mc', question:'This ___ my book.', options:['am','is','are','be'], correct:1 },
+            { level:1, type:'fill', question:'We ___ (not/like) spinach.', correct:'do not like' },
+            { level:2, type:'mc', question:'She told me that she ___ coming.', options:['is','was','will be','has been'], correct:1 },
+            { level:3, type:'fill', question:'I ___ (never/see) such a beautiful sunset.', correct:'have never seen' },
+            { level:4, type:'mc', question:'The professor suggested that the student ___ further research.', options:['conducts','conduct','conducted','would conduct'], correct:1 },
+            { level:5, type:'fill', question:'___ (hardly / he / finish) when the bell rang.', correct:'Hardly had he finished' }
+        ];
+        const fullDB = questionsDB.concat(extra); // 30 total
+
+        // shuffle array
+        function shuffle(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // state
+        let state = {
+            questions: [],
+            currentIndex: 0,
+            correctCount: 0,
+            wrongCount: 0,
+            difficulty: 0, // 0..5
+            answers: [], // {correct:bool, level:num, area:string}
+            finished: false,
+            history: JSON.parse(localStorage.getItem('engLevelHistory') || '[]')
+        };
+
+        // DOM refs
+        const questionText = document.getElementById('questionText');
+        const answerContainer = document.getElementById('answerContainer');
+        const feedbackArea = document.getElementById('feedbackArea');
+        const nextBtn = document.getElementById('nextBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const progressFill = document.getElementById('progressFill');
+        const qCounter = document.getElementById('qCounter');
+        const difficultyIndicator = document.getElementById('difficultyIndicator');
+        const resultPanel = document.getElementById('resultPanel');
+        const historyList = document.getElementById('historyList');
+
+        const levelNames = ['A1','A2','B1','B2','C1','C2'];
+        const levelDescriptions = [
+            'Can understand and use basic phrases. Introduce yourself and ask simple questions.',
+            'Can communicate in routine tasks. Describe your background and immediate needs.',
+            'Can handle travel situations, produce simple connected text, and describe experiences.',
+            'Can interact with fluency, understand complex texts, and produce detailed essays.',
+            'Can express ideas fluently and spontaneously, use language flexibly for social and professional purposes.',
+            'Can understand virtually everything heard or read, summarize information, and express nuance.'
+        ];
+        const studyResources = [
+            'Start with basic vocabulary, simple grammar drills, and children’s stories.',
+            'Use beginner textbooks, language apps, and listen to slow podcasts.',
+            'Read graded readers, practice writing diaries, join conversation groups.',
+            'Watch movies with subtitles, read news articles, write essays.',
+            'Engage with academic texts, debate topics, watch lectures.',
+            'Read literature, write extensively, practice with native speakers on complex topics.'
+        ];
+
+        function getLevelLabel(d) { return levelNames[d] || 'A1'; }
+
+        function renderHistory() {
+            const h = state.history;
+            if (!h.length) { historyList.innerHTML = '<div style="color:#666;">No previous assessments.</div>'; return; }
+            historyList.innerHTML = h.slice(-5).reverse().map(item => 
+                `<div class="history-item"><span>${item.date} — ${item.level} (${item.score}%)</span><span>${item.areas}</span></div>`
+            ).join('');
+        }
+
+        function saveHistory(levelLabel, score, areas) {
+            const entry = {
+                date: new Date().toLocaleDateString(),
+                level: levelLabel,
+                score: Math.round(score),
+                areas: areas
+            };
+            state.history.push(entry);
+            localStorage.setItem('engLevelHistory', JSON.stringify(state.history));
+            renderHistory();
+        }
+
+        // compute results
+        function computeResults() {
+            const ans = state.answers;
+            if (!ans.length) return { level:0, confidence:0, grammar:0, vocabulary:0, comprehension:0 };
+            const total = ans.length;
+            const correct = ans.filter(a => a.correct).length;
+            const pct = (correct/total)*100;
+            // average level
+            const avgLevel = ans.reduce((s,a) => s + a.level,0)/total;
+            let finalLevel = Math.round(avgLevel);
+            // clamp
+            finalLevel = Math.max(0, Math.min(5, finalLevel));
+            // confidence based on consistency
+            const variance = ans.reduce((s,a) => s + Math.pow(a.level - avgLevel,2),0)/total;
+            const confidence = Math.max(50, Math.min(98, 100 - variance*15));
+            // area breakdown
+            const grammar = ans.filter(a => a.area === 'grammar');
+            const vocab = ans.filter(a => a.area === 'vocabulary');
+            const comp = ans.filter(a => a.area === 'comprehension');
+            const gPct = grammar.length ? (grammar.filter(a=>a.correct).length/grammar.length)*100 : 0;
+            const vPct = vocab.length ? (vocab.filter(a=>a.correct).length/vocab.length)*100 : 0;
+            const cPct = comp.length ? (comp.filter(a=>a.correct).length/comp.length)*100 : 0;
+            return { level:finalLevel, confidence, grammar:gPct, vocabulary:vPct, comprehension:cPct, correct, total };
+        }
+
+        function showResults() {
+            const res = computeResults();
+            const levelLabel = getLevelLabel(res.level);
+            const desc = levelDescriptions[res.level];
+            const study = studyResources[res.level];
+            const areas = `G:${Math.round(res.grammar)}% V:${Math.round(res.vocabulary)}% C:${Math.round(res.comprehension)}%`;
+            // determine strongest / weakest
+            const map = { grammar:res.grammar, vocabulary:res.vocabulary, comprehension:res.comprehension };
+            const sorted = Object.entries(map).sort((a,b)=>b[1]-a[1]);
+            const strongest = sorted[0][0];
+            const weakest = sorted[2][0];
+            // save history
+            saveHistory(levelLabel, (res.correct/res.total)*100, areas);
+
+            resultPanel.style.display = 'block';
+            resultPanel.innerHTML = `
+                <div class="result-card">
+                    <div><span class="level-badge">${levelLabel}</span> <span style="font-size:1.4rem;">CEFR level</span></div>
+                    <div style="margin:0.5rem 0 1rem;">Confidence: <strong>${Math.round(res.confidence)}%</strong> · Score: ${res.correct}/${res.total}</div>
+                    <p style="margin-bottom:1rem;">${desc}</p>
+                    <div class="grid-2">
+                        <div class="stat-box"><span class="strength">✅ Strongest: ${strongest}</span> (${Math.round(map[strongest])}%)</div>
+                        <div class="stat-box"><span class="weakness">⚠️ Weakest: ${weakest}</span> (${Math.round(map[weakest])}%)</div>
+                    </div>
+                    <h3>📚 Recommended resources</h3>
+                    <p>${study}</p>
+                    <div style="margin-top:1.2rem;"><strong>Comparison chart</strong></div>
+                    <div class="cefr-chart">
+                        ${levelNames.map((l,i) => `
+                            <div class="chart-row">
+                                <span class="chart-label">${l}</span>
+                                <div class="chart-bar"><div class="chart-fill" style="width:${i<=res.level?100:0}%; background:${i===res.level?'#66bb6a':'#444'};"></div></div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            // hide question area
+            document.getElementById('questionArea').style.display = 'none';
+            progressFill.style.width = '100%';
+            qCounter.textContent = 'Quiz complete!';
+            difficultyIndicator.textContent = '';
+        }
+
+        function loadQuestion() {
+            if (state.finished || state.currentIndex >= state.questions.length) {
+                state.finished = true;
+                showResults();
+                return;
+            }
+            const q = state.questions[state.currentIndex];
+            questionText.textContent = q.question;
+            // update progress
+            const pct = ((state.currentIndex) / state.questions.length) * 100;
+            progressFill.style.width = pct + '%';
+            qCounter.textContent = `Question ${state.currentIndex+1} / ${state.questions.length}`;
+            difficultyIndicator.textContent = `Difficulty: ${getLevelLabel(q.level)}`;
+
+            // clear
+            answerContainer.innerHTML = '';
+            feedbackArea.style.display = 'none';
+            nextBtn.disabled = true;
+
+            if (q.type === 'mc' || q.type === 'comprehension') {
+                const optDiv = document.createElement('div');
+                optDiv.className = 'options';
+                q.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.textContent = opt;
+                    btn.dataset.idx = idx;
+                    btn.addEventListener('click', function(e) {
+                        // disable all
+                        optDiv.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+                        this.classList.add('selected');
+                        const isCorrect = (idx === q.correct);
+                        showFeedback(isCorrect, q);
+                        nextBtn.disabled = false;
+                        // store answer
+                        state.answers.push({
+                            correct: isCorrect,
+                            level: q.level,
+                            area: q.type === 'comprehension' ? 'comprehension' : (q.type==='mc'?'grammar':'vocabulary')
+                        });
+                    });
+                    optDiv.appendChild(btn);
+                });
+                answerContainer.appendChild(optDiv);
+            } else if (q.type === 'fill') {
+                const input = document.createElement('input');
+                input.className = 'fill-input';
+                input.placeholder = 'Type your answer...';
+                input.autocomplete = 'off';
+                answerContainer.appendChild(input);
+                input.focus();
+                const checkBtn = document.createElement('button');
+                checkBtn.className = 'btn btn-primary';
+                checkBtn.textContent = 'Check';
+                checkBtn.style.marginTop = '1rem';
+                answerContainer.appendChild(checkBtn);
+                checkBtn.addEventListener('click', function() {
+                    const val = input.value.trim().toLowerCase();
+                    if (!val) return;
+                    input.disabled = true;
+                    checkBtn.disabled = true;
+                    const correctAnswers = Array.isArray(q.correct) ? q.correct.map(c=>c.toLowerCase()) : [q.correct.toLowerCase()];
+                    const isCorrect = correctAnswers.includes(val);
+                    showFeedback(isCorrect, q);
+                    nextBtn.disabled = false;
+                    state.answers.push({
+                        correct: isCorrect,
+                        level: q.level,
+                        area: 'vocabulary'
+                    });
+                });
+            }
+        }
+
+        function showFeedback(isCorrect, q) {
+            feedbackArea.style.display = 'block';
+            feedbackArea.textContent = isCorrect ? '✓ Correct!' : `✗ Incorrect. Correct answer: ${q.options ? q.options[q.correct] : q.correct}`;
+            feedbackArea.style.borderLeftColor = isCorrect ? '#66bb6a' : '#f5a623';
+        }
+
+        function nextQuestion() {
+            if (state.finished) return;
+            state.currentIndex++;
+            if (state.currentIndex >= state.questions.length) {
+                state.finished = true;
+                showResults();
+            } else {
+                loadQuestion();
+            }
+        }
+
+        // adaptive shuffle: based on difficulty, pick next question
+        function buildAdaptiveList() {
+            let pool = [...fullDB];
+            // sort by level, but we want adaptive ordering: start easy, then adjust
+            // we'll just shuffle and then sort by level with some randomness
+            pool = shuffle(pool);
+            // adaptive: we want a progression from low to high but with variation
+            pool.sort((a,b) => a.level - b.level);
+            // but keep some randomness within same level
+            let final = [];
+            let buckets = [[],[],[],[],[],[]];
+            pool.forEach(q => buckets[q.level].push(q));
+            // interleave: start from 0, take one from each level, repeat
+            let maxLen = Math.max(...buckets.map(b=>b.length));
+            for (let i=0; i<maxLen; i++) {
+                for (let l=0; l<=5; l++) {
+                    if (buckets[l].length > i) final.push(buckets[l][i]);
+                }
+            }
+            // ensure exactly 30
+            return final.slice(0,30);
+        }
+
+        function resetQuiz() {
+            state.questions = buildAdaptiveList();
+            state.currentIndex = 0;
+            state.correctCount = 0;
+            state.wrongCount = 0;
+            state.difficulty = 0;
+            state.answers = [];
+            state.finished = false;
+            resultPanel.style.display = 'none';
+            document.getElementById('questionArea').style.display = 'block';
+            nextBtn.disabled = true;
+            loadQuestion();
+        }
+
+        // event listeners
+        nextBtn.addEventListener('click', nextQuestion);
+        resetBtn.addEventListener('click', resetQuiz);
+
+        // init
+        resetQuiz();
+        renderHistory();
+    })();
+</script>
+</body>
+</html>
