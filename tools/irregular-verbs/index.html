@@ -2,262 +2,715 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Irregular Verb Conjugator — All Forms & Examples</title>
-  <meta name="description" content="Master 150+ irregular English verbs: base, past, participle. Search, group by pattern, quiz mode, progress tracking. Dark theme.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Irregular Verbs Trainer | englishlearner.org</title>
+  <meta name="description" content="Master 100+ English irregular verbs: searchable table, quiz, flashcards, score tracking. Free tool for learners.">
   <link rel="canonical" href="https://englishlearner.org/tools/irregular-verbs">
-  <meta name="theme-color" content="#0a0a0a">
-
-  <!-- JSON-LD: WebApplication + FAQPage + BreadcrumbList -->
+  <!-- Open Graph -->
+  <meta property="og:title" content="Irregular Verbs Trainer | englishlearner.org">
+  <meta property="og:description" content="Master 100+ English irregular verbs: searchable table, quiz, flashcards, score tracking. Free tool for learners.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://englishlearner.org/tools/irregular-verbs">
+  <meta property="og:site_name" content="englishlearner.org">
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": ["WebApplication", "FAQPage"],
-    "name": "Irregular Verb Conjugator — All Forms & Examples",
-    "url": "https://englishlearner.org/irregular-verbs",
-    "description": "Interactive reference and practice for 150+ irregular English verbs with patterns, pronunciation hints, and quiz mode.",
-    "applicationCategory": "EducationalApplication",
-    "operatingSystem": "All",
-    "browserRequirements": "JavaScript enabled",
-    "mainEntity": [{
-      "@type": "Question",
-      "name": "How many irregular verbs are included?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Over 150 verbs, split into common (50), intermediate (50), and advanced (50+)." }
-    },{
-      "@type": "Question",
-      "name": "Can I track my progress?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes, mastered vs learning verbs are saved in localStorage." }
-    }]
+    "@type": "EducationalOccupationalProgram",
+    "name": "Irregular Verbs Trainer",
+    "description": "Master 100+ English irregular verbs: searchable table, quiz, flashcards, score tracking.",
+    "url": "https://englishlearner.org/tools/irregular-verbs",
+    "provider": {
+      "@type": "Organization",
+      "name": "englishlearner.org"
+    }
   }
   </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://englishlearner.org/" },
-      { "@type": "ListItem", "position": 2, "name": "Irregular Verbs", "item": "https://englishlearner.org/irregular-verbs" }
-    ]
-  }
-  </script>
-
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
-      background: #0a0a0a;
-      color: #e0e0e0;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
       line-height: 1.5;
-      padding: 1.5rem;
+      padding: 1.5rem 1rem 3rem;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-    .container { max-width: 1200px; margin: 0 auto; }
-    h1, h2, h3 { color: #f0f0f0; font-weight: 400; }
-    h1 { font-size: 2rem; border-left: 6px solid #66bb6a; padding-left: 1rem; margin-bottom: 0.5rem; }
-    .sub { color: #aaa; margin-bottom: 1.5rem; }
-    .flex-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; }
-    .controls { display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem; align-items: center; background: #1a1a1a; padding: 1rem 1.2rem; border-radius: 28px; margin: 1.5rem 0; }
-    .controls label { color: #bbb; font-size: 0.9rem; }
-    .controls select, .controls input, .controls button {
-      background: #2a2a2a; border: 1px solid #3a3a3a; color: #e0e0e0; padding: 0.5rem 1rem; border-radius: 40px;
-      font-size: 0.9rem; outline: none; transition: 0.2s;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
     }
-    .controls input::placeholder { color: #666; }
-    .controls select:focus, .controls input:focus { border-color: #66bb6a; }
-    .controls button {
-      background: #2a2a2a; border: 1px solid #66bb6a; color: #c6f0c6; cursor: pointer; font-weight: 500;
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 0.75rem;
     }
-    .controls button:hover { background: #3a4a3a; border-color: #88d88a; }
-    .badge { background: #2a2a2a; border-radius: 40px; padding: 0.2rem 1rem; font-size: 0.85rem; color: #ccc; }
-    .verb-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; margin: 2rem 0;
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .verb-card {
-      background: #141414; border: 1px solid #2a2a2a; border-radius: 24px; padding: 1.2rem 1.2rem 1rem;
-      transition: 0.15s; box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+    .accent {
+      color: #38bdf8;
+      -webkit-text-fill-color: #38bdf8;
     }
-    .verb-card:hover { border-color: #4a4a4a; }
-    .verb-base { font-size: 1.4rem; font-weight: 500; color: #fff; display: flex; justify-content: space-between; }
-    .verb-forms { display: flex; gap: 0.8rem; flex-wrap: wrap; margin: 0.6rem 0 0.4rem; }
-    .form-item { background: #1f1f1f; border-radius: 40px; padding: 0.2rem 0.8rem; font-size: 0.9rem; }
-    .form-item strong { color: #66bb6a; font-weight: 500; margin-right: 4px; }
-    .pronounce { color: #9a9a9a; font-size: 0.8rem; letter-spacing: 0.3px; margin: 0.2rem 0 0.4rem; }
-    .examples { font-size: 0.8rem; color: #b0b0b0; border-top: 1px solid #2a2a2a; padding-top: 0.5rem; margin-top: 0.4rem; }
-    .examples span { display: block; margin: 0.2rem 0; }
-    .pattern-tag { display: inline-block; background: #1e3a1e; color: #b0e0b0; padding: 0.1rem 0.8rem; border-radius: 40px; font-size: 0.7rem; letter-spacing: 0.3px; }
-    .mastered { border-left: 6px solid #66bb6a; }
-    .learning { border-left: 6px solid #e6b800; }
-    .stats { display: flex; gap: 1.5rem; margin: 0.5rem 0 1rem; }
-    .stats span { background: #1a1a1a; padding: 0.2rem 1rem; border-radius: 40px; }
-    .quiz-area { background: #111; border-radius: 32px; padding: 1.5rem; margin: 1.8rem 0; border: 1px solid #2a2a2a; }
-    .quiz-question { font-size: 1.3rem; margin-bottom: 0.8rem; }
-    .quiz-answer { display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center; }
-    .quiz-answer input { background: #2a2a2a; border: 1px solid #3a3a3a; color: #fff; padding: 0.5rem 1rem; border-radius: 40px; min-width: 140px; }
-    .quiz-answer button { background: #2a2a2a; border: 1px solid #66bb6a; color: #c6f0c6; padding: 0.5rem 1.5rem; border-radius: 40px; cursor: pointer; }
-    .quiz-feedback { margin-top: 0.6rem; font-style: italic; }
-    .footer { margin-top: 3rem; text-align: center; border-top: 1px solid #2a2a2a; padding-top: 1.5rem; }
-    .footer a { color: #66bb6a; text-decoration: none; }
-    .footer a:hover { text-decoration: underline; }
-    .btn-random { background: #1e3a1e; border-color: #66bb6a; }
-    @media (max-width: 600px) { .verb-grid { grid-template-columns: 1fr; } }
+    .score-area {
+      background: #1e293b;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      border: 1px solid #334155;
+      font-weight: 500;
+      font-size: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    .score-area span {
+      color: #38bdf8;
+      font-weight: 700;
+    }
+    .nav-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 0.5rem;
+    }
+    .nav-tab {
+      background: transparent;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #94a3b8;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: all 0.2s;
+    }
+    .nav-tab:hover {
+      background: #1e293b;
+      color: #e2e8f0;
+    }
+    .nav-tab.active {
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(56, 189, 248, 0.3);
+    }
+    .tab-content {
+      display: none;
+      animation: fade 0.25s ease;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    @keyframes fade {
+      0% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+    /* TABLE */
+    .search-box {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 40px;
+      color: #e2e8f0;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      outline: none;
+      transition: 0.2s;
+    }
+    .search-box:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.2);
+    }
+    .search-box::placeholder {
+      color: #64748b;
+    }
+    .sort-controls {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+    }
+    .sort-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .sort-btn.active {
+      background: #38bdf8;
+      border-color: #38bdf8;
+      color: #0f172a;
+      font-weight: 600;
+    }
+    .verb-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #1e293b;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+    .verb-table th {
+      background: #0f172a;
+      color: #38bdf8;
+      font-weight: 600;
+      padding: 0.9rem 0.5rem;
+      text-align: left;
+      border-bottom: 2px solid #334155;
+    }
+    .verb-table td {
+      padding: 0.7rem 0.5rem;
+      border-bottom: 1px solid #1e293b;
+    }
+    .verb-table tr:last-child td {
+      border-bottom: none;
+    }
+    .verb-table tr:hover td {
+      background: #263548;
+    }
+    .verb-table th:nth-child(1), .verb-table td:nth-child(1) { width: 28%; }
+    .verb-table th:nth-child(2), .verb-table td:nth-child(2) { width: 32%; }
+    .verb-table th:nth-child(3), .verb-table td:nth-child(3) { width: 40%; }
+    /* QUIZ */
+    .quiz-card {
+      background: #1e293b;
+      border-radius: 30px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+    .quiz-prompt {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .quiz-prompt strong {
+      color: #38bdf8;
+    }
+    .quiz-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+    .quiz-input {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 40px;
+      padding: 0.8rem 1.2rem;
+      color: #e2e8f0;
+      font-size: 1rem;
+      outline: none;
+    }
+    .quiz-input:focus {
+      border-color: #38bdf8;
+    }
+    .quiz-actions {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      background: #334155;
+      border: none;
+      padding: 0.6rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 500;
+      color: #e2e8f0;
+      cursor: pointer;
+      transition: 0.15s;
+      font-size: 0.95rem;
+    }
+    .btn-primary {
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      background: #7dd3fc;
+      box-shadow: 0 4px 12px rgba(56,189,248,0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+    }
+    .btn-outline:hover {
+      background: #1e293b;
+    }
+    .quiz-feedback {
+      margin-top: 1.2rem;
+      text-align: center;
+      font-weight: 500;
+      min-height: 2rem;
+    }
+    .correct { color: #4ade80; }
+    .wrong { color: #f87171; }
+    /* FLASHCARD */
+    .flashcard-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .flashcard {
+      background: #1e293b;
+      width: 100%;
+      max-width: 480px;
+      min-height: 220px;
+      border-radius: 30px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.2s;
+      border: 1px solid #334155;
+      position: relative;
+    }
+    .flashcard:hover {
+      border-color: #38bdf8;
+      transform: scale(1.01);
+    }
+    .flashcard-front, .flashcard-back {
+      width: 100%;
+      text-align: center;
+    }
+    .flashcard-back {
+      display: none;
+    }
+    .flashcard.flipped .flashcard-front {
+      display: none;
+    }
+    .flashcard.flipped .flashcard-back {
+      display: block;
+    }
+    .flashcard-verb {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #38bdf8;
+    }
+    .flashcard-detail {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      color: #cbd5e1;
+    }
+    .flashcard-hint {
+      color: #64748b;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+    .flashcard-nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      color: #475569;
+      font-size: 0.85rem;
+      border-top: 1px solid #1e293b;
+      padding-top: 2rem;
+    }
+    footer a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    @media (max-width: 500px) {
+      h1 { font-size: 1.5rem; }
+      .verb-table th, .verb-table td { font-size: 0.8rem; padding: 0.5rem 0.3rem; }
+    }
   </style>
-
-    <meta property="og:title" content="Irregular Verb Conjugator — All Forms & Examples">
-    <meta property="og:description" content="Master 150+ irregular English verbs: base, past, participle. Search, group by pattern, quiz mode, progress tracking. Dark theme.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://englishlearner.org/tools/irregular-verbs">
 </head>
 <body>
 <div class="container">
   <header>
-    <h1>Irregular Verb Conjugator</h1>
-    <div class="sub">150+ verbs · three forms · patterns · pronunciation · examples · practice</div>
+    <h1>⚡ Irregular Verbs <span class="accent">Trainer</span></h1>
+    <div class="score-area">🏆 Score: <span id="scoreDisplay">0</span></div>
   </header>
 
-  <div class="stats" id="statsDisplay">
-    <span>📚 total <span id="totalCount">0</span></span>
-    <span>✅ mastered <span id="masteredCount">0</span></span>
-    <span>🔄 learning <span id="learningCount">0</span></span>
+  <div class="nav-tabs">
+    <button class="nav-tab active" data-tab="table">📋 Table</button>
+    <button class="nav-tab" data-tab="quiz">✍️ Quiz</button>
+    <button class="nav-tab" data-tab="flashcard">🃏 Flashcards</button>
   </div>
 
-  <div class="controls">
-    <label>🔍 search <input type="text" id="searchInput" placeholder="e.g. sing, bring..." size="12"></label>
-    <label>🎯 difficulty 
-      <select id="difficultyFilter">
-        <option value="all">All</option>
-        <option value="common">Common (50)</option>
-        <option value="intermediate">Intermediate (50)</option>
-        <option value="advanced">Advanced (50+)</option>
-      </select>
-    </label>
-    <label>🧩 pattern 
-      <select id="patternFilter">
-        <option value="all">All patterns</option>
-        <option value="sing-sang-sung">sing-sang-sung</option>
-        <option value="buy-bought-bought">buy-bought-bought</option>
-        <option value="drink-drank-drunk">drink-drank-drunk</option>
-        <option value="break-broke-broken">break-broke-broken</option>
-        <option value="write-wrote-written">write-wrote-written</option>
-        <option value="其他">other</option>
-      </select>
-    </label>
-    <button id="randomTestBtn" class="btn-random">🎲 Random verb test</button>
-  </div>
-
-  <div id="verbContainer" class="verb-grid"></div>
-
-  <!-- Quiz area -->
-  <div class="quiz-area" id="quizArea">
-    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-      <h3>✏️ Practice mode · fill missing forms</h3>
-      <span class="badge" id="quizProgress">0 / 0</span>
+  <!-- TABLE TAB -->
+  <div id="tab-table" class="tab-content active">
+    <input type="text" id="tableSearch" class="search-box" placeholder="🔍 Search verb (base, past, participle)…">
+    <div class="sort-controls">
+      <button class="sort-btn active" data-sort="alpha">A–Z</button>
+      <button class="sort-btn" data-sort="freq">📊 Frequency</button>
     </div>
-    <div id="quizQuestion" class="quiz-question">Select a verb or click "Random verb test"</div>
-    <div class="quiz-answer">
-      <input type="text" id="quizInput" placeholder="type answer..." autocomplete="off">
-      <button id="submitAnswer">Check</button>
-      <button id="skipQuestion">Skip</button>
+    <div style="overflow-x: auto; border-radius: 20px;">
+      <table class="verb-table" id="verbTable">
+        <thead><tr><th>Base</th><th>Past Simple</th><th>Past Participle</th></tr></thead>
+        <tbody id="tableBody"></tbody>
+      </table>
     </div>
-    <div id="quizFeedback" class="quiz-feedback"></div>
   </div>
 
-  <footer class="footer">
-    <p><a href="https://englishlearner.org/">← back to englishlearner.org</a></p>
-    <p style="color:#555; font-size:0.8rem;">Irregular Verb Conjugator · offline ready · progress saved</p>
+  <!-- QUIZ TAB -->
+  <div id="tab-quiz" class="tab-content">
+    <div class="quiz-card">
+      <div class="quiz-prompt" id="quizPrompt">Fill in the missing forms for <strong id="quizBase">begin</strong></div>
+      <div class="quiz-input-group">
+        <input type="text" id="quizPast" class="quiz-input" placeholder="Past Simple" autocomplete="off">
+        <input type="text" id="quizParticiple" class="quiz-input" placeholder="Past Participle" autocomplete="off">
+      </div>
+      <div class="quiz-actions">
+        <button class="btn btn-primary" id="quizSubmit">✔ Check</button>
+        <button class="btn btn-outline" id="quizNext">⏩ Next</button>
+      </div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+    </div>
+  </div>
+
+  <!-- FLASHCARD TAB -->
+  <div id="tab-flashcard" class="tab-content">
+    <div class="flashcard-area">
+      <div class="flashcard" id="flashcard">
+        <div class="flashcard-front">
+          <div class="flashcard-verb" id="fcBase">begin</div>
+          <div class="flashcard-detail">base form</div>
+          <div class="flashcard-hint">👆 tap to reveal</div>
+        </div>
+        <div class="flashcard-back">
+          <div class="flashcard-verb" style="color:#e2e8f0;">Past Simple</div>
+          <div class="flashcard-detail" id="fcPast">began</div>
+          <div class="flashcard-verb" style="margin-top:0.8rem; color:#e2e8f0;">Past Participle</div>
+          <div class="flashcard-detail" id="fcParticiple">begun</div>
+        </div>
+      </div>
+      <div class="flashcard-nav">
+        <button class="btn btn-outline" id="fcPrev">◀ Previous</button>
+        <button class="btn btn-primary" id="fcNext">Next ▶</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© englishlearner.org — <a href="https://englishlearner.org/tools/irregular-verbs">Irregular Verbs Trainer</a> | Master 100+ verbs</p>
   </footer>
 </div>
 
 <script>
   (function() {
-    // ------------------------------------------------------------
-    // 150+ irregular verbs database: base, past, participle, difficulty, pattern, pronunciation, examples
-    // ------------------------------------------------------------
-    const VERBS = [
-      // --- COMMON (50) ---
-      {base:'be',past:'was/were',pp:'been',diff:'common',pattern:'be-was/were-been',pron:'bee, wuz/wur, been',exBase:'I want to be happy.',exPast:'She was here.',exPP:'They have been friends.'},
-      {base:'begin',past:'began',pp:'begun',diff:'common',pattern:'sing-sang-sung',pron:'bih-GIN, bih-GAN, bih-GUN',exBase:'Let’s begin the lesson.',exPast:'It began to rain.',exPP:'We have begun a new chapter.'},
-      {base:'break',past:'broke',pp:'broken',diff:'common',pattern:'break-broke-broken',pron:'brayk, brohk, BROH-kən',exBase:'Don’t break the glass.',exPast:'He broke his phone.',exPP:'It is broken.'},
-      {base:'bring',past:'brought',pp:'brought',diff:'common',pattern:'buy-bought-bought',pron:'bring, brawt, brawt',exBase:'Bring your book.',exPast:'She brought cake.',exPP:'They have brought gifts.'},
-      {base:'buy',past:'bought',pp:'bought',diff:'common',pattern:'buy-bought-bought',pron:'bai, bawt, bawt',exBase:'I buy milk.',exPast:'He bought a car.',exPP:'We have bought tickets.'},
-      {base:'choose',past:'chose',pp:'chosen',diff:'common',pattern:'break-broke-broken',pron:'chooz, chohz, CHOH-zən',exBase:'Choose wisely.',exPast:'She chose red.',exPP:'They have chosen a leader.'},
-      {base:'come',past:'came',pp:'come',diff:'common',pattern:'come-came-come',pron:'kum, kaym, kum',exBase:'Come here.',exPast:'He came late.',exPP:'She has come home.'},
-      {base:'do',past:'did',pp:'done',diff:'common',pattern:'do-did-done',pron:'doo, did, dun',exBase:'Do your work.',exPast:'He did his best.',exPP:'It is done.'},
-      {base:'drink',past:'drank',pp:'drunk',diff:'common',pattern:'drink-drank-drunk',pron:'drink, drangk, drungk',exBase:'Drink water.',exPast:'He drank juice.',exPP:'They have drunk tea.'},
-      {base:'drive',past:'drove',pp:'driven',diff:'common',pattern:'write-wrote-written',pron:'driv, drohv, DRIV-ən',exBase:'Drive carefully.',exPast:'She drove fast.',exPP:'We have driven far.'},
-      {base:'eat',past:'ate',pp:'eaten',diff:'common',pattern:'eat-ate-eaten',pron:'eet, ayt, EE-tən',exBase:'Eat healthy.',exPast:'He ate pizza.',exPP:'They have eaten dinner.'},
-      {base:'fall',past:'fell',pp:'fallen',diff:'common',pattern:'fall-fell-fallen',pron:'fawl, fel, FAWL-ən',exBase:'Leaves fall.',exPast:'He fell down.',exPP:'She has fallen asleep.'},
-      {base:'feel',past:'felt',pp:'felt',diff:'common',pattern:'feel-felt-felt',pron:'feel, felt, felt',exBase:'I feel good.',exPast:'He felt cold.',exPP:'I have felt that.'},
-      {base:'find',past:'found',pp:'found',diff:'common',pattern:'find-found-found',pron:'faind, fownd, fownd',exBase:'Find the key.',exPast:'She found a coin.',exPP:'They have found it.'},
-      {base:'fly',past:'flew',pp:'flown',diff:'common',pattern:'fly-flew-flown',pron:'flai, floo, flohn',exBase:'Birds fly.',exPast:'He flew to Paris.',exPP:'We have flown before.'},
-      {base:'forget',past:'forgot',pp:'forgotten',diff:'common',pattern:'break-broke-broken',pron:'for-GET, for-GOT, for-GOT-ən',exBase:'Don’t forget.',exPast:'She forgot the keys.',exPP:'He has forgotten.'},
-      {base:'get',past:'got',pp:'got/gotten',diff:'common',pattern:'get-got-gotten',pron:'get, got, GOT-ən',exBase:'Get ready.',exPast:'He got a gift.',exPP:'I have gotten better.'},
-      {base:'give',past:'gave',pp:'given',diff:'common',pattern:'give-gave-given',pron:'giv, gayv, GIV-ən',exBase:'Give thanks.',exPast:'She gave a smile.',exPP:'It is given.'},
-      {base:'go',past:'went',pp:'gone',diff:'common',pattern:'go-went-gone',pron:'goh, went, gawn',exBase:'Go home.',exPast:'He went out.',exPP:'They are gone.'},
-      {base:'grow',past:'grew',pp:'grown',diff:'common',pattern:'fly-flew-flown',pron:'groh, groo, grohn',exBase:'Plants grow.',exPast:'He grew tall.',exPP:'We have grown.'},
-      {base:'have',past:'had',pp:'had',diff:'common',pattern:'have-had-had',pron:'hav, had, had',exBase:'Have fun.',exPast:'She had a dream.',exPP:'I have had enough.'},
-      {base:'hear',past:'heard',pp:'heard',diff:'common',pattern:'hear-heard-heard',pron:'heer, hurd, hurd',exBase:'Hear me.',exPast:'He heard a noise.',exPP:'We have heard it.'},
-      {base:'hide',past:'hid',pp:'hidden',diff:'common',pattern:'hide-hid-hidden',pron:'haid, hid, HID-ən',exBase:'Hide the toy.',exPast:'She hid behind.',exPP:'It is hidden.'},
-      {base:'keep',past:'kept',pp:'kept',diff:'common',pattern:'keep-kept-kept',pron:'keep, kept, kept',exBase:'Keep it safe.',exPast:'He kept the secret.',exPP:'She has kept it.'},
-      {base:'know',past:'knew',pp:'known',diff:'common',pattern:'know-knew-known',pron:'noh, nyoo, nohn',exBase:'Know the truth.',exPast:'He knew the answer.',exPP:'It is known.'},
-      {base:'leave',past:'left',pp:'left',diff:'common',pattern:'leave-left-left',pron:'leev, left, left',exBase:'Leave now.',exPast:'She left early.',exPP:'He has left.'},
-      {base:'lose',past:'lost',pp:'lost',diff:'common',pattern:'lose-lost-lost',pron:'looz, lost, lost',exBase:'Don’t lose hope.',exPast:'He lost his keys.',exPP:'They are lost.'},
-      {base:'make',past:'made',pp:'made',diff:'common',pattern:'make-made-made',pron:'mayk, mayd, mayd',exBase:'Make a wish.',exPast:'She made a cake.',exPP:'It is made.'},
-      {base:'meet',past:'met',pp:'met',diff:'common',pattern:'meet-met-met',pron:'meet, met, met',exBase:'Meet me there.',exPast:'He met a friend.',exPP:'We have met before.'},
-      {base:'pay',past:'paid',pp:'paid',diff:'common',pattern:'pay-paid-paid',pron:'pay, payd, payd',exBase:'Pay the bill.',exPast:'She paid cash.',exPP:'It is paid.'},
-      {base:'put',past:'put',pp:'put',diff:'common',pattern:'put-put-put',pron:'put, put, put',exBase:'Put it here.',exPast:'He put it down.',exPP:'They have put it away.'},
-      {base:'read',past:'read',pp:'read',diff:'common',pattern:'read-read-read',pron:'reed, red, red',exBase:'Read a book.',exPast:'She read a story.',exPP:'I have read it.'},
-      {base:'ride',past:'rode',pp:'ridden',diff:'common',pattern:'write-wrote-written',pron:'raid, rohd, RID-ən',exBase:'Ride a bike.',exPast:'He rode a horse.',exPP:'We have ridden far.'},
-      {base:'run',past:'ran',pp:'run',diff:'common',pattern:'run-ran-run',pron:'run, ran, run',exBase:'Run fast.',exPast:'She ran home.',exPP:'He has run a marathon.'},
-      {base:'say',past:'said',pp:'said',diff:'common',pattern:'say-said-said',pron:'say, sed, sed',exBase:'Say hello.',exPast:'He said yes.',exPP:'It is said.'},
-      {base:'see',past:'saw',pp:'seen',diff:'common',pattern:'see-saw-seen',pron:'see, saw, seen',exBase:'See the view.',exPast:'She saw a bird.',exPP:'I have seen it.'},
-      {base:'sell',past:'sold',pp:'sold',diff:'common',pattern:'sell-sold-sold',pron:'sel, sohld, sohld',exBase:'Sell your car.',exPast:'He sold his bike.',exPP:'It is sold.'},
-      {base:'send',past:'sent',pp:'sent',diff:'common',pattern:'send-sent-sent',pron:'send, sent, sent',exBase:'Send a letter.',exPast:'She sent a message.',exPP:'It is sent.'},
-      {base:'sing',past:'sang',pp:'sung',diff:'common',pattern:'sing-sang-sung',pron:'sing, sang, sung',exBase:'Sing a song.',exPast:'He sang loudly.',exPP:'They have sung.'},
-      {base:'sit',past:'sat',pp:'sat',diff:'common',pattern:'sit-sat-sat',pron:'sit, sat, sat',exBase:'Sit down.',exPast:'She sat on the chair.',exPP:'He has sat there.'},
-      {base:'sleep',past:'slept',pp:'slept',diff:'common',pattern:'sleep-slept-slept',pron:'sleep, slept, slept',exBase:'Sleep well.',exPast:'He slept deeply.',exPP:'I have slept.'},
-      {base:'speak',past:'spoke',pp:'spoken',diff:'common',pattern:'break-broke-broken',pron:'speek, spohk, SPOH-kən',exBase:'Speak clearly.',exPast:'She spoke softly.',exPP:'It is spoken.'},
-      {base:'spend',past:'spent',pp:'spent',diff:'common',pattern:'spend-spent-spent',pron:'spend, spent, spent',exBase:'Spend time.',exPast:'He spent money.',exPP:'It is spent.'},
-      {base:'stand',past:'stood',pp:'stood',diff:'common',pattern:'stand-stood-stood',pron:'stand, stud, stud',exBase:'Stand up.',exPast:'She stood still.',exPP:'We have stood.'},
-      {base:'swim',past:'swam',pp:'swum',diff:'common',pattern:'swim-swam-swum',pron:'swim, swam, swum',exBase:'Swim fast.',exPast:'He swam across.',exPP:'They have swum.'},
-      {base:'take',past:'took',pp:'taken',diff:'common',pattern:'take-took-taken',pron:'tayk, took, TAY-kən',exBase:'Take a break.',exPast:'She took a photo.',exPP:'It is taken.'},
-      {base:'teach',past:'taught',pp:'taught',diff:'common',pattern:'teach-taught-taught',pron:'teech, tawt, tawt',exBase:'Teach me.',exPast:'He taught math.',exPP:'She has taught.'},
-      {base:'tell',past:'told',pp:'told',diff:'common',pattern:'tell-told-told',pron:'tel, tohld, tohld',exBase:'Tell a story.',exPast:'He told the truth.',exPP:'It is told.'},
-      {base:'think',past:'thought',pp:'thought',diff:'common',pattern:'think-thought-thought',pron:'think, thawt, thawt',exBase:'Think positive.',exPast:'She thought deeply.',exPP:'I have thought.'},
-      {base:'write',past:'wrote',pp:'written',diff:'common',pattern:'write-wrote-written',pron:'rait, roht, RIT-ən',exBase:'Write a note.',exPast:'He wrote a letter.',exPP:'It is written.'},
-      // --- INTERMEDIATE (50) ---
-      {base:'awake',past:'awoke',pp:'awoken',diff:'intermediate',pattern:'break-broke-broken',pron:'ə-WAYK, ə-WOHK, ə-WOH-kən',exBase:'Awake at dawn.',exPast:'She awoke early.',exPP:'He has awoken.'},
-      {base:'beat',past:'beat',pp:'beaten',diff:'intermediate',pattern:'beat-beat-beaten',pron:'beet, beet, BEE-tən',exBase:'Beat the drum.',exPast:'He beat the record.',exPP:'It is beaten.'},
-      {base:'become',past:'became',pp:'become',diff:'intermediate',pattern:'come-came-come',pron:'bih-KUM, bih-KAYM, bih-KUM',exBase:'Become better.',exPast:'She became a doctor.',exPP:'He has become strong.'},
-      {base:'bend',past:'bent',pp:'bent',diff:'intermediate',pattern:'bend-bent-bent',pron:'bend, bent, bent',exBase:'Bend the wire.',exPast:'He bent the rule.',exPP:'It is bent.'},
-      {base:'bet',past:'bet',pp:'bet',diff:'intermediate',pattern:'bet-bet-bet',pron:'bet, bet, bet',exBase:'Bet on it.',exPast:'She bet $10.',exPP:'I have bet.'},
-      {base:'bite',past:'bit',pp:'bitten',diff:'intermediate',pattern:'bite-bit-bitten',pron:'bait, bit, BIT-ən',exBase:'Bite an apple.',exPast:'He bit his lip.',exPP:'It is bitten.'},
-      {base:'blow',past:'blew',pp:'blown',diff:'intermediate',pattern:'fly-flew-flown',pron:'bloh, bloo, blohn',exBase:'Blow a bubble.',exPast:'The wind blew.',exPP:'It is blown.'},
-      {base:'burn',past:'burned/burnt',pp:'burned/burnt',diff:'intermediate',pattern:'burn-burnt-burnt',pron:'burn, burnt, burnt',exBase:'Burn the paper.',exPast:'He burnt the toast.',exPP:'It is burnt.'},
-      {base:'catch',past:'caught',pp:'caught',diff:'intermediate',pattern:'catch-caught-caught',pron:'kach, kawt, kawt',exBase:'Catch the ball.',exPast:'She caught a fish.',exPP:'It is caught.'},
-      {base:'dig',past:'dug',pp:'dug',diff:'intermediate',pattern:'dig-dug-dug',pron:'dig, dug, dug',exBase:'Dig a hole.',exPast:'He dug deep.',exPP:'It is dug.'},
-      {base:'draw',past:'drew',pp:'drawn',diff:'intermediate',pattern:'fly-flew-flown',pron:'draw, droo, drawn',exBase:'Draw a picture.',exPast:'She drew a map.',exPP:'It is drawn.'},
-      {base:'dream',past:'dreamed/dreamt',pp:'dreamed/dreamt',diff:'intermediate',pattern:'dream-dreamt-dreamt',pron:'dreem, dremt, dremt',exBase:'Dream big.',exPast:'He dreamt of stars.',exPP:'I have dreamt.'},
-      {base:'feed',past:'fed',pp:'fed',diff:'intermediate',pattern:'feed-fed-fed',pron:'feed, fed, fed',exBase:'Feed the cat.',exPast:'She fed the dog.',exPP:'It is fed.'},
-      {base:'fight',past:'fought',pp:'fought',diff:'intermediate',pattern:'fight-fought-fought',pron:'fait, fawt, fawt',exBase:'Fight for peace.',exPast:'He fought bravely.',exPP:'They have fought.'},
-      {base:'freeze',past:'froze',pp:'frozen',diff:'intermediate',pattern:'break-broke-broken',pron:'freez, frohz, FROH-zən',exBase:'Freeze the water.',exPast:'The lake froze.',exPP:'It is frozen.'},
-      {base:'hang',past:'hung',pp:'hung',diff:'intermediate',pattern:'hang-hung-hung',pron:'hang, hung, hung',exBase:'Hang the picture.',exPast:'She hung it up.',exPP:'It is hung.'},
-      {base:'hit',past:'hit',pp:'hit',diff:'intermediate',pattern:'hit-hit-hit',pron:'hit, hit, hit',exBase:'Hit the target.',exPast:'He hit the ball.',exPP:'It is hit.'},
-      {base:'hold',past:'held',pp:'held',diff:'intermediate',pattern:'hold-held-held',pron:'hohld, held, held',exBase:'Hold my hand.',exPast:'She held the door.',exPP:'He has held it.'},
-      {base:'hurt',past:'hurt',pp:'hurt',diff:'intermediate',pattern:'hurt-hurt-hurt',pron:'hurt, hurt, hurt',exBase:'Hurt no one.',exPast:'He hurt his leg.',exPP:'She is hurt.'},
-      {base:'lead',past:'led',pp:'led',diff:'intermediate',pattern:'lead-led-led',pron:'leed, led, led',exBase:'Lead the way.',exPast:'He led the team.',exPP:'They have led.'},
-      {base:'learn',past:'learned/learnt',pp:'learned/learnt',diff:'intermediate',pattern:'learn-learnt-learnt',pron:'lurn, lurnt, lurnt',exBase:'Learn new words.',exPast:'She learnt Spanish.',exPP:'It is learnt.'},
-      {base:'lend',past:'lent',pp:'lent',diff:'intermediate',pattern:'lend-lent-lent',pron:'lend, lent, lent',exBase:'Lend me a pen.',exPast:'He lent $5.',exPP:'It is lent.'},
-      {base:'lie',past:'lay',pp:'lain',diff:'intermediate',pattern:'lie-lay-lain',pron:'lai, lay, layn',exBase:'Lie down.',exPast:'He lay on the bed.',exPP:'She has lain there.'},
-      {base:'light',past:'lit',pp:'lit',diff:'intermediate',pattern:'light-lit-lit',pron:'lait, lit, lit',exBase:'Light the candle.',exPast:'She lit the fire.',exPP:'It is lit.'},
-      {base:'mean',past:'meant',pp:'meant',diff:'intermediate',pattern:'mean-meant-meant',pron:'meen, ment, ment',exBase:'Mean kindness.',exPast:'He meant well.',exPP:'It is meant.'},
-      {base:'mistake',past:'mistook',pp:'mistaken',diff:'intermediate',pattern:'take-took-taken',pron:'mis-TAYK, mis-TOOK, mis-TAY-kən',exBase:'Mistake happens.',exPast:'She mistook the date.',exPP:'I was mistaken.'},
-      {base:'overcome',past:'overcame',pp:'overcome',diff:'intermediate',pattern:'come-came-come',pron:'oh-ver-KUM, oh-ver-KAYM, oh-ver-KUM',exBase:'Overcome fear.',exPast:'He overcame obstacles.',exPP:'It is overcome.'},
-      {base:'prove',past:'proved',pp:'proven/proved',diff:'intermediate',pattern:'prove-proved-proven',pron:'proov, proovd, PROO-vən',exBase:'Prove your point.',exPast:'She proved it.',exPP:'It is proven.'},
-      {base:'quit',past:'quit',pp:'quit',diff:'intermediate',pattern:'quit-quit-quit',pron:'kwit, kwit, kwit',exBase:'Quit smoking.',exPast:'He quit his job.',exPP:'She has quit.'},
-      {base:'rise',past:'rose',pp:'risen',diff:'intermediate',pattern:'rise-rose-risen',pron:'raiz, rohz, RIZ-ən',exBase:'Rise early.',exPast:'The sun rose.',exPP:'He has risen.'},
-      {base:'seek',past:'sought',pp:'sought',diff:'intermediate',pattern:'seek-sought-sought',pron:'seek, sawt, sawt',exBase:'Seek truth.',exPast:'She sought help.',exPP:'It is sought.'},
-      {base:'shake',past:'shook',pp:'shaken',diff:'intermediate',pattern:'shake-shook-shaken',pron:'shayk, shook, SHAY-kən',exBase:'Shake hands.',exPast:'He shook the bottle.',exPP:'It is shaken.'},
-      {base:'shine',past:'shone',pp:'shone',diff:'intermediate',pattern:'shine-shone-shone',pron:'shain, shohn, shohn',exBase:'Shine bright.',exPast:'The sun shone.',exPP:'It has shone.'},
-      {base:'shoot',past:'shot',pp:'shot',diff:'intermediate',pattern:'shoot-shot-shot',pron:'shoot, shot, shot',exBase:'Shoot the arrow.',exPast:'He shot the target.',exPP:'It is shot.'},
-      {base:'show',past:'showed',pp:'shown',diff:'intermediate',pattern:'show-showed-shown',pron:'shoh, shohd, shohn',exBase:'Show the way.',exPast:'She showed her work.',exPP:'It is shown.'},
-      {base:'shut',past:'shut',pp:'shut',diff:'intermediate',pattern:'shut-shut-shut',pron
+    // ----- VERB DATASET (100+ irregular verbs) -----
+    const verbs = [
+      {base:"be", past:"was/were", pp:"been", freq:10},
+      {base:"beat", past:"beat", pp:"beaten", freq:8},
+      {base:"become", past:"became", pp:"become", freq:9},
+      {base:"begin", past:"began", pp:"begun", freq:9},
+      {base:"bend", past:"bent", pp:"bent", freq:7},
+      {base:"bet", past:"bet", pp:"bet", freq:6},
+      {base:"bite", past:"bit", pp:"bitten", freq:7},
+      {base:"blow", past:"blew", pp:"blown", freq:6},
+      {base:"break", past:"broke", pp:"broken", freq:8},
+      {base:"bring", past:"brought", pp:"brought", freq:9},
+      {base:"build", past:"built", pp:"built", freq:9},
+      {base:"burn", past:"burnt/burned", pp:"burnt/burned", freq:7},
+      {base:"buy", past:"bought", pp:"bought", freq:9},
+      {base:"catch", past:"caught", pp:"caught", freq:8},
+      {base:"choose", past:"chose", pp:"chosen", freq:8},
+      {base:"come", past:"came", pp:"come", freq:10},
+      {base:"cost", past:"cost", pp:"cost", freq:8},
+      {base:"cut", past:"cut", pp:"cut", freq:8},
+      {base:"deal", past:"dealt", pp:"dealt", freq:6},
+      {base:"dig", past:"dug", pp:"dug", freq:6},
+      {base:"do", past:"did", pp:"done", freq:10},
+      {base:"draw", past:"drew", pp:"drawn", freq:7},
+      {base:"drink", past:"drank", pp:"drunk", freq:7},
+      {base:"drive", past:"drove", pp:"driven", freq:8},
+      {base:"eat", past:"ate", pp:"eaten", freq:9},
+      {base:"fall", past:"fell", pp:"fallen", freq:8},
+      {base:"feed", past:"fed", pp:"fed", freq:7},
+      {base:"feel", past:"felt", pp:"felt", freq:9},
+      {base:"fight", past:"fought", pp:"fought", freq:7},
+      {base:"find", past:"found", pp:"found", freq:10},
+      {base:"fly", past:"flew", pp:"flown", freq:8},
+      {base:"forget", past:"forgot", pp:"forgotten", freq:7},
+      {base:"forgive", past:"forgave", pp:"forgiven", freq:5},
+      {base:"freeze", past:"froze", pp:"frozen", freq:5},
+      {base:"get", past:"got", pp:"got/gotten", freq:10},
+      {base:"give", past:"gave", pp:"given", freq:9},
+      {base:"go", past:"went", pp:"gone", freq:10},
+      {base:"grow", past:"grew", pp:"grown", freq:8},
+      {base:"hang", past:"hung", pp:"hung", freq:7},
+      {base:"have", past:"had", pp:"had", freq:10},
+      {base:"hear", past:"heard", pp:"heard", freq:9},
+      {base:"hide", past:"hid", pp:"hidden", freq:6},
+      {base:"hit", past:"hit", pp:"hit", freq:8},
+      {base:"hold", past:"held", pp:"held", freq:8},
+      {base:"hurt", past:"hurt", pp:"hurt", freq:7},
+      {base:"keep", past:"kept", pp:"kept", freq:9},
+      {base:"know", past:"knew", pp:"known", freq:10},
+      {base:"lay", past:"laid", pp:"laid", freq:6},
+      {base:"lead", past:"led", pp:"led", freq:8},
+      {base:"leave", past:"left", pp:"left", freq:9},
+      {base:"lend", past:"lent", pp:"lent", freq:6},
+      {base:"let", past:"let", pp:"let", freq:9},
+      {base:"lie", past:"lay", pp:"lain", freq:6},
+      {base:"light", past:"lit", pp:"lit", freq:5},
+      {base:"lose", past:"lost", pp:"lost", freq:9},
+      {base:"make", past:"made", pp:"made", freq:10},
+      {base:"mean", past:"meant", pp:"meant", freq:8},
+      {base:"meet", past:"met", pp:"met", freq:9},
+      {base:"pay", past:"paid", pp:"paid", freq:9},
+      {base:"put", past:"put", pp:"put", freq:10},
+      {base:"read", past:"read", pp:"read", freq:10},
+      {base:"ride", past:"rode", pp:"ridden", freq:7},
+      {base:"ring", past:"rang", pp:"rung", freq:6},
+      {base:"rise", past:"rose", pp:"risen", freq:7},
+      {base:"run", past:"ran", pp:"run", freq:10},
+      {base:"say", past:"said", pp:"said", freq:10},
+      {base:"see", past:"saw", pp:"seen", freq:10},
+      {base:"seek", past:"sought", pp:"sought", freq:5},
+      {base:"sell", past:"sold", pp:"sold", freq:8},
+      {base:"send", past:"sent", pp:"sent", freq:9},
+      {base:"set", past:"set", pp:"set", freq:9},
+      {base:"shake", past:"shook", pp:"shaken", freq:6},
+      {base:"shine", past:"shone", pp:"shone", freq:6},
+      {base:"shoot", past:"shot", pp:"shot", freq:7},
+      {base:"show", past:"showed", pp:"shown/showed", freq:8},
+      {base:"shut", past:"shut", pp:"shut", freq:7},
+      {base:"sing", past:"sang", pp:"sung", freq:7},
+      {base:"sink", past:"sank", pp:"sunk", freq:6},
+      {base:"sit", past:"sat", pp:"sat", freq:9},
+      {base:"sleep", past:"slept", pp:"slept", freq:8},
+      {base:"speak", past:"spoke", pp:"spoken", freq:9},
+      {base:"spend", past:"spent", pp:"spent", freq:9},
+      {base:"stand", past:"stood", pp:"stood", freq:9},
+      {base:"steal", past:"stole", pp:"stolen", freq:6},
+      {base:"stick", past:"stuck", pp:"stuck", freq:6},
+      {base:"strike", past:"struck", pp:"struck", freq:5},
+      {base:"swim", past:"swam", pp:"swum", freq:6},
+      {base:"take", past:"took", pp:"taken", freq:10},
+      {base:"teach", past:"taught", pp:"taught", freq:8},
+      {base:"tear", past:"tore", pp:"torn", freq:5},
+      {base:"tell", past:"told", pp:"told", freq:10},
+      {base:"think", past:"thought", pp:"thought", freq:10},
+      {base:"throw", past:"threw", pp:"thrown", freq:7},
+      {base:"understand", past:"understood", pp:"understood", freq:9},
+      {base:"wake", past:"woke", pp:"woken", freq:7},
+      {base:"wear", past:"wore", pp:"worn", freq:7},
+      {base:"win", past:"won", pp:"won", freq:8},
+      {base:"write", past:"wrote", pp:"written", freq:9}
+    ];
+
+    // ----- STATE -----
+    let score = 0;
+    let currentSort = 'alpha'; // 'alpha' or 'freq'
+    let searchTerm = '';
+    let filteredVerbs = [...verbs];
+
+    // Quiz state
+    let quizIndex = 0;
+    let quizVerb = verbs[0];
+
+    // Flashcard state
+    let fcIndex = 0;
+
+    // DOM refs
+    const tableBody = document.getElementById('tableBody');
+    const searchInput = document.getElementById('tableSearch');
+    const sortBtns = document.querySelectorAll('.sort-btn');
+    const scoreDisplay = document.getElementById('scoreDisplay');
+
+    // Quiz
+    const quizBase = document.getElementById('quizBase');
+    const quizPast = document.getElementById('quizPast');
+    const quizParticiple = document.getElementById('quizParticiple');
+    const quizSubmit = document.getElementById('quizSubmit');
+    const quizNext = document.getElementById('quizNext');
+    const quizFeedback = document.getElementById('quizFeedback');
+
+    // Flashcard
+    const flashcard = document.getElementById('flashcard');
+    const fcBase = document.getElementById('fcBase');
+    const fcPast = document.getElementById('fcPast');
+    const fcParticiple = document.getElementById('fcParticiple');
+    const fcPrev = document.getElementById('fcPrev');
+    const fcNext = document.getElementById('fcNext');
+
+    // ----- HELPERS -----
+    function normalize(s) { return s.toLowerCase().trim(); }
+
+    function filterAndSort() {
+      let list = [...verbs];
+      if (searchTerm) {
+        const q = normalize(searchTerm);
+        list = list.filter(v => 
+          normalize(v.base).includes(q) || 
+          normalize(v.past).includes(q) || 
+          normalize(v.pp).includes(q)
+        );
+      }
+      if (currentSort === 'alpha') {
+        list.sort((a,b) => a.base.localeCompare(b.base));
+      } else if (currentSort === 'freq') {
+        list.sort((a,b) => b.freq - a.freq);
+      }
+      filteredVerbs = list;
+      return list;
+    }
+
+    function renderTable() {
+      const data = filterAndSort();
+      let html = '';
+      data.forEach(v => {
+        html += `<tr><td>${v.base}</td><td>${v.past}</td><td>${v.pp}</td></tr>`;
+      });
+      tableBody.innerHTML = html;
+    }
+
+    function updateScore(delta = 0) {
+      score += delta;
+      if (score < 0) score = 0;
+      scoreDisplay.textContent = score;
+    }
+
+    // ----- TABLE EVENTS -----
+    searchInput.addEventListener('input', (e) => {
+      searchTerm = e.target.value;
+      renderTable();
+    });
+
+    sortBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sortBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentSort = btn.dataset.sort;
+        renderTable();
+      });
+    });
+
+    // ----- QUIZ -----
+    function loadQuiz(index) {
+      const v = verbs[index % verbs.length];
+      quizVerb = v;
+      quizBase.textContent = v.base;
+      quizPast.value = '';
+      quizParticiple.value = '';
+      quizFeedback.textContent = '';
+      quizFeedback.className = 'quiz-feedback';
+    }
+
+    function checkQuiz() {
+      const pastAns = normalize(quizPast.value);
+      const ppAns = normalize(quizParticiple.value);
+      const correctPast = normalize(quizVerb.past);
+      const correctPP = normalize(quizVerb.pp);
+
+      let pastOk = pastAns === correctPast || (correctPast.includes('/') && correctPast.split('/').some(p => normalize(p.trim()) === pastAns));
+      let ppOk = ppAns === correctPP || (correctPP.includes('/') && correctPP.split('/').some(p => normalize(p.trim()) === ppAns));
+
+      // edge: if stored includes slash, we already did partial; also direct match
+      if (!pastOk && correctPast.includes('/')) {
+        const parts = correctPast.split('/').map(p => normalize(p.trim()));
+        pastOk = parts.includes(pastAns);
+      }
+      if (!ppOk && correctPP.includes('/')) {
+        const parts = correctPP.split('/').map(p => normalize(p.trim()));
+        ppOk = parts.includes(ppAns);
+      }
+
+      if (pastOk && ppOk) {
+        quizFeedback.textContent = '✅ Perfect! +1 point';
+        quizFeedback.className = 'quiz-feedback correct';
+        updateScore(1);
+      } else {
+        let msg = '❌ ';
+        if (!pastOk) msg += `Past: ${quizVerb.past} `;
+        if (!ppOk) msg += `Participle: ${quizVerb.pp}`;
+        quizFeedback.textContent = msg;
+        quizFeedback.className = 'quiz-feedback wrong';
+      }
+    }
+
+    quizSubmit.addEventListener('click', checkQuiz);
+    quizNext.addEventListener('click', () => {
+      quizIndex = (quizIndex + 1) % verbs.length;
+      loadQuiz(quizIndex);
+    });
+
+    // ----- FLASHCARD -----
+    function loadFlashcard(index) {
+      const v = verbs[index % verbs.length];
+      fcBase.textContent = v.base;
+      fcPast.textContent = v.past;
+      fcParticiple.textContent = v.pp;
+      flashcard.classList.remove('flipped');
+    }
+
+    flashcard.addEventListener('click', () => {
+      flashcard.classList.toggle('flipped');
+    });
+
+    fcPrev.addEventListener('click', () => {
+      fcIndex = (fcIndex - 1 + verbs.length) % verbs.length;
+      loadFlashcard(fcIndex);
+    });
+    fcNext.addEventListener('click', () => {
+      fcIndex = (fcIndex + 1) % verbs.length;
+      loadFlashcard(fcIndex);
+    });
+
+    // ----- TABS -----
+    const tabs = document.querySelectorAll('.nav-tab');
+    const contents = {
+      table: document.getElementById('tab-table'),
+      quiz: document.getElementById('tab-quiz'),
+      flashcard: document.getElementById('tab-flashcard')
+    };
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        Object.keys(contents).forEach(k => contents[k].classList.remove('active'));
+        const target = tab.dataset.tab;
+        if (contents[target]) contents[target].classList.add('active');
+        // reload quiz if needed
+        if (target === 'quiz') loadQuiz(quizIndex);
+        if (target === 'flashcard') loadFlashcard(fcIndex);
+      });
+    });
+
+    // ----- INIT -----
+    renderTable();
+    loadQuiz(0);
+    loadFlashcard(0);
+    updateScore(0);
+  })();
+</script>
+</body>
+</html>
