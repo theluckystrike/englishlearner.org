@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pronunciation Guide — IPA Symbols & English Sounds</title>
+  <meta name="description" content="Interactive IPA chart for English: vowels, consonants, minimal pairs, word transcription. Click symbols for mouth diagrams & examples.">
+  <link rel="canonical" href="https://englishlearner.org/pronunciation-guide">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Pronunciation Guide — IPA Symbols & English Sounds",
+    "url": "https://englishlearner.org/pronunciation-guide",
+    "description": "Interactive IPA learning tool with chart, minimal pairs, and word transcription.",
+    "applicationCategory": "Educational Application",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"What is the IPA symbol for the 'sh' sound?","acceptedAnswer":{"@type":"Answer","text":"The voiceless postalveolar fricative is /ʃ/, as in 'ship'."}},
+      {"@type":"Question","name":"How do you pronounce the vowel in 'sheep'?","acceptedAnswer":{"@type":"Answer","text":"The vowel is /iː/, a long close front unrounded vowel."}},
+      {"@type":"Question","name":"What is a minimal pair?","acceptedAnswer":{"@type":"Answer","text":"Two words that differ by only one sound, like 'bat' and 'bet'."}}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://englishlearner.org/"},
+      {"@type":"ListItem","position":2,"name":"Pronunciation Guide","item":"https://englishlearner.org/pronunciation-guide"}
+    ]
+  }
+  </script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0a0a0a;
+      color: #e0e0e0;
+      font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      padding: 1.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    h1, h2, h3 { color: #f0f0f0; font-weight: 500; letter-spacing: 0.3px; }
+    h1 { font-size: 2rem; border-left: 5px solid #66bb6a; padding-left: 1rem; margin-bottom: 1rem; }
+    h2 { font-size: 1.5rem; margin: 1.5rem 0 0.75rem; border-bottom: 1px solid #2a2a2a; padding-bottom: 0.3rem; }
+    a { color: #81c784; }
+    .accent { color: #66bb6a; }
+    .card {
+      background: #141414;
+      border-radius: 16px;
+      padding: 1.2rem;
+      margin: 1rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+    .ipa-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(64px,1fr));
+      gap: 8px;
+      margin: 0.5rem 0;
+    }
+    .ipa-symbol {
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 0.5rem 0.2rem;
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.1s ease;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', 'Arial Unicode MS', sans-serif;
+    }
+    .ipa-symbol:hover { background: #2a2a2a; border-color: #66bb6a; transform: scale(1.02); }
+    .ipa-symbol:active { background: #2f2f2f; }
+    .category-label { grid-column: 1 / -1; font-weight: 500; color: #66bb6a; margin-top: 6px; font-size: 0.9rem; letter-spacing: 0.5px; }
+    .detail-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      background: #101010;
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border: 1px solid #2a2a2a;
+    }
+    .detail-svg {
+      flex: 1 1 180px;
+      min-width: 140px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .detail-text { flex: 2 1 260px; }
+    .detail-text p { margin: 0.3rem 0; }
+    .example-words { font-style: italic; color: #b0b0b0; }
+    .minimal-pair-set {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      background: #111;
+      border-radius: 20px;
+      padding: 1.2rem;
+      margin: 0.8rem 0;
+    }
+    .pair-item {
+      background: #1a1a1a;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      border: 1px solid #333;
+      display: inline-flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+    .pair-item button {
+      background: #2a2a2a;
+      border: none;
+      color: #e0e0e0;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .pair-item button:hover { background: #3a3a3a; }
+    .quiz-area { margin: 1rem 0; }
+    .quiz-question { font-size: 1.3rem; margin: 0.5rem 0; }
+    .quiz-options button {
+      background: #1e1e1e;
+      border: 1px solid #444;
+      color: #e0e0e0;
+      padding: 0.5rem 1.2rem;
+      margin: 0.3rem;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+    .quiz-options button:hover { background: #2d2d2d; border-color: #66bb6a; }
+    .quiz-feedback { margin-top: 0.5rem; font-weight: 500; }
+    .search-box {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 0.5rem 0;
+    }
+    .search-box input {
+      flex: 2 1 200px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #e0e0e0;
+      padding: 0.6rem 1rem;
+      border-radius: 40px;
+      font-size: 1rem;
+    }
+    .search-box button {
+      background: #2a2a2a;
+      border: 1px solid #444;
+      color: #e0e0e0;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      cursor: pointer;
+    }
+    .search-box button:hover { background: #3a3a3a; border-color: #66bb6a; }
+    #transcriptionResult { background: #111; padding: 0.8rem 1.2rem; border-radius: 40px; margin-top: 0.5rem; display: inline-block; }
+    footer { margin-top: 3rem; padding: 1.5rem 0; border-top: 1px solid #222; text-align: center; }
+    .bread { font-size: 0.85rem; color: #888; margin-bottom: 1rem; }
+    .bread a { color: #81c784; text-decoration: none; }
+    .bread a:hover { text-decoration: underline; }
+    @media (max-width: 600px) { .ipa-grid { grid-template-columns: repeat(auto-fill, minmax(52px,1fr)); } }
+  </style>
+</head>
+<body>
+
+<nav class="bread" aria-label="Breadcrumb">
+  <a href="https://englishlearner.org/">Home</a> / Pronunciation Guide
+</nav>
+
+<h1>Pronunciation Guide — IPA Symbols & English Sounds</h1>
+
+<!-- IPA CHART -->
+<div class="card">
+  <h2>IPA Chart <span style="font-size:0.9rem; font-weight:normal; color:#aaa;">(click any symbol)</span></h2>
+  <div id="ipaChartContainer" class="ipa-grid"></div>
+</div>
+
+<!-- DETAIL VIEW -->
+<div id="detailPanel" class="detail-panel">
+  <div class="detail-svg" id="mouthSvgContainer">
+    <svg width="140" height="140" viewBox="0 0 100 100" style="background:#0f0f0f; border-radius:50%;">
+      <circle cx="50" cy="50" r="40" fill="#1e1e1e" stroke="#66bb6a" stroke-width="1.5"/>
+      <ellipse cx="50" cy="55" rx="20" ry="12" fill="#222" stroke="#66bb6a" stroke-width="1.2"/>
+      <line x1="30" y1="50" x2="70" y2="50" stroke="#66bb6a" stroke-width="1.2" opacity="0.5"/>
+      <circle cx="50" cy="30" r="6" fill="#2a2a2a" stroke="#66bb6a" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="detail-text" id="symbolDetailText">
+    <h3 style="margin-top:0;">/iː/</h3>
+    <p><strong>Description:</strong> long close front unrounded vowel</p>
+    <p><strong>How to make it:</strong> Spread lips, tongue high and front.</p>
+    <p class="example-words"><strong>Examples:</strong> see, bee, she</p>
+  </div>
+</div>
+
+<!-- MINIMAL PAIRS -->
+<div class="card">
+  <h2>Minimal pairs <span style="font-size:0.9rem; font-weight:normal; color:#aaa;">(20 sets)</span></h2>
+  <div id="minimalPairsContainer" class="minimal-pair-set"></div>
+  <div class="quiz-area" id="quizArea">
+    <h3>🎯 Quiz mode</h3>
+    <div id="quizQuestion" class="quiz-question">Click "Start Quiz"</div>
+    <div id="quizOptions" class="quiz-options"></div>
+    <div id="quizFeedback" class="quiz-feedback"></div>
+    <button id="startQuizBtn" style="background:#2a2a2a; border:1px solid #66bb6a; color:#e0e0e0; padding:0.5rem 1.5rem; border-radius:40px; margin-top:0.5rem; cursor:pointer;">Start Quiz</button>
+  </div>
+</div>
+
+<!-- WORD TRANSCRIPTION -->
+<div class="card">
+  <h2>🔍 Type a word — IPA transcription</h2>
+  <div class="search-box">
+    <input type="text" id="wordInput" placeholder="e.g. 'thought', 'ship', 'bat'" list="wordSuggestions">
+    <datalist id="wordSuggestions"></datalist>
+    <button id="transcribeBtn">Show IPA</button>
+  </div>
+  <div id="transcriptionResult">/ðə trænskrɪpʃən wɪl əˈpɪər hiər/</div>
+</div>
+
+<footer>
+  <p><a href="https://englishlearner.org/">© englishlearner.org</a> — pronunciation guide for ESL</p>
+</footer>
+
+<script>
+(function() {
+  // ----- IPA DATABASE (English) -----
+  const ipaData = [
+    // VOWELS monophthongs
+    { symbol: 'iː', type: 'vowel', category: 'monophthong', desc: 'long close front unrounded', how: 'Tongue high & front, lips spread', examples: 'see, bee, she' },
+    { symbol: 'ɪ', type: 'vowel', category: 'monophthong', desc: 'short near-close near-front unrounded', how: 'Tongue slightly lower than /iː/, relaxed', examples: 'ship, bit, kit' },
+    { symbol: 'e', type: 'vowel', category: 'monophthong', desc: 'mid front unrounded', how: 'Tongue mid, lips spread', examples: 'bet, head, said' },
+    { symbol: 'æ', type: 'vowel', category: 'monophthong', desc: 'near-open front unrounded', how: 'Tongue low, mouth open', examples: 'cat, bat, hat' },
+    { symbol: 'ʌ', type: 'vowel', category: 'monophthong', desc: 'open-mid back unrounded', how: 'Tongue mid-back, mouth open', examples: 'cup, luck, sun' },
+    { symbol: 'ɑː', type: 'vowel', category: 'monophthong', desc: 'long open back unrounded', how: 'Tongue low, mouth open', examples: 'father, car, start' },
+    { symbol: 'ɒ', type: 'vowel', category: 'monophthong', desc: 'short open back rounded', how: 'Tongue low, lips rounded', examples: 'hot, dog, lot' },
+    { symbol: 'ɔː', type: 'vowel', category: 'monophthong', desc: 'long open-mid back rounded', how: 'Tongue mid-back, lips rounded', examples: 'saw, law, thought' },
+    { symbol: 'ʊ', type: 'vowel', category: 'monophthong', desc: 'short near-close near-back rounded', how: 'Tongue back, lips slightly rounded', examples: 'put, foot, good' },
+    { symbol: 'uː', type: 'vowel', category: 'monophthong', desc: 'long close back rounded', how: 'Tongue high back, lips rounded', examples: 'goose, two, blue' },
+    { symbol: 'ə', type: 'vowel', category: 'monophthong', desc: 'schwa (mid central)', how: 'Relaxed tongue, neutral lips', examples: 'about, sofa, comma' },
+    { symbol: 'ɜː', type: 'vowel', category: 'monophthong', desc: 'long mid central unrounded', how: 'Tongue mid, lips neutral', examples: 'bird, nurse, learn' },
+    // DIPHTHONGS
+    { symbol: 'eɪ', type: 'vowel', category: 'diphthong', desc: 'closing diphthong', how: 'from /e/ to /ɪ/', examples: 'face, day, say' },
+    { symbol: 'aɪ', type: 'vowel', category: 'diphthong', desc: 'closing diphthong', how: 'from /a/ to /ɪ/', examples: 'my, fly, time' },
+    { symbol: 'ɔɪ', type: 'vowel', category: 'diphthong', desc: 'closing diphthong', how: 'from /ɔ/ to /ɪ/', examples: 'boy, toy, voice' },
+    { symbol: 'aʊ', type: 'vowel', category: 'diphthong', desc: 'closing diphthong', how: 'from /a/ to /ʊ/', examples: 'now, house, out' },
+    { symbol: 'əʊ', type: 'vowel', category: 'diphthong', desc: 'closing diphthong', how: 'from /ə/ to /ʊ/', examples: 'go, home, no' },
+    { symbol: 'ɪə', type: 'vowel', category: 'diphthong', desc: 'centering diphthong', how: 'from /ɪ/ to /ə/', examples: 'hear, near, here' },
+    { symbol: 'eə', type: 'vowel', category: 'diphthong', desc: 'centering diphthong', how: 'from /e/ to /ə/', examples: 'hair, care, there' },
+    { symbol: 'ʊə', type: 'vowel', category: 'diphthong', desc: 'centering diphthong', how: 'from /ʊ/ to /ə/', examples: 'poor, sure, tour' },
+    // CONSONANTS plosives
+    { symbol: 'p', type: 'consonant', category: 'plosive', desc: 'voiceless bilabial plosive', how: 'Close lips, release burst', examples: 'pat, top, spin' },
+    { symbol: 'b', type: 'consonant', category: 'plosive', desc: 'voiced bilabial plosive', how: 'Close lips, vocal cords vibrate', examples: 'bat, rob, able' },
+    { symbol: 't', type: 'consonant', category: 'plosive', desc: 'voiceless alveolar plosive', how: 'Tongue tip on ridge, release', examples: 'tap, stop, late' },
+    { symbol: 'd', type: 'consonant', category: 'plosive', desc: 'voiced alveolar plosive', how: 'Tongue tip on ridge, vocalize', examples: 'dog, add, red' },
+    { symbol: 'k', type: 'consonant', category: 'plosive', desc: 'voiceless velar plosive', how: 'Back of tongue on soft palate', examples: 'cat, key, back' },
+    { symbol: 'ɡ', type: 'consonant', category: 'plosive', desc: 'voiced velar plosive', how: 'Back of tongue, vocalize', examples: 'go, big, game' },
+    { symbol: 'ʔ', type: 'consonant', category: 'plosive', desc: 'glottal plosive', how: 'Close glottis, release', examples: 'uh-oh, button (dialect)' },
+    // fricatives
+    { symbol: 'f', type: 'consonant', category: 'fricative', desc: 'voiceless labiodental fricative', how: 'Upper teeth on lower lip', examples: 'fat, safe, phone' },
+    { symbol: 'v', type: 'consonant', category: 'fricative', desc: 'voiced labiodental fricative', how: 'Teeth on lip, vocalize', examples: 'vat, save, voice' },
+    { symbol: 'θ', type: 'consonant', category: 'fricative', desc: 'voiceless dental fricative', how: 'Tongue between teeth', examples: 'thin, bath, three' },
+    { symbol: 'ð', type: 'consonant', category: 'fricative', desc: 'voiced dental fricative', how: 'Tongue between teeth, vocalize', examples: 'this, father, smooth' },
+    { symbol: 's', type: 'consonant', category: 'fricative', desc: 'voiceless alveolar sibilant', how: 'Tongue tip near ridge, hiss', examples: 'sit, pass, city' },
+    { symbol: 'z', type: 'consonant', category: 'fricative', desc: 'voiced alveolar sibilant', how: 'Same as /s/ with vibration', examples: 'zip, has, rose' },
+    { symbol: 'ʃ', type: 'consonant', category: 'fricative', desc: 'voiceless postalveolar fricative', how: 'Tongue near palate, lips rounded', examples: 'ship, push, sure' },
+    { symbol: 'ʒ', type: 'consonant', category: 'fricative', desc: 'voiced postalveolar fricative', how: 'Like /ʃ/ with vocal cords', examples: 'measure, vision, beige' },
+    { symbol: 'h', type: 'consonant', category: 'fricative', desc: 'voiceless glottal fricative', how: 'Open glottis, air flow', examples: 'hat, ahead, who' },
+    // affricates
+    { symbol: 'tʃ', type: 'consonant', category: 'affricate', desc: 'voiceless postalveolar affricate', how: '/t/ then /ʃ/ quickly', examples: 'chip, catch, church' },
+    { symbol: 'dʒ', type: 'consonant', category: 'affricate', desc: 'voiced postalveolar affricate', how: '/d/ then /ʒ/', examples: 'judge, jam, age' },
+    // nasals
+    { symbol: 'm', type: 'consonant', category: 'nasal', desc: 'bilabial nasal', how: 'Lips closed, air through nose', examples: 'man, sum, hammer' },
+    { symbol: 'n', type: 'consonant', category: 'nasal', desc: 'alveolar nasal', how: 'Tongue on ridge, nasal', examples: 'no, sun, runner' },
+    { symbol: 'ŋ', type: 'consonant', category: 'nasal', desc: 'velar nasal', how: 'Back of tongue on soft palate', examples: 'sing, long, finger' },
+    // approximants
+    { symbol: 'l', type: 'consonant', category: 'approximant', desc: 'alveolar lateral approximant', how: 'Tongue tip on ridge, air sides', examples: 'light, fall, play' },
+    { symbol: 'r', type: 'consonant', category: 'approximant', desc: 'postalveolar approximant', how: 'Tongue near palate, no friction', examples: 'red, car, sorry' },
+    { symbol: 'j', type: 'consonant', category: 'approximant', desc: 'palatal approximant', how: 'Tongue close to palate', examples: 'yes, you, yellow' },
+    { symbol: 'w', type: 'consonant', category: 'approximant', desc: 'labial-velar approximant', how: 'Lips rounded, back of tongue up', examples: 'we, water, swim' }
+  ];
+
+  // Minimal pairs (20)
+  const minimalPairs = [
+    { w1: 'ship', w2: 'sheep', sound1: 'ɪ', sound2: 'iː' },
+    { w1: 'bat', w2: 'bet', sound1: 'æ', sound2: 'e' },
+    { w1: 'bed', w2: 'bad', sound1: 'e', sound2: 'æ' },
+    { w1: 'cot', w2: 'caught', sound1: 'ɒ', sound2: 'ɔː' },
+    { w1: 'pull', w2: 'pool', sound1: 'ʊ', sound2: 'uː' },
+    { w1: 'pen', w2: 'pan', sound1: 'e', sound2: 'æ' },
+    { w1: 'bit', w2: 'beat', sound1: 'ɪ', sound2: 'iː' },
+    { w1: 'full', w2: 'fool', sound1: 'ʊ', sound2: 'uː' },
+    { w1: 'hat', w2: 'hut', sound1: 'æ', sound2: 'ʌ' },
+    { w1: 'sink', w2: 'sync', sound1: 'ɪ', sound2: 'ɪ' },
+    { w1: 'thin', w2: 'tin', sound1: 'θ', sound2: 't' },
+    { w1: 'then', w2: 'den', sound1: 'ð', sound2: 'd' },
+    { w1: 'ship', w2: 'chip', sound1: 'ʃ', sound2: 'tʃ' },
+    { w1: 'jeep', w2: 'cheap', sound1: 'dʒ', sound2: 'tʃ' },
+    { w1: 'sip', w2: 'zip', sound1: 's', sound2: 'z' },
+    { w1: 'fan', w2: 'van', sound1: 'f', sound2: 'v' },
+    { w1: 'pat', w2: 'bat', sound1: 'p', sound2: 'b' },
+    { w1: 'tie', w2: 'die', sound1: 't', sound2: 'd' },
+    { w1: 'cap', w2: 'gap', sound1: 'k', sound2: 'ɡ' },
+    { w1: 'light', w2: 'right', sound1: 'l', sound2: 'r' }
+  ];
+
+  // Word -> IPA (500+ common words)
+  const wordDict = {
+    'the':'ðə', 'be':'biː', 'to':'tuː', 'of':'ɒv', 'and':'ænd', 'a':'eɪ', 'in':'ɪn', 'that':'ðæt', 'have':'hæv', 'it':'ɪt',
+    'for':'fɔːr', 'not':'nɒt', 'on':'ɒn', 'with':'wɪð', 'he':'hiː', 'as':'æz', 'you':'juː', 'do':'duː', 'at':'æt', 'this':'ðɪs',
+    'but':'bʌt', 'his':'hɪz', 'by':'baɪ', 'from':'frɒm', 'they':'ðeɪ', 'we':'wiː', 'say':'seɪ', 'her':'hɜːr', 'she':'ʃiː', 'or':'ɔːr',
+    'an':'æn', 'will':'wɪl', 'my':'maɪ', 'one':'wʌn', 'all':'ɔːl', 'would':'wʊd', 'there':'ðeər', 'their':'ðeər', 'what':'wɒt', 'out':'aʊt',
+    'about':'əˈbaʊt', 'who':'huː', 'get':'ɡet', 'which':'wɪtʃ', 'go':'ɡəʊ', 'me':'miː', 'when':'wen', 'make':'meɪk', 'can':'kæn', 'like':'laɪk',
+    'time':'taɪm', 'no':'nəʊ', 'just':'dʒʌst', 'him':'hɪm', 'know':'nəʊ', 'take':'teɪk', 'people':'ˈpiːpəl', 'into':'ˈɪntə', 'year':'jɪər', 'your':'jɔːr',
+    'good':'ɡʊd', 'some':'sʌm', 'could':'kʊd', 'them':'ðəm', 'see':'siː', 'other':'ˈʌðər', 'than':'ðæn', 'then':'ðen', 'now':'naʊ', 'look':'lʊk',
+    'only':'ˈəʊnli', 'come':'kʌm', 'its':'ɪts', 'over':'ˈəʊvər', 'think':'θɪŋk', 'also':'ˈɔːlsəʊ', 'back':'bæk', 'after':'ˈæftər', 'use':'juːz', 'two':'tuː',
+    'how':'haʊ', 'our':'aʊər', 'work':'wɜːrk', 'first':'fɜːrst', 'well':'wel', 'way':'weɪ', 'even':'ˈiːvən', 'new':'njuː', 'want':'wɒnt', 'because':'bɪˈkɒz',
+    'any':'ˈeni', 'these':'ðiːz', 'give':'ɡɪv', 'day':'deɪ', 'most':'məʊst', 'us':'ʌs', 'great':'ɡreɪt', 'between':'bɪˈtwiːn', 'need':'niːd', 'large':'lɑːrdʒ',
+    'often':'ˈɒfən', 'hand':'hænd', 'high':'haɪ', 'place':'pleɪs', 'small':'smɔːl', 'under':'ˈʌndər', 'long':'lɒŋ', 'right':'raɪt', 'still':'stɪl', 'house':'haʊs',
+    'world':'wɜːrld', 'last':'læst', 'school':'skuːl', 'never':'ˈnevər', 'city':'ˈsɪti', 'tree':'triː', 'cross':'krɒs', 'farm':'fɑːrm', 'garden':'ˈɡɑːrdən', 'dog':'dɒɡ',
+    'cat':'kæt', 'bird':'bɜːrd', 'fish':'fɪʃ', 'book':'bʊk', 'page':'peɪdʒ', 'letter':'ˈletər', 'word':'wɜːrd', 'sentence':'ˈsentəns', 'teach':'tiːtʃ', 'learn':'lɜːrn',
+    'speak':'spiːk', 'read':'riːd', 'write':'raɪt', 'listen':'ˈlɪsən', 'think':'θɪŋk', 'feel':'fiːl', 'help':'help', 'call':'kɔːl', 'show':'ʃəʊ', 'give':'ɡɪv',
+    'take':'teɪk', 'bring':'brɪŋ', 'buy':'baɪ', 'sell':'sel', 'pay':'peɪ', 'cost':'kɒst', 'price':'praɪs', 'money':'ˈmʌni', 'bank':'bæŋk', 'shop':'ʃɒp',
+    'market':'ˈmɑːrkɪt', 'car':'kɑːr', 'bus':'bʌs', 'train':'treɪn', 'plane':'pleɪn', 'ship':'ʃɪp', 'boat':'bəʊt', 'road':'rəʊd', 'street':'striːt', 'bridge':'brɪdʒ',
+    'river':'ˈrɪvər', 'lake':'leɪk', 'sea':'siː', 'mountain':'ˈmaʊntɪn', 'hill':'hɪl', 'valley':'ˈvæli', 'forest':'ˈfɒrɪst', 'field':'fiːld', 'sky':'skaɪ', 'sun':'sʌn',
+    'moon':'muːn', 'star':'stɑːr', 'cloud':'klaʊd', 'rain':'reɪn', 'snow':'snəʊ', 'wind':'wɪnd', 'fire':'faɪər', 'water':'ˈwɔːtər', 'earth':'ɜːrθ', 'air':'eər',
+    'sound':'saʊnd', 'music':'ˈmjuːzɪk', 'song':'sɒŋ', 'dance':'dæns', 'paint':'peɪnt', 'draw':'drɔː', 'color':'ˈkʌlər', 'black':'blæk', 'white':'waɪt', 'red':'red',
+    'blue':'bluː', 'green':'ɡriːn', 'yellow':'ˈjeləʊ', 'brown':'braʊn', 'pink':'pɪŋk', 'orange':'ˈɒrɪndʒ', 'purple':'ˈpɜːrpəl', 'gray':'ɡreɪ', 'light':'laɪt', 'dark':'dɑːrk',
+    'big':'bɪɡ', 'small':'smɔːl', 'hot':'hɒt', 'cold':'kəʊld', 'warm':'wɔːrm', 'cool':'kuːl', 'fast':'fæst', 'slow':'sləʊ', 'new':'njuː', 'old':'əʊld',
+    'young':'jʌŋ', 'good':'ɡʊd', 'bad':'bæd', 'beautiful':'ˈbjuːtɪfəl', 'ugly':'ˈʌɡli', 'happy':'ˈhæpi', 'sad':'sæd', 'angry':'ˈæŋɡri', 'tired':'taɪərd', 'sleep':'sliːp',
+    'eat':'iːt', 'drink':'drɪŋk', 'cook':'kʊk', 'wash':'wɒʃ', 'clean':'kliːn', 'dirty':'ˈdɜːrti', 'open':'ˈəʊpən', 'close':'kləʊs', 'push':'pʊʃ', 'pull':'pʊl',
+    'play':'pleɪ', 'run':'rʌn', 'walk':'wɔːk', 'swim':'swɪm', 'fly':'flaɪ', 'sit':'sɪt', 'stand':'stænd', 'lie':'laɪ', 'sleep':'sliːp', 'wake':'weɪk',
+    'begin':'bɪˈɡɪn', 'finish':'ˈfɪnɪʃ', 'start':'stɑːrt', 'stop':'stɒp', 'continue':'kənˈtɪnjuː', 'change':'tʃeɪndʒ', 'stay':'steɪ', 'leave':'liːv', 'come':'kʌm', 'go':'ɡəʊ',
+    'arrive':'əˈraɪv', 'depart':'dɪˈpɑːrt', 'travel':'ˈtrævəl', 'move':'muːv', 'live':'lɪv', 'die':'daɪ', 'born':'bɔːrn', 'life':'laɪf', 'death':'deθ', 'love':'lʌv',
+    'hate':'heɪt', 'like':'laɪk', 'dislike':'dɪsˈlaɪk', 'enjoy':'ɪnˈdʒɔɪ', 'prefer':'prɪˈfɜːr', 'choose':'tʃuːz', 'decide':'dɪˈsaɪd', 'try':'traɪ', 'hope':'həʊp', 'wish':'wɪʃ',
+    'believe':'bɪˈliːv', 'think':'θɪŋk', 'know':'nəʊ', 'understand':'ˌʌndərˈstænd', 'remember':'rɪˈmembər', 'forget':'fərˈɡet', 'speak':'spiːk', 'tell':'tel', 'ask':'æsk', 'answer':'ˈænsər',
+   

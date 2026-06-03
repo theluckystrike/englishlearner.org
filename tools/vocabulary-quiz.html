@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vocabulary Quiz Generator — Test Your English Words</title>
+  <meta name="description" content="Build your vocabulary with CEFR graded quizzes: multiple choice, fill‑in‑the‑blank, matching, definition‑to‑word. Timer, streaks, high scores.">
+  <link rel="canonical" href="https://englishlearner.org/vocabulary-quiz">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Vocabulary Quiz Generator",
+    "url": "https://englishlearner.org/vocabulary-quiz",
+    "description": "Interactive vocabulary quiz with CEFR levels A1-C2, multiple question types, timer, score tracking and high scores.",
+    "applicationCategory": "EducationalApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"How can I improve my vocabulary fast?","acceptedAnswer":{"@type":"Answer","text":"Quiz daily, review mistakes, and read example sentences aloud."}},
+      {"@type":"Question","name":"What do CEFR levels mean?","acceptedAnswer":{"@type":"Answer","text":"A1–A2 beginner, B1–B2 intermediate, C1–C2 advanced. Our word bank matches these levels."}},
+      {"@type":"Question","name":"Why use multiple choice vs fill‑in‑the‑blank?","acceptedAnswer":{"@type":"Answer","text":"Multiple choice builds recognition; fill‑in‑the‑blank strengthens recall. Both are essential."}},
+      {"@type":"Question","name":"How are high scores saved?","acceptedAnswer":{"@type":"Answer","text":"Your best scores are stored in your browser (localStorage) and shown on the results page."}},
+      {"@type":"Question","name":"Can I review words I got wrong?","acceptedAnswer":{"@type":"Answer","text":"Yes! After each quiz a 'words to review' list is displayed for focused practice."}}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://englishlearner.org/"},
+      {"@type":"ListItem","position":2,"name":"Vocabulary Quiz","item":"https://englishlearner.org/vocabulary-quiz"}
+    ]
+  }
+  </script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0a0a0a;
+      color: #e0e0e0;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1rem;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: #131313;
+      border-radius: 2rem;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      border: 1px solid #2a2a2a;
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.25rem;
+      background: linear-gradient(135deg, #b0e0a0, #66bb6a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subhead {
+      color: #aaa;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #2a2a2a;
+      padding-bottom: 0.8rem;
+    }
+    .flex-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2rem;
+      align-items: center;
+      background: #1a1a1a;
+      padding: 1.2rem 1.5rem;
+      border-radius: 40px;
+      margin-bottom: 2rem;
+    }
+    .flex-row label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #ccc;
+      font-weight: 400;
+    }
+    select, .btn {
+      background: #262626;
+      color: #e0e0e0;
+      border: 1px solid #3a3a3a;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    select:focus { outline: 1px solid #66bb6a; }
+    .btn {
+      background: #2a2a2a;
+      border: 1px solid #4a4a4a;
+      font-weight: 500;
+    }
+    .btn-primary {
+      background: #2e7d32;
+      border-color: #4caf50;
+      color: white;
+      font-weight: 600;
+      padding: 0.6rem 2rem;
+    }
+    .btn-primary:hover { background: #388e3c; }
+    .btn:active { transform: scale(0.96); }
+    .quiz-area {
+      background: #111;
+      border-radius: 28px;
+      padding: 1.8rem 1.5rem;
+      margin: 1.5rem 0;
+      border: 1px solid #2a2a2a;
+      min-height: 280px;
+    }
+    .progress-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .progress-bar-bg {
+      flex: 1;
+      height: 8px;
+      background: #2a2a2a;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #66bb6a;
+      transition: width 0.2s;
+    }
+    .timer-badge {
+      background: #1f2a1f;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      border: 1px solid #3a5a3a;
+    }
+    .question-text {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin: 1rem 0 1.5rem;
+      line-height: 1.4;
+    }
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin: 1.2rem 0;
+    }
+    .option-btn {
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 40px;
+      padding: 0.8rem 1.2rem;
+      text-align: left;
+      color: #e0e0e0;
+      cursor: pointer;
+      transition: 0.1s;
+      font-size: 1rem;
+    }
+    .option-btn:hover { background: #2a2a2a; border-color: #66bb6a; }
+    .option-btn.selected { border-color: #66bb6a; background: #1f3a1f; }
+    .option-btn.correct { border-color: #4caf50; background: #1f3a1f; }
+    .option-btn.wrong { border-color: #e53935; background: #3a1f1f; }
+    .feedback-box {
+      background: #1a231a;
+      border-left: 5px solid #66bb6a;
+      padding: 1rem 1.3rem;
+      border-radius: 20px;
+      margin: 1rem 0;
+    }
+    .feedback-box.wrong-feedback { border-left-color: #e53935; background: #231a1a; }
+    .streak-score {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 0.5rem 0 0.2rem;
+    }
+    .review-list {
+      background: #111;
+      border-radius: 20px;
+      padding: 1rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .review-item {
+      border-bottom: 1px solid #2a2a2a;
+      padding: 0.6rem 0;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+      color: #666;
+    }
+    .footer a { color: #81c784; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .hidden { display: none; }
+    .text-accent { color: #66bb6a; }
+    .text-center { text-align: center; }
+    .mt-2 { margin-top: 1.5rem; }
+    .mb-1 { margin-bottom: 0.8rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>📘 Vocabulary Quiz</h1>
+  <div class="subhead">Generator · Test your English words</div>
+
+  <!-- Controls -->
+  <div class="flex-row">
+    <label> Level
+      <select id="cefrLevel">
+        <option value="A1">A1</option><option value="A2">A2</option><option value="B1">B1</option>
+        <option value="B2">B2</option><option value="C1">C1</option><option value="C2">C2</option>
+      </select>
+    </label>
+    <label> Type
+      <select id="quizType">
+        <option value="multiple">Multiple choice</option>
+        <option value="fill">Fill‑in‑the‑blank</option>
+        <option value="matching">Matching</option>
+        <option value="definition">Definition→word</option>
+      </select>
+    </label>
+    <label> Questions
+      <select id="questionCount">
+        <option value="5">5</option><option value="10" selected>10</option>
+        <option value="15">15</option><option value="20">20</option>
+      </select>
+    </label>
+    <button class="btn btn-primary" id="startQuizBtn">▶ Start quiz</button>
+  </div>
+
+  <!-- Quiz area -->
+  <div class="quiz-area" id="quizArea">
+    <div class="text-center" style="padding: 2rem 0; color:#888;">Configure and press <span class="text-accent">Start quiz</span></div>
+  </div>
+
+  <!-- Review list container (hidden by default) -->
+  <div id="reviewContainer" class="hidden review-list"></div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <a href="https://englishlearner.org/">englishlearner.org</a> — vocabulary tools for every level
+  </div>
+</div>
+
+<script>
+  (function() {
+    // ---------- WORD BANK (200+ words with CEFR, definition, example, POS) ----------
+    const WORD_BANK = [];
+    function w(word, cefr, pos, definition, example) {
+      WORD_BANK.push({ word, cefr, pos, definition, example });
+    }
+    // A1 (35)
+    w("apple","A1","noun","a round fruit with red or green skin","I eat an apple every day.");
+    w("book","A1","noun","a set of written pages","She reads a book at night.");
+    w("cat","A1","noun","a small furry pet","The cat sleeps on the sofa.");
+    w("dog","A1","noun","a common pet","My dog likes to run.");
+    w("eat","A1","verb","to take food","We eat breakfast at 7.");
+    w("good","A1","adj","pleasant or satisfactory","This is a good movie.");
+    w("house","A1","noun","a building for living","Our house is blue.");
+    w("large","A1","adj","big in size","They live in a large city.");
+    w("man","A1","noun","an adult male","The man is tall.");
+    w("name","A1","noun","what someone is called","My name is Anna.");
+    w("old","A1","adj","having lived for many years","This is an old tree.");
+    w("people","A1","noun","human beings","Many people like music.");
+    w("read","A1","verb","to look at words","I read a story.");
+    w("small","A1","adj","little in size","The kitten is small.");
+    w("talk","A1","verb","to speak","They talk in class.");
+    w("water","A1","noun","a clear liquid","I drink water.");
+    w("work","A1","verb","to do a job","She works at a school.");
+    w("year","A1","noun","12 months","We go on holiday every year.");
+    w("young","A1","adj","not old","He is young and active.");
+    w("happy","A1","adj","feeling joy","She is happy today.");
+    w("sad","A1","adj","feeling sorrow","He feels sad.");
+    w("big","A1","adj","large","That is a big car.");
+    w("little","A1","adj","small","A little bird sings.");
+    w("run","A1","verb","to move fast","He can run fast.");
+    w("walk","A1","verb","to move on foot","We walk to school.");
+    w("see","A1","verb","to use eyes","I see a bird.");
+    w("like","A1","verb","to enjoy","I like ice cream.");
+    w("have","A1","verb","to own","I have a pen.");
+    w("do","A1","verb","to perform","We do our homework.");
+    w("go","A1","verb","to move somewhere","They go to the park.");
+    w("come","A1","verb","to arrive","Come here please.");
+    w("make","A1","verb","to create","She makes a cake.");
+    w("know","A1","verb","to have information","I know the answer.");
+    w("think","A1","verb","to believe or consider","I think it's true.");
+    w("give","A1","verb","to hand over","Give me the book.");
+    // A2 (35)
+    w("accident","A2","noun","an unexpected event","There was a car accident.");
+    w("believe","A2","verb","to accept as true","I believe you.");
+    w("careful","A2","adj","taking care","Be careful on the ice.");
+    w("decide","A2","verb","to make a choice","She decided to stay.");
+    w("enough","A2","adj","as much as needed","We have enough food.");
+    w("explain","A2","verb","to make clear","Please explain the rule.");
+    w("feeling","A2","noun","emotion","I have a strange feeling.");
+    w("garden","A2","noun","an area with plants","We play in the garden.");
+    w("happen","A2","verb","to occur","What happened yesterday?");
+    w("important","A2","adj","of great value","This is important.");
+    w("invite","A2","verb","to ask someone","I invite you to my party.");
+    w("journey","A2","noun","a trip","The journey was long.");
+    w("key","A2","noun","a tool to open locks","I lost my key.");
+    w("language","A2","noun","system of communication","English is a language.");
+    w("maybe","A2","adv","possibly","Maybe it will rain.");
+    w("natural","A2","adj","from nature","This is natural wood.");
+    w("offer","A2","verb","to give a choice","He offered help.");
+    w("practice","A2","noun","repeated exercise","Practice makes perfect.");
+    w("question","A2","noun","a request for information","I have a question.");
+    w("remember","A2","verb","to recall","I remember your name.");
+    w("season","A2","noun","a period of the year","Autumn is my favourite season.");
+    w("travel","A2","verb","to go on a trip","We travel by train.");
+    w("useful","A2","adj","helpful","This tool is useful.");
+    w("visit","A2","verb","to go to a place","We visit grandma.");
+    w("weather","A2","noun","climate conditions","The weather is nice.");
+    w("yesterday","A2","adv","the day before today","I saw her yesterday.");
+    w("address","A2","noun","location details","What is your address?");
+    w("begin","A2","verb","to start","The show begins at 8.");
+    w("center","A2","noun","the middle","The city center is busy.");
+    w("different","A2","adj","not the same","We have different ideas.");
+    w("example","A2","noun","a sample","Give me an example.");
+    w("family","A2","noun","a group of related people","My family is large.");
+    w("group","A2","noun","a number of people","A group of students.");
+    w("hospital","A2","noun","medical place","He went to hospital.");
+    w("island","A2","noun","land surrounded by water","We visited an island.");
+    // B1 (35)
+    w("achieve","B1","verb","to reach a goal","She achieved her dream.");
+    w("benefit","B1","noun","an advantage","Exercise has many benefits.");
+    w("challenge","B1","noun","a difficult task","This is a big challenge.");
+    w("confidence","B1","noun","belief in oneself","Speak with confidence.");
+    w("develop","B1","verb","to grow or improve","They develop new skills.");
+    w("education","B1","noun","teaching and learning","Education is important.");
+    w("effective","B1","adj","producing results","This method is effective.");
+    w("experience","B1","noun","knowledge from doing","I have experience in teaching.");
+    w("government","B1","noun","ruling body","The government made a new law.");
+    w("improve","B1","verb","to make better","I want to improve my English.");
+    w("knowledge","B1","noun","information and understanding","Knowledge is power.");
+    w("manage","B1","verb","to handle or control","She manages a team.");
+    w("opportunity","B1","noun","a chance","This is a great opportunity.");
+    w("performance","B1","noun","an act of performing","The performance was amazing.");
+    w("quality","B1","noun","standard of something","This product has high quality.");
+    w("research","B1","noun","systematic study","She does research on climate.");
+    w("strategy","B1","noun","a plan","We need a new strategy.");
+    w("success","B1","noun","achievement of goals","Hard work leads to success.");
+    w("traditional","B1","adj","based on tradition","We eat traditional food.");
+    w("understand","B1","verb","to comprehend","I understand the lesson.");
+    w("value","B1","noun","worth","This ring has great value.");
+    w("achieve","B1","verb","to accomplish","He achieved a lot.");
+    w("behavior","B1","noun","way of acting","Good behavior is rewarded.");
+    w("campaign","B1","noun","organized action","A campaign for health.");
+    w("consequence","B1","noun","result","Every action has a consequence.");
+    w("debate","B1","noun","a discussion","We had a debate in class.");
+    w("economy","B1","noun","financial system","The economy is growing.");
+    w("environment","B1","noun","surroundings","Protect the environment.");
+    w("establish","B1","verb","to set up","They established a company.");
+    w("feature","B1","noun","a characteristic","This phone has many features.");
+    w("growth","B1","noun","increase","Growth in sales is strong.");
+    w("income","B1","noun","money received","She has a high income.");
+    w("involve","B1","verb","to include","The project involves many people.");
+    w("major","B1","adj","very important","This is a major issue.");
+    w("obvious","B1","adj","easy to see","It is obvious that he is tired.");
+    // B2 (35)
+    w("abstract","B2","adj","not concrete","Abstract ideas are hard to grasp.");
+    w("advocate","B2","verb","to support publicly","They advocate for change.");
+    w("ambiguous","B2","adj","unclear meaning","The statement was ambiguous.");
+    w("comprehensive","B2","adj","covering everything","A comprehensive guide.");
+    w("contradict","B2","verb","to say the opposite","He contradicted my statement.");
+    w("controversy","B2","noun","public disagreement","There is controversy about the policy.");
+    w("correlation","B2","noun","mutual relationship","A correlation between diet and health.");
+    w("criterion","B2","noun","standard for judging","What is the criterion?");
+    w("deduce","B2","verb","to infer","We can deduce the answer.");
+    w("demonstrate","B2","verb","to show clearly","She demonstrated the experiment.");
+    w("distinguish","B2","verb","to tell apart","Can you distinguish the two?");
+    w("empirical","B2","adj","based on observation","Empirical evidence is crucial.");
+    w("fluctuate","B2","verb","to change irregularly","Prices fluctuate often.");
+    w("hypothesis","B2","noun","a proposed explanation","We tested the hypothesis.");
+    w("implement","B2","verb","to put into action","They implemented the plan.");
+    w("implication","B2","noun","possible effect","What are the implications?");
+    w("inevitable","B2","adj","unavoidable","Change is inevitable.");
+    w("interpret","B2","verb","to explain meaning","How do you interpret this?");
+    w("justify","B2","verb","to show something is right","He justified his decision.");
+    w("marginal","B2","adj","minor or borderline","A marginal improvement.");
+    w("phenomenon","B2","noun","a fact or event","A natural phenomenon.");
+    w("predominant","B2","adj","most common","The predominant color is blue.");
+    w("principle","B2","noun","a fundamental truth","We follow ethical principles.");
+    w("proportion","B2","noun","a part of a whole","A large proportion of people.");
+    w("rational","B2","adj","based on logic","A rational decision.");
+    w("reinforce","B2","verb","to strengthen","We reinforce the structure.");
+    w("relevant","B2","adj","connected to the topic","Is this relevant?");
+    w("sophisticated","B2","adj","complex and refined","A sophisticated system.");
+    w("substitute","B2","noun","a replacement","Use honey as a substitute.");
+    w("sufficient","B2","adj","enough","We have sufficient resources.");
+    w("transform","B2","verb","to change completely","She transformed her life.");
+    w("underlying","B2","adj","basic but hidden","The underlying cause.");
+    w("valid","B2","adj","logically sound","A valid argument.");
+    w("vary","B2","verb","to differ","Results vary widely.");
+    w("widespread","B2","adj","common over a large area","A widespread belief.");
+    // C1 (30)
+    w("accommodate","C1","verb","to adjust or provide space","We can accommodate your needs.");
+    w("accountable","C1","adj","responsible","You are accountable for your actions.");
+    w("allegation","C1","noun","a claim without proof","He denied the allegation.");
+    w("anticipate","C1","verb","to expect","We anticipate growth.");
+    w("articulate","C1","verb","to express clearly","She articulated her ideas.");
+    w("collaborate","C1","verb","to work together","Teams collaborate on projects.");
+    w("comprehensive","C1","adj","complete and thorough","A comprehensive review.");
+    w("conceive","C1","verb","to form an idea","He conceived a new plan.");
+    w("consensus","C1","noun","general agreement","We reached a consensus.");
+    w("consolidate","C1","verb","to combine into one","They consolidated their power.");
+    w("contemplate","C1","verb","to think deeply","She contemplated the offer.");
+    w("contingency","C1","noun","a possible event","We have a contingency plan.");
+    w("deteriorate","C1","verb","to become worse","His health deteriorated.");
+    w("discrepancy","C1","noun","a difference","A discrepancy in the data.");
+    w("elaborate","C1","adj","detailed and complex","An elaborate design.");
+    w("empathy","C1","noun","understanding others' feelings","She showed empathy.");
+    w("endeavor","C1","noun","an effort or attempt","A scientific endeavor.");
+    w("enhance","C1","verb","to improve","This enhances performance.");
+    w("explicit","C1","adj","clearly stated","Explicit instructions.");
+    w("feasible","C1","adj","possible to do","Is this feasible?");
+    w("fluctuate","C1","verb","to vary irregularly","Prices fluctuate.");
+    w("formulate","C1","verb","to develop a plan","We formulated a strategy.");
+    w("genuine","C1","adj","authentic","A genuine smile.");
+    w("hierarchy","C1","noun","a ranking system","A corporate hierarchy.");
+    w("incentive","C1","noun","a motivation","Financial incentives.");
+    w("inevitable","C1","adj","unavoidable","Change is inevitable.");
+    w("innovative","C1","adj","introducing new ideas","An innovative solution.");
+    w("legitimate","C1","adj","lawful and acceptable","A legitimate concern.");
+    w("meticulous","C1","adj","very careful","Meticulous work.");
+    w("negotiate","C1","verb","to discuss terms","They negotiate a deal.");
+    // C2 (30)
+    w("aberration","C2","noun","a departure from normal","A statistical aberration.");
+    w("acumen","C2","noun","keen insight","Business acumen.");
+    w("adroit","C2","adj","skillful and clever","An adroit negotiator.");
+    w("ameliorate","C2","verb","to make better","They ameliorated the conditions.");
+    w("anomaly","C2","noun","something unusual","A temperature anomaly.");
+    w("antithesis","C2","noun","the direct opposite","Evil is the antithesis of good.");
+    w("apocryphal","C2","adj","of doubtful authenticity","An apocryphal story.");
+    w("cogent","C2","adj","clear and logical","A cogent argument.");
+    w("commensurate","C2","adj","corresponding in size","Salary commensurate with experience.");
+    w("conundrum","C2","noun","a confusing problem","A moral conundrum.");
+    w("dichotomy","C2","noun","a division into two","A dichotomy between theory and practice.");
+    w("disparate","C2","adj","fundamentally different","Disparate groups.");
+    w("efficacious","C2","adj","producing the desired effect","An efficacious treatment.");
+    w("ephemeral","C2","adj","lasting a short time","Ephemeral beauty.");
+    w("equivocal","C2","adj","ambiguous","An equivocal answer.");
+    w("exacerbate","C2","verb","to make worse","The drought exacerbated the crisis.");
+    w("fastidious","C2","adj","very attentive to detail","A fastidious scholar.");
+    w("germane","C2","adj","relevant","That is not germane to the issue.");
+    w("idiosyncratic","C2","adj","peculiar to an individual","Her idiosyncratic style.");
+    w("juxtapose","C2","verb","to place side by side","Juxtapose two ideas.");
+    w("malleable","C2","adj","easily shaped","A malleable material.");
+    w("nefarious","C2","adj","wicked","Nefarious activities.");
+    w("obfuscate","C2","verb","to make unclear","He obfuscated the truth.");
+    w("paradigm","C2","noun","a typical example","A paradigm shift.");
+    w("perfunctory","C2","adj","done without care","A perfunctory greeting.");
+    w("propensity","C2","noun","a natural tendency","A propensity to exaggerate.");
+    w("quintessential","C2","adj","representing the most perfect example","The quintessential English village.");
+    w("recalcitrant","C2","adj","stubbornly uncooperative","A recalcitrant student.");
+    w("sycophant","C2","noun","a flatterer","He surrounded himself with sycophants.");
+    w("ubiquitous","C2","adj","present everywhere","Smartphones are ubiquitous.");
+    // ensure at least 200 words: we have 35+35+35+35+30+30 = 200 exactly.
+
+    // ---------- QUIZ ENGINE ----------
+    const quizArea = document.getElementById('quizArea');
+    const reviewContainer = document.getElementById('reviewContainer');
+    const startBtn = document.getElementById('startQuizBtn');
+
+    let currentQuestions = [];
+    let currentIndex = 0;
+    let score = 0;
+    let streak = 0;
+    let maxStreak = 0;
+    let timerInterval = null;
+    let secondsLeft = 0;
+    let totalQuestions = 0;
+    let wrongWords = []; // words to review
+    let answerLock = false;
+
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function getWordsByLevel(level) {
+      return WORD_BANK.filter(w => w.cefr === level);
+    }
+
+    function generateQuestions(level, type, count) {
+      const pool = getWordsByLevel(level);
+      if (pool.length < count) {
+        // fallback: merge adjacent levels
+        const levels = ['A1','A2','B1','B2','C1','C2'];
+        let merged = [];
+        const idx = levels.indexOf(level);
+        for (let i=Math.max(0,idx-1); i<=Math.min(5,idx+1); i++) {
+          merged = merged.concat(WORD_BANK.filter(w => w.cefr === levels[i]));
+        }
+        if (merged.length < count) merged = WORD_BANK.slice(); // all
+        return buildQuestions(shuffleArray(merged).slice(0, count), type);
+      }
+      return buildQuestions(shuffleArray(pool).slice(0, count), type);
+    }
+
+    function buildQuestions(words, type) {
+      return words.map(word => {
+        const q = { word: word.word, definition: word.definition, example: word.example, pos: word.pos, type };
+        if (type === 'multiple') {
+          const distractors = WORD_BANK.filter(w => w.word !== word.word && w.cefr === word.cefr).slice(0,3);
+          const options = [word.word, ...distractors.map(d => d.word)];
+          q.options = shuffleArray(options);
+          q.answer = word.word;
+          q.question = `What word means "${word.definition}"? (${word.pos})`;
+        } else if (type === 'fill') {
+          const blank = word.example.replace(new RegExp(word.word, 'i'), '_____');
+          q.question = `Fill in the blank: "${blank}" (${word.pos})`;
+          q.answer = word.word;
+          q.options = []; // not used
+        } else if (type === 'matching') {
+          const distractors = WORD_BANK.filter(w => w.word !== word.word).slice(0,3);
+          const pairs = [{word: word.word, def: word.definition}, ...distractors.map(d => ({word: d.word, def: d.definition}))];
+          shuffleArray(pairs);
+          q.matchingPairs = pairs; // display both columns
+          q.answer = word.word; // we ask to match the given definition
+          q.question = `Match the definition: "${word.definition}"`;
+          q.options = shuffleArray(pairs.map(p => p.word));
+        } else if (type === 'definition') {
+          q.question = `Which word matches this definition? "${word.definition}" (${word.pos})`;
+          const distractors = WORD_BANK.filter(w => w.word !== word.word).slice(0,3);
+          q.options = shuffleArray([word.word, ...distractors.map(d => d.word)]);
+          q.answer = word.word;
+        }
+        return q;
+      });
+    }
+
+    function renderQuiz() {
+      if (!currentQuestions.length || currentIndex >= currentQuestions.length) {
+        showFinalResults();
+        return;
+      }
+      answerLock = false;
+      const q = currentQuestions[currentIndex];
+      const total = currentQuestions.length;
+      const progress = ((currentIndex) / total) * 100;
+      document.querySelector('.progress-fill').style.width = progress + '%';
+
+      let html = `<div class="progress-section">
+        <span>Question ${currentIndex+1}/${total}</span>
+        <div class="progress-bar-bg"><div class="progress-fill" style="width:${progress}%"></div></div>
+        <span class="timer-badge" id="timerDisplay">⏱ ${secondsLeft}s</span>
+      </div>
+      <div class="streak-score">
+        <span>🔥 Streak: ${streak}</span>
+        <span>✅ Score: ${score}</span>
+      </div>
+      <div class="question-text">${q.question}</div>`;
+
+      if (q.type === 'fill') {
+        html += `<div style="margin:1rem 0"><input type="text" id="fillInput" placeholder="type your answer" style="background:#1e1e1e;border:1px solid #444;border-radius:40px;padding:0.8rem 1.2rem;color:#e0e0e0;width:80%;font-size:1rem;"></div>
+        <button class="btn btn-primary" id="submitFill">Submit</button>`;
+      } else if (q.type === 'matching') {
+        html += `<div style="margin:1rem 0"><strong>Select the correct word:</strong><div class="options-grid">`;
+        q.options.forEach(opt => {
+          html += `<button class="option-btn" data-opt="${opt}">${opt}</button>`;
+        });
+        html += `</div></div>`;
+      } else {
+        html += `<div class="options-grid">`;
+        q.options.forEach(

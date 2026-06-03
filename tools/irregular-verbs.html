@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Irregular Verb Conjugator — All Forms & Examples</title>
+  <meta name="description" content="Master 150+ irregular English verbs: base, past, participle. Search, group by pattern, quiz mode, progress tracking. Dark theme.">
+  <link rel="canonical" href="https://englishlearner.org/irregular-verbs">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <!-- JSON-LD: WebApplication + FAQPage + BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["WebApplication", "FAQPage"],
+    "name": "Irregular Verb Conjugator — All Forms & Examples",
+    "url": "https://englishlearner.org/irregular-verbs",
+    "description": "Interactive reference and practice for 150+ irregular English verbs with patterns, pronunciation hints, and quiz mode.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "JavaScript enabled",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "How many irregular verbs are included?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Over 150 verbs, split into common (50), intermediate (50), and advanced (50+)." }
+    },{
+      "@type": "Question",
+      "name": "Can I track my progress?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, mastered vs learning verbs are saved in localStorage." }
+    }]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://englishlearner.org/" },
+      { "@type": "ListItem", "position": 2, "name": "Irregular Verbs", "item": "https://englishlearner.org/irregular-verbs" }
+    ]
+  }
+  </script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0a0a0a;
+      color: #e0e0e0;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      padding: 1.5rem;
+      min-height: 100vh;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1, h2, h3 { color: #f0f0f0; font-weight: 400; }
+    h1 { font-size: 2rem; border-left: 6px solid #66bb6a; padding-left: 1rem; margin-bottom: 0.5rem; }
+    .sub { color: #aaa; margin-bottom: 1.5rem; }
+    .flex-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; }
+    .controls { display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem; align-items: center; background: #1a1a1a; padding: 1rem 1.2rem; border-radius: 28px; margin: 1.5rem 0; }
+    .controls label { color: #bbb; font-size: 0.9rem; }
+    .controls select, .controls input, .controls button {
+      background: #2a2a2a; border: 1px solid #3a3a3a; color: #e0e0e0; padding: 0.5rem 1rem; border-radius: 40px;
+      font-size: 0.9rem; outline: none; transition: 0.2s;
+    }
+    .controls input::placeholder { color: #666; }
+    .controls select:focus, .controls input:focus { border-color: #66bb6a; }
+    .controls button {
+      background: #2a2a2a; border: 1px solid #66bb6a; color: #c6f0c6; cursor: pointer; font-weight: 500;
+    }
+    .controls button:hover { background: #3a4a3a; border-color: #88d88a; }
+    .badge { background: #2a2a2a; border-radius: 40px; padding: 0.2rem 1rem; font-size: 0.85rem; color: #ccc; }
+    .verb-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; margin: 2rem 0;
+    }
+    .verb-card {
+      background: #141414; border: 1px solid #2a2a2a; border-radius: 24px; padding: 1.2rem 1.2rem 1rem;
+      transition: 0.15s; box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+    }
+    .verb-card:hover { border-color: #4a4a4a; }
+    .verb-base { font-size: 1.4rem; font-weight: 500; color: #fff; display: flex; justify-content: space-between; }
+    .verb-forms { display: flex; gap: 0.8rem; flex-wrap: wrap; margin: 0.6rem 0 0.4rem; }
+    .form-item { background: #1f1f1f; border-radius: 40px; padding: 0.2rem 0.8rem; font-size: 0.9rem; }
+    .form-item strong { color: #66bb6a; font-weight: 500; margin-right: 4px; }
+    .pronounce { color: #9a9a9a; font-size: 0.8rem; letter-spacing: 0.3px; margin: 0.2rem 0 0.4rem; }
+    .examples { font-size: 0.8rem; color: #b0b0b0; border-top: 1px solid #2a2a2a; padding-top: 0.5rem; margin-top: 0.4rem; }
+    .examples span { display: block; margin: 0.2rem 0; }
+    .pattern-tag { display: inline-block; background: #1e3a1e; color: #b0e0b0; padding: 0.1rem 0.8rem; border-radius: 40px; font-size: 0.7rem; letter-spacing: 0.3px; }
+    .mastered { border-left: 6px solid #66bb6a; }
+    .learning { border-left: 6px solid #e6b800; }
+    .stats { display: flex; gap: 1.5rem; margin: 0.5rem 0 1rem; }
+    .stats span { background: #1a1a1a; padding: 0.2rem 1rem; border-radius: 40px; }
+    .quiz-area { background: #111; border-radius: 32px; padding: 1.5rem; margin: 1.8rem 0; border: 1px solid #2a2a2a; }
+    .quiz-question { font-size: 1.3rem; margin-bottom: 0.8rem; }
+    .quiz-answer { display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center; }
+    .quiz-answer input { background: #2a2a2a; border: 1px solid #3a3a3a; color: #fff; padding: 0.5rem 1rem; border-radius: 40px; min-width: 140px; }
+    .quiz-answer button { background: #2a2a2a; border: 1px solid #66bb6a; color: #c6f0c6; padding: 0.5rem 1.5rem; border-radius: 40px; cursor: pointer; }
+    .quiz-feedback { margin-top: 0.6rem; font-style: italic; }
+    .footer { margin-top: 3rem; text-align: center; border-top: 1px solid #2a2a2a; padding-top: 1.5rem; }
+    .footer a { color: #66bb6a; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .btn-random { background: #1e3a1e; border-color: #66bb6a; }
+    @media (max-width: 600px) { .verb-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Irregular Verb Conjugator</h1>
+    <div class="sub">150+ verbs · three forms · patterns · pronunciation · examples · practice</div>
+  </header>
+
+  <div class="stats" id="statsDisplay">
+    <span>📚 total <span id="totalCount">0</span></span>
+    <span>✅ mastered <span id="masteredCount">0</span></span>
+    <span>🔄 learning <span id="learningCount">0</span></span>
+  </div>
+
+  <div class="controls">
+    <label>🔍 search <input type="text" id="searchInput" placeholder="e.g. sing, bring..." size="12"></label>
+    <label>🎯 difficulty 
+      <select id="difficultyFilter">
+        <option value="all">All</option>
+        <option value="common">Common (50)</option>
+        <option value="intermediate">Intermediate (50)</option>
+        <option value="advanced">Advanced (50+)</option>
+      </select>
+    </label>
+    <label>🧩 pattern 
+      <select id="patternFilter">
+        <option value="all">All patterns</option>
+        <option value="sing-sang-sung">sing-sang-sung</option>
+        <option value="buy-bought-bought">buy-bought-bought</option>
+        <option value="drink-drank-drunk">drink-drank-drunk</option>
+        <option value="break-broke-broken">break-broke-broken</option>
+        <option value="write-wrote-written">write-wrote-written</option>
+        <option value="其他">other</option>
+      </select>
+    </label>
+    <button id="randomTestBtn" class="btn-random">🎲 Random verb test</button>
+  </div>
+
+  <div id="verbContainer" class="verb-grid"></div>
+
+  <!-- Quiz area -->
+  <div class="quiz-area" id="quizArea">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+      <h3>✏️ Practice mode · fill missing forms</h3>
+      <span class="badge" id="quizProgress">0 / 0</span>
+    </div>
+    <div id="quizQuestion" class="quiz-question">Select a verb or click "Random verb test"</div>
+    <div class="quiz-answer">
+      <input type="text" id="quizInput" placeholder="type answer..." autocomplete="off">
+      <button id="submitAnswer">Check</button>
+      <button id="skipQuestion">Skip</button>
+    </div>
+    <div id="quizFeedback" class="quiz-feedback"></div>
+  </div>
+
+  <footer class="footer">
+    <p><a href="https://englishlearner.org/">← back to englishlearner.org</a></p>
+    <p style="color:#555; font-size:0.8rem;">Irregular Verb Conjugator · offline ready · progress saved</p>
+  </footer>
+</div>
+
+<script>
+  (function() {
+    // ------------------------------------------------------------
+    // 150+ irregular verbs database: base, past, participle, difficulty, pattern, pronunciation, examples
+    // ------------------------------------------------------------
+    const VERBS = [
+      // --- COMMON (50) ---
+      {base:'be',past:'was/were',pp:'been',diff:'common',pattern:'be-was/were-been',pron:'bee, wuz/wur, been',exBase:'I want to be happy.',exPast:'She was here.',exPP:'They have been friends.'},
+      {base:'begin',past:'began',pp:'begun',diff:'common',pattern:'sing-sang-sung',pron:'bih-GIN, bih-GAN, bih-GUN',exBase:'Let’s begin the lesson.',exPast:'It began to rain.',exPP:'We have begun a new chapter.'},
+      {base:'break',past:'broke',pp:'broken',diff:'common',pattern:'break-broke-broken',pron:'brayk, brohk, BROH-kən',exBase:'Don’t break the glass.',exPast:'He broke his phone.',exPP:'It is broken.'},
+      {base:'bring',past:'brought',pp:'brought',diff:'common',pattern:'buy-bought-bought',pron:'bring, brawt, brawt',exBase:'Bring your book.',exPast:'She brought cake.',exPP:'They have brought gifts.'},
+      {base:'buy',past:'bought',pp:'bought',diff:'common',pattern:'buy-bought-bought',pron:'bai, bawt, bawt',exBase:'I buy milk.',exPast:'He bought a car.',exPP:'We have bought tickets.'},
+      {base:'choose',past:'chose',pp:'chosen',diff:'common',pattern:'break-broke-broken',pron:'chooz, chohz, CHOH-zən',exBase:'Choose wisely.',exPast:'She chose red.',exPP:'They have chosen a leader.'},
+      {base:'come',past:'came',pp:'come',diff:'common',pattern:'come-came-come',pron:'kum, kaym, kum',exBase:'Come here.',exPast:'He came late.',exPP:'She has come home.'},
+      {base:'do',past:'did',pp:'done',diff:'common',pattern:'do-did-done',pron:'doo, did, dun',exBase:'Do your work.',exPast:'He did his best.',exPP:'It is done.'},
+      {base:'drink',past:'drank',pp:'drunk',diff:'common',pattern:'drink-drank-drunk',pron:'drink, drangk, drungk',exBase:'Drink water.',exPast:'He drank juice.',exPP:'They have drunk tea.'},
+      {base:'drive',past:'drove',pp:'driven',diff:'common',pattern:'write-wrote-written',pron:'driv, drohv, DRIV-ən',exBase:'Drive carefully.',exPast:'She drove fast.',exPP:'We have driven far.'},
+      {base:'eat',past:'ate',pp:'eaten',diff:'common',pattern:'eat-ate-eaten',pron:'eet, ayt, EE-tən',exBase:'Eat healthy.',exPast:'He ate pizza.',exPP:'They have eaten dinner.'},
+      {base:'fall',past:'fell',pp:'fallen',diff:'common',pattern:'fall-fell-fallen',pron:'fawl, fel, FAWL-ən',exBase:'Leaves fall.',exPast:'He fell down.',exPP:'She has fallen asleep.'},
+      {base:'feel',past:'felt',pp:'felt',diff:'common',pattern:'feel-felt-felt',pron:'feel, felt, felt',exBase:'I feel good.',exPast:'He felt cold.',exPP:'I have felt that.'},
+      {base:'find',past:'found',pp:'found',diff:'common',pattern:'find-found-found',pron:'faind, fownd, fownd',exBase:'Find the key.',exPast:'She found a coin.',exPP:'They have found it.'},
+      {base:'fly',past:'flew',pp:'flown',diff:'common',pattern:'fly-flew-flown',pron:'flai, floo, flohn',exBase:'Birds fly.',exPast:'He flew to Paris.',exPP:'We have flown before.'},
+      {base:'forget',past:'forgot',pp:'forgotten',diff:'common',pattern:'break-broke-broken',pron:'for-GET, for-GOT, for-GOT-ən',exBase:'Don’t forget.',exPast:'She forgot the keys.',exPP:'He has forgotten.'},
+      {base:'get',past:'got',pp:'got/gotten',diff:'common',pattern:'get-got-gotten',pron:'get, got, GOT-ən',exBase:'Get ready.',exPast:'He got a gift.',exPP:'I have gotten better.'},
+      {base:'give',past:'gave',pp:'given',diff:'common',pattern:'give-gave-given',pron:'giv, gayv, GIV-ən',exBase:'Give thanks.',exPast:'She gave a smile.',exPP:'It is given.'},
+      {base:'go',past:'went',pp:'gone',diff:'common',pattern:'go-went-gone',pron:'goh, went, gawn',exBase:'Go home.',exPast:'He went out.',exPP:'They are gone.'},
+      {base:'grow',past:'grew',pp:'grown',diff:'common',pattern:'fly-flew-flown',pron:'groh, groo, grohn',exBase:'Plants grow.',exPast:'He grew tall.',exPP:'We have grown.'},
+      {base:'have',past:'had',pp:'had',diff:'common',pattern:'have-had-had',pron:'hav, had, had',exBase:'Have fun.',exPast:'She had a dream.',exPP:'I have had enough.'},
+      {base:'hear',past:'heard',pp:'heard',diff:'common',pattern:'hear-heard-heard',pron:'heer, hurd, hurd',exBase:'Hear me.',exPast:'He heard a noise.',exPP:'We have heard it.'},
+      {base:'hide',past:'hid',pp:'hidden',diff:'common',pattern:'hide-hid-hidden',pron:'haid, hid, HID-ən',exBase:'Hide the toy.',exPast:'She hid behind.',exPP:'It is hidden.'},
+      {base:'keep',past:'kept',pp:'kept',diff:'common',pattern:'keep-kept-kept',pron:'keep, kept, kept',exBase:'Keep it safe.',exPast:'He kept the secret.',exPP:'She has kept it.'},
+      {base:'know',past:'knew',pp:'known',diff:'common',pattern:'know-knew-known',pron:'noh, nyoo, nohn',exBase:'Know the truth.',exPast:'He knew the answer.',exPP:'It is known.'},
+      {base:'leave',past:'left',pp:'left',diff:'common',pattern:'leave-left-left',pron:'leev, left, left',exBase:'Leave now.',exPast:'She left early.',exPP:'He has left.'},
+      {base:'lose',past:'lost',pp:'lost',diff:'common',pattern:'lose-lost-lost',pron:'looz, lost, lost',exBase:'Don’t lose hope.',exPast:'He lost his keys.',exPP:'They are lost.'},
+      {base:'make',past:'made',pp:'made',diff:'common',pattern:'make-made-made',pron:'mayk, mayd, mayd',exBase:'Make a wish.',exPast:'She made a cake.',exPP:'It is made.'},
+      {base:'meet',past:'met',pp:'met',diff:'common',pattern:'meet-met-met',pron:'meet, met, met',exBase:'Meet me there.',exPast:'He met a friend.',exPP:'We have met before.'},
+      {base:'pay',past:'paid',pp:'paid',diff:'common',pattern:'pay-paid-paid',pron:'pay, payd, payd',exBase:'Pay the bill.',exPast:'She paid cash.',exPP:'It is paid.'},
+      {base:'put',past:'put',pp:'put',diff:'common',pattern:'put-put-put',pron:'put, put, put',exBase:'Put it here.',exPast:'He put it down.',exPP:'They have put it away.'},
+      {base:'read',past:'read',pp:'read',diff:'common',pattern:'read-read-read',pron:'reed, red, red',exBase:'Read a book.',exPast:'She read a story.',exPP:'I have read it.'},
+      {base:'ride',past:'rode',pp:'ridden',diff:'common',pattern:'write-wrote-written',pron:'raid, rohd, RID-ən',exBase:'Ride a bike.',exPast:'He rode a horse.',exPP:'We have ridden far.'},
+      {base:'run',past:'ran',pp:'run',diff:'common',pattern:'run-ran-run',pron:'run, ran, run',exBase:'Run fast.',exPast:'She ran home.',exPP:'He has run a marathon.'},
+      {base:'say',past:'said',pp:'said',diff:'common',pattern:'say-said-said',pron:'say, sed, sed',exBase:'Say hello.',exPast:'He said yes.',exPP:'It is said.'},
+      {base:'see',past:'saw',pp:'seen',diff:'common',pattern:'see-saw-seen',pron:'see, saw, seen',exBase:'See the view.',exPast:'She saw a bird.',exPP:'I have seen it.'},
+      {base:'sell',past:'sold',pp:'sold',diff:'common',pattern:'sell-sold-sold',pron:'sel, sohld, sohld',exBase:'Sell your car.',exPast:'He sold his bike.',exPP:'It is sold.'},
+      {base:'send',past:'sent',pp:'sent',diff:'common',pattern:'send-sent-sent',pron:'send, sent, sent',exBase:'Send a letter.',exPast:'She sent a message.',exPP:'It is sent.'},
+      {base:'sing',past:'sang',pp:'sung',diff:'common',pattern:'sing-sang-sung',pron:'sing, sang, sung',exBase:'Sing a song.',exPast:'He sang loudly.',exPP:'They have sung.'},
+      {base:'sit',past:'sat',pp:'sat',diff:'common',pattern:'sit-sat-sat',pron:'sit, sat, sat',exBase:'Sit down.',exPast:'She sat on the chair.',exPP:'He has sat there.'},
+      {base:'sleep',past:'slept',pp:'slept',diff:'common',pattern:'sleep-slept-slept',pron:'sleep, slept, slept',exBase:'Sleep well.',exPast:'He slept deeply.',exPP:'I have slept.'},
+      {base:'speak',past:'spoke',pp:'spoken',diff:'common',pattern:'break-broke-broken',pron:'speek, spohk, SPOH-kən',exBase:'Speak clearly.',exPast:'She spoke softly.',exPP:'It is spoken.'},
+      {base:'spend',past:'spent',pp:'spent',diff:'common',pattern:'spend-spent-spent',pron:'spend, spent, spent',exBase:'Spend time.',exPast:'He spent money.',exPP:'It is spent.'},
+      {base:'stand',past:'stood',pp:'stood',diff:'common',pattern:'stand-stood-stood',pron:'stand, stud, stud',exBase:'Stand up.',exPast:'She stood still.',exPP:'We have stood.'},
+      {base:'swim',past:'swam',pp:'swum',diff:'common',pattern:'swim-swam-swum',pron:'swim, swam, swum',exBase:'Swim fast.',exPast:'He swam across.',exPP:'They have swum.'},
+      {base:'take',past:'took',pp:'taken',diff:'common',pattern:'take-took-taken',pron:'tayk, took, TAY-kən',exBase:'Take a break.',exPast:'She took a photo.',exPP:'It is taken.'},
+      {base:'teach',past:'taught',pp:'taught',diff:'common',pattern:'teach-taught-taught',pron:'teech, tawt, tawt',exBase:'Teach me.',exPast:'He taught math.',exPP:'She has taught.'},
+      {base:'tell',past:'told',pp:'told',diff:'common',pattern:'tell-told-told',pron:'tel, tohld, tohld',exBase:'Tell a story.',exPast:'He told the truth.',exPP:'It is told.'},
+      {base:'think',past:'thought',pp:'thought',diff:'common',pattern:'think-thought-thought',pron:'think, thawt, thawt',exBase:'Think positive.',exPast:'She thought deeply.',exPP:'I have thought.'},
+      {base:'write',past:'wrote',pp:'written',diff:'common',pattern:'write-wrote-written',pron:'rait, roht, RIT-ən',exBase:'Write a note.',exPast:'He wrote a letter.',exPP:'It is written.'},
+      // --- INTERMEDIATE (50) ---
+      {base:'awake',past:'awoke',pp:'awoken',diff:'intermediate',pattern:'break-broke-broken',pron:'ə-WAYK, ə-WOHK, ə-WOH-kən',exBase:'Awake at dawn.',exPast:'She awoke early.',exPP:'He has awoken.'},
+      {base:'beat',past:'beat',pp:'beaten',diff:'intermediate',pattern:'beat-beat-beaten',pron:'beet, beet, BEE-tən',exBase:'Beat the drum.',exPast:'He beat the record.',exPP:'It is beaten.'},
+      {base:'become',past:'became',pp:'become',diff:'intermediate',pattern:'come-came-come',pron:'bih-KUM, bih-KAYM, bih-KUM',exBase:'Become better.',exPast:'She became a doctor.',exPP:'He has become strong.'},
+      {base:'bend',past:'bent',pp:'bent',diff:'intermediate',pattern:'bend-bent-bent',pron:'bend, bent, bent',exBase:'Bend the wire.',exPast:'He bent the rule.',exPP:'It is bent.'},
+      {base:'bet',past:'bet',pp:'bet',diff:'intermediate',pattern:'bet-bet-bet',pron:'bet, bet, bet',exBase:'Bet on it.',exPast:'She bet $10.',exPP:'I have bet.'},
+      {base:'bite',past:'bit',pp:'bitten',diff:'intermediate',pattern:'bite-bit-bitten',pron:'bait, bit, BIT-ən',exBase:'Bite an apple.',exPast:'He bit his lip.',exPP:'It is bitten.'},
+      {base:'blow',past:'blew',pp:'blown',diff:'intermediate',pattern:'fly-flew-flown',pron:'bloh, bloo, blohn',exBase:'Blow a bubble.',exPast:'The wind blew.',exPP:'It is blown.'},
+      {base:'burn',past:'burned/burnt',pp:'burned/burnt',diff:'intermediate',pattern:'burn-burnt-burnt',pron:'burn, burnt, burnt',exBase:'Burn the paper.',exPast:'He burnt the toast.',exPP:'It is burnt.'},
+      {base:'catch',past:'caught',pp:'caught',diff:'intermediate',pattern:'catch-caught-caught',pron:'kach, kawt, kawt',exBase:'Catch the ball.',exPast:'She caught a fish.',exPP:'It is caught.'},
+      {base:'dig',past:'dug',pp:'dug',diff:'intermediate',pattern:'dig-dug-dug',pron:'dig, dug, dug',exBase:'Dig a hole.',exPast:'He dug deep.',exPP:'It is dug.'},
+      {base:'draw',past:'drew',pp:'drawn',diff:'intermediate',pattern:'fly-flew-flown',pron:'draw, droo, drawn',exBase:'Draw a picture.',exPast:'She drew a map.',exPP:'It is drawn.'},
+      {base:'dream',past:'dreamed/dreamt',pp:'dreamed/dreamt',diff:'intermediate',pattern:'dream-dreamt-dreamt',pron:'dreem, dremt, dremt',exBase:'Dream big.',exPast:'He dreamt of stars.',exPP:'I have dreamt.'},
+      {base:'feed',past:'fed',pp:'fed',diff:'intermediate',pattern:'feed-fed-fed',pron:'feed, fed, fed',exBase:'Feed the cat.',exPast:'She fed the dog.',exPP:'It is fed.'},
+      {base:'fight',past:'fought',pp:'fought',diff:'intermediate',pattern:'fight-fought-fought',pron:'fait, fawt, fawt',exBase:'Fight for peace.',exPast:'He fought bravely.',exPP:'They have fought.'},
+      {base:'freeze',past:'froze',pp:'frozen',diff:'intermediate',pattern:'break-broke-broken',pron:'freez, frohz, FROH-zən',exBase:'Freeze the water.',exPast:'The lake froze.',exPP:'It is frozen.'},
+      {base:'hang',past:'hung',pp:'hung',diff:'intermediate',pattern:'hang-hung-hung',pron:'hang, hung, hung',exBase:'Hang the picture.',exPast:'She hung it up.',exPP:'It is hung.'},
+      {base:'hit',past:'hit',pp:'hit',diff:'intermediate',pattern:'hit-hit-hit',pron:'hit, hit, hit',exBase:'Hit the target.',exPast:'He hit the ball.',exPP:'It is hit.'},
+      {base:'hold',past:'held',pp:'held',diff:'intermediate',pattern:'hold-held-held',pron:'hohld, held, held',exBase:'Hold my hand.',exPast:'She held the door.',exPP:'He has held it.'},
+      {base:'hurt',past:'hurt',pp:'hurt',diff:'intermediate',pattern:'hurt-hurt-hurt',pron:'hurt, hurt, hurt',exBase:'Hurt no one.',exPast:'He hurt his leg.',exPP:'She is hurt.'},
+      {base:'lead',past:'led',pp:'led',diff:'intermediate',pattern:'lead-led-led',pron:'leed, led, led',exBase:'Lead the way.',exPast:'He led the team.',exPP:'They have led.'},
+      {base:'learn',past:'learned/learnt',pp:'learned/learnt',diff:'intermediate',pattern:'learn-learnt-learnt',pron:'lurn, lurnt, lurnt',exBase:'Learn new words.',exPast:'She learnt Spanish.',exPP:'It is learnt.'},
+      {base:'lend',past:'lent',pp:'lent',diff:'intermediate',pattern:'lend-lent-lent',pron:'lend, lent, lent',exBase:'Lend me a pen.',exPast:'He lent $5.',exPP:'It is lent.'},
+      {base:'lie',past:'lay',pp:'lain',diff:'intermediate',pattern:'lie-lay-lain',pron:'lai, lay, layn',exBase:'Lie down.',exPast:'He lay on the bed.',exPP:'She has lain there.'},
+      {base:'light',past:'lit',pp:'lit',diff:'intermediate',pattern:'light-lit-lit',pron:'lait, lit, lit',exBase:'Light the candle.',exPast:'She lit the fire.',exPP:'It is lit.'},
+      {base:'mean',past:'meant',pp:'meant',diff:'intermediate',pattern:'mean-meant-meant',pron:'meen, ment, ment',exBase:'Mean kindness.',exPast:'He meant well.',exPP:'It is meant.'},
+      {base:'mistake',past:'mistook',pp:'mistaken',diff:'intermediate',pattern:'take-took-taken',pron:'mis-TAYK, mis-TOOK, mis-TAY-kən',exBase:'Mistake happens.',exPast:'She mistook the date.',exPP:'I was mistaken.'},
+      {base:'overcome',past:'overcame',pp:'overcome',diff:'intermediate',pattern:'come-came-come',pron:'oh-ver-KUM, oh-ver-KAYM, oh-ver-KUM',exBase:'Overcome fear.',exPast:'He overcame obstacles.',exPP:'It is overcome.'},
+      {base:'prove',past:'proved',pp:'proven/proved',diff:'intermediate',pattern:'prove-proved-proven',pron:'proov, proovd, PROO-vən',exBase:'Prove your point.',exPast:'She proved it.',exPP:'It is proven.'},
+      {base:'quit',past:'quit',pp:'quit',diff:'intermediate',pattern:'quit-quit-quit',pron:'kwit, kwit, kwit',exBase:'Quit smoking.',exPast:'He quit his job.',exPP:'She has quit.'},
+      {base:'rise',past:'rose',pp:'risen',diff:'intermediate',pattern:'rise-rose-risen',pron:'raiz, rohz, RIZ-ən',exBase:'Rise early.',exPast:'The sun rose.',exPP:'He has risen.'},
+      {base:'seek',past:'sought',pp:'sought',diff:'intermediate',pattern:'seek-sought-sought',pron:'seek, sawt, sawt',exBase:'Seek truth.',exPast:'She sought help.',exPP:'It is sought.'},
+      {base:'shake',past:'shook',pp:'shaken',diff:'intermediate',pattern:'shake-shook-shaken',pron:'shayk, shook, SHAY-kən',exBase:'Shake hands.',exPast:'He shook the bottle.',exPP:'It is shaken.'},
+      {base:'shine',past:'shone',pp:'shone',diff:'intermediate',pattern:'shine-shone-shone',pron:'shain, shohn, shohn',exBase:'Shine bright.',exPast:'The sun shone.',exPP:'It has shone.'},
+      {base:'shoot',past:'shot',pp:'shot',diff:'intermediate',pattern:'shoot-shot-shot',pron:'shoot, shot, shot',exBase:'Shoot the arrow.',exPast:'He shot the target.',exPP:'It is shot.'},
+      {base:'show',past:'showed',pp:'shown',diff:'intermediate',pattern:'show-showed-shown',pron:'shoh, shohd, shohn',exBase:'Show the way.',exPast:'She showed her work.',exPP:'It is shown.'},
+      {base:'shut',past:'shut',pp:'shut',diff:'intermediate',pattern:'shut-shut-shut',pron

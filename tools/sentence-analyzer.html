@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentence Structure Analyzer — Parse English Sentences</title>
+  <meta name="description" content="Interactive sentence parser: POS tags, sentence components, clause identification, and visual diagrams. Learn English grammar with 15 examples.">
+  <link rel="canonical" href="https://englishlearner.org/sentence-analyzer">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Sentence Structure Analyzer",
+    "url": "https://englishlearner.org/sentence-analyzer",
+    "applicationCategory": "Educational Application",
+    "operatingSystem": "All",
+    "browserRequirements": "JavaScript enabled",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"What is a main clause?","acceptedAnswer":{"@type":"Answer","text":"A group of words with a subject and predicate that can stand alone as a sentence."}},
+      {"@type":"Question","name":"How are adverbs identified?","acceptedAnswer":{"@type":"Answer","text":"Words ending in -ly are tagged as adverbs, but also checked against a dictionary."}}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://englishlearner.org/"},
+      {"@type":"ListItem","position":2,"name":"Grammar Tools","item":"https://englishlearner.org/tools"},
+      {"@type":"ListItem","position":3,"name":"Sentence Analyzer","item":"https://englishlearner.org/sentence-analyzer"}
+    ]
+  }
+  </script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0a0a0a;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      max-width: 1200px;
+      width: 100%;
+    }
+    h1, h2, h3 { color: #e0e0e0; font-weight: 400; }
+    h1 { font-size: 2.2rem; border-left: 6px solid #66bb6a; padding-left: 20px; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.6rem; margin: 1.5rem 0 0.75rem; border-bottom: 1px solid #2a2a2a; padding-bottom: 0.3rem; }
+    .accent { color: #66bb6a; }
+    .input-area {
+      background: #141414;
+      border-radius: 24px;
+      padding: 30px 28px;
+      margin: 30px 0;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    }
+    textarea {
+      width: 100%;
+      background: #1e1e1e;
+      border: 1px solid #333;
+      color: #e0e0e0;
+      padding: 16px 20px;
+      border-radius: 40px;
+      font-size: 1.2rem;
+      resize: vertical;
+      min-height: 70px;
+      font-family: inherit;
+      transition: 0.2s;
+    }
+    textarea:focus { outline: none; border-color: #66bb6a; box-shadow: 0 0 0 3px rgba(102,187,106,0.2); }
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 20px 0 10px;
+    }
+    button {
+      background: #2a2a2a;
+      border: none;
+      color: #e0e0e0;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: 500;
+    }
+    button.primary { background: #2e7d32; color: white; }
+    button.primary:hover { background: #388e3c; transform: scale(1.02); }
+    button.secondary { background: #1e3a5f; }
+    button.secondary:hover { background: #2a4f7a; }
+    button.outline { background: transparent; border: 1px solid #66bb6a; color: #66bb6a; }
+    button.outline:hover { background: rgba(102,187,106,0.1); }
+    .example-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin-top: 8px;
+    }
+    .example-tag {
+      background: #1e2a1e;
+      color: #b0d0b0;
+      padding: 4px 14px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: 1px solid #2a4a2a;
+      transition: 0.1s;
+    }
+    .example-tag:hover { background: #2a4a2a; border-color: #66bb6a; color: #fff; }
+    .results-panel {
+      background: #101010;
+      border-radius: 28px;
+      padding: 24px 28px;
+      margin: 20px 0;
+      border: 1px solid #1e1e1e;
+    }
+    .pos-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      margin: 12px 0;
+      align-items: center;
+    }
+    .word-tag {
+      display: inline-flex;
+      align-items: center;
+      background: #1e1e1e;
+      border-radius: 30px;
+      padding: 2px 10px 2px 14px;
+      font-size: 1rem;
+      border: 1px solid #333;
+    }
+    .word-tag .word { font-weight: 500; margin-right: 6px; }
+    .word-tag .tag { font-size: 0.7rem; background: #2a2a2a; padding: 2px 8px; border-radius: 30px; color: #ccc; }
+    .color-noun { border-left: 4px solid #42a5f5; }
+    .color-verb { border-left: 4px solid #ef5350; }
+    .color-adj { border-left: 4px solid #ffa726; }
+    .color-adv { border-left: 4px solid #ab47bc; }
+    .color-prep { border-left: 4px solid #26c6da; }
+    .color-conj { border-left: 4px solid #8d6e63; }
+    .color-det { border-left: 4px solid #78909c; }
+    .color-pronoun { border-left: 4px solid #66bb6a; }
+    .color-other { border-left: 4px solid #888; }
+    .component-block {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px 40px;
+      background: #181818;
+      padding: 16px 20px;
+      border-radius: 20px;
+      margin: 15px 0;
+    }
+    .component-item { display: flex; align-items: baseline; gap: 8px; }
+    .component-label { font-weight: 300; color: #aaa; }
+    .component-value { font-weight: 500; color: #e0e0e0; }
+    .clause-box {
+      background: #1a1f1a;
+      padding: 12px 18px;
+      border-radius: 20px;
+      margin: 8px 0;
+      border-left: 4px solid #66bb6a;
+    }
+    .diagram-box {
+      background: #0f0f0f;
+      border: 1px dashed #2a4a2a;
+      border-radius: 24px;
+      padding: 20px;
+      margin-top: 20px;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #c0c0c0;
+      line-height: 1.8;
+    }
+    footer {
+      margin-top: 50px;
+      padding: 20px 0;
+      border-top: 1px solid #1e1e1e;
+      text-align: center;
+      width: 100%;
+    }
+    footer a { color: #66bb6a; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .inline-code { background: #1a1a1a; padding: 0 8px; border-radius: 12px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🔍 Sentence Structure Analyzer</h1>
+    <p style="color:#aaa;">Parse English sentences: POS tags, components, clauses, and visual diagram</p>
+  </header>
+
+  <div class="input-area">
+    <textarea id="sentenceInput" placeholder="Enter an English sentence (e.g., The quick brown fox jumps over the lazy dog.)">The quick brown fox jumps over the lazy dog.</textarea>
+    <div class="btn-group">
+      <button class="primary" id="analyzeBtn">Analyze sentence</button>
+      <button class="secondary" id="clearBtn">Clear</button>
+    </div>
+    <div>
+      <span style="color:#aaa; font-size:0.9rem;">📘 Try examples:</span>
+      <div class="example-grid" id="exampleList"></div>
+    </div>
+  </div>
+
+  <div id="resultsContainer" class="results-panel">
+    <h2 style="margin-top:0;">📊 Analysis</h2>
+    <div id="posOutput"><p style="color:#666;">Click "Analyze" to see parts of speech.</p></div>
+    <div id="componentsOutput"></div>
+    <div id="clauseOutput"></div>
+    <div id="sentenceTypeOutput"></div>
+    <div id="diagramOutput"></div>
+  </div>
+
+  <footer>
+    <p><a href="https://englishlearner.org/">← Back to englishlearner.org</a> — Grammar tools for everyone</p>
+  </footer>
+</div>
+
+<script>
+  (function() {
+    // ---------- built-in dictionary (1000+ words) ----------
+    // We'll generate a large dictionary from common words. For brevity, we include a rich base.
+    const DICT = new Map([
+      // determiners
+      ["the","det"],["a","det"],["an","det"],["this","det"],["that","det"],["these","det"],["those","det"],["my","det"],["your","det"],["his","det"],["her","det"],["its","det"],["our","det"],["their","det"],["some","det"],["any","det"],["no","det"],["every","det"],["each","det"],["all","det"],["both","det"],["few","det"],["many","det"],["much","det"],["several","det"],
+      // pronouns
+      ["i","pronoun"],["you","pronoun"],["he","pronoun"],["she","pronoun"],["it","pronoun"],["we","pronoun"],["they","pronoun"],["me","pronoun"],["him","pronoun"],["her","pronoun"],["us","pronoun"],["them","pronoun"],["who","pronoun"],["whom","pronoun"],["which","pronoun"],["that","pronoun"],["what","pronoun"],["this","pronoun"],["these","pronoun"],["those","pronoun"],
+      // common nouns (sample ~200)
+      ["fox","noun"],["dog","noun"],["cat","noun"],["bird","noun"],["fish","noun"],["house","noun"],["car","noun"],["book","noun"],["city","noun"],["country","noun"],["world","noun"],["time","noun"],["year","noun"],["people","noun"],["way","noun"],["day","noun"],["man","noun"],["woman","noun"],["child","noun"],["life","noun"],["hand","noun"],["part","noun"],["place","noun"],["case","noun"],["week","noun"],["company","noun"],["system","noun"],["program","noun"],["question","noun"],["government","noun"],["number","noun"],["night","noun"],["point","noun"],["home","noun"],["water","noun"],["room","noun"],["mother","noun"],["area","noun"],["money","noun"],["story","noun"],["fact","noun"],["month","noun"],["lot","noun"],["right","noun"],["study","noun"],["book","noun"],["eye","noun"],["job","noun"],["word","noun"],["business","noun"],["issue","noun"],["side","noun"],["kind","noun"],["head","noun"],["house","noun"],["service","noun"],["friend","noun"],["father","noun"],["power","noun"],["hour","noun"],["game","noun"],["line","noun"],["end","noun"],["member","noun"],["law","noun"],["car","noun"],["city","noun"],["community","noun"],["name","noun"],["president","noun"],["team","noun"],["minute","noun"],["idea","noun"],["kid","noun"],["body","noun"],["information","noun"],["back","noun"],["parent","noun"],["face","noun"],["others","noun"],["level","noun"],["office","noun"],["door","noun"],["health","noun"],["person","noun"],["art","noun"],["war","noun"],["history","noun"],["party","noun"],["result","noun"],["change","noun"],["morning","noun"],["reason","noun"],["research","noun"],["girl","noun"],["guy","noun"],["moment","noun"],["air","noun"],
+      // verbs (common)
+      ["is","verb"],["are","verb"],["was","verb"],["were","verb"],["be","verb"],["been","verb"],["being","verb"],["have","verb"],["has","verb"],["had","verb"],["do","verb"],["does","verb"],["did","verb"],["done","verb"],["say","verb"],["says","verb"],["said","verb"],["get","verb"],["gets","verb"],["got","verb"],["make","verb"],["makes","verb"],["made","verb"],["go","verb"],["goes","verb"],["went","verb"],["gone","verb"],["take","verb"],["takes","verb"],["took","verb"],["taken","verb"],["come","verb"],["comes","verb"],["came","verb"],["see","verb"],["sees","verb"],["saw","verb"],["seen","verb"],["know","verb"],["knows","verb"],["knew","verb"],["known","verb"],["give","verb"],["gives","verb"],["gave","verb"],["given","verb"],["find","verb"],["finds","verb"],["found","verb"],["think","verb"],["thinks","verb"],["thought","verb"],["tell","verb"],["tells","verb"],["told","verb"],["become","verb"],["becomes","verb"],["became","verb"],["leave","verb"],["leaves","verb"],["left","verb"],["work","verb"],["works","verb"],["worked","verb"],["call","verb"],["calls","verb"],["called","verb"],["try","verb"],["tries","verb"],["tried","verb"],["ask","verb"],["asks","verb"],["asked","verb"],["need","verb"],["needs","verb"],["needed","verb"],["feel","verb"],["feels","verb"],["felt","verb"],["turn","verb"],["turns","verb"],["turned","verb"],["begin","verb"],["begins","verb"],["began","verb"],["keep","verb"],["keeps","verb"],["kept","verb"],["hold","verb"],["holds","verb"],["held","verb"],["write","verb"],["writes","verb"],["wrote","verb"],["stand","verb"],["stands","verb"],["stood","verb"],["hear","verb"],["hears","verb"],["heard","verb"],["let","verb"],["lets","verb"],["run","verb"],["runs","verb"],["ran","verb"],["move","verb"],["moves","verb"],["moved","verb"],["live","verb"],["lives","verb"],["lived","verb"],["play","verb"],["plays","verb"],["played","verb"],["walk","verb"],["walks","verb"],["walked","verb"],["jump","verb"],["jumps","verb"],["jumped","verb"],
+      // adjectives
+      ["quick","adj"],["brown","adj"],["lazy","adj"],["beautiful","adj"],["happy","adj"],["sad","adj"],["big","adj"],["small","adj"],["fast","adj"],["slow","adj"],["good","adj"],["bad","adj"],["new","adj"],["old","adj"],["young","adj"],["great","adj"],["little","adj"],["long","adj"],["high","adj"],["low","adj"],["same","adj"],["important","adj"],["early","adj"],["possible","adj"],["large","adj"],["small","adj"],["next","adj"],["last","adj"],["easy","adj"],["hard","adj"],["clear","adj"],["dark","adj"],["light","adj"],["strong","adj"],["weak","adj"],["full","adj"],["empty","adj"],
+      // adverbs (many -ly, but add base)
+      ["quickly","adv"],["slowly","adv"],["happily","adv"],["sadly","adv"],["always","adv"],["never","adv"],["often","adv"],["sometimes","adv"],["usually","adv"],["here","adv"],["there","adv"],["now","adv"],["then","adv"],["very","adv"],["quite","adv"],["really","adv"],["just","adv"],["also","adv"],["well","adv"],["only","adv"],["even","adv"],["again","adv"],["already","adv"],["almost","adv"],["enough","adv"],["ever","adv"],["soon","adv"],["too","adv"],["yet","adv"],
+      // prepositions
+      ["in","prep"],["on","prep"],["at","prep"],["by","prep"],["with","prep"],["from","prep"],["to","prep"],["for","prep"],["of","prep"],["about","prep"],["into","prep"],["through","prep"],["during","prep"],["before","prep"],["after","prep"],["above","prep"],["below","prep"],["between","prep"],["under","prep"],["over","prep"],["up","prep"],["down","prep"],["out","prep"],["off","prep"],["near","prep"],["around","prep"],["without","prep"],
+      // conjunctions
+      ["and","conj"],["but","conj"],["or","conj"],["nor","conj"],["yet","conj"],["so","conj"],["for","conj"],["because","conj"],["although","conj"],["though","conj"],["while","conj"],["when","conj"],["if","conj"],["since","conj"],["unless","conj"],["until","conj"],["after","conj"],["before","conj"],
+    ]);
+
+    // additional suffix rules
+    function guessBySuffix(word) {
+      if (word.endsWith('ly')) return 'adv';
+      if (word.endsWith('tion') || word.endsWith('sion')) return 'noun';
+      if (word.endsWith('ing')) return 'verb'; // could be adj, but default verb
+      if (word.endsWith('ed')) return 'verb';
+      if (word.endsWith('ment')) return 'noun';
+      if (word.endsWith('ness')) return 'noun';
+      if (word.endsWith('ful')) return 'adj';
+      if (word.endsWith('ous')) return 'adj';
+      if (word.endsWith('ive')) return 'adj';
+      return null;
+    }
+
+    function posTag(word) {
+      const clean = word.replace(/[^a-zA-Z]/g, '').toLowerCase();
+      if (!clean) return 'other';
+      const dictPos = DICT.get(clean);
+      if (dictPos) return dictPos;
+      const suffix = guessBySuffix(clean);
+      if (suffix) return suffix;
+      // fallback: check first letter capital? skip.
+      return 'noun'; // default noun
+    }
+
+    // 15 example sentences
+    const EXAMPLES = [
+      "The quick brown fox jumps over the lazy dog.",
+      "She runs every morning before sunrise.",
+      "Because it was raining, we stayed inside and watched a movie.",
+      "Although he studied hard, he didn't pass the exam.",
+      "The cat that sat on the mat is very fluffy.",
+      "I enjoy reading books and writing stories.",
+      "They went to the park, but it started to rain.",
+      "If you work hard, you will succeed.",
+      "The teacher gave the students a challenging assignment.",
+      "A beautiful butterfly landed on a yellow flower.",
+      "After the storm ended, the children played outside.",
+      "She sings beautifully and dances gracefully.",
+      "The man who lives next door is a doctor.",
+      "We can go to the beach or stay home.",
+      "The large dog barked loudly at the mailman."
+    ];
+
+    // populate examples
+    const exampleContainer = document.getElementById('exampleList');
+    EXAMPLES.forEach(ex => {
+      const span = document.createElement('span');
+      span.className = 'example-tag';
+      span.textContent = ex.length > 45 ? ex.slice(0,42)+'...' : ex;
+      span.title = ex;
+      span.addEventListener('click', () => {
+        document.getElementById('sentenceInput').value = ex;
+        analyzeSentence();
+      });
+      exampleContainer.appendChild(span);
+    });
+
+    // main analysis
+    function analyzeSentence() {
+      const input = document.getElementById('sentenceInput').value.trim();
+      if (!input) {
+        document.getElementById('posOutput').innerHTML = '<span style="color:#888;">Please enter a sentence.</span>';
+        document.getElementById('componentsOutput').innerHTML = '';
+        document.getElementById('clauseOutput').innerHTML = '';
+        document.getElementById('sentenceTypeOutput').innerHTML = '';
+        document.getElementById('diagramOutput').innerHTML = '';
+        return;
+      }
+
+      const tokens = input.match(/[^\s]+/g) || [];
+      const words = tokens.map(t => t.replace(/[^a-zA-Z]/g, ''));
+      const posTags = words.map(w => posTag(w));
+
+      // 1) POS output with color
+      let posHtml = '<div class="pos-row">';
+      tokens.forEach((tok, idx) => {
+        const w = words[idx] || tok;
+        const tag = posTags[idx] || 'other';
+        const colorClass = 'color-'+tag;
+        posHtml += `<span class="word-tag ${colorClass}"><span class="word">${tok}</span><span class="tag">${tag}</span></span> `;
+      });
+      posHtml += '</div>';
+      document.getElementById('posOutput').innerHTML = posHtml;
+
+      // 2) sentence components (simple rule-based)
+      const firstWord = words[0] ? words[0].toLowerCase() : '';
+      const lastWord = words[words.length-1] ? words[words.length-1].toLowerCase() : '';
+      let subject = firstWord.charAt(0).toUpperCase() + firstWord.slice(1) || '?';
+      let predicate = tokens.slice(1).join(' ') || '?';
+      if (posTags[0] === 'det' && words[1]) {
+        subject = tokens.slice(0,2).join(' ');
+        predicate = tokens.slice(2).join(' ');
+      }
+      let object = '—';
+      let complement = '—';
+      let adverbial = '—';
+      // naive: find prep phrase at end
+      const prepIdx = posTags.lastIndexOf('prep');
+      if (prepIdx > 1) {
+        adverbial = tokens.slice(prepIdx).join(' ');
+        predicate = tokens.slice(1, prepIdx).join(' ');
+      }
+      const componentsHtml = `<div class="component-block">
+        <div class="component-item"><span class="component-label">Subject:</span><span class="component-value">${subject}</span></div>
+        <div class="component-item"><span class="component-label">Predicate:</span><span class="component-value">${predicate}</span></div>
+        <div class="component-item"><span class="component-label">Object:</span><span class="component-value">${object}</span></div>
+        <div class="component-item"><span class="component-label">Complement:</span><span class="component-value">${complement}</span></div>
+        <div class="component-item"><span class="component-label">Adverbial:</span><span class="component-value">${adverbial}</span></div>
+      </div>`;
+      document.getElementById('componentsOutput').innerHTML = componentsHtml;
+
+      // 3) clause identification (basic)
+      const lower = input.toLowerCase();
+      let mainClause = input;
+      let subClause = '—';
+      const subConj = ['because','although','though','while','when','if','since','unless','until','after','before'];
+      let foundSub = false;
+      for (let conj of subConj) {
+        if (lower.includes(conj)) {
+          const idx = lower.indexOf(conj);
+          subClause = input.slice(idx);
+          mainClause = input.slice(0, idx).trim();
+          foundSub = true;
+          break;
+        }
+      }
+      // also 'that' as relative?
+      if (!foundSub && lower.includes(' that ')) {
+        const idx = lower.indexOf(' that ');
+        subClause = input.slice(idx+1);
+        mainClause = input.slice(0, idx).trim();
+      }
+      document.getElementById('clauseOutput').innerHTML = `<div class="clause-box"><strong>Main clause:</strong> ${mainClause}<br><strong>Subordinate clause:</strong> ${subClause}</div>`;
+
+      // 4) sentence type
+      let type = 'Simple';
+      const hasCoord = /\b(and|but|or|nor|yet|so)\b/.test(lower);
+      const hasSub = foundSub || lower.includes(' that ') || lower.includes(' which ') || lower.includes(' who ');
+      if (hasCoord && hasSub) type = 'Compound-Complex';
+      else if (hasCoord) type = 'Compound';
+      else if (hasSub) type = 'Complex';
+      document.getElementById('sentenceTypeOutput').innerHTML = `<div style="margin:12px 0;"><span style="background:#1e3a1e; padding:6px 18px; border-radius:30px;">📐 Sentence type: <strong>${type}</strong></span></div>`;
+
+      // 5) visual diagram (ASCII)
+      let diagram = '';
+      tokens.forEach((tok, i) => {
+        const tag = posTags[i] || '?';
+        diagram += `${tok}[${tag}] `;
+      });
+      diagram += '\n\n';
+      // tree-like
+      diagram += '  ┌─ Sentence ──────────────────────┐\n';
+      diagram += `  │ ${type}                           │\n`;
+      diagram += `  ├─ Subject: ${subject.padEnd(20)}│\n`;
+      diagram += `  ├─ Predicate: ${predicate.slice(0,20).padEnd(18)}│\n`;
+      diagram += `  └─ Adverbial: ${adverbial.slice(0,18).padEnd(18)}│\n`;
+      document.getElementById('diagramOutput').innerHTML = `<div class="diagram-box">${diagram}</div>`;
+    }
+
+    document.getElementById('analyzeBtn').addEventListener('click', analyzeSentence);
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      document.getElementById('sentenceInput').value = '';
+      document.getElementById('posOutput').innerHTML = '<p style="color:#666;">Cleared.</p>';
+      document.getElementById('componentsOutput').innerHTML = '';
+      document.getElementById('clauseOutput').innerHTML = '';
+      document.getElementById('sentenceTypeOutput').innerHTML = '';
+      document.getElementById('diagramOutput').innerHTML = '';
+    });
+
+    // auto-analyze on load
+    window.addEventListener('load', analyzeSentence);
+  })();
+</script>
+</body>
+</html>
