@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Usage Checker (a/an/the) — Free Tool</title>
+    <meta name="description" content="Free article usage checker. Paste text, highlight errors (a/an/the), explain countable/uncountable rules.">
+    <meta name="canonical" href="https://englishlearner.org/tools/article-usage-checker">
+    <meta property="og:title" content="Article Usage Checker (a/an/the) — Free Tool">
+    <meta property="og:description" content="Free article usage checker. Paste text, highlight errors (a/an/the), explain countable/uncountable rules.">
+    <meta property="og:url" content="https://englishlearner.org/tools/article-usage-checker">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#00d4aa">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: #e0e6ed;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #00d4aa;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            color: #a8b2c1;
+        }
+        .tool-section {
+            background: #151d3f;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #2a3550;
+        }
+        label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #00d4aa;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            background: #0f1629;
+            border: 1px solid #2a3550;
+            border-radius: 8px;
+            color: #e0e6ed;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #00d4aa;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 12px 24px;
+            background: #00d4aa;
+            color: #0a0e27;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #00b896;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .results {
+            margin-top: 30px;
+            display: none;
+        }
+        .results.active {
+            display: block;
+        }
+        .analysis-summary {
+            background: #0f1629;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #2a3550;
+        }
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #2a3550;
+        }
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        .summary-label {
+            color: #a8b2c1;
+            font-weight: 500;
+        }
+        .summary-count {
+            color: #00d4aa;
+            font-weight: 600;
+        }
+        .highlighted-text {
+            background: #0f1629;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #2a3550;
+            line-height: 2;
+            font-family: 'Monaco', monospace;
+            font-size: 0.95rem;
+        }
+        .highlight-correct {
+            background: #2a3d2a;
+            padding: 2px 4px;
+            border-radius: 3px;
+            color: #51cf66;
+            font-weight: 600;
+        }
+        .highlight-error {
+            background: #3d2a2a;
+            padding: 2px 4px;
+            border-radius: 3px;
+            color: #ff6b6b;
+            font-weight: 600;
+            text-decoration: underline wavy;
+        }
+        .error-item {
+            background: #3d2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ff6b6b;
+        }
+        .error-text {
+            color: #ff6b6b;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-family: monospace;
+        }
+        .error-message {
+            color: #a8b2c1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .rule-card {
+            background: #0f1629;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 4px solid #00d4aa;
+        }
+        .rule-title {
+            color: #00d4aa;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .rule-text {
+            color: #a8b2c1;
+            font-size: 0.95rem;
+        }
+        .empty-state {
+            text-align: center;
+            color: #7a8195;
+            padding: 40px 20px;
+        }
+        .rules-section {
+            margin-top: 30px;
+        }
+        .rules-title {
+            color: #00d4aa;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7a8195;
+            font-size: 0.9rem;
+            border-top: 1px solid #2a3550;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .tool-section {
+                padding: 20px;
+            }
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Article Usage Checker</h1>
+            <p class="subtitle">Check a/an/the usage and learn countable/uncountable rules</p>
+        </header>
+
+        <div class="tool-section">
+            <label for="textInput">Paste your text here:</label>
+            <textarea id="textInput" placeholder="Example: I have a dog and a cat. The dog is black. Cats are animals..."></textarea>
+            <div class="button-group">
+                <button onclick="checkArticles()">Check Articles</button>
+                <button onclick="clearAll()">Clear</button>
+            </div>
+        </div>
+
+        <div id="results" class="results">
+            <div class="analysis-summary">
+                <div style="font-weight: 600; margin-bottom: 15px; color: #00d4aa;">Analysis Summary</div>
+                <div class="summary-item">
+                    <span class="summary-label">Total Articles Found:</span>
+                    <span class="summary-count" id="totalArticles">0</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Potential Errors:</span>
+                    <span class="summary-count" id="errorCount">0</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Accuracy Score:</span>
+                    <span class="summary-count" id="accuracyScore">100%</span>
+                </div>
+            </div>
+
+            <div>
+                <div style="font-weight: 600; margin: 20px 0 15px 0; color: #00d4aa;">Highlighted Text</div>
+                <div id="highlightedText" class="highlighted-text"></div>
+            </div>
+
+            <div id="errorsContainer"></div>
+
+            <div class="rules-section">
+                <div class="rules-title">Article Usage Rules</div>
+                <div class="rule-card">
+                    <div class="rule-title">A vs An</div>
+                    <div class="rule-text">Use "a" before words starting with consonant sounds (a book, a house). Use "an" before words starting with vowel sounds (an apple, an hour).</div>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-title">The (Definite Article)</div>
+                    <div class="rule-text">Use "the" when referring to something specific or already mentioned. Example: I saw a cat. The cat was orange.</div>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-title">Countable Nouns</div>
+                    <div class="rule-text">Use "a/an" with singular countable nouns (a book, an apple). Use "the" when specific (the book I read). No article for plural (books are useful).</div>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-title">Uncountable Nouns</div>
+                    <div class="rule-text">Never use "a/an" with uncountable nouns (water, information, money). Use "the" when specific (the water in the glass).</div>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-title">Proper Nouns</div>
+                    <div class="rule-text">Usually no article with names (John, Paris). Some exceptions: the United States, the Netherlands, the Thames (rivers, seas).</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 English Learner. Free tools for better English.</p>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Article Usage Checker",
+        "description": "Free article usage checker to identify and explain a/an/the errors",
+        "url": "https://englishlearner.org/tools/article-usage-checker",
+        "applicationCategory": "EducationalApplication"
+    }
+    </script>
+
+    <script>
+        const uncountableNouns = ['water', 'information', 'money', 'furniture', 'equipment', 'luggage', 'baggage', 'research', 'advice', 'evidence', 'jewelry', 'knowledge', 'progress', 'weather', 'bread', 'rice', 'flour', 'meat', 'fish', 'fruit', 'garbage', 'trash', 'pollution', 'noise', 'oxygen', 'hydrogen', 'nitrogen', 'luck', 'chaos', 'damage', 'improvement', 'assistance', 'homework', 'work', 'play', 'fun', 'entertainment', 'violence', 'employment', 'abuse', 'billfold', 'cash'];
+
+        const countableNouns = ['book', 'cat', 'dog', 'house', 'apple', 'car', 'person', 'student', 'teacher', 'child', 'tree', 'flower', 'table', 'chair', 'word', 'sentence', 'language', 'country', 'city', 'mountain', 'river'];
+
+        function checkArticles() {
+            const text = document.getElementById('textInput').value.trim();
+            if (!text) {
+                alert('Please paste some text to analyze.');
+                return;
+            }
+
+            const results = document.getElementById('results');
+            results.classList.add('active');
+
+            // Find articles
+            const articleRegex = /\b(a|an|the)\s+(\w+)/gi;
+            const articles = [];
+            const errors = [];
+            let match;
+
+            while ((match = articleRegex.exec(text)) !== null) {
+                const article = match[1].toLowerCase();
+                const nextWord = match[2].toLowerCase();
+                articles.push({ article, nextWord, index: match.index });
+
+                // Check for errors
+                if (article === 'a') {
+                    const vowelSounds = ['a', 'e', 'i', 'o', 'u'];
+                    if (vowelSounds.includes(nextWord[0])) {
+                        errors.push({
+                            error: `"a ${nextWord}"`,
+                            correction: `"an ${nextWord}"`,
+                            rule: 'Use "an" before vowel sounds'
+                        });
+                    }
+                    if (uncountableNouns.includes(nextWord)) {
+                        errors.push({
+                            error: `"a ${nextWord}"`,
+                            correction: `"the ${nextWord}" or just "${nextWord}"`,
+                            rule: `"${nextWord}" is uncountable - do not use "a/an"`
+                        });
+                    }
+                } else if (article === 'an') {
+                    const vowelSounds = ['a', 'e', 'i', 'o', 'u'];
+                    if (!vowelSounds.includes(nextWord[0])) {
+                        errors.push({
+                            error: `"an ${nextWord}"`,
+                            correction: `"a ${nextWord}"`,
+                            rule: 'Use "a" before consonant sounds'
+                        });
+                    }
+                }
+            }
+
+            // Display results
+            document.getElementById('totalArticles').textContent = articles.length;
+            document.getElementById('errorCount').textContent = errors.length;
+            const accuracy = articles.length > 0 ? Math.round(((articles.length - errors.length) / articles.length) * 100) : 100;
+            document.getElementById('accuracyScore').textContent = accuracy + '%';
+
+            // Highlight text
+            let highlightedText = text;
+            articles.forEach(art => {
+                const pattern = new RegExp(`\\b${art.article}\\s+${art.nextWord}\\b`, 'gi');
+                const isError = errors.some(e => e.error.toLowerCase() === `"${art.article} ${art.nextWord}"`);
+                const className = isError ? 'highlight-error' : 'highlight-correct';
+                highlightedText = highlightedText.replace(pattern, `<span class="${className}">${art.article} ${art.nextWord}</span>`);
+            });
+
+            document.getElementById('highlightedText').innerHTML = highlightedText;
+
+            // Display errors
+            const errorsContainer = document.getElementById('errorsContainer');
+            errorsContainer.innerHTML = '';
+
+            if (errors.length > 0) {
+                const errorTitle = document.createElement('div');
+                errorTitle.style.cssText = 'font-weight: 600; margin: 20px 0 15px 0; color: #ff6b6b;';
+                errorTitle.textContent = 'Potential Errors Found';
+                errorsContainer.appendChild(errorTitle);
+
+                errors.forEach((error, index) => {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'error-item';
+                    errorDiv.innerHTML = `
+                        <div class="error-text">Error ${index + 1}: ${error.error}</div>
+                        <div class="error-message"><strong>Correction:</strong> Use ${error.correction}</div>
+                        <div class="error-message" style="margin-top: 8px;"><strong>Rule:</strong> ${error.rule}</div>
+                    `;
+                    errorsContainer.appendChild(errorDiv);
+                });
+            } else {
+                const successDiv = document.createElement('div');
+                successDiv.className = 'empty-state';
+                successDiv.innerHTML = '<strong style="color: #51cf66; font-size: 1.1rem;">✓ No article errors detected!</strong><p style="margin-top: 10px;">Your text uses articles correctly.</p>';
+                errorsContainer.appendChild(successDiv);
+            }
+        }
+
+        function clearAll() {
+            document.getElementById('textInput').value = '';
+            document.getElementById('results').classList.remove('active');
+        }
+
+        document.getElementById('textInput').addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'Enter') {
+                checkArticles();
+            }
+        });
+    </script>
+</body>
+</html>

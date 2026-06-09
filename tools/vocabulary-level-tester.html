@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Level Tester — Free Tool</title>
+    <meta name="description" content="Free vocabulary level tester. 20 words, CEFR levels A1-C2, estimated English proficiency. Test now.">
+    <meta name="canonical" href="https://englishlearner.org/tools/vocabulary-level-tester">
+    <meta property="og:title" content="Vocabulary Level Tester — Free Tool">
+    <meta property="og:description" content="Free vocabulary level tester. 20 words, CEFR levels A1-C2, estimated English proficiency. Test now.">
+    <meta property="og:url" content="https://englishlearner.org/tools/vocabulary-level-tester">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#00d4aa">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: #e0e6ed;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #00d4aa;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            color: #a8b2c1;
+        }
+        .tool-section {
+            background: #151d3f;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #2a3550;
+        }
+        .quiz-container {
+            display: none;
+        }
+        .quiz-container.active {
+            display: block;
+        }
+        .question-card {
+            background: #0f1629;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #2a3550;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #2a3550;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #00d4aa;
+            transition: width 0.3s;
+        }
+        .question-number {
+            color: #a8b2c1;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .word-display {
+            font-size: 1.8rem;
+            color: #00d4aa;
+            font-weight: 700;
+            margin: 20px 0;
+            text-align: center;
+            font-family: 'Monaco', monospace;
+        }
+        .definition-label {
+            color: #a8b2c1;
+            font-weight: 600;
+            margin: 20px 0 10px 0;
+            font-size: 0.95rem;
+        }
+        .options {
+            display: grid;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .option {
+            background: #1a2338;
+            border: 2px solid #2a3550;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #e0e6ed;
+        }
+        .option:hover {
+            border-color: #00d4aa;
+            background: #1f2d4a;
+        }
+        .option.selected {
+            border-color: #00d4aa;
+            background: #1f2d4a;
+        }
+        .option.correct {
+            border-color: #51cf66;
+            background: #2a3d2a;
+            color: #51cf66;
+        }
+        .option.incorrect {
+            border-color: #ff6b6b;
+            background: #3d2a2a;
+            color: #ff6b6b;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 12px 24px;
+            background: #00d4aa;
+            color: #0a0e27;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+        }
+        button:hover {
+            background: #00b896;
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            background: #7a8195;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .results-screen {
+            display: none;
+            text-align: center;
+        }
+        .results-screen.active {
+            display: block;
+        }
+        .level-badge {
+            display: inline-block;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .level-a1 { background: #2a5f2a; color: #51cf66; }
+        .level-a2 { background: #2a5f2a; color: #51cf66; }
+        .level-b1 { background: #3d5a2a; color: #a8d66d; }
+        .level-b2 { background: #4a7f2a; color: #d4ff51; }
+        .level-c1 { background: #5f7f2a; color: #ffff51; }
+        .level-c2 { background: #7f5f2a; color: #ffcc51; }
+        .score-summary {
+            background: #0f1629;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #2a3550;
+        }
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #2a3550;
+        }
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        .summary-label {
+            color: #a8b2c1;
+        }
+        .summary-value {
+            color: #00d4aa;
+            font-weight: 600;
+        }
+        .start-screen {
+            text-align: center;
+        }
+        .start-screen.active {
+            display: none;
+        }
+        .start-button {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+        .level-description {
+            color: #a8b2c1;
+            margin: 15px 0;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7a8195;
+            font-size: 0.9rem;
+            border-top: 1px solid #2a3550;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .tool-section {
+                padding: 20px;
+            }
+            button {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Vocabulary Level Tester</h1>
+            <p class="subtitle">Discover your English vocabulary level (A1-C2)</p>
+        </header>
+
+        <div class="tool-section">
+            <div id="startScreen" class="start-screen">
+                <p class="level-description">Test your vocabulary knowledge with 20 words at increasing difficulty levels. We'll estimate your CEFR English level from A1 (beginner) to C2 (mastery).</p>
+                <button class="start-button" onclick="startQuiz()">Start Test (5 min)</button>
+            </div>
+
+            <div id="quizContainer" class="quiz-container">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <div class="question-number" id="questionNumber"></div>
+                <div class="question-card">
+                    <div style="color: #a8b2c1; margin-bottom: 10px;">What does this word mean?</div>
+                    <div class="word-display" id="wordDisplay"></div>
+                    <div class="definition-label">Choose the best definition:</div>
+                    <div class="options" id="optionsContainer"></div>
+                </div>
+                <div class="button-group">
+                    <button onclick="nextQuestion()" id="nextButton" disabled>Next Question</button>
+                </div>
+            </div>
+
+            <div id="resultsScreen" class="results-screen">
+                <h2 style="margin: 30px 0; font-size: 1.5rem;">Your Results</h2>
+                <div id="levelBadge"></div>
+                <div id="levelDescription" class="level-description"></div>
+                <div class="score-summary">
+                    <div class="summary-item">
+                        <span class="summary-label">Correct Answers:</span>
+                        <span class="summary-value" id="correctCount">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Score:</span>
+                        <span class="summary-value" id="scorePercentage">0%</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Estimated CEFR Level:</span>
+                        <span class="summary-value" id="cefrlevel">A1</span>
+                    </div>
+                </div>
+                <button onclick="retakeQuiz()">Retake Test</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 English Learner. Free tools for better English.</p>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Vocabulary Level Tester",
+        "description": "Free vocabulary level tester to estimate CEFR English proficiency",
+        "url": "https://englishlearner.org/tools/vocabulary-level-tester",
+        "applicationCategory": "EducationalApplication"
+    }
+    </script>
+
+    <script>
+        const vocabularyQuestions = [
+            { word: 'hello', level: 'A1', options: ['greeting', 'goodbye', 'help', 'happy'], correct: 0 },
+            { word: 'house', level: 'A1', options: ['building to live in', 'car', 'school', 'park'], correct: 0 },
+            { word: 'water', level: 'A1', options: ['clear liquid', 'fire', 'wood', 'metal'], correct: 0 },
+            { word: 'book', level: 'A1', options: ['pages with words', 'pen', 'table', 'door'], correct: 0 },
+            { word: 'beautiful', level: 'A2', options: ['very attractive', 'sad', 'small', 'angry'], correct: 0 },
+            { word: 'celebrate', level: 'A2', options: ['mark a special occasion', 'sleep', 'walk', 'eat'], correct: 0 },
+            { word: 'complicated', level: 'B1', options: ['difficult to understand', 'simple', 'easy', 'fun'], correct: 0 },
+            { word: 'diligent', level: 'B1', options: ['hardworking and careful', 'lazy', 'happy', 'tall'], correct: 0 },
+            { word: 'eloquent', level: 'B2', options: ['expressive and fluent in speech', 'quiet', 'loud', 'angry'], correct: 0 },
+            { word: 'pragmatic', level: 'B2', options: ['practical and realistic', 'theoretical', 'creative', 'artistic'], correct: 0 },
+            { word: 'ephemeral', level: 'C1', options: ['lasting only a short time', 'permanent', 'heavy', 'bright'], correct: 0 },
+            { word: 'obfuscate', level: 'C1', options: ['make unclear or confusing', 'clarify', 'simplify', 'organize'], correct: 0 },
+            { word: 'insouciance', level: 'C2', options: ['lack of concern or care', 'worry', 'love', 'hate'], correct: 0 },
+            { word: 'perspicacious', level: 'C2', options: ['having keen insight or understanding', 'confused', 'slow', 'angry'], correct: 0 },
+            { word: 'meticulous', level: 'B2', options: ['showing great attention to detail', 'careless', 'quick', 'lazy'], correct: 0 },
+            { word: 'benevolent', level: 'B2', options: ['kind and generous', 'mean', 'selfish', 'angry'], correct: 0 },
+            { word: 'ubiquitous', level: 'C1', options: ['present or found everywhere', 'rare', 'unique', 'special'], correct: 0 },
+            { word: 'serendipity', level: 'C1', options: ['finding good things by chance', 'planning', 'skill', 'luck'], correct: 0 },
+            { word: 'petulant', level: 'B2', options: ['childishly sulky or bad-tempered', 'calm', 'happy', 'peaceful'], correct: 0 },
+            { word: 'solipsism', level: 'C2', options: ['belief that only oneself exists', 'generosity', 'kindness', 'empathy'], correct: 0 }
+        ];
+
+        let currentQuestion = 0;
+        let correctAnswers = 0;
+        let selectedAnswer = null;
+
+        function startQuiz() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('quizContainer').classList.add('active');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const question = vocabularyQuestions[currentQuestion];
+            document.getElementById('questionNumber').textContent = `Question ${currentQuestion + 1} of ${vocabularyQuestions.length}`;
+            document.getElementById('wordDisplay').textContent = question.word;
+
+            const progressPercent = ((currentQuestion) / vocabularyQuestions.length) * 100;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            selectedAnswer = null;
+
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectOption(index, optionDiv);
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            document.getElementById('nextButton').disabled = true;
+        }
+
+        function selectOption(index, element) {
+            const question = vocabularyQuestions[currentQuestion];
+            selectedAnswer = index;
+
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
+
+            if (index === question.correct) {
+                element.classList.add('correct');
+                correctAnswers++;
+            } else {
+                element.classList.add('incorrect');
+                document.querySelectorAll('.option')[question.correct].classList.add('correct');
+            }
+
+            document.getElementById('nextButton').disabled = false;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < vocabularyQuestions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            const percentage = (correctAnswers / vocabularyQuestions.length) * 100;
+            let level = 'A1';
+            let levelDesc = 'Elementary Proficiency';
+
+            if (percentage >= 95) { level = 'C2'; levelDesc = 'Mastery - Near-native fluency'; }
+            else if (percentage >= 90) { level = 'C1'; levelDesc = 'Advanced - Professional proficiency'; }
+            else if (percentage >= 80) { level = 'B2'; levelDesc = 'Upper Intermediate - Good conversational ability'; }
+            else if (percentage >= 70) { level = 'B1'; levelDesc = 'Intermediate - Functional proficiency'; }
+            else if (percentage >= 50) { level = 'A2'; levelDesc = 'Elementary - Basic communication'; }
+
+            document.getElementById('quizContainer').classList.remove('active');
+            document.getElementById('resultsScreen').classList.add('active');
+            document.getElementById('correctCount').textContent = correctAnswers;
+            document.getElementById('scorePercentage').textContent = Math.round(percentage) + '%';
+            document.getElementById('cefrlevel').textContent = level;
+
+            const badgeDiv = document.getElementById('levelBadge');
+            badgeDiv.className = 'level-badge level-' + level.toLowerCase();
+            badgeDiv.textContent = level;
+
+            document.getElementById('levelDescription').textContent = levelDesc;
+        }
+
+        function retakeQuiz() {
+            currentQuestion = 0;
+            correctAnswers = 0;
+            selectedAnswer = null;
+            document.getElementById('startScreen').style.display = 'block';
+            document.getElementById('resultsScreen').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
