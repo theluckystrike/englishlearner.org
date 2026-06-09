@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preposition Practice Tool — Free English Tool</title>
+    <meta name="description" content="Free preposition practice. Fill-in-the-blank exercises (in/on/at/by/for), instant feedback, score tracking.">
+    <meta name="canonical" href="https://englishlearner.org/tools/preposition-practice-tool">
+    <meta property="og:title" content="Preposition Practice Tool — Free English Tool">
+    <meta property="og:description" content="Free preposition practice. Fill-in-the-blank exercises (in/on/at/by/for), instant feedback, score tracking.">
+    <meta property="og:url" content="https://englishlearner.org/tools/preposition-practice-tool">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#00d4aa">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: #e0e6ed;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #00d4aa;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            color: #a8b2c1;
+        }
+        .tool-section {
+            background: #151d3f;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #2a3550;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #2a3550;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #00d4aa;
+            transition: width 0.3s;
+        }
+        .exercise-card {
+            background: #0f1629;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #2a3550;
+        }
+        .question-number {
+            color: #a8b2c1;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .sentence-display {
+            font-size: 1.2rem;
+            color: #e0e6ed;
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+        .blank {
+            background: #1a2338;
+            border: 2px solid #00d4aa;
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: #00d4aa;
+            font-weight: 600;
+            font-family: monospace;
+        }
+        .preposition-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+            margin: 25px 0;
+        }
+        .prep-button {
+            padding: 12px 16px;
+            background: #1a2338;
+            border: 2px solid #2a3550;
+            color: #e0e6ed;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .prep-button:hover {
+            border-color: #00d4aa;
+            background: #1f2d4a;
+        }
+        .prep-button.selected {
+            background: #00d4aa;
+            color: #0a0e27;
+            border-color: #00d4aa;
+        }
+        .prep-button.correct {
+            background: #51cf66;
+            border-color: #51cf66;
+            color: #0a0e27;
+        }
+        .prep-button.incorrect {
+            background: #ff6b6b;
+            border-color: #ff6b6b;
+            color: #fff;
+        }
+        .explanation {
+            background: #1a2338;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #00d4aa;
+            font-size: 0.95rem;
+            display: none;
+        }
+        .explanation.active {
+            display: block;
+        }
+        .explanation-title {
+            color: #00d4aa;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .explanation-text {
+            color: #a8b2c1;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 12px 24px;
+            background: #00d4aa;
+            color: #0a0e27;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+        }
+        button:hover:not(:disabled) {
+            background: #00b896;
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            background: #7a8195;
+            cursor: not-allowed;
+        }
+        .results-container {
+            display: none;
+            text-align: center;
+        }
+        .results-container.active {
+            display: block;
+        }
+        .score-badge {
+            font-size: 4rem;
+            color: #00d4aa;
+            font-weight: 700;
+            margin: 30px 0;
+        }
+        .score-summary {
+            background: #0f1629;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #2a3550;
+        }
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #2a3550;
+        }
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        .summary-label {
+            color: #a8b2c1;
+        }
+        .summary-value {
+            color: #00d4aa;
+            font-weight: 600;
+        }
+        .start-screen {
+            text-align: center;
+        }
+        .start-info {
+            color: #a8b2c1;
+            margin: 20px 0;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7a8195;
+            font-size: 0.9rem;
+            border-top: 1px solid #2a3550;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .tool-section {
+                padding: 20px;
+            }
+            .preposition-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            button {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <link rel="canonical" href="https://englishlearner.org/tools/preposition-practice-tool">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2241192243363112" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Preposition Practice Tool</h1>
+            <p class="subtitle">Master in, on, at, by, for, and more through practice</p>
+        </header>
+
+        <div class="tool-section">
+            <div id="startScreen" class="start-screen">
+                <p class="start-info">Complete 10 fill-in-the-blank exercises to master prepositions. Get instant feedback and learn the rules behind each answer.</p>
+                <button onclick="startExercises()">Start Practice (5 min)</button>
+            </div>
+
+            <div id="exercisesContainer" style="display: none;">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <div class="question-number" id="questionNumber"></div>
+                <div class="exercise-card">
+                    <div class="sentence-display" id="sentenceDisplay"></div>
+                    <div style="color: #a8b2c1; font-size: 0.95rem; margin: 15px 0;">Choose the correct preposition:</div>
+                    <div class="preposition-options" id="optionsContainer"></div>
+                    <div id="explanation" class="explanation">
+                        <div class="explanation-title">Why?</div>
+                        <div class="explanation-text" id="explanationText"></div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button onclick="nextExercise()" id="nextButton" disabled>Next</button>
+                </div>
+            </div>
+
+            <div id="resultsContainer" class="results-container">
+                <h2 style="margin: 30px 0; font-size: 1.5rem;">Practice Complete</h2>
+                <div class="score-badge" id="scoreDisplay">0/10</div>
+                <div class="score-summary">
+                    <div class="summary-item">
+                        <span class="summary-label">Correct Answers:</span>
+                        <span class="summary-value" id="correctCount">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Accuracy:</span>
+                        <span class="summary-value" id="accuracyPercent">0%</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Performance:</span>
+                        <span class="summary-value" id="performanceLevel">Good Start</span>
+                    </div>
+                </div>
+                <button onclick="resetExercises()">Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 English Learner. Free tools for better English.</p>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Preposition Practice Tool",
+        "description": "Free preposition practice with instant feedback and explanations",
+        "url": "https://englishlearner.org/tools/preposition-practice-tool",
+        "applicationCategory": "EducationalApplication"
+    }
+    </script>
+
+    <script>
+        const exercises = [
+            {
+                sentence: 'I go to work ____ the morning.',
+                options: ['on', 'in', 'at', 'by'],
+                correct: 1,
+                explanation: 'Use "in" for periods of time (morning, afternoon, evening). "At" is for specific times (at 9am).'
+            },
+            {
+                sentence: 'The keys are ____ the table.',
+                options: ['in', 'on', 'at', 'by'],
+                correct: 1,
+                explanation: '"On" is used for surfaces. "In" is for inside something. These keys are sitting on top of the table.'
+            },
+            {
+                sentence: 'The meeting is ____ 3 o\'clock.',
+                options: ['in', 'on', 'at', 'by'],
+                correct: 2,
+                explanation: 'Use "at" for specific times. At 3 o\'clock, at noon, at midnight are all correct.'
+            },
+            {
+                sentence: 'I live ____ London.',
+                options: ['at', 'on', 'in', 'by'],
+                correct: 2,
+                explanation: 'Use "in" for cities and countries. In London, in France, in the United States.'
+            },
+            {
+                sentence: 'She was born ____ 1995.',
+                options: ['at', 'in', 'on', 'by'],
+                correct: 1,
+                explanation: 'Use "in" for years and months. In 1995, in March. But use "on" for specific dates (on March 15).'
+            },
+            {
+                sentence: 'The book is ____ the shelf, ____ other books.',
+                options: ['in...on', 'on...in', 'on...with', 'at...in'],
+                correct: 1,
+                explanation: '"On" for surfaces (the shelf). "In" is less common here, but "on the shelf among other books" is most natural.'
+            },
+            {
+                sentence: 'I\'ll finish this project ____ Friday.',
+                options: ['in', 'on', 'at', 'by'],
+                correct: 1,
+                explanation: 'Use "on" for specific days of the week. On Monday, on Friday. "By Friday" also works (means no later than Friday).'
+            },
+            {
+                sentence: 'Let\'s meet ____ the park ____ sunset.',
+                options: ['in...at', 'at...in', 'in...in', 'on...at'],
+                correct: 0,
+                explanation: '"In" for places (in the park). "At" for specific times (at sunset). This is a classic combination.'
+            },
+            {
+                sentence: 'She walked ____ the beach ____ her friends.',
+                options: ['at...with', 'on...with', 'in...by', 'on...by'],
+                correct: 1,
+                explanation: '"On the beach" describes where. "With her friends" shows accompaniment, not a preposition of time.'
+            },
+            {
+                sentence: 'The note was written ____ pen ____ a piece of paper.',
+                options: ['with...on', 'by...on', 'with...in', 'in...on'],
+                correct: 0,
+                explanation: '"With a pen" describes the instrument. "On a piece of paper" describes the surface. Both common uses.'
+            }
+        ];
+
+        let currentExercise = 0;
+        let correctAnswers = 0;
+        let answered = false;
+
+        function startExercises() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('exercisesContainer').style.display = 'block';
+            loadExercise();
+        }
+
+        function loadExercise() {
+            const exercise = exercises[currentExercise];
+            document.getElementById('questionNumber').textContent = `Question ${currentExercise + 1} of ${exercises.length}`;
+
+            const progressPercent = (currentExercise / exercises.length) * 100;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+
+            // Display sentence with blank
+            const sentenceHTML = exercise.sentence.replace('____', '<span class="blank">?</span>');
+            document.getElementById('sentenceDisplay').innerHTML = sentenceHTML;
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            answered = false;
+
+            exercise.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'prep-button';
+                button.textContent = option;
+                button.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(button);
+            });
+
+            document.getElementById('explanation').classList.remove('active');
+            document.getElementById('nextButton').disabled = true;
+        }
+
+        function selectAnswer(index) {
+            if (answered) return;
+
+            const exercise = exercises[currentExercise];
+            const buttons = document.querySelectorAll('.prep-button');
+            answered = true;
+
+            buttons.forEach(btn => btn.disabled = true);
+
+            if (index === exercise.correct) {
+                buttons[index].classList.add('correct');
+                correctAnswers++;
+            } else {
+                buttons[index].classList.add('incorrect');
+                buttons[exercise.correct].classList.add('correct');
+            }
+
+            document.getElementById('explanationText').textContent = exercise.explanation;
+            document.getElementById('explanation').classList.add('active');
+            document.getElementById('nextButton').disabled = false;
+        }
+
+        function nextExercise() {
+            currentExercise++;
+            if (currentExercise < exercises.length) {
+                loadExercise();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('exercisesContainer').style.display = 'none';
+            document.getElementById('resultsContainer').classList.add('active');
+
+            const percentage = (correctAnswers / exercises.length) * 100;
+            let performance = 'Excellent!';
+
+            if (percentage < 50) performance = 'Keep practicing!';
+            else if (percentage < 70) performance = 'Good progress!';
+            else if (percentage < 90) performance = 'Very good!';
+
+            document.getElementById('scoreDisplay').textContent = `${correctAnswers}/${exercises.length}`;
+            document.getElementById('correctCount').textContent = correctAnswers;
+            document.getElementById('accuracyPercent').textContent = Math.round(percentage) + '%';
+            document.getElementById('performanceLevel').textContent = performance;
+        }
+
+        function resetExercises() {
+            currentExercise = 0;
+            correctAnswers = 0;
+            answered = false;
+            document.getElementById('startScreen').style.display = 'block';
+            document.getElementById('resultsContainer').classList.remove('active');
+        }
+    </script>
+<div style="margin:20px auto;max-width:728px;text-align:center">
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2241192243363112" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div style="margin:30px auto;max-width:728px;text-align:center;padding:18px 24px;background:linear-gradient(135deg,#0f172a,#1e293b);border:1px solid #334155;border-radius:10px">
+<p style="margin:0 0 6px;color:#94a3b8;font-size:0.85rem">Recommended by our team</p>
+<a href="https://www.belikenative.com?ref=satellite" target="_blank" rel="noopener" style="color:#38bdf8;font-weight:600;font-size:1.05rem;text-decoration:none">BeLikeNative.com</a>
+<p style="margin:6px 0 0;color:#cbd5e1;font-size:0.9rem">The #1 AI writing tool for freelancers — perfect grammar in any language, instantly.</p>
+</div>
+</body>
+</html>
