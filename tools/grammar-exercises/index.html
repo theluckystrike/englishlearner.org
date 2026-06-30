@@ -1,529 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Grammar Exercises · englishlearner.org</title>
-  <meta name="description" content="Interactive grammar drills: tenses, articles, prepositions, pronouns. 20 exercises with instant feedback & score.">
-  <link rel="canonical" href="https://englishlearner.org/tools/grammar-exercises">
-  <meta property="og:title" content="Grammar Exercises · englishlearner.org">
-  <meta property="og:description" content="Interactive grammar drills: tenses, articles, prepositions, pronouns. 20 exercises with instant feedback & score.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://englishlearner.org/tools/grammar-exercises">
-  <meta property="og:locale" content="en_US">
-  <meta name="twitter:card" content="summary">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Grammar Exercises Tool",
-    "url": "https://englishlearner.org/tools/grammar-exercises",
-    "description": "Interactive grammar drills: tenses, articles, prepositions, pronouns. 20 exercises with instant feedback & score.",
-    "applicationCategory": "EducationalApplication",
-    "operatingSystem": "All",
-    "browserRequirements": "JavaScript enabled"
-  }
-  </script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grammar Exercises: Free ESL Practice Quiz</title>
+<meta name="description" content="Free interactive English grammar exercises for ESL learners. Practice tenses, articles, prepositions and more with instant scoring and explanations.">
+<link rel="canonical" href="https://englishlearner.org/tools/grammar-exercises">
+<meta property="og:title" content="Grammar Exercises: Free ESL Practice Quiz">
+<meta property="og:description" content="Free interactive English grammar exercises for ESL learners. Practice tenses, articles, prepositions and more with instant scoring and explanations.">
+<meta property="og:url" content="https://englishlearner.org/tools/grammar-exercises">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Grammar Exercises",
+      "url": "https://englishlearner.org/tools/grammar-exercises",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": { "@type": "Person", "name": "Michael Lip", "url": "https://zovo.one" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://englishlearner.org/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://englishlearner.org/tools/" },
+        { "@type": "ListItem", "position": 3, "name": "Grammar Exercises", "item": "https://englishlearner.org/tools/grammar-exercises" }
+      ]
     }
-    body {
-      background: #0f172a;
-      color: #e2e8f0;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      line-height: 1.5;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      padding: 1.5rem 1rem 0;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      width: 100%;
-      flex: 1;
-    }
-    header {
-      margin-bottom: 2rem;
-      border-bottom: 1px solid #1e293b;
-      padding-bottom: 1rem;
-    }
-    h1 {
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: #f1f5f9;
-    }
-    h1 span {
-      color: #38bdf8;
-    }
-    .subhead {
-      color: #94a3b8;
-      font-size: 0.95rem;
-      margin-top: 0.25rem;
-    }
-    /* stats row */
-    .stats-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem 2rem;
-      background: #1e293b;
-      padding: 1rem 1.5rem;
-      border-radius: 1rem;
-      margin-bottom: 1.8rem;
-      align-items: center;
-    }
-    .stat-item {
-      display: flex;
-      align-items: baseline;
-      gap: 0.4rem;
-    }
-    .stat-label {
-      color: #94a3b8;
-      font-size: 0.9rem;
-      font-weight: 400;
-    }
-    .stat-value {
-      font-weight: 600;
-      font-size: 1.3rem;
-      color: #f1f5f9;
-    }
-    .stat-value.accent {
-      color: #38bdf8;
-    }
-    .progress-wrapper {
-      flex: 1;
-      min-width: 120px;
-    }
-    .progress-bar-bg {
-      background: #0f172a;
-      height: 8px;
-      border-radius: 20px;
-      overflow: hidden;
-      width: 100%;
-    }
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: #38bdf8;
-      border-radius: 20px;
-      transition: width 0.2s ease;
-    }
-    .progress-label {
-      font-size: 0.75rem;
-      color: #94a3b8;
-      margin-top: 0.2rem;
-      display: flex;
-      justify-content: space-between;
-    }
-    /* filter */
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 0.75rem;
-      margin-bottom: 2rem;
-    }
-    .filter-btn {
-      background: #1e293b;
-      border: 1px solid #334155;
-      color: #cbd5e1;
-      padding: 0.4rem 1rem;
-      border-radius: 2rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-    .filter-btn.active {
-      background: #38bdf8;
-      border-color: #38bdf8;
-      color: #0f172a;
-    }
-    .filter-btn:hover {
-      background: #334155;
-      color: #f1f5f9;
-    }
-    .filter-btn.active:hover {
-      background: #7dd3fc;
-    }
-    /* exercise cards */
-    .exercise-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      margin-bottom: 2.5rem;
-    }
-    .exercise-card {
-      background: #1e293b;
-      border-radius: 1rem;
-      padding: 1.25rem 1.5rem;
-      border-left: 4px solid #334155;
-      transition: border 0.1s;
-    }
-    .exercise-card.correct {
-      border-left-color: #22c55e;
-      background: #1a2e2a;
-    }
-    .exercise-card.incorrect {
-      border-left-color: #ef4444;
-      background: #2a1e1e;
-    }
-    .exercise-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 0.6rem;
-    }
-    .exercise-category {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      background: #0f172a;
-      padding: 0.2rem 0.7rem;
-      border-radius: 20px;
-      color: #94a3b8;
-      font-weight: 500;
-    }
-    .exercise-type {
-      font-size: 0.75rem;
-      color: #64748b;
-    }
-    .question-text {
-      font-size: 1.05rem;
-      margin-bottom: 0.8rem;
-      font-weight: 450;
-    }
-    .options-area {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem 1rem;
-      align-items: center;
-    }
-    .option-item {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-    .option-item input[type="radio"] {
-      accent-color: #38bdf8;
-      width: 1rem;
-      height: 1rem;
-      cursor: pointer;
-    }
-    .option-item label {
-      cursor: pointer;
-      color: #e2e8f0;
-    }
-    .fill-input {
-      background: #0f172a;
-      border: 1px solid #334155;
-      color: #e2e8f0;
-      padding: 0.4rem 0.8rem;
-      border-radius: 0.5rem;
-      font-size: 1rem;
-      width: auto;
-      min-width: 140px;
-      max-width: 220px;
-    }
-    .fill-input:focus {
-      outline: 2px solid #38bdf8;
-      border-color: transparent;
-    }
-    .feedback-area {
-      margin-top: 0.8rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-    .feedback-correct {
-      color: #22c55e;
-    }
-    .feedback-incorrect {
-      color: #ef4444;
-    }
-    .btn-check {
-      background: #38bdf8;
-      border: none;
-      color: #0f172a;
-      font-weight: 600;
-      padding: 0.4rem 1.2rem;
-      border-radius: 2rem;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: 0.1s;
-    }
-    .btn-check:hover {
-      background: #7dd3fc;
-    }
-    .btn-check:disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    .footer {
-      margin-top: 2.5rem;
-      text-align: center;
-      color: #475569;
-      font-size: 0.85rem;
-      border-top: 1px solid #1e293b;
-      padding: 1.5rem 0;
-    }
-    .footer small {
-      display: block;
-    }
-    .reset-btn {
-      background: transparent;
-      border: 1px solid #334155;
-      color: #94a3b8;
-      padding: 0.4rem 1.2rem;
-      border-radius: 2rem;
-      font-size: 0.8rem;
-      cursor: pointer;
-      margin-left: 1rem;
-    }
-    .reset-btn:hover {
-      background: #1e293b;
-      color: #e2e8f0;
-    }
-    @media (max-width: 600px) {
-      body { padding: 1rem 0.75rem 0; }
-      .stats-grid { flex-direction: column; align-items: stretch; gap: 0.8rem; }
-      .exercise-card { padding: 1rem; }
-    }
-  </style>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2241192243363112" crossorigin="anonymous"></script>
+  ]
+}
+</script>
+<style>
+:root{
+  --bg:#0f1115;--panel:#171a21;--panel2:#1f232c;--line:#2a2f3a;
+  --txt:#e6e9ef;--mut:#9aa3b2;--acc:#5eb1ff;--acc2:#7ee0a8;
+  --bad:#ff7a7a;--good:#7ee0a8;--warn:#ffd479;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--txt);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.6;font-size:17px;
+}
+nav{display:flex;gap:18px;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5}
+nav a{color:var(--acc);text-decoration:none;font-weight:600}
+nav a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:24px 20px 60px}
+h1{font-size:1.9rem;line-height:1.2;margin:.4em 0 .2em}
+h2{font-size:1.25rem;margin:1.6em 0 .4em;border-bottom:1px solid var(--line);padding-bottom:.3em}
+.lead{color:var(--mut);font-size:1.05rem}
+#tool{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin:22px 0}
+.controls{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:18px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:.85rem;color:var(--mut);font-weight:600;letter-spacing:.02em}
+select,button{
+  font:inherit;background:var(--panel2);color:var(--txt);
+  border:1px solid var(--line);border-radius:9px;padding:9px 12px;
+}
+select:focus,button:focus,input:focus{outline:2px solid var(--acc);outline-offset:1px}
+button{cursor:pointer;font-weight:600}
+button.primary{background:var(--acc);color:#04121f;border-color:var(--acc)}
+button:hover{filter:brightness(1.08)}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.score{font-weight:700}
+.q{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:14px 16px;margin:12px 0}
+.q .num{color:var(--acc);font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+.q .stem{font-size:1.08rem;margin:6px 0 12px}
+.q .stem .blank{color:var(--warn);font-weight:700;border-bottom:2px dashed var(--warn);padding:0 4px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;cursor:pointer;background:var(--panel);transition:.12s}
+.opt:hover{border-color:var(--acc)}
+.opt input{accent-color:var(--acc);width:17px;height:17px;cursor:pointer}
+.opt.correct{border-color:var(--good);background:rgba(126,224,168,.10)}
+.opt.wrong{border-color:var(--bad);background:rgba(255,122,122,.10)}
+.opt.locked{cursor:default}
+.fb{margin-top:10px;font-size:.95rem;display:none}
+.fb.show{display:block}
+.fb .tag{font-weight:700}
+.fb.ok .tag{color:var(--good)}
+.fb.no .tag{color:var(--bad)}
+.fb .exp{color:var(--mut)}
+.result{margin-top:16px;padding:16px;border-radius:11px;background:var(--panel2);border:1px solid var(--line);display:none}
+.result.show{display:block}
+.result .big{font-size:1.5rem;font-weight:800}
+.meter{height:10px;border-radius:6px;background:var(--line);overflow:hidden;margin:10px 0}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));width:0;transition:width .5s}
+.relbox{display:grid;gap:8px;margin-top:8px}
+.relbox a{color:var(--acc);text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:11px 14px;display:block}
+.relbox a:hover{border-color:var(--acc)}
+footer{border-top:1px solid var(--line);padding:24px 20px;text-align:center;color:var(--mut);font-size:.9rem}
+footer a{color:var(--acc);text-decoration:none;margin:0 8px}
+small.note{color:var(--mut)}
+@media(max-width:520px){h1{font-size:1.55rem}body{font-size:16px}}
+</style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <h1>✧ <span>grammar</span> exercises</h1>
-    <div class="subhead">tenses · articles · prepositions · pronouns</div>
-  </header>
+<nav>
+  <a href="/">Home</a>
+  <a href="/tools/">Tools</a>
+</nav>
+<div class="wrap">
+  <h1>Interactive English Grammar Practice</h1>
+  <p class="lead">Pick a topic and a level, then answer ten auto-generated multiple-choice questions. Every answer is checked instantly with a short explanation, and your final score is graded the moment you finish.</p>
 
-  <!-- stats + progress -->
-  <div class="stats-grid" id="statsPanel">
-    <div class="stat-item"><span class="stat-label">Score</span><span class="stat-value accent" id="scoreDisplay">0</span><span class="stat-label">/20</span></div>
-    <div class="stat-item"><span class="stat-label">Percent</span><span class="stat-value" id="percentDisplay">0%</span></div>
-    <div class="progress-wrapper">
-      <div class="progress-bar-bg"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-      <div class="progress-label"><span id="progressLabel">0%</span><span>20 questions</span></div>
+  <section id="tool" aria-label="Grammar exercises tool">
+    <div class="controls">
+      <div class="field">
+        <label for="topic">Grammar topic</label>
+        <select id="topic">
+          <option value="tenses">Verb Tenses</option>
+          <option value="articles">Articles (a / an / the)</option>
+          <option value="prepositions">Prepositions</option>
+          <option value="irregular">Irregular Verbs</option>
+          <option value="mixed">Mixed Review</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="level">Difficulty</label>
+        <select id="level">
+          <option value="easy">Beginner (A1–A2)</option>
+          <option value="med" selected>Intermediate (B1–B2)</option>
+          <option value="hard">Advanced (C1)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="count">Questions</label>
+        <select id="count">
+          <option>5</option>
+          <option selected>10</option>
+          <option>15</option>
+        </select>
+      </div>
+      <div class="field" style="justify-content:flex-end">
+        <label>&nbsp;</label>
+        <button id="newQuiz" class="primary" type="button">New quiz</button>
+      </div>
     </div>
-    <button class="reset-btn" id="resetBtn">⟳ reset</button>
-  </div>
 
-  <!-- filter -->
-  <div class="filter-bar" id="filterBar">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="tenses">Tenses</button>
-    <button class="filter-btn" data-filter="articles">Articles</button>
-    <button class="filter-btn" data-filter="prepositions">Prepositions</button>
-    <button class="filter-btn" data-filter="pronouns">Pronouns</button>
-  </div>
+    <div class="bar">
+      <div class="score" id="progress">Answered 0 / 10</div>
+      <div class="score" id="liveScore">Correct: 0</div>
+    </div>
 
-  <!-- exercise list -->
-  <div class="exercise-list" id="exerciseList"></div>
+    <div id="quiz" aria-live="polite"></div>
+
+    <div class="result" id="result" aria-live="polite">
+      <div class="big" id="resultBig"></div>
+      <div class="meter"><i id="meterFill"></i></div>
+      <div id="resultMsg" class="mut"></div>
+    </div>
+    <p><small class="note">Tip: change the topic or level above and press <b>New quiz</b> for a fresh set. Questions are generated locally in your browser — nothing is sent anywhere.</small></p>
+  </section>
+
+  <h2>How this grammar trainer works</h2>
+  <p>This tool is a self-contained practice engine for English as a Second Language learners. It holds a curated bank of grammar items grouped by topic — verb tenses, articles, prepositions and irregular verbs — and each item carries a correct answer, three plausible distractors, and a one-line explanation written in plain English. When you choose a topic, the engine filters the bank, optionally narrows it by your selected difficulty band, then shuffles and draws the number of questions you asked for.</p>
+  <p>The scoring algorithm is deliberately simple and transparent so you can trust it. Each question is worth one point. The moment you click an option, the engine compares your choice against the stored key: a match marks the option green and adds one to your running total, while a miss marks your choice red and reveals the correct option in green so you learn the right form immediately. The live counter tracks <em>answered</em> and <em>correct</em> separately, and the final percentage is computed as correct ÷ total × 100, rounded to the nearest whole number. A score of 90% or above earns an "excellent" band, 70–89% is "solid", 50–69% is "keep practising", and below 50% suggests reviewing the topic before retrying.</p>
+  <p>Distractors are not random words — they are common ESL error patterns, such as confusing the past simple with the present perfect, dropping the article before a singular countable noun, or mixing "in", "on" and "at" for time. Seeing the typical mistake next to the correct answer is what makes multiple-choice drilling effective: you train your eye to reject the wrong form. Because every question, key and explanation lives inside this page, the trainer works fully offline and reshuffles instantly, giving you near-unlimited repetition without any account, ads or external requests.</p>
+
+  <h2>Related Tools</h2>
+  <div class="relbox">
+    <a href="/tools/irregular-verbs">Irregular Verbs List &amp; Trainer →</a>
+    <a href="/tools/idioms">English Idioms Explorer →</a>
+    <a href="/tools/vocabulary-builder">Vocabulary Builder →</a>
+  </div>
 </div>
-<footer class="footer">
-  <small>© 2025 englishlearner.org — interactive grammar tool</small>
+
+<footer>
+  <div>
+    <a href="/">Home</a>
+    <a href="/tools/">All Tools</a>
+    <a href="/tools/irregular-verbs">Irregular Verbs</a>
+  </div>
+  <p>© 2026 EnglishLearner.org — free ESL practice tools.</p>
 </footer>
-<div style="margin:20px auto;max-width:728px;text-align:center">
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2241192243363112" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
 
 <script>
-  (function() {
-    // ----- 20 exercises (real) -----
-    const EXERCISES = [
-      { id: 0, category: 'tenses', type: 'multiple-choice', question: 'She ___ to the store yesterday.', options: ['go', 'went', 'gone', 'going'], answer: 'went' },
-      { id: 1, category: 'tenses', type: 'multiple-choice', question: 'They ___ playing football right now.', options: ['is', 'are', 'was', 'were'], answer: 'are' },
-      { id: 2, category: 'tenses', type: 'fill-in', question: 'I ___ (eat) breakfast at 7 AM every day.', answer: 'eat' },
-      { id: 3, category: 'tenses', type: 'fill-in', question: 'By next year, she ___ (finish) her degree.', answer: 'will finish' },
-      { id: 4, category: 'articles', type: 'multiple-choice', question: 'I saw ___ owl in the tree.', options: ['a', 'an', 'the', 'no article'], answer: 'an' },
-      { id: 5, category: 'articles', type: 'multiple-choice', question: '___ sun rises in the east.', options: ['A', 'An', 'The', 'no article'], answer: 'The' },
-      { id: 6, category: 'articles', type: 'fill-in', question: 'She is ___ honest woman.', answer: 'an' },
-      { id: 7, category: 'articles', type: 'fill-in', question: 'I need ___ new phone.', answer: 'a' },
-      { id: 8, category: 'prepositions', type: 'multiple-choice', question: 'He is good ___ math.', options: ['at', 'in', 'on', 'with'], answer: 'at' },
-      { id: 9, category: 'prepositions', type: 'multiple-choice', question: 'We will meet ___ 5 PM.', options: ['in', 'on', 'at', 'by'], answer: 'at' },
-      { id: 10, category: 'prepositions', type: 'fill-in', question: 'She is afraid ___ spiders.', answer: 'of' },
-      { id: 11, category: 'prepositions', type: 'fill-in', question: 'They went ___ vacation last week.', answer: 'on' },
-      { id: 12, category: 'pronouns', type: 'multiple-choice', question: '___ is my friend.', options: ['He', 'Him', 'His', 'Her'], answer: 'He' },
-      { id: 13, category: 'pronouns', type: 'multiple-choice', question: 'This book is ___.', options: ['my', 'mine', 'me', 'I'], answer: 'mine' },
-      { id: 14, category: 'pronouns', type: 'fill-in', question: '___ (we) are going to the park.', answer: 'We' },
-      { id: 15, category: 'pronouns', type: 'fill-in', question: 'Please give ___ (I) the pen.', answer: 'me' },
-      // error correction (real errors)
-      { id: 16, category: 'tenses', type: 'error-correction', question: 'She go to school every day.', hint: 'fix the verb', answer: 'goes' },
-      { id: 17, category: 'articles', type: 'error-correction', question: 'He is a honest boy.', hint: 'article error', answer: 'an' },
-      { id: 18, category: 'prepositions', type: 'error-correction', question: 'She is good in playing chess.', hint: 'wrong preposition', answer: 'at' },
-      { id: 19, category: 'pronouns', type: 'error-correction', question: 'Him and I are friends.', hint: 'pronoun case', answer: 'He' }
-    ];
+(function(){
+  "use strict";
 
-    // state
-    let userAnswers = new Array(EXERCISES.length).fill(null);
-    let feedbackState = new Array(EXERCISES.length).fill(null); // null | 'correct' | 'incorrect'
-    let activeFilter = 'all';
+  // Question bank. b = difficulty band: 1 easy, 2 medium, 3 hard.
+  // s = sentence with ___ blank, o = options, a = correct index, e = explanation.
+  var BANK = {
+    tenses: [
+      {b:1,s:"She ___ to school every day.",o:["go","goes","going","gone"],a:1,e:"Present simple, third person singular adds -s: she goes."},
+      {b:1,s:"They ___ football right now.",o:["play","plays","are playing","played"],a:2,e:"Right now signals present continuous: are playing."},
+      {b:1,s:"Yesterday I ___ a great film.",o:["see","saw","seen","seeing"],a:1,e:"A finished past time (yesterday) takes past simple: saw."},
+      {b:2,s:"I ___ here since 2019.",o:["live","lived","have lived","am living"],a:2,e:"'Since' + a start point uses present perfect: have lived."},
+      {b:2,s:"By the time we arrived, the train ___.",o:["left","has left","had left","leaves"],a:2,e:"An action completed before another past action takes past perfect: had left."},
+      {b:2,s:"Look at those clouds — it ___ rain.",o:["is going to","will","goes to","would"],a:0,e:"Present evidence predicts the future with 'be going to'."},
+      {b:3,s:"This time next week I ___ on a beach.",o:["will lie","will be lying","lie","have lain"],a:1,e:"An action in progress at a future moment uses future continuous: will be lying."},
+      {b:3,s:"If I ___ earlier, I would have caught the bus.",o:["left","had left","have left","would leave"],a:1,e:"Third conditional past: 'if + past perfect' (had left)."},
+      {b:3,s:"By 2030 scientists ___ a cure, hopefully.",o:["will find","will have found","find","are finding"],a:1,e:"Completion by a future deadline uses future perfect: will have found."}
+    ],
+    articles: [
+      {b:1,s:"I saw ___ elephant at the zoo.",o:["a","an","the","—"],a:1,e:"Use 'an' before a vowel sound: an elephant."},
+      {b:1,s:"She is ___ honest woman.",o:["a","an","the","—"],a:1,e:"'Honest' starts with a silent h, a vowel sound, so 'an'."},
+      {b:1,s:"Can you pass ___ salt, please?",o:["a","an","the","—"],a:2,e:"A specific, known item shared between speakers takes 'the'."},
+      {b:2,s:"He plays ___ guitar beautifully.",o:["a","an","the","—"],a:2,e:"Musical instruments usually take 'the': the guitar."},
+      {b:2,s:"___ water boils at 100°C.",o:["A","An","The","—"],a:3,e:"General/uncountable nouns take no article: Water boils."},
+      {b:2,s:"We had ___ wonderful time in Rome.",o:["a","an","the","—"],a:0,e:"Singular countable 'time' (an occasion) takes 'a': a time."},
+      {b:3,s:"She is ___ best student in the class.",o:["a","an","the","—"],a:2,e:"Superlatives take 'the': the best."},
+      {b:3,s:"He went to ___ prison to visit his brother.",o:["a","an","the","—"],a:2,e:"Visiting the building uses 'the prison'; 'to prison' (no article) means as an inmate."},
+      {b:3,s:"___ Everest is the tallest mountain.",o:["A","An","The","—"],a:3,e:"Single mountains take no article: Everest (not 'the Everest')."}
+    ],
+    prepositions: [
+      {b:1,s:"The cat is ___ the table.",o:["on","in","at","of"],a:0,e:"A surface contact uses 'on': on the table."},
+      {b:1,s:"I was born ___ May.",o:["on","in","at","by"],a:1,e:"Months take 'in': in May."},
+      {b:1,s:"We'll meet ___ 6 o'clock.",o:["on","in","at","to"],a:2,e:"Clock times take 'at': at 6 o'clock."},
+      {b:2,s:"She is good ___ mathematics.",o:["in","at","on","for"],a:1,e:"'Good at' is the fixed collocation for skills."},
+      {b:2,s:"He apologised ___ being late.",o:["of","for","to","with"],a:1,e:"'Apologise for' + the reason."},
+      {b:2,s:"The shop is ___ the corner.",o:["in","on","at","by"],a:1,e:"'On the corner' for a street corner location."},
+      {b:3,s:"They congratulated her ___ her promotion.",o:["for","on","about","of"],a:1,e:"'Congratulate someone on' an achievement."},
+      {b:3,s:"This decision is independent ___ the budget.",o:["from","of","to","on"],a:1,e:"'Independent of' is the standard collocation."},
+      {b:3,s:"We must comply ___ the regulations.",o:["to","with","for","on"],a:1,e:"'Comply with' rules or regulations."}
+    ],
+    irregular: [
+      {b:1,s:"Past tense of 'go': I ___ home.",o:["goed","went","gone","go"],a:1,e:"Go → went (past simple) → gone (past participle)."},
+      {b:1,s:"Past tense of 'eat': She ___ lunch.",o:["eated","ate","eaten","eat"],a:1,e:"Eat → ate → eaten."},
+      {b:1,s:"Past tense of 'take': He ___ the bus.",o:["taked","took","taken","take"],a:1,e:"Take → took → taken."},
+      {b:2,s:"Past participle of 'write': I have ___ a letter.",o:["wrote","written","writed","write"],a:1,e:"Write → wrote → written (used after 'have')."},
+      {b:2,s:"Past participle of 'break': The cup is ___.",o:["broke","broken","breaked","break"],a:1,e:"Break → broke → broken."},
+      {b:2,s:"Past tense of 'bring': She ___ a gift.",o:["bringed","brought","brung","bring"],a:1,e:"Bring → brought → brought."},
+      {b:3,s:"Past participle of 'lie' (recline): He had ___ down.",o:["laid","lain","lied","lay"],a:1,e:"Lie/lay/lain (recline). 'Lied' is for telling untruths."},
+      {b:3,s:"Past tense of 'seek': They ___ shelter.",o:["seeked","sought","seekt","seek"],a:1,e:"Seek → sought → sought."},
+      {b:3,s:"Past participle of 'forsake': He had ___ his friends.",o:["forsook","forsaken","forsaked","forsake"],a:1,e:"Forsake → forsook → forsaken."}
+    ]
+  };
 
-    const exerciseListEl = document.getElementById('exerciseList');
-    const scoreDisplay = document.getElementById('scoreDisplay');
-    const percentDisplay = document.getElementById('percentDisplay');
-    const progressFill = document.getElementById('progressFill');
-    const progressLabel = document.getElementById('progressLabel');
-    const resetBtn = document.getElementById('resetBtn');
+  // --- DOM refs ---
+  var elTopic=document.getElementById('topic'),
+      elLevel=document.getElementById('level'),
+      elCount=document.getElementById('count'),
+      elNew=document.getElementById('newQuiz'),
+      elQuiz=document.getElementById('quiz'),
+      elProg=document.getElementById('progress'),
+      elLive=document.getElementById('liveScore'),
+      elResult=document.getElementById('result'),
+      elResBig=document.getElementById('resultBig'),
+      elResMsg=document.getElementById('resultMsg'),
+      elMeter=document.getElementById('meterFill');
 
-    // helpers
-    function computeScore() {
-      let correct = 0;
-      for (let i = 0; i < EXERCISES.length; i++) {
-        if (feedbackState[i] === 'correct') correct++;
-      }
-      return correct;
+  var state={questions:[],answered:0,correct:0,total:0};
+
+  function shuffle(arr){
+    var a=arr.slice();
+    for(var i=a.length-1;i>0;i--){
+      var j=Math.floor(Math.random()*(i+1));
+      var t=a[i];a[i]=a[j];a[j]=t;
     }
+    return a;
+  }
 
-    function updateStats() {
-      const total = EXERCISES.length;
-      const correct = computeScore();
-      const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
-      scoreDisplay.textContent = correct;
-      percentDisplay.textContent = pct + '%';
-      progressFill.style.width = pct + '%';
-      progressLabel.textContent = pct + '%';
+  function pool(topic){
+    if(topic==='mixed'){
+      var all=[];
+      for(var k in BANK){ if(BANK.hasOwnProperty(k)) all=all.concat(BANK[k]); }
+      return all;
     }
+    return BANK[topic]||[];
+  }
 
-    // render all exercises based on filter
-    function renderExercises() {
-      const filtered = EXERCISES.filter((ex, idx) => {
-        if (activeFilter === 'all') return true;
-        return ex.category === activeFilter;
+  function bandFilter(items,level){
+    var want = level==='easy'?1 : level==='hard'?3 : 2;
+    var hit=items.filter(function(q){return q.b===want;});
+    // Fall back to neighbouring bands if too few at exact level.
+    if(hit.length<3) return items;
+    return hit;
+  }
+
+  // Build a question with shuffled options, remapping the correct index.
+  function makeQuestion(raw){
+    var paired=raw.o.map(function(text,i){return {text:text,correct:i===raw.a};});
+    var mixed=shuffle(paired);
+    var correctIdx=mixed.findIndex(function(p){return p.correct;});
+    return {stem:raw.s,opts:mixed.map(function(p){return p.text;}),answer:correctIdx,exp:raw.e};
+  }
+
+  function buildQuiz(){
+    var topic=elTopic.value, level=elLevel.value, n=parseInt(elCount.value,10)||10;
+    var items=bandFilter(pool(topic),level);
+    var picked=shuffle(items).slice(0,Math.min(n,items.length)).map(makeQuestion);
+    state={questions:picked,answered:0,correct:0,total:picked.length};
+    render();
+    updateBars();
+    elResult.classList.remove('show');
+  }
+
+  function render(){
+    elQuiz.innerHTML='';
+    state.questions.forEach(function(q,qi){
+      var card=document.createElement('div');
+      card.className='q';
+      var stemHtml=q.stem.replace('___','<span class="blank">_____</span>');
+      card.innerHTML='<div class="num">Question '+(qi+1)+'</div><div class="stem">'+stemHtml+'</div>';
+      var opts=document.createElement('div');
+      opts.className='opts';
+      q.opts.forEach(function(text,oi){
+        var lab=document.createElement('label');
+        lab.className='opt';
+        lab.innerHTML='<input type="radio" name="q'+qi+'" value="'+oi+'"><span>'+text+'</span>';
+        opts.appendChild(lab);
       });
-
-      if (filtered.length === 0) {
-        exerciseListEl.innerHTML = `<div style="padding: 2rem; text-align: center; color: #64748b;">No exercises in this category.</div>`;
-        return;
-      }
-
-      let html = '';
-      filtered.forEach((ex) => {
-        const idx = ex.id;
-        const isCorrect = feedbackState[idx] === 'correct';
-        const isIncorrect = feedbackState[idx] === 'incorrect';
-        const cardClass = isCorrect ? 'exercise-card correct' : (isIncorrect ? 'exercise-card incorrect' : 'exercise-card');
-        const userVal = userAnswers[idx] || '';
-        const feedbackMsg = feedbackState[idx] === 'correct' ? '✓ Correct!' : (feedbackState[idx] === 'incorrect' ? `✗ Incorrect. Answer: ${ex.answer}` : '');
-
-        let optionsHtml = '';
-        let typeLabel = '';
-        if (ex.type === 'multiple-choice') {
-          typeLabel = 'multiple choice';
-          optionsHtml = `<div class="options-area">`;
-          ex.options.forEach(opt => {
-            const checked = (userVal === opt) ? 'checked' : '';
-            optionsHtml += `<div class="option-item"><input type="radio" name="q${idx}" value="${opt}" id="q${idx}_${opt}" ${checked} data-idx="${idx}"><label for="q${idx}_${opt}">${opt}</label></div>`;
-          });
-          optionsHtml += `<button class="btn-check" data-idx="${idx}" ${feedbackState[idx] ? 'disabled' : ''}>check</button></div>`;
-        } else if (ex.type === 'fill-in') {
-          typeLabel = 'fill in';
-          optionsHtml = `<div class="options-area"><input class="fill-input" type="text" value="${userVal}" placeholder="type answer" data-idx="${idx}" ${feedbackState[idx] ? 'disabled' : ''}><button class="btn-check" data-idx="${idx}" ${feedbackState[idx] ? 'disabled' : ''}>check</button></div>`;
-        } else if (ex.type === 'error-correction') {
-          typeLabel = 'error correction';
-          optionsHtml = `<div class="options-area"><input class="fill-input" type="text" value="${userVal}" placeholder="correct form" data-idx="${idx}" ${feedbackState[idx] ? 'disabled' : ''}><button class="btn-check" data-idx="${idx}" ${feedbackState[idx] ? 'disabled' : ''}>check</button> <span style="font-size:0.8rem;color:#94a3b8;">${ex.hint || ''}</span></div>`;
-        }
-
-        html += `<div class="${cardClass}" data-id="${idx}">
-          <div class="exercise-header">
-            <span class="exercise-category">${ex.category}</span>
-            <span class="exercise-type">${typeLabel}</span>
-          </div>
-          <div class="question-text">${ex.question}</div>
-          ${optionsHtml}
-          ${feedbackMsg ? `<div class="feedback-area ${isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">${feedbackMsg}</div>` : ''}
-        </div>`;
+      var fb=document.createElement('div');
+      fb.className='fb';
+      card.appendChild(opts);
+      card.appendChild(fb);
+      opts.addEventListener('change',function(ev){
+        handleAnswer(qi,parseInt(ev.target.value,10),opts,fb,ev.target);
       });
-      exerciseListEl.innerHTML = html;
-
-      // attach events (delegation not used because of dynamic, but we attach after render)
-      document.querySelectorAll('.btn-check').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          const idx = parseInt(this.dataset.idx);
-          if (feedbackState[idx] !== null) return; // already answered
-          const ex = EXERCISES[idx];
-          let answer = '';
-          if (ex.type === 'multiple-choice') {
-            const radios = document.querySelectorAll(`input[name="q${idx}"]:checked`);
-            if (radios.length === 0) return;
-            answer = radios[0].value;
-          } else {
-            const input = document.querySelector(`.fill-input[data-idx="${idx}"]`);
-            if (!input) return;
-            answer = input.value.trim();
-          }
-          if (answer === '') return;
-          userAnswers[idx] = answer;
-          // check
-          const isCorrect = answer.toLowerCase() === ex.answer.toLowerCase();
-          feedbackState[idx] = isCorrect ? 'correct' : 'incorrect';
-          // disable inputs
-          if (ex.type === 'multiple-choice') {
-            document.querySelectorAll(`input[name="q${idx}"]`).forEach(el => el.disabled = true);
-          } else {
-            const inp = document.querySelector(`.fill-input[data-idx="${idx}"]`);
-            if (inp) inp.disabled = true;
-          }
-          this.disabled = true;
-          updateStats();
-          renderExercises(); // re-render to show feedback
-        });
-      });
-
-      // attach input sync for fill-in (optional)
-      document.querySelectorAll('.fill-input').forEach(inp => {
-        inp.addEventListener('input', function() {
-          const idx = parseInt(this.dataset.idx);
-          if (feedbackState[idx] === null) {
-            userAnswers[idx] = this.value;
-          }
-        });
-      });
-      // radio sync
-      document.querySelectorAll('input[type="radio"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-          const idx = parseInt(this.dataset.idx);
-          if (feedbackState[idx] === null) {
-            userAnswers[idx] = this.value;
-          }
-        });
-      });
-    }
-
-    // filter
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        activeFilter = this.dataset.filter;
-        renderExercises();
-      });
+      elQuiz.appendChild(card);
     });
+  }
 
-    // reset
-    resetBtn.addEventListener('click', function() {
-      userAnswers = new Array(EXERCISES.length).fill(null);
-      feedbackState = new Array(EXERCISES.length).fill(null);
-      updateStats();
-      renderExercises();
+  function handleAnswer(qi,chosen,optsEl,fbEl,inputEl){
+    if(state.questions[qi].done) return;
+    var q=state.questions[qi];
+    q.done=true;
+    state.answered++;
+    var labels=optsEl.querySelectorAll('.opt');
+    labels.forEach(function(l,i){
+      l.classList.add('locked');
+      var inp=l.querySelector('input');
+      inp.disabled=true;
+      if(i===q.answer) l.classList.add('correct');
+      if(i===chosen && chosen!==q.answer) l.classList.add('wrong');
     });
+    var ok=chosen===q.answer;
+    if(ok) state.correct++;
+    fbEl.className='fb show '+(ok?'ok':'no');
+    fbEl.innerHTML='<span class="tag">'+(ok?'✓ Correct':'✗ Not quite')+'</span> '+
+                   '<span class="exp">'+q.exp+'</span>';
+    updateBars();
+    if(state.answered===state.total) finish();
+  }
 
-    // initial render
-    renderExercises();
-    updateStats();
-  })();
+  function updateBars(){
+    elProg.textContent='Answered '+state.answered+' / '+state.total;
+    elLive.textContent='Correct: '+state.correct;
+  }
+
+  function finish(){
+    var pct=state.total?Math.round(state.correct/state.total*100):0;
+    var band,msg;
+    if(pct>=90){band='Excellent!';msg='Outstanding command of this topic. Try a harder level or a new topic.';}
+    else if(pct>=70){band='Solid work.';msg='Good grasp of the rules — review the few you missed and run another round.';}
+    else if(pct>=50){band='Keep practising.';msg='You are getting there. Re-read the explanations above and retry.';}
+    else{band='Needs review.';msg='Study this grammar point, then generate a fresh quiz to lock it in.';}
+    elResBig.textContent='Score: '+state.correct+' / '+state.total+'  ('+pct+'%) — '+band;
+    elResMsg.textContent=msg;
+    elMeter.style.width=pct+'%';
+    elResult.classList.add('show');
+  }
+
+  elNew.addEventListener('click',buildQuiz);
+  elTopic.addEventListener('change',buildQuiz);
+  elLevel.addEventListener('change',buildQuiz);
+  elCount.addEventListener('change',buildQuiz);
+
+  // Prefill so output shows on load.
+  buildQuiz();
+})();
 </script>
-<div style="margin:30px auto;max-width:728px;text-align:center;padding:18px 24px;background:linear-gradient(135deg,#0f172a,#1e293b);border:1px solid #334155;border-radius:10px">
-<p style="margin:0 0 6px;color:#94a3b8;font-size:0.85rem">Recommended by our team</p>
-<a href="https://www.belikenative.com?ref=satellite" target="_blank" rel="noopener" style="color:#38bdf8;font-weight:600;font-size:1.05rem;text-decoration:none">BeLikeNative.com</a>
-<p style="margin:6px 0 0;color:#cbd5e1;font-size:0.9rem">The #1 AI writing tool for freelancers — perfect grammar in any language, instantly.</p>
-</div>
 </body>
 </html>

@@ -1,587 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grammar Exercise Generator — Practice English Grammar</title>
-  <meta name="description" content="Generate & practice English grammar: tenses, articles, prepositions, conditionals, modals, relative clauses. Instant grading & progress tracking.">
-  <link rel="canonical" href="https://englishlearner.org/grammar-exercises">
-  <meta name="theme-color" content="#0a0a0a">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Grammar Exercise Generator",
-    "url": "https://englishlearner.org/grammar-exercises",
-    "description": "Generate and practice English grammar exercises covering tenses, articles, prepositions, conditionals, modals, and relative clauses with instant grading.",
-    "applicationCategory": "EducationalApplication",
-    "operatingSystem": "All",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://englishlearner.org/" },
-      { "@type": "ListItem", "position": 2, "name": "Grammar Exercises", "item": "https://englishlearner.org/grammar-exercises" }
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      { "@type": "Question", "name": "What grammar topics can I practice?", "acceptedAnswer": { "@type": "Answer", "text": "You can practice tenses, articles, prepositions, conditionals, modal verbs, and relative clauses." }},
-      { "@type": "Question", "name": "Is this grammar exercise tool free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, the Grammar Exercise Generator is completely free with no sign-up required." }},
-      { "@type": "Question", "name": "Does it track my progress?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, your mastery percentage per topic is saved locally in your browser." }},
-      { "@type": "Question", "name": "What difficulty levels are available?", "acceptedAnswer": { "@type": "Answer", "text": "Exercises range from beginner to advanced, covering CEFR levels A1 through C1." }},
-      { "@type": "Question", "name": "Can I use this on my phone?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, the tool is fully responsive and works on all devices." }}
-    ]
-  }
-  </script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grammar Exercises: Free ESL Practice Quiz</title>
+<meta name="description" content="Free interactive English grammar exercises for ESL learners. Practice tenses, articles, prepositions and more with instant scoring and explanations.">
+<link rel="canonical" href="https://englishlearner.org/tools/grammar-exercises">
+<meta property="og:title" content="Grammar Exercises: Free ESL Practice Quiz">
+<meta property="og:description" content="Free interactive English grammar exercises for ESL learners. Practice tenses, articles, prepositions and more with instant scoring and explanations.">
+<meta property="og:url" content="https://englishlearner.org/tools/grammar-exercises">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Grammar Exercises",
+      "url": "https://englishlearner.org/tools/grammar-exercises",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": { "@type": "Person", "name": "Michael Lip", "url": "https://zovo.one" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://englishlearner.org/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://englishlearner.org/tools/" },
+        { "@type": "ListItem", "position": 3, "name": "Grammar Exercises", "item": "https://englishlearner.org/tools/grammar-exercises" }
+      ]
     }
-    body {
-      background-color: #0a0a0a;
-      color: #e0e0e0;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      line-height: 1.5;
-      padding: 1.5rem;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .container {
-      max-width: 1100px;
-      width: 100%;
-    }
-    header {
-      margin-bottom: 2rem;
-      border-bottom: 1px solid #2a2a2a;
-      padding-bottom: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: baseline;
-    }
-    h1 {
-      font-weight: 500;
-      font-size: 1.9rem;
-      letter-spacing: -0.02em;
-      color: #f0f0f0;
-    }
-    h1 small {
-      font-size: 1rem;
-      font-weight: 300;
-      color: #aaa;
-      margin-left: 0.75rem;
-    }
-    .top-bar {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .difficulty-selector {
-      display: flex;
-      gap: 0.4rem;
-      background: #1a1a1a;
-      padding: 0.3rem;
-      border-radius: 40px;
-      border: 1px solid #2e2e2e;
-    }
-    .diff-btn {
-      background: transparent;
-      border: none;
-      color: #aaa;
-      padding: 0.3rem 1rem;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .diff-btn.active {
-      background: #2c6b3e;
-      color: white;
-    }
-    .diff-btn:hover {
-      color: white;
-    }
-    .topic-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 0.3rem;
-      margin: 1.5rem 0 1.8rem 0;
-    }
-    .topic-btn {
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
-      padding: 0.5rem 1.2rem;
-      border-radius: 40px;
-      color: #ccc;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: 0.15s;
-      font-weight: 450;
-    }
-    .topic-btn.active {
-      background: #1e3a2a;
-      border-color: #66bb6a;
-      color: #c6f0c6;
-      box-shadow: 0 0 0 1px #66bb6a40;
-    }
-    .topic-btn .mastery {
-      font-size: 0.7rem;
-      margin-left: 0.4rem;
-      background: #2a2a2a;
-      padding: 0.1rem 0.5rem;
-      border-radius: 20px;
-      color: #b0b0b0;
-    }
-    .exercise-panel {
-      background: #111111;
-      border-radius: 24px;
-      padding: 1.8rem 1.8rem 2rem;
-      border: 1px solid #242424;
-      margin: 1rem 0 2rem;
-    }
-    .question-area {
-      margin-bottom: 2rem;
-    }
-    .question-text {
-      font-size: 1.4rem;
-      font-weight: 400;
-      line-height: 1.6;
-      margin-bottom: 1.2rem;
-    }
-    .question-text .blank {
-      display: inline-block;
-      min-width: 120px;
-      border-bottom: 2px dashed #66bb6a;
-      color: #b3ffb3;
-      font-weight: 500;
-      padding: 0 0.2rem;
-    }
-    .answer-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      align-items: center;
-      margin-top: 1rem;
-    }
-    .answer-input {
-      background: #1e1e1e;
-      border: 1px solid #3a3a3a;
-      padding: 0.6rem 1rem;
-      border-radius: 60px;
-      color: white;
-      font-size: 1rem;
-      min-width: 200px;
-      flex: 1 1 200px;
-      outline: none;
-      transition: 0.2s;
-    }
-    .answer-input:focus {
-      border-color: #66bb6a;
-      box-shadow: 0 0 0 2px #66bb6a30;
-    }
-    .action-btn {
-      background: #2c6b3e;
-      border: none;
-      color: white;
-      padding: 0.6rem 1.6rem;
-      border-radius: 60px;
-      font-weight: 500;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: 0.15s;
-      border: 1px solid #3d8b4f;
-    }
-    .action-btn.outline {
-      background: transparent;
-      border: 1px solid #3a3a3a;
-      color: #ccc;
-    }
-    .action-btn.outline:hover {
-      background: #1f1f1f;
-    }
-    .action-btn:hover {
-      background: #3d8b4f;
-    }
-    .feedback {
-      margin-top: 1.5rem;
-      padding: 1rem 1.2rem;
-      border-radius: 18px;
-      background: #1a1a1a;
-      border-left: 4px solid #66bb6a;
-    }
-    .feedback.correct {
-      border-left-color: #66bb6a;
-    }
-    .feedback.incorrect {
-      border-left-color: #e57373;
-    }
-    .feedback .explanation {
-      color: #b0b0b0;
-      font-size: 0.9rem;
-      margin-top: 0.3rem;
-    }
-    .progress-section {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem 1.5rem;
-      background: #0f0f0f;
-      padding: 1rem 1.5rem;
-      border-radius: 60px;
-      border: 1px solid #222;
-      margin: 1rem 0 1.5rem;
-      align-items: center;
-    }
-    .progress-item {
-      display: flex;
-      align-items: baseline;
-      gap: 0.4rem;
-      font-size: 0.85rem;
-    }
-    .progress-item .label {
-      color: #999;
-    }
-    .progress-item .value {
-      color: #c0c0c0;
-      font-weight: 500;
-    }
-    .mastery-bar {
-      width: 80px;
-      height: 6px;
-      background: #2a2a2a;
-      border-radius: 10px;
-      overflow: hidden;
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 0.3rem;
-    }
-    .mastery-bar .fill {
-      height: 100%;
-      width: 0%;
-      background: #66bb6a;
-      border-radius: 10px;
-      transition: width 0.3s;
-    }
-    footer {
-      margin-top: 3rem;
-      text-align: center;
-      color: #555;
-      font-size: 0.9rem;
-      border-top: 1px solid #1e1e1e;
-      padding-top: 2rem;
-      width: 100%;
-    }
-    footer a {
-      color: #8bc34a;
-      text-decoration: none;
-    }
-    .reset-link {
-      color: #777;
-      font-size: 0.8rem;
-      margin-left: 1rem;
-      cursor: pointer;
-      text-decoration: underline dotted;
-    }
-    @media (max-width: 600px) {
-      .question-text { font-size: 1.2rem; }
-      .exercise-panel { padding: 1.2rem; }
-    }
-  </style>
+  ]
+}
+</script>
+<style>
+:root{
+  --bg:#0f1115;--panel:#171a21;--panel2:#1f232c;--line:#2a2f3a;
+  --txt:#e6e9ef;--mut:#9aa3b2;--acc:#5eb1ff;--acc2:#7ee0a8;
+  --bad:#ff7a7a;--good:#7ee0a8;--warn:#ffd479;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--txt);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.6;font-size:17px;
+}
+nav{display:flex;gap:18px;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5}
+nav a{color:var(--acc);text-decoration:none;font-weight:600}
+nav a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:24px 20px 60px}
+h1{font-size:1.9rem;line-height:1.2;margin:.4em 0 .2em}
+h2{font-size:1.25rem;margin:1.6em 0 .4em;border-bottom:1px solid var(--line);padding-bottom:.3em}
+.lead{color:var(--mut);font-size:1.05rem}
+#tool{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin:22px 0}
+.controls{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:18px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:.85rem;color:var(--mut);font-weight:600;letter-spacing:.02em}
+select,button{
+  font:inherit;background:var(--panel2);color:var(--txt);
+  border:1px solid var(--line);border-radius:9px;padding:9px 12px;
+}
+select:focus,button:focus,input:focus{outline:2px solid var(--acc);outline-offset:1px}
+button{cursor:pointer;font-weight:600}
+button.primary{background:var(--acc);color:#04121f;border-color:var(--acc)}
+button:hover{filter:brightness(1.08)}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.score{font-weight:700}
+.q{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:14px 16px;margin:12px 0}
+.q .num{color:var(--acc);font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+.q .stem{font-size:1.08rem;margin:6px 0 12px}
+.q .stem .blank{color:var(--warn);font-weight:700;border-bottom:2px dashed var(--warn);padding:0 4px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;cursor:pointer;background:var(--panel);transition:.12s}
+.opt:hover{border-color:var(--acc)}
+.opt input{accent-color:var(--acc);width:17px;height:17px;cursor:pointer}
+.opt.correct{border-color:var(--good);background:rgba(126,224,168,.10)}
+.opt.wrong{border-color:var(--bad);background:rgba(255,122,122,.10)}
+.opt.locked{cursor:default}
+.fb{margin-top:10px;font-size:.95rem;display:none}
+.fb.show{display:block}
+.fb .tag{font-weight:700}
+.fb.ok .tag{color:var(--good)}
+.fb.no .tag{color:var(--bad)}
+.fb .exp{color:var(--mut)}
+.result{margin-top:16px;padding:16px;border-radius:11px;background:var(--panel2);border:1px solid var(--line);display:none}
+.result.show{display:block}
+.result .big{font-size:1.5rem;font-weight:800}
+.meter{height:10px;border-radius:6px;background:var(--line);overflow:hidden;margin:10px 0}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));width:0;transition:width .5s}
+.relbox{display:grid;gap:8px;margin-top:8px}
+.relbox a{color:var(--acc);text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:11px 14px;display:block}
+.relbox a:hover{border-color:var(--acc)}
+footer{border-top:1px solid var(--line);padding:24px 20px;text-align:center;color:var(--mut);font-size:.9rem}
+footer a{color:var(--acc);text-decoration:none;margin:0 8px}
+small.note{color:var(--mut)}
+@media(max-width:520px){h1{font-size:1.55rem}body{font-size:16px}}
+</style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <h1>✧ grammar exercise generator <small>englishlearner.org</small></h1>
-    <div class="top-bar">
-      <div class="difficulty-selector" id="difficultyGroup">
-        <button class="diff-btn active" data-diff="easy">easy</button>
-        <button class="diff-btn" data-diff="medium">medium</button>
-        <button class="diff-btn" data-diff="hard">hard</button>
+<nav>
+  <a href="/">Home</a>
+  <a href="/tools/">Tools</a>
+</nav>
+<div class="wrap">
+  <h1>Interactive English Grammar Practice</h1>
+  <p class="lead">Pick a topic and a level, then answer ten auto-generated multiple-choice questions. Every answer is checked instantly with a short explanation, and your final score is graded the moment you finish.</p>
+
+  <section id="tool" aria-label="Grammar exercises tool">
+    <div class="controls">
+      <div class="field">
+        <label for="topic">Grammar topic</label>
+        <select id="topic">
+          <option value="tenses">Verb Tenses</option>
+          <option value="articles">Articles (a / an / the)</option>
+          <option value="prepositions">Prepositions</option>
+          <option value="irregular">Irregular Verbs</option>
+          <option value="mixed">Mixed Review</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="level">Difficulty</label>
+        <select id="level">
+          <option value="easy">Beginner (A1–A2)</option>
+          <option value="med" selected>Intermediate (B1–B2)</option>
+          <option value="hard">Advanced (C1)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="count">Questions</label>
+        <select id="count">
+          <option>5</option>
+          <option selected>10</option>
+          <option>15</option>
+        </select>
+      </div>
+      <div class="field" style="justify-content:flex-end">
+        <label>&nbsp;</label>
+        <button id="newQuiz" class="primary" type="button">New quiz</button>
       </div>
     </div>
-  </header>
 
-  <!-- topic buttons -->
-  <div class="topic-grid" id="topicContainer"></div>
-
-  <!-- progress summary -->
-  <div class="progress-section" id="progressSummary">
-    <span style="color:#888;">📊 mastery</span>
-  </div>
-
-  <!-- main exercise panel -->
-  <div class="exercise-panel" id="exercisePanel">
-    <div class="question-area" id="questionArea">
-      <div class="question-text" id="questionText">Select a topic & generate exercises</div>
-      <div class="answer-row">
-        <input class="answer-input" id="answerInput" placeholder="type your answer..." autocomplete="off">
-        <button class="action-btn" id="submitBtn">check</button>
-        <button class="action-btn outline" id="nextBtn">next →</button>
-      </div>
+    <div class="bar">
+      <div class="score" id="progress">Answered 0 / 10</div>
+      <div class="score" id="liveScore">Correct: 0</div>
     </div>
-    <div id="feedbackArea" class="feedback" style="display: none;"></div>
-  </div>
 
-  <!-- footer -->
-  <footer>
-    <a href="https://englishlearner.org/">← englishlearner.org</a>
-    <span class="reset-link" id="resetProgress">reset progress</span>
-    <div style="margin-top:0.8rem; font-size:0.75rem;">© grammar exercise tool — offline ready</div>
-  </footer>
+    <div id="quiz" aria-live="polite"></div>
+
+    <div class="result" id="result" aria-live="polite">
+      <div class="big" id="resultBig"></div>
+      <div class="meter"><i id="meterFill"></i></div>
+      <div id="resultMsg" class="mut"></div>
+    </div>
+    <p><small class="note">Tip: change the topic or level above and press <b>New quiz</b> for a fresh set. Questions are generated locally in your browser — nothing is sent anywhere.</small></p>
+  </section>
+
+  <h2>How this grammar trainer works</h2>
+  <p>This tool is a self-contained practice engine for English as a Second Language learners. It holds a curated bank of grammar items grouped by topic — verb tenses, articles, prepositions and irregular verbs — and each item carries a correct answer, three plausible distractors, and a one-line explanation written in plain English. When you choose a topic, the engine filters the bank, optionally narrows it by your selected difficulty band, then shuffles and draws the number of questions you asked for.</p>
+  <p>The scoring algorithm is deliberately simple and transparent so you can trust it. Each question is worth one point. The moment you click an option, the engine compares your choice against the stored key: a match marks the option green and adds one to your running total, while a miss marks your choice red and reveals the correct option in green so you learn the right form immediately. The live counter tracks <em>answered</em> and <em>correct</em> separately, and the final percentage is computed as correct ÷ total × 100, rounded to the nearest whole number. A score of 90% or above earns an "excellent" band, 70–89% is "solid", 50–69% is "keep practising", and below 50% suggests reviewing the topic before retrying.</p>
+  <p>Distractors are not random words — they are common ESL error patterns, such as confusing the past simple with the present perfect, dropping the article before a singular countable noun, or mixing "in", "on" and "at" for time. Seeing the typical mistake next to the correct answer is what makes multiple-choice drilling effective: you train your eye to reject the wrong form. Because every question, key and explanation lives inside this page, the trainer works fully offline and reshuffles instantly, giving you near-unlimited repetition without any account, ads or external requests.</p>
+
+  <h2>Related Tools</h2>
+  <div class="relbox">
+    <a href="/tools/irregular-verbs">Irregular Verbs List &amp; Trainer →</a>
+    <a href="/tools/idioms">English Idioms Explorer →</a>
+    <a href="/tools/vocabulary-builder">Vocabulary Builder →</a>
+  </div>
 </div>
 
+<footer>
+  <div>
+    <a href="/">Home</a>
+    <a href="/tools/">All Tools</a>
+    <a href="/tools/irregular-verbs">Irregular Verbs</a>
+  </div>
+  <p>© 2026 EnglishLearner.org — free ESL practice tools.</p>
+</footer>
+
 <script>
-  (function() {
-    // ---------- GRAMMAR DATABASES ----------
-    const TOPICS = [
-      'tenses','articles','prepositions','conditionals','modal verbs','relative clauses'
-    ];
+(function(){
+  "use strict";
 
-    // templates for each topic & difficulty (easy, medium, hard) – at least 10 per topic
-    const DB = {
-      tenses: {
-        easy: [
-          { q: "She ___ (work) every day.", a: "works", exp: "present simple (habit)" },
-          { q: "They ___ (play) football now.", a: "are playing", exp: "present continuous" },
-          { q: "He ___ (visit) his grandma yesterday.", a: "visited", exp: "past simple" },
-          { q: "I ___ (read) a book when she called.", a: "was reading", exp: "past continuous" },
-          { q: "We ___ (finish) the report already.", a: "have finished", exp: "present perfect" },
-          { q: "She ___ (travel) to Paris next month.", a: "will travel", exp: "future simple" },
-          { q: "The sun ___ (rise) in the east.", a: "rises", exp: "present simple fact" },
-          { q: "Listen! Someone ___ (sing).", a: "is singing", exp: "present continuous" },
-          { q: "They ___ (not/see) that film yet.", a: "haven't seen", exp: "present perfect negative" },
-          { q: "By 8 pm, I ___ (finish) my homework.", a: "will have finished", exp: "future perfect" }
-        ],
-        medium: [
-          { q: "She ___ (work) at that company for five years.", a: "has worked", exp: "present perfect with duration" },
-          { q: "While I ___ (cook), he ___ (set) the table.", a: "was cooking / was setting", exp: "past continuous simultaneous" },
-          { q: "They ___ (already/eat) when we arrived.", a: "had already eaten", exp: "past perfect" },
-          { q: "He usually ___ (wake) up at 7, but today he ___ (sleep).", a: "wakes / is sleeping", exp: "contrast present simple & continuous" },
-          { q: "We ___ (live) in London for three years before moving.", a: "had lived", exp: "past perfect" },
-          { q: "Next week I ___ (start) my new job.", a: "will start", exp: "future simple" },
-          { q: "She ___ (not/understand) the question right now.", a: "doesn't understand", exp: "present simple stative" },
-          { q: "They ___ (build) the bridge when the storm hit.", a: "were building", exp: "past continuous interrupted" },
-          { q: "I ___ (never/be) to Japan.", a: "have never been", exp: "present perfect experience" },
-          { q: "By next year, they ___ (live) here for a decade.", a: "will have lived", exp: "future perfect" }
-        ],
-        hard: [
-          { q: "She ___ (work) on the project for months before she ___ (present) it.", a: "had been working / presented", exp: "past perfect continuous + past simple" },
-          { q: "He ___ (write) a novel for two years, and it ___ (publish) next spring.", a: "has been writing / will be published", exp: "present perfect continuous + future passive" },
-          { q: "When I ___ (arrive), they ___ (already/leave).", a: "arrived / had already left", exp: "past perfect sequence" },
-          { q: "I ___ (think) about changing my job lately.", a: "have been thinking", exp: "present perfect continuous" },
-          { q: "She ___ (study) for hours when she finally ___ (take) a break.", a: "had been studying / took", exp: "past perfect continuous" },
-          { q: "By the time we ___ (reach) the station, the train ___ (already/depart).", a: "reached / had already departed", exp: "past perfect" },
-          { q: "They ___ (build) the house for over a year before it ___ (be) finished.", a: "had been building / was", exp: "past perfect continuous" },
-          { q: "I ___ (never/see) such a beautiful sunset until I ___ (go) to Hawaii.", a: "had never seen / went", exp: "past perfect + past simple" },
-          { q: "He ___ (work) here since 2010, and he ___ (plan) to retire soon.", a: "has worked / is planning", exp: "present perfect + present continuous" },
-          { q: "At 9 pm tonight, I ___ (watch) my favourite show.", a: "will be watching", exp: "future continuous" }
-        ]
-      },
-      articles: {
-        easy: [
-          { q: "I saw ___ cat in the garden.", a: "a", exp: "indefinite (first mention)" },
-          { q: "She is ___ honest person.", a: "an", exp: "'an' before vowel sound" },
-          { q: "___ moon is full tonight.", a: "the", exp: "definite (unique)" },
-          { q: "I love ___ music.", a: "∅", exp: "zero article (general)" },
-          { q: "He wants to be ___ engineer.", a: "an", exp: "indefinite before vowel" },
-          { q: "We went to ___ same restaurant.", a: "the", exp: "definite (same)" },
-          { q: "She plays ___ piano beautifully.", a: "the", exp: "definite (musical instrument)" },
-          { q: "___ dogs are loyal animals.", a: "∅", exp: "zero article (plural general)" },
-          { q: "I need ___ umbrella.", a: "an", exp: "indefinite before vowel" },
-          { q: "___ Earth orbits the Sun.", a: "the", exp: "definite (celestial bodies)" }
-        ],
-        medium: [
-          { q: "He is ___ best player in the team.", a: "the", exp: "superlative" },
-          { q: "I had ___ interesting experience.", a: "an", exp: "indefinite before vowel" },
-          { q: "___ rich should help the poor.", a: "the", exp: "definite (group)" },
-          { q: "She went to ___ university in London.", a: "a", exp: "indefinite (university starts with /j/)" },
-          { q: "We had ___ dinner at a nice restaurant.", a: "∅", exp: "zero article (meal)" },
-          { q: "___ Amazon is the largest river.", a: "the", exp: "definite (river)" },
-          { q: "I like ___ classical music.", a: "∅", exp: "zero article (genre)" },
-          { q: "He is ___ only person I trust.", a: "the", exp: "definite (only)" },
-          { q: "She bought ___ new car.", a: "a", exp: "indefinite (first mention)" },
-          { q: "___ Mount Everest is very high.", a: "∅", exp: "zero article (mountains)" }
-        ],
-        hard: [
-          { q: "___ history of ___ world is fascinating.", a: "the / the", exp: "definite (specific history & world)" },
-          { q: "She has ___ unique perspective on ___ life.", a: "a / ∅", exp: "indefinite (unique) + zero (abstract)" },
-          { q: "___ harder you try, ___ better you get.", a: "the / the", exp: "comparative 'the...the'" },
-          { q: "He is ___ university professor, but also ___ artist.", a: "a / an", exp: "indefinite: professor (consonant) / artist (vowel)" },
-          { q: "We visited ___ Netherlands and ___ UK.", a: "the / the", exp: "definite (countries with plural/kingdom)" },
-          { q: "___ honesty is ___ best policy.", a: "∅ / the", exp: "zero (abstract) + definite (superlative)" },
-          { q: "I need ___ advice from ___ expert.", a: "∅ / an", exp: "zero (uncountable) + indefinite" },
-          { q: "___ book you lent me is ___ fascinating read.", a: "the / a", exp: "definite (specific) + indefinite (category)" },
-          { q: "She is ___ CEO of ___ company.", a: "the / the", exp: "definite (role & specific company)" },
-          { q: "___ French are known for ___ wine.", a: "the / ∅", exp: "definite (nationality group) + zero (general)" }
-        ]
-      },
-      prepositions: {
-        easy: [
-          { q: "She lives ___ London.", a: "in", exp: "city → in" },
-          { q: "The meeting is ___ 3 pm.", a: "at", exp: "time → at" },
-          { q: "He goes to work ___ bus.", a: "by", exp: "transport → by" },
-          { q: "I'll see you ___ Monday.", a: "on", exp: "day → on" },
-          { q: "She is waiting ___ the bus stop.", a: "at", exp: "place → at" },
-          { q: "This gift is ___ you.", a: "for", exp: "purpose → for" },
-          { q: "We walked ___ the park.", a: "to", exp: "direction → to" },
-          { q: "He is interested ___ music.", a: "in", exp: "interest → in" },
-          { q: "I usually wake up ___ 7 am.", a: "at", exp: "time → at" },
-          { q: "The cat is ___ the table.", a: "on", exp: "surface → on" }
-        ],
-        medium: [
-          { q: "She is good ___ math.", a: "at", exp: "skill → at" },
-          { q: "We arrived ___ the airport late.", a: "at", exp: "arrive at (place)" },
-          { q: "He depends ___ his parents.", a: "on", exp: "depend on" },
-          { q: "I'm interested ___ learning Japanese.", a: "in", exp: "interested in" },
-          { q: "She's afraid ___ spiders.", a: "of", exp: "afraid of" },
-          { q: "They succeeded ___ passing the exam.", a: "in", exp: "succeed in" },
-          { q: "He apologized ___ being late.", a: "for", exp: "apologize for" },
-          { q: "I'll be there ___ 10 minutes.", a: "in", exp: "duration → in" },
-          { q: "She's married ___ a doctor.", a: "to", exp: "married to" },
-          { q: "We talked ___ the weather.", a: "about", exp: "talk about" }
-        ],
-        hard: [
-          { q: "She insisted ___ paying the bill.", a: "on", exp: "insist on" },
-          { q: "He is known ___ his generosity.", a: "for", exp: "known for" },
-          { q: "We are looking forward ___ the trip.", a: "to", exp: "look forward to" },
-          { q: "She accused him ___ cheating.", a: "of", exp: "accuse of" },
-          { q: "He doesn't agree ___ your proposal.", a: "to", exp: "agree to (proposal)" },
-          { q: "They complained ___ the noise.", a: "about", exp: "complain about" },
-          { q: "She's been working here ___ 2018.", a: "since", exp: "since + point in time" },
-          { q: "He's been studying ___ three hours.", a: "for", exp: "for + duration" },
-          { q: "We divided the money ___ the children.", a: "among", exp: "among (group)" },
-          { q: "She is ___ charge of the project.", a: "in", exp: "in charge of" }
-        ]
-      },
-      conditionals: {
-        easy: [
-          { q: "If you heat ice, it ___ (melt).", a: "melts", exp: "zero conditional" },
-          { q: "If it rains, I ___ (stay) home.", a: "will stay", exp: "first conditional" },
-          { q: "If I ___ (be) you, I would apologize.", a: "were", exp: "second conditional (were)" },
-          { q: "If she had studied, she ___ (pass) the exam.", a: "would have passed", exp: "third conditional" },
-          { q: "If you ___ (mix) red and blue, you get purple.", a: "mix", exp: "zero conditional" },
-          { q: "If he comes, we ___ (go) to the park.", a: "will go", exp: "first conditional" },
-          { q: "If I had money, I ___ (buy) a car.", a: "would buy", exp: "second conditional" },
-          { q: "If they had left earlier, they ___ (catch) the bus.", a: "would have caught", exp: "third conditional" },
-          { q: "If she ___ (study) hard, she passes.", a: "studies", exp: "zero conditional" },
-          { q: "If we ___ (hurry), we will catch the train.", a: "hurry", exp: "first conditional" }
-        ],
-        medium: [
-          { q: "If I ___ (know) her number, I would call her.", a: "knew", exp: "second conditional (past subjunctive)" },
-          { q: "If she had taken the medicine, she ___ (feel) better.", a: "would have felt", exp: "third conditional" },
-          { q: "Unless you ___ (study), you won't pass.", a: "study", exp: "first conditional with unless" },
-          { q: "If I ___ (be) rich, I would travel the world.", a: "were", exp: "second conditional (were)" },
-          { q: "If he ___ (not/break) the vase, she wouldn't have been angry.", a: "hadn't broken", exp: "third conditional negative" },
-          { q: "If you ___ (heat) water to 100°C, it boils.", a: "heat", exp: "zero conditional" },
-          { q: "If they ___ (invite) us, we will go.", a: "invite", exp: "first conditional" },
-          { q: "If I ___ (have) wings, I would fly.", a: "had", exp: "second conditional" },
-          { q: "If she ___ (not/be) late, we would have seen the movie.", a: "hadn't been", exp: "third conditional" },
-          { q: "If you ___ (touch) fire, you get burned.", a: "touch", exp: "zero conditional" }
-        ],
-        hard: [
-          { q: "If I ___ (not/leave) early, I would have missed the flight.", a: "hadn't left", exp: "third conditional mixed" },
-          { q: "If she ___ (be) more careful, she wouldn't have had an accident.", a: "had been", exp: "third conditional" },
-          { q: "If he ___ (run) faster, he could have won.", a: "had run", exp: "third conditional" },
-          { q: "If they ___ (arrive) on time, we would have started earlier.", a: "had arrived", exp: "third conditional" },
-          { q: "If I ___ (know) then what I know now, I would have acted differently.", a: "had known", exp: "third conditional" },
-          { q: "If she ___ (study) medicine, she would become a doctor.", a: "studied", exp: "second conditional" },
-          { q: "If it ___ (not/be) for you, I would be lost.", a: "weren't", exp: "second conditional (were)" },
-          { q: "If we ___ (leave) now, we will arrive by noon.", a: "leave", exp: "first conditional" },
-          { q: "If I ___ (have) his address, I would send him a letter.", a: "had", exp: "second conditional" },
-          { q: "If she ___ (not/forget) her keys, she would have entered.", a: "hadn't forgotten", exp: "third conditional" }
-        ]
-      },
-      "modal verbs": {
-        easy: [
-          { q: "You ___ (ability) swim very well.", a: "can", exp: "ability → can" },
-          { q: "___ I open the window? (permission)", a: "can", exp: "permission → can" },
-          { q: "You ___ (obligation) wear a seatbelt.", a: "must", exp: "obligation → must" },
-          { q: "She ___ (possibility) come to the party.", a: "might", exp: "possibility → might" },
-          { q: "You ___ (advice) see a doctor.", a: "should", exp: "advice → should" },
-          { q: "When I was young, I ___ (past ability) run fast.", a: "could", exp: "past ability → could" },
-          { q: "You ___ (prohibition) smoke here.", a: "mustn't", exp: "prohibition → mustn't" },
-          { q: "He ___ (suggestion) try again.", a: "should", exp: "suggestion → should" },
-          { q: "___ you help me? (request)", a: "can", exp: "request → can" },
-          { q: "I ___ (possibility) be late tonight.", a: "might", exp: "possibility → might" }
-        ],
-        medium: [
-          { q: "You ___ (strong recommendation) see that film.", a: "should", exp: "recommendation → should" },
-          { q: "She ___ (past habit) visit us every summer.", a: "would", exp: "past habit → would" },
-          { q: "He ___ (deduction) be at work now.", a: "must", exp: "deduction → must" },
-          { q: "You ___ (not/necessary) finish it today.", a: "don't have to", exp: "lack of necessity" },
-          { q: "I ___ (ability) speak three languages when I was ten.", a: "could", exp: "past ability" },
-          { q: "___ I borrow your pen? (permission formal)", a: "could", exp: "polite permission" },
-          { q: "You ___ (not/advice) eat so much sugar.", a: "shouldn't", exp: "negative advice" },
-          { q: "They ___ (possibility) arrive any minute.", a: "might", exp: "possibility" },
-          { q: "She ___ (obligation) finish the report by Friday.", a: "must", exp: "obligation" },
-          { q: "If you want to pass, you ___ (necessity) study harder.", a: "must", exp: "necessity" }
-        ],
-        hard: [
-          { q: "He ___ (past deduction) have left already; his coat is gone.", a: "must", exp: "past deduction (must have)" },
-          { q: "You ___ (past advice) have told me earlier.", a: "should", exp: "past advice (should have)" },
-          { q: "She ___ (past possibility) have missed the train.", a: "might", exp: "past possibility (might have)" },
-          { q: "I ___ (past ability negative) not swim when I was five.", a: "could", exp: "past ability negative (couldn't)" },
-          { q: "You ___ (past obligation) have finished it yesterday.", a: "had to", exp: "past obligation (had to)" },
-          { q: "He ___ (past unnecessary) have bought a ticket; it was free.", a: "needn't", exp: "past unnecessary (needn't have)" },
-          { q: "___ you (past ability) play chess when you were young?", a: "could", exp: "past ability question" },
-          { q: "If he had trained, he ___ (past possibility) have won.", a: "might", exp: "past possibility (might have)" },
-          { q: "You ___ (past certainty) have been tired after that long trip.", a: "must", exp: "past certainty (must have)" },
-          { q: "She ___ (past permission) not enter the building.", a: "could", exp: "past permission negative (couldn't)" }
-        ]
-      },
-      "relative clauses": {
-        easy: [
-          { q: "The man ___ lives next door is a doctor.", a: "who", exp: "relative pronoun (person)" },
-          { q: "The book ___ I read was fascinating.", a: "that", exp: "relative pronoun (thing)" },
-          { q: "This is the house ___ I grew up.", a: "where", exp: "relative adverb (place)" },
-          { q: "She is the woman ___ helped me.", a: "who", exp: "relative pronoun (person)" },
-          { q: "The car ___ is red is mine.", a: "that", exp: "relative pronoun (thing)" },
-          { q: "That's the park ___ we met.", a: "where", exp: "relative adverb (place)" },
-          { q: "The student ___ won the prize is smart.", a: "who", exp: "relative pronoun (person)" },
-          { q: "I like movies ___ make me think.", a: "that", exp: "relative pronoun (thing)" },
-          { q: "The restaurant ___ we ate was cheap.", a: "where", exp: "relative adverb (place)" },
-          { q: "The woman ___ you saw is my aunt.", a: "who", exp: "relative pronoun (person)" }
-        ],
-        medium: [
-          { q: "The artist ___ painting won the award is famous.", a: "whose", exp: "possessive relative" },
-          { q: "This is the reason ___ I left early.", a: "why", exp: "relative adverb (reason)" },
-          { q: "The company ___ he works is based in Paris.", a: "where", exp: "relative (place)" },
-          { q: "She is the person ___ I trust the most.", a: "whom", exp: "object pronoun (formal)" },
-          { q: "The film ___ we saw last night was boring.", a: "that", exp: "relative pronoun (thing)" },
-          { q: "The man ___ car was stolen is upset.", a: "whose", exp: "possessive relative" },
-          { q: "I remember the day ___ we first met.", a: "when", exp: "relative adverb (time)" },
-          { q: "The teacher ___ taught me math is retired.", a: "who", exp: "relative pronoun (person)" },
-          { q: "The house ___ roof is red belongs to my uncle.", a: "whose", exp: "possessive relative" },
-          { q: "This is the café ___ they serve great coffee.", a: "where", exp: "relative adverb (place)" }
-        ],
-        hard: [
-          { q: "The professor, ___ I greatly admire, is retiring.", a: "whom", exp: "non-defining relative (object)" },
-          { q: "The project, ___ took two years, was a success.", a: "which", exp: "non-defining (thing)" },
-          { q: "The woman ___ daughter won the prize is proud.", a: "whose", exp: "possessive relative" },
-          { q: "He finally solved the problem ___ had puzzled him.", a: "that", exp: "defining (thing)" },
-          { q: "The hotel ___ we stayed was luxurious.", a: "where", exp: "relative adverb (place)" },
-          { q: "The reason ___ he resigned is still unknown.", a: "why", exp: "relative adverb (reason)" },
-          { q: "She married a man ___ she met in college.", a: "whom", exp: "object relative (formal)" },
-          { q: "The year ___ he was born was 1990.", a: "when", exp: "relative adverb (time)" },
-          { q: "The committee, ___ members are elected, meets monthly.", a: "whose", exp: "non-defining possessive" },
-          { q: "This is the place ___ the treasure is buried.", a: "where", exp: "relative adverb (place)" }
-        ]
-      }
-    };
+  // Question bank. b = difficulty band: 1 easy, 2 medium, 3 hard.
+  // s = sentence with ___ blank, o = options, a = correct index, e = explanation.
+  var BANK = {
+    tenses: [
+      {b:1,s:"She ___ to school every day.",o:["go","goes","going","gone"],a:1,e:"Present simple, third person singular adds -s: she goes."},
+      {b:1,s:"They ___ football right now.",o:["play","plays","are playing","played"],a:2,e:"Right now signals present continuous: are playing."},
+      {b:1,s:"Yesterday I ___ a great film.",o:["see","saw","seen","seeing"],a:1,e:"A finished past time (yesterday) takes past simple: saw."},
+      {b:2,s:"I ___ here since 2019.",o:["live","lived","have lived","am living"],a:2,e:"'Since' + a start point uses present perfect: have lived."},
+      {b:2,s:"By the time we arrived, the train ___.",o:["left","has left","had left","leaves"],a:2,e:"An action completed before another past action takes past perfect: had left."},
+      {b:2,s:"Look at those clouds — it ___ rain.",o:["is going to","will","goes to","would"],a:0,e:"Present evidence predicts the future with 'be going to'."},
+      {b:3,s:"This time next week I ___ on a beach.",o:["will lie","will be lying","lie","have lain"],a:1,e:"An action in progress at a future moment uses future continuous: will be lying."},
+      {b:3,s:"If I ___ earlier, I would have caught the bus.",o:["left","had left","have left","would leave"],a:1,e:"Third conditional past: 'if + past perfect' (had left)."},
+      {b:3,s:"By 2030 scientists ___ a cure, hopefully.",o:["will find","will have found","find","are finding"],a:1,e:"Completion by a future deadline uses future perfect: will have found."}
+    ],
+    articles: [
+      {b:1,s:"I saw ___ elephant at the zoo.",o:["a","an","the","—"],a:1,e:"Use 'an' before a vowel sound: an elephant."},
+      {b:1,s:"She is ___ honest woman.",o:["a","an","the","—"],a:1,e:"'Honest' starts with a silent h, a vowel sound, so 'an'."},
+      {b:1,s:"Can you pass ___ salt, please?",o:["a","an","the","—"],a:2,e:"A specific, known item shared between speakers takes 'the'."},
+      {b:2,s:"He plays ___ guitar beautifully.",o:["a","an","the","—"],a:2,e:"Musical instruments usually take 'the': the guitar."},
+      {b:2,s:"___ water boils at 100°C.",o:["A","An","The","—"],a:3,e:"General/uncountable nouns take no article: Water boils."},
+      {b:2,s:"We had ___ wonderful time in Rome.",o:["a","an","the","—"],a:0,e:"Singular countable 'time' (an occasion) takes 'a': a time."},
+      {b:3,s:"She is ___ best student in the class.",o:["a","an","the","—"],a:2,e:"Superlatives take 'the': the best."},
+      {b:3,s:"He went to ___ prison to visit his brother.",o:["a","an","the","—"],a:2,e:"Visiting the building uses 'the prison'; 'to prison' (no article) means as an inmate."},
+      {b:3,s:"___ Everest is the tallest mountain.",o:["A","An","The","—"],a:3,e:"Single mountains take no article: Everest (not 'the Everest')."}
+    ],
+    prepositions: [
+      {b:1,s:"The cat is ___ the table.",o:["on","in","at","of"],a:0,e:"A surface contact uses 'on': on the table."},
+      {b:1,s:"I was born ___ May.",o:["on","in","at","by"],a:1,e:"Months take 'in': in May."},
+      {b:1,s:"We'll meet ___ 6 o'clock.",o:["on","in","at","to"],a:2,e:"Clock times take 'at': at 6 o'clock."},
+      {b:2,s:"She is good ___ mathematics.",o:["in","at","on","for"],a:1,e:"'Good at' is the fixed collocation for skills."},
+      {b:2,s:"He apologised ___ being late.",o:["of","for","to","with"],a:1,e:"'Apologise for' + the reason."},
+      {b:2,s:"The shop is ___ the corner.",o:["in","on","at","by"],a:1,e:"'On the corner' for a street corner location."},
+      {b:3,s:"They congratulated her ___ her promotion.",o:["for","on","about","of"],a:1,e:"'Congratulate someone on' an achievement."},
+      {b:3,s:"This decision is independent ___ the budget.",o:["from","of","to","on"],a:1,e:"'Independent of' is the standard collocation."},
+      {b:3,s:"We must comply ___ the regulations.",o:["to","with","for","on"],a:1,e:"'Comply with' rules or regulations."}
+    ],
+    irregular: [
+      {b:1,s:"Past tense of 'go': I ___ home.",o:["goed","went","gone","go"],a:1,e:"Go → went (past simple) → gone (past participle)."},
+      {b:1,s:"Past tense of 'eat': She ___ lunch.",o:["eated","ate","eaten","eat"],a:1,e:"Eat → ate → eaten."},
+      {b:1,s:"Past tense of 'take': He ___ the bus.",o:["taked","took","taken","take"],a:1,e:"Take → took → taken."},
+      {b:2,s:"Past participle of 'write': I have ___ a letter.",o:["wrote","written","writed","write"],a:1,e:"Write → wrote → written (used after 'have')."},
+      {b:2,s:"Past participle of 'break': The cup is ___.",o:["broke","broken","breaked","break"],a:1,e:"Break → broke → broken."},
+      {b:2,s:"Past tense of 'bring': She ___ a gift.",o:["bringed","brought","brung","bring"],a:1,e:"Bring → brought → brought."},
+      {b:3,s:"Past participle of 'lie' (recline): He had ___ down.",o:["laid","lain","lied","lay"],a:1,e:"Lie/lay/lain (recline). 'Lied' is for telling untruths."},
+      {b:3,s:"Past tense of 'seek': They ___ shelter.",o:["seeked","sought","seekt","seek"],a:1,e:"Seek → sought → sought."},
+      {b:3,s:"Past participle of 'forsake': He had ___ his friends.",o:["forsook","forsaken","forsaked","forsake"],a:1,e:"Forsake → forsook → forsaken."}
+    ]
+  };
 
-    // ---------- STATE ----------
-    let current
+  // --- DOM refs ---
+  var elTopic=document.getElementById('topic'),
+      elLevel=document.getElementById('level'),
+      elCount=document.getElementById('count'),
+      elNew=document.getElementById('newQuiz'),
+      elQuiz=document.getElementById('quiz'),
+      elProg=document.getElementById('progress'),
+      elLive=document.getElementById('liveScore'),
+      elResult=document.getElementById('result'),
+      elResBig=document.getElementById('resultBig'),
+      elResMsg=document.getElementById('resultMsg'),
+      elMeter=document.getElementById('meterFill');
+
+  var state={questions:[],answered:0,correct:0,total:0};
+
+  function shuffle(arr){
+    var a=arr.slice();
+    for(var i=a.length-1;i>0;i--){
+      var j=Math.floor(Math.random()*(i+1));
+      var t=a[i];a[i]=a[j];a[j]=t;
+    }
+    return a;
+  }
+
+  function pool(topic){
+    if(topic==='mixed'){
+      var all=[];
+      for(var k in BANK){ if(BANK.hasOwnProperty(k)) all=all.concat(BANK[k]); }
+      return all;
+    }
+    return BANK[topic]||[];
+  }
+
+  function bandFilter(items,level){
+    var want = level==='easy'?1 : level==='hard'?3 : 2;
+    var hit=items.filter(function(q){return q.b===want;});
+    // Fall back to neighbouring bands if too few at exact level.
+    if(hit.length<3) return items;
+    return hit;
+  }
+
+  // Build a question with shuffled options, remapping the correct index.
+  function makeQuestion(raw){
+    var paired=raw.o.map(function(text,i){return {text:text,correct:i===raw.a};});
+    var mixed=shuffle(paired);
+    var correctIdx=mixed.findIndex(function(p){return p.correct;});
+    return {stem:raw.s,opts:mixed.map(function(p){return p.text;}),answer:correctIdx,exp:raw.e};
+  }
+
+  function buildQuiz(){
+    var topic=elTopic.value, level=elLevel.value, n=parseInt(elCount.value,10)||10;
+    var items=bandFilter(pool(topic),level);
+    var picked=shuffle(items).slice(0,Math.min(n,items.length)).map(makeQuestion);
+    state={questions:picked,answered:0,correct:0,total:picked.length};
+    render();
+    updateBars();
+    elResult.classList.remove('show');
+  }
+
+  function render(){
+    elQuiz.innerHTML='';
+    state.questions.forEach(function(q,qi){
+      var card=document.createElement('div');
+      card.className='q';
+      var stemHtml=q.stem.replace('___','<span class="blank">_____</span>');
+      card.innerHTML='<div class="num">Question '+(qi+1)+'</div><div class="stem">'+stemHtml+'</div>';
+      var opts=document.createElement('div');
+      opts.className='opts';
+      q.opts.forEach(function(text,oi){
+        var lab=document.createElement('label');
+        lab.className='opt';
+        lab.innerHTML='<input type="radio" name="q'+qi+'" value="'+oi+'"><span>'+text+'</span>';
+        opts.appendChild(lab);
+      });
+      var fb=document.createElement('div');
+      fb.className='fb';
+      card.appendChild(opts);
+      card.appendChild(fb);
+      opts.addEventListener('change',function(ev){
+        handleAnswer(qi,parseInt(ev.target.value,10),opts,fb,ev.target);
+      });
+      elQuiz.appendChild(card);
+    });
+  }
+
+  function handleAnswer(qi,chosen,optsEl,fbEl,inputEl){
+    if(state.questions[qi].done) return;
+    var q=state.questions[qi];
+    q.done=true;
+    state.answered++;
+    var labels=optsEl.querySelectorAll('.opt');
+    labels.forEach(function(l,i){
+      l.classList.add('locked');
+      var inp=l.querySelector('input');
+      inp.disabled=true;
+      if(i===q.answer) l.classList.add('correct');
+      if(i===chosen && chosen!==q.answer) l.classList.add('wrong');
+    });
+    var ok=chosen===q.answer;
+    if(ok) state.correct++;
+    fbEl.className='fb show '+(ok?'ok':'no');
+    fbEl.innerHTML='<span class="tag">'+(ok?'✓ Correct':'✗ Not quite')+'</span> '+
+                   '<span class="exp">'+q.exp+'</span>';
+    updateBars();
+    if(state.answered===state.total) finish();
+  }
+
+  function updateBars(){
+    elProg.textContent='Answered '+state.answered+' / '+state.total;
+    elLive.textContent='Correct: '+state.correct;
+  }
+
+  function finish(){
+    var pct=state.total?Math.round(state.correct/state.total*100):0;
+    var band,msg;
+    if(pct>=90){band='Excellent!';msg='Outstanding command of this topic. Try a harder level or a new topic.';}
+    else if(pct>=70){band='Solid work.';msg='Good grasp of the rules — review the few you missed and run another round.';}
+    else if(pct>=50){band='Keep practising.';msg='You are getting there. Re-read the explanations above and retry.';}
+    else{band='Needs review.';msg='Study this grammar point, then generate a fresh quiz to lock it in.';}
+    elResBig.textContent='Score: '+state.correct+' / '+state.total+'  ('+pct+'%) — '+band;
+    elResMsg.textContent=msg;
+    elMeter.style.width=pct+'%';
+    elResult.classList.add('show');
+  }
+
+  elNew.addEventListener('click',buildQuiz);
+  elTopic.addEventListener('change',buildQuiz);
+  elLevel.addEventListener('change',buildQuiz);
+  elCount.addEventListener('change',buildQuiz);
+
+  // Prefill so output shows on load.
+  buildQuiz();
+})();
+</script>
+</body>
+</html>

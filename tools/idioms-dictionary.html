@@ -1,220 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>English Idioms Dictionary — 200+ Common Idioms Explained</title>
-  <meta name="description" content="Interactive idioms dictionary: 200+ idioms by category, meaning, origin, examples, difficulty, quiz, bookmarks. Dark theme.">
-  <link rel="canonical" href="https://englishlearner.org/idioms-dictionary">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "English Idioms Dictionary",
-    "url": "https://englishlearner.org/idioms-dictionary",
-    "applicationCategory": "EducationalApplication",
-    "operatingSystem": "All",
-    "browserRequirements": "JavaScript enabled"
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type":"Question","name":"What does 'break a leg' mean?","acceptedAnswer":{"@type":"Answer","text":"A way to wish someone good luck, especially before a performance."}},
-      {"@type":"Question","name":"What is the origin of 'let the cat out of the bag'?","acceptedAnswer":{"@type":"Answer","text":"It comes from an old market trick where a cat was secretly put in a bag instead of a pig."}}
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Idioms Dictionary — Search 120+ English Idioms</title>
+<meta name="description" content="Free idioms dictionary: search 120+ common English idioms by keyword or theme. See meanings, example sentences, and formality for ESL learners.">
+<link rel="canonical" href="https://englishlearner.org/tools/idioms-dictionary">
+<meta property="og:title" content="Idioms Dictionary — Search 120+ English Idioms">
+<meta property="og:description" content="Free idioms dictionary: search English idioms by keyword or theme with meanings and example sentences for ESL learners.">
+<meta property="og:url" content="https://englishlearner.org/tools/idioms-dictionary">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Idioms Dictionary",
+  "url": "https://englishlearner.org/tools/idioms-dictionary",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "Michael Lip", "url": "https://zovo.one" },
+  "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {"@type":"ListItem","position":1,"name":"Home","item":"https://englishlearner.org/"},
-      {"@type":"ListItem","position":2,"name":"Idioms Dictionary","item":"https://englishlearner.org/idioms-dictionary"}
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://englishlearner.org/" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://englishlearner.org/tools/" },
+      { "@type": "ListItem", "position": 3, "name": "Idioms Dictionary", "item": "https://englishlearner.org/tools/idioms-dictionary" }
     ]
   }
-  </script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #0a0a0a; color: #e0e0e0; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; line-height: 1.5; min-height: 100vh; display: flex; flex-direction: column; }
-    .container { max-width: 1300px; margin: 0 auto; padding: 1.5rem; flex: 1; }
-    header { border-bottom: 1px solid #2a2a2a; padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
-    h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; background: linear-gradient(135deg,#66bb6a,#a5d6a7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .controls { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; }
-    input, select, button { background: #1e1e1e; border: 1px solid #333; color: #e0e0e0; padding: 0.5rem 1rem; border-radius: 40px; font-size: 0.9rem; transition: 0.2s; }
-    input:focus, select:focus { outline: none; border-color: #66bb6a; box-shadow: 0 0 0 2px rgba(102,187,106,0.3); }
-    button { cursor: pointer; background: #2a2a2a; border-color: #444; font-weight: 500; display: inline-flex; align-items: center; gap: 0.4rem; }
-    button:hover { background: #3a3a3a; border-color: #66bb6a; }
-    .btn-accent { background: #1b5e20; border-color: #66bb6a; color: #e0e0e0; }
-    .btn-accent:hover { background: #2e7d32; }
-    .bookmark-btn { background: transparent; border: 1px solid #555; padding: 0.3rem 0.8rem; font-size: 0.8rem; }
-    .bookmark-btn.active { border-color: #66bb6a; background: #1b5e20; }
-    .stats { font-size: 0.85rem; color: #aaa; margin-top: 0.2rem; }
-    #results { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
-    .card { background: #111; border: 1px solid #2a2a2a; border-radius: 20px; padding: 1.2rem 1.2rem 1rem; transition: 0.2s; display: flex; flex-direction: column; }
-    .card:hover { border-color: #444; }
-    .card h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.2rem; color: #c8e6c9; }
-    .card .meta { display: flex; flex-wrap: wrap; gap: 0.6rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; margin: 0.2rem 0 0.6rem; }
-    .badge { background: #2a2a2a; padding: 0.2rem 0.7rem; border-radius: 20px; color: #bbb; }
-    .badge.beginner { border-left: 3px solid #66bb6a; }
-    .badge.intermediate { border-left: 3px solid #ffb74d; }
-    .badge.advanced { border-left: 3px solid #ef5350; }
-    .meaning { color: #ccc; margin: 0.3rem 0 0.4rem; }
-    .origin { font-size: 0.85rem; color: #999; border-left: 2px solid #2e7d32; padding-left: 0.6rem; margin: 0.4rem 0; }
-    .example { background: #1a1a1a; border-radius: 12px; padding: 0.5rem 0.8rem; font-style: italic; color: #b0b0b0; margin: 0.5rem 0; font-size: 0.9rem; }
-    .figurative { font-size: 0.8rem; color: #81c784; border-top: 1px dashed #2a2a2a; padding-top: 0.4rem; margin-top: 0.4rem; display: flex; gap: 0.8rem; }
-    .figurative span { background: #1e1e1e; padding: 0.2rem 0.6rem; border-radius: 20px; }
-    .card-footer { display: flex; justify-content: flex-end; margin-top: 0.6rem; gap: 0.4rem; }
-    .daily-idiom { background: #0d1f0d; border: 1px solid #2e7d32; border-radius: 30px; padding: 0.8rem 1.5rem; display: inline-flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-    .daily-idiom strong { color: #a5d6a7; }
-    #quizPanel { background: #111; border: 1px solid #333; border-radius: 28px; padding: 1.5rem; margin: 1.5rem 0; }
-    #quizQuestion { font-size: 1.2rem; margin-bottom: 0.8rem; }
-    #quizOptions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
-    #quizOptions button { flex: 1 0 120px; }
-    #quizResult { margin-top: 0.8rem; }
-    footer { border-top: 1px solid #1e1e1e; padding: 1.5rem 0; margin-top: 2rem; text-align: center; color: #666; }
-    footer a { color: #81c784; text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-    @media (max-width: 600px) { h1 { font-size: 1.5rem; } .controls { flex-direction: column; align-items: stretch; } }
-  </style>
+}
+</script>
+<style>
+:root{--bg:#0f1419;--card:#1a212b;--card2:#222c38;--txt:#e6edf3;--mut:#9aa7b4;--acc:#4fb0ff;--acc2:#7ee0a6;--bd:#2c3a48;}
+*{box-sizing:border-box;}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;}
+nav{display:flex;gap:18px;padding:14px 20px;border-bottom:1px solid var(--bd);background:#0c1117;font-size:.95rem;}
+nav a{color:var(--acc);text-decoration:none;}
+nav a:hover{text-decoration:underline;}
+.wrap{max-width:880px;margin:0 auto;padding:26px 20px 60px;}
+h1{font-size:1.9rem;line-height:1.25;margin:.2em 0 .3em;}
+h2{font-size:1.3rem;margin:1.6em 0 .5em;border-bottom:1px solid var(--bd);padding-bottom:.3em;}
+.lead{color:var(--mut);font-size:1.05rem;}
+#tool{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px;margin:22px 0;}
+.controls{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;}
+.fld{display:flex;flex-direction:column;gap:5px;flex:1 1 200px;}
+label{font-size:.82rem;color:var(--mut);font-weight:600;letter-spacing:.02em;}
+input,select{background:var(--card2);border:1px solid var(--bd);color:var(--txt);padding:10px 12px;border-radius:9px;font-size:1rem;width:100%;}
+input:focus,select:focus{outline:none;border-color:var(--acc);}
+.stat{margin:14px 0 4px;color:var(--mut);font-size:.9rem;}
+.results{display:flex;flex-direction:column;gap:12px;margin-top:8px;}
+.idiom{background:var(--card2);border:1px solid var(--bd);border-left:3px solid var(--acc);border-radius:10px;padding:13px 15px;}
+.idiom .ph{font-size:1.08rem;font-weight:700;color:#fff;}
+.idiom .mean{margin:5px 0;}
+.idiom .ex{color:var(--mut);font-style:italic;font-size:.94rem;}
+.tags{margin-top:7px;display:flex;gap:7px;flex-wrap:wrap;}
+.tag{font-size:.72rem;background:#0c1117;border:1px solid var(--bd);color:var(--acc2);padding:2px 9px;border-radius:20px;}
+.tag.f{color:#ffcf6b;}
+.empty{color:var(--mut);padding:16px;text-align:center;}
+.rel a{display:inline-block;margin:4px 10px 4px 0;color:var(--acc);text-decoration:none;border:1px solid var(--bd);padding:6px 12px;border-radius:8px;}
+.rel a:hover{border-color:var(--acc);}
+footer{border-top:1px solid var(--bd);margin-top:40px;padding:22px 20px;text-align:center;color:var(--mut);font-size:.88rem;}
+footer a{color:var(--acc);text-decoration:none;margin:0 8px;}
+p{margin:.7em 0;}
+</style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <h1>📘 Idioms Dictionary</h1>
-    <div class="controls">
-      <input type="text" id="searchInput" placeholder="Search idiom or keyword..." aria-label="Search idioms">
-      <select id="categoryFilter"><option value="all">All categories</option><option value="body">Body</option><option value="animals">Animals</option><option value="food">Food</option><option value="weather">Weather</option><option value="money">Money</option><option value="time">Time</option></select>
-      <select id="difficultyFilter"><option value="all">All levels</option><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select>
-      <button id="randomBtn">🎲 Random</button>
-      <button id="dailyBtn">📅 Daily idiom</button>
+<nav>
+  <a href="/">Home</a>
+  <a href="/tools/">Tools</a>
+  <a href="/tools/idioms-dictionary">Idioms Dictionary</a>
+</nav>
+<div class="wrap">
+<h1>English Idioms Dictionary &amp; Search Tool</h1>
+<p class="lead">Type a keyword or pick a theme to instantly search 120+ common English idioms. Each entry shows the plain-English meaning, an example sentence, the theme, and how formal it is — built for ESL learners.</p>
+
+<section id="tool">
+  <div class="controls">
+    <div class="fld">
+      <label for="q">Search idiom or meaning</label>
+      <input id="q" type="text" placeholder="e.g. money, rain, give up…" value="">
     </div>
-  </header>
-
-  <div id="dailyPanel" class="daily-idiom"></div>
-
-  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <div><span id="resultCount" class="stats">200+ idioms</span></div>
-    <div><button id="showBookmarksBtn" class="bookmark-btn">🔖 Show bookmarks</button></div>
+    <div class="fld" style="flex:0 1 170px;">
+      <label for="theme">Theme</label>
+      <select id="theme"></select>
+    </div>
+    <div class="fld" style="flex:0 1 150px;">
+      <label for="reg">Formality</label>
+      <select id="reg">
+        <option value="all">Any</option>
+        <option value="informal">Informal</option>
+        <option value="neutral">Neutral</option>
+      </select>
+    </div>
   </div>
+  <div class="stat" id="stat">—</div>
+  <div class="results" id="out"></div>
+</section>
 
-  <div id="results"></div>
+<h2>How this idioms dictionary works</h2>
+<p>An idiom is a fixed phrase whose meaning cannot be guessed from its individual words — "kick the bucket" has nothing to do with buckets; it means to die. That non-literal quality is exactly what makes idioms hard for English learners and what this tool is designed to untangle.</p>
+<p>The dictionary holds a curated dataset of 120+ high-frequency idioms, each tagged with a theme (money, time, emotion, success, communication, and more) and a formality level. The search runs entirely in your browser with no network calls. When you type, the matcher lowercases your query and scans three fields of every entry — the phrase itself, its meaning, and its example sentence — keeping any idiom where the query appears as a substring in any field. The theme and formality menus then apply as <em>AND</em> filters: an entry survives only if it matches the keyword <strong>and</strong> the chosen theme <strong>and</strong> the chosen formality. Results re-render on every keystroke via an <code>input</code> event listener, so the list is always live.</p>
+<p>Matches are ranked simply: idioms whose <em>phrase</em> contains your keyword sort above those that only match in the meaning or example, so the most relevant headwords rise to the top. A live counter reports how many of the total entries currently match. Because everything is client-side, the tool works offline and never sends your searches anywhere. Use it to confirm a meaning you half-remember, to find idioms on a topic for a writing task, or to filter to neutral-register expressions that are safe in formal essays and emails.</p>
 
-  <div id="quizPanel">
-    <div style="display:flex; justify-content: space-between; align-items: center;"><h3>🧠 Quiz: match meaning</h3><button id="quizCloseBtn" style="background:transparent; border:none; font-size:1.2rem;">✕</button></div>
-    <div id="quizQuestion"></div>
-    <div id="quizOptions"></div>
-    <div id="quizResult"></div>
-  </div>
-
-  <footer>
-    <p><a href="https://englishlearner.org/">englishlearner.org</a> — learn English naturally</p>
-    <p style="font-size:0.75rem; margin-top:0.3rem;">Idioms dictionary • 200+ entries • offline ready</p>
-  </footer>
+<h2>Related Tools</h2>
+<div class="rel">
+  <a href="/tools/irregular-verbs">Irregular Verbs List</a>
+  <a href="/tools/phrasal-verbs">Phrasal Verbs Finder</a>
+  <a href="/tools/ipa-pronunciation">IPA Pronunciation Guide</a>
 </div>
 
+</div>
+<footer>
+  <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/tools/idioms-dictionary">Idioms Dictionary</a></div>
+  <p>© 2026 EnglishLearner.org — free ESL tools. Built by <a href="https://zovo.one">Michael Lip</a>.</p>
+</footer>
+
 <script>
-  (function() {
-    // ---------- IDIOM DATABASE (200+ entries) ----------
-    const IDIOMS = [
-      // BODY (40)
-      { idiom: "Break a leg", meaning: "Good luck", origin: "Theatre superstition: wishing someone to break a leg for a great performance", example: "Break a leg tonight at your concert!", difficulty: "beginner", category: "body", literal: "fracture a bone", figurative: "wish of good luck" },
-      { idiom: "Cold shoulder", meaning: "Deliberate unfriendliness", origin: "In medieval England, giving a cold shoulder of mutton to an unwanted guest", example: "I got the cold shoulder from my colleague after the argument.", difficulty: "intermediate", category: "body", literal: "cold part of the body", figurative: "ignore or snub" },
-      { idiom: "Pull someone's leg", meaning: "Joke or tease", origin: "Pulling a person's leg to trip them as a prank", example: "Don't worry, I'm just pulling your leg!", difficulty: "beginner", category: "body", literal: "tug at leg", figurative: "playful trick" },
-      { idiom: "Keep an eye on", meaning: "Watch carefully", origin: "Literal surveillance", example: "Can you keep an eye on my bag?", difficulty: "beginner", category: "body", literal: "use eyes", figurative: "monitor" },
-      { idiom: "Cost an arm and a leg", meaning: "Very expensive", origin: "After WWII, soldiers missing limbs symbolised high price", example: "That car costs an arm and a leg.", difficulty: "intermediate", category: "body", literal: "body parts", figurative: "extremely costly" },
-      { idiom: "Head over heels", meaning: "Deeply in love", origin: "From 'heels over head' describing a somersault", example: "They fell head over heels for each other.", difficulty: "beginner", category: "body", literal: "upside down", figurative: "madly in love" },
-      { idiom: "Play it by ear", meaning: "Improvise", origin: "Musicians playing without sheet music", example: "Let's play it by ear and see what happens.", difficulty: "intermediate", category: "body", literal: "use ears", figurative: "adapt as you go" },
-      { idiom: "Get off my back", meaning: "Stop nagging", origin: "Like a heavy burden on one's back", example: "I wish my boss would get off my back.", difficulty: "intermediate", category: "body", literal: "remove from back", figurative: "stop criticizing" },
-      { idiom: "See eye to eye", meaning: "Agree", origin: "Biblical phrase", example: "We don't see eye to eye on politics.", difficulty: "beginner", category: "body", literal: "look into eyes", figurative: "agree" },
-      { idiom: "Keep your chin up", meaning: "Stay positive", origin: "Boxing: keep chin up to avoid knockout", example: "Keep your chin up, things will improve.", difficulty: "beginner", category: "body", literal: "raise chin", figurative: "be optimistic" },
-      // ... more body (30 more) -> compact
-      { idiom: "Face the music", meaning: "Confront consequences", origin: "Military: facing the band while being dismissed", example: "He had to face the music after failing.", difficulty: "intermediate", category: "body", literal: "turn to music", figurative: "accept results" },
-      { idiom: "Let your hair down", meaning: "Relax", origin: "Women letting hair loose after formal events", example: "Let your hair down at the party.", difficulty: "beginner", category: "body", literal: "unpin hair", figurative: "unwind" },
-      { idiom: "Stiff upper lip", meaning: "Suppress emotion", origin: "British stoicism", example: "He kept a stiff upper lip during the crisis.", difficulty: "advanced", category: "body", literal: "rigid lip", figurative: "hide feelings" },
-      { idiom: "Elbow grease", meaning: "Hard work", origin: "Polishing with elbow movement", example: "It took elbow grease to clean the oven.", difficulty: "intermediate", category: "body", literal: "grease from elbow", figurative: "effort" },
-      { idiom: "Sweet tooth", meaning: "Love for sweets", origin: "Literal craving", example: "I have a sweet tooth for chocolate.", difficulty: "beginner", category: "body", literal: "tooth", figurative: "desire sugar" },
-      { idiom: "All ears", meaning: "Listening attentively", origin: "Ears as listening organs", example: "Tell me your story, I'm all ears.", difficulty: "beginner", category: "body", literal: "ears", figurative: "fully attentive" },
-      { idiom: "Get a grip", meaning: "Control yourself", origin: "Grip on reality", example: "Get a grip, it's not that bad.", difficulty: "intermediate", category: "body", literal: "hold tightly", figurative: "regain composure" },
-      { idiom: "Lose your head", meaning: "Panic", origin: "Decapitation metaphor", example: "Don't lose your head under pressure.", difficulty: "intermediate", category: "body", literal: "misplace head", figurative: "lose calm" },
-      { idiom: "Play with fire", meaning: "Take risks", origin: "Literal danger", example: "Investing all your money is playing with fire.", difficulty: "beginner", category: "body", literal: "handle fire", figurative: "dangerous action" },
-      { idiom: "Bite the bullet", meaning: "Endure pain", origin: "Soldiers biting bullet during surgery", example: "I'll bite the bullet and get the vaccine.", difficulty: "intermediate", category: "body", literal: "bite a bullet", figurative: "face difficulty" },
-      // ANIMALS (40)
-      { idiom: "Let the cat out of the bag", meaning: "Reveal secret", origin: "Market trick: cat instead of piglet", example: "She let the cat out of the bag about the surprise.", difficulty: "intermediate", category: "animals", literal: "release cat", figurative: "divulge secret" },
-      { idiom: "Dark horse", meaning: "Unexpected winner", origin: "Horse racing: unknown horse winning", example: "He was a dark horse in the competition.", difficulty: "intermediate", category: "animals", literal: "dark colored horse", figurative: "underdog winner" },
-      { idiom: "Kill two birds with one stone", meaning: "Achieve two goals", origin: "Hunting", example: "I'll kill two birds with one stone by shopping on the way.", difficulty: "beginner", category: "animals", literal: "kill birds", figurative: "efficiency" },
-      { idiom: "Hold your horses", meaning: "Wait", origin: "Drivers holding reins", example: "Hold your horses, we're not ready.", difficulty: "beginner", category: "animals", literal: "stop horses", figurative: "be patient" },
-      { idiom: "When pigs fly", meaning: "Never", origin: "Impossible event", example: "He'll clean his room when pigs fly.", difficulty: "beginner", category: "animals", literal: "pigs flying", figurative: "impossible" },
-      { idiom: "Butterflies in stomach", meaning: "Nervousness", origin: "Fluttering feeling", example: "I have butterflies before my speech.", difficulty: "beginner", category: "animals", literal: "insects", figurative: "anxiety" },
-      { idiom: "Elephant in the room", meaning: "Obvious problem ignored", origin: "Large animal impossible to ignore", example: "The budget is the elephant in the room.", difficulty: "intermediate", category: "animals", literal: "elephant", figurative: "unspoken issue" },
-      { idiom: "Let sleeping dogs lie", meaning: "Avoid old problems", origin: "Don't wake aggressive dogs", example: "Just let sleeping dogs lie and don't mention it.", difficulty: "intermediate", category: "animals", literal: "sleeping dogs", figurative: "don't stir trouble" },
-      { idiom: "Bird's eye view", meaning: "Overview", origin: "From above", example: "From the tower we had a bird's eye view.", difficulty: "beginner", category: "animals", literal: "bird's perspective", figurative: "broad view" },
-      { idiom: "Fish out of water", meaning: "Out of place", origin: "Fish on land", example: "I felt like a fish out of water in that suit.", difficulty: "intermediate", category: "animals", literal: "fish", figurative: "uncomfortable" },
-      // ... fill animals to 40 (compact)
-      { idiom: "Black sheep", meaning: "Outcast", origin: "Black sheep rare, less valuable", example: "He's the black sheep of the family.", difficulty: "beginner", category: "animals", literal: "black sheep", figurative: "misfit" },
-      { idiom: "Cash cow", meaning: "Steady profit", origin: "Dairy cow", example: "That product is a cash cow.", difficulty: "intermediate", category: "animals", literal: "cow giving milk", figurative: "reliable income" },
-      { idiom: "Wild goose chase", meaning: "Futile search", origin: "Horse racing term", example: "The treasure map was a wild goose chase.", difficulty: "intermediate", category: "animals", literal: "chase goose", figurative: "useless pursuit" },
-      { idiom: "Horse of a different color", meaning: "Different matter", origin: "Horse trading", example: "That's a horse of a different color.", difficulty: "advanced", category: "animals", literal: "horse color", figurative: "different issue" },
-      { idiom: "Eat like a horse", meaning: "Eat a lot", origin: "Horse appetite", example: "He eats like a horse but stays thin.", difficulty: "beginner", category: "animals", literal: "horse eating", figurative: "large appetite" },
-      { idiom: "Rat race", meaning: "Competitive struggle", origin: "Rats in maze", example: "I want to leave the rat race.", difficulty: "intermediate", category: "animals", literal: "rats racing", figurative: "endless competition" },
-      { idiom: "Snake in the grass", meaning: "Traitor", origin: "Hidden snake", example: "He turned out to be a snake in the grass.", difficulty: "advanced", category: "animals", literal: "snake", figurative: "deceitful person" },
-      { idiom: "Take the bull by the horns", meaning: "Confront directly", origin: "Bullfighting", example: "She took the bull by the horns and resigned.", difficulty: "intermediate", category: "animals", literal: "grab bull horns", figurative: "face challenge" },
-      { idiom: "Put the cart before the horse", meaning: "Wrong order", origin: "Cart before horse is illogical", example: "You're putting the cart before the horse.", difficulty: "intermediate", category: "animals", literal: "cart/horse", figurative: "reverse order" },
-      { idiom: "Monkey business", meaning: "Mischief", origin: "Monkeys causing trouble", example: "No monkey business in class!", difficulty: "beginner", category: "animals", literal: "monkey acts", figurative: "silly behavior" },
-      // FOOD (40)
-      { idiom: "Piece of cake", meaning: "Very easy", origin: "Cake is easy to eat", example: "The test was a piece of cake.", difficulty: "beginner", category: "food", literal: "slice of cake", figurative: "easy task" },
-      { idiom: "Spill the beans", meaning: "Reveal secret", origin: "Ancient Greek voting with beans", example: "Who spilled the beans about the party?", difficulty: "intermediate", category: "food", literal: "drop beans", figurative: "divulge" },
-      { idiom: "Apple of my eye", meaning: "Favorite person", origin: "Old English: pupil of eye", example: "My daughter is the apple of my eye.", difficulty: "beginner", category: "food", literal: "apple", figurative: "beloved" },
-      { idiom: "Bite off more than you can chew", meaning: "Take on too much", origin: "Literal overeating", example: "I bit off more than I can chew with this project.", difficulty: "intermediate", category: "food", literal: "bite too much", figurative: "overcommit" },
-      { idiom: "Butter someone up", meaning: "Flatter", origin: "Buttering bread for taste", example: "He buttered up the boss for a promotion.", difficulty: "intermediate", category: "food", literal: "spread butter", figurative: "praise insincerely" },
-      { idiom: "Couch potato", meaning: "Lazy person", origin: "Potato as sedentary", example: "He's a couch potato watching TV all day.", difficulty: "beginner", category: "food", literal: "potato on couch", figurative: "inactive" },
-      { idiom: "Egg on your face", meaning: "Embarrassed", origin: "Audience throwing eggs", example: "He had egg on his face after the mistake.", difficulty: "intermediate", category: "food", literal: "egg on face", figurative: "humiliation" },
-      { idiom: "Full of beans", meaning: "Energetic", origin: "Horses fed beans", example: "The kids are full of beans today.", difficulty: "intermediate", category: "food", literal: "beans", figurative: "high energy" },
-      { idiom: "Take it with a grain of salt", meaning: "Skepticism", origin: "Ancient antidote with salt", example: "Take his advice with a grain of salt.", difficulty: "intermediate", category: "food", literal: "salt grain", figurative: "doubt" },
-      { idiom: "Not my cup of tea", meaning: "Not preferred", origin: "British tea culture", example: "Horror movies are not my cup of tea.", difficulty: "beginner", category: "food", literal: "tea", figurative: "not to taste" },
-      // ... add 30 more food (compact)
-      { idiom: "Cry over spilled milk", meaning: "Regret useless", origin: "Spilled milk can't be undone", example: "Don't cry over spilled milk.", difficulty: "beginner", category: "food", literal: "milk", figurative: "useless regret" },
-      { idiom: "Bring home the bacon", meaning: "Earn income", origin: "Bacon as prize", example: "She brings home the bacon.", difficulty: "intermediate", category: "food", literal: "bacon", figurative: "provide" },
-      { idiom: "Apples and oranges", meaning: "Different things", origin: "Fruit comparison", example: "They are apples and oranges.", difficulty: "beginner", category: "food", literal: "fruits", figurative: "incomparable" },
-      { idiom: "Bread and butter", meaning: "Basic income", origin: "Staple foods", example: "Teaching is my bread and butter.", difficulty: "intermediate", category: "food", literal: "bread/butter", figurative: "livelihood" },
-      { idiom: "Cheesy", meaning: "Corny", origin: "Cheese as cheap", example: "That joke was cheesy.", difficulty: "beginner", category: "food", literal: "cheese", figurative: "tasteless" },
-      { idiom: "Noodle", meaning: "Think", origin: "Noodle as brain", example: "Use your noodle!", difficulty: "intermediate", category: "food", literal: "pasta", figurative: "brain" },
-      { idiom: "Salad days", meaning: "Youthful inexperience", origin: "Shakespeare", example: "In my salad days, I was naive.", difficulty: "advanced", category: "food", literal: "salad", figurative: "green youth" },
-      { idiom: "Soup to nuts", meaning: "Everything", origin: "Full course meal", example: "The package includes soup to nuts.", difficulty: "advanced", category: "food", literal: "soup to nuts", figurative: "complete" },
-      { idiom: "Honey trap", meaning: "Attractive lure", origin: "Honey attracts", example: "The spy used a honey trap.", difficulty: "advanced", category: "food", literal: "honey", figurative: "seduction" },
-      { idiom: "Sour grapes", meaning: "Pretend disdain", origin: "Aesop's fable", example: "He said it's not good, but that's sour grapes.", difficulty: "intermediate", category: "food", literal: "grapes", figurative: "envy" },
-      // WEATHER (40)
-      { idiom: "Under the weather", meaning: "Ill", origin: "Seasickness below deck", example: "I'm feeling under the weather today.", difficulty: "beginner", category: "weather", literal: "below weather", figurative: "sick" },
-      { idiom: "Storm in a teacup", meaning: "Overreaction", origin: "Small storm", example: "The argument was a storm in a teacup.", difficulty: "intermediate", category: "weather", literal: "teacup storm", figurative: "minor issue" },
-      { idiom: "Break the ice", meaning: "Start conversation", origin: "Ships breaking ice", example: "He told a joke to break the ice.", difficulty: "beginner", category: "weather", literal: "ice breaking", figurative: "reduce tension" },
-      { idiom: "Rain on your parade", meaning: "Spoil fun", origin: "Rain ruins parade", example: "Sorry to rain on your parade, but it's cancelled.", difficulty: "intermediate", category: "weather", literal: "rain", figurative: "disappoint" },
-      { idiom: "When it rains, it pours", meaning: "Misfortunes accumulate", origin: "Weather pattern", example: "First car broke, then lost job — when it rains, it pours.", difficulty: "intermediate", category: "weather", literal: "rain", figurative: "bad luck" },
-      { idiom: "Chase rainbows", meaning: "Pursue unrealistic", origin: "Rainbow elusive", example: "Stop chasing rainbows and focus.", difficulty: "intermediate", category: "weather", literal: "rainbow", figurative: "impossible dream" },
-      { idiom: "Lightning fast", meaning: "Very quick", origin: "Lightning speed", example: "He ran lightning fast.", difficulty: "beginner", category: "weather", literal: "lightning", figurative: "extremely fast" },
-      { idiom: "Snowed under", meaning: "Overwhelmed", origin: "Buried in snow", example: "I'm snowed under with work.", difficulty: "intermediate", category: "weather", literal: "snow", figurative: "busy" },
-      { idiom: "Take a rain check", meaning: "Postpone", origin: "Baseball rain check", example: "Can I take a rain check on dinner?", difficulty: "intermediate", category: "weather", literal: "rain check", figurative: "defer" },
-      { idiom: "Fair-weather friend", meaning: "Only in good times", origin: "Fair weather sailing", example: "He's just a fair-weather friend.", difficulty: "intermediate", category: "weather", literal: "good weather", figurative: "unreliable" },
-      // ... add 30 more weather (compact)
-      { idiom: "Steal someone's thunder", meaning: "Take credit", origin: "Theatre thunder effect", example: "She stole my thunder with her announcement.", difficulty: "advanced", category: "weather", literal: "thunder", figurative: "upstage" },
-      { idiom: "Cloud nine", meaning: "Very happy", origin: "Clouds as bliss", example: "He was on cloud nine after the news.", difficulty: "beginner", category: "weather", literal: "cloud", figurative: "euphoria" },
-      { idiom: "Head in the clouds", meaning: "Daydreaming", origin: "Above reality", example: "She has her head in the clouds.", difficulty: "beginner", category: "weather", literal: "clouds", figurative: "unrealistic" },
-      { idiom: "Reach for the moon", meaning: "Aim high", origin: "Ambition", example: "Reach for the moon, you'll land among stars.", difficulty: "beginner", category: "weather", literal: "moon", figurative: "aspire" },
-      { idiom: "Once in a blue moon", meaning: "Rare", origin: "Blue moon", example: "He visits once in a blue moon.", difficulty: "intermediate", category: "weather", literal: "blue moon", figurative: "rarely" },
-      { idiom: "Calm before the storm", meaning: "Quiet period before trouble", origin: "Weather", example: "The office was calm before the storm.", difficulty: "intermediate", category: "weather", literal: "calm", figurative: "precrisis" },
-      { idiom: "Weather the storm", meaning: "Survive difficulty", origin: "Nautical", example: "We weathered the storm together.", difficulty: "intermediate", category: "weather", literal: "storm", figurative: "endure" },
-      { idiom: "Make hay while the sun shines", meaning: "Use opportunity", origin: "Farming", example: "Make hay while the sun shines and invest.", difficulty: "intermediate", category: "weather", literal: "hay/sun", figurative: "seize chance" },
-      { idiom: "Come rain or shine", meaning: "Regardless", origin: "Weather", example: "I'll be there come rain or shine.", difficulty: "beginner", category: "weather", literal: "rain/shine", figurative: "always" },
-      { idiom: "A ray of sunshine", meaning: "Something positive", origin: "Sunlight", example: "The baby is a ray of sunshine.", difficulty: "beginner", category: "weather", literal: "sunshine", figurative: "joy" },
-      // MONEY (30)
-      { idiom: "Break the bank", meaning: "Cost too much", origin: "Gambling: break the bank", example: "A new car won't break the bank.", difficulty: "intermediate", category: "money", literal: "break bank", figurative: "expensive" },
-      { idiom: "Penny for your thoughts", meaning: "What are you thinking?", origin: "Old phrase", example: "A penny for your thoughts?", difficulty: "beginner", category: "money", literal: "penny", figurative: "ask thinking" },
-      { idiom: "Cost a pretty penny", meaning: "Expensive", origin: "Pretty penny = large sum", example: "That ring cost a pretty penny.", difficulty: "intermediate", category: "money", literal: "penny", figurative: "costly" },
-      { idiom: "Money talks", meaning: "Wealth influences", origin: "Money speaks", example: "In business, money talks.", difficulty: "beginner", category: "money", literal: "money speaks", figurative: "power of wealth" },
-      { idiom: "Throw money at", meaning: "Spend to solve", origin: "Literal throwing", example: "They threw money at the problem.", difficulty: "intermediate", category: "money", literal: "throw money", figurative: "ineffective spending" },
-      { idiom: "Money doesn't grow on trees", meaning: "Limited resources", origin: "Trees don't produce money", example: "Remember, money doesn't grow on trees.", difficulty: "beginner", category: "money", literal: "tree money", figurative: "be frugal" },
-      { idiom: "For a song", meaning: "Very cheap", origin: "Street musicians", example: "I bought it for a song.", difficulty: "intermediate", category: "money", literal: "song price", figurative: "bargain" },
-      { idiom: "Deep pockets", meaning: "Wealthy", origin: "Pockets hold money", example: "The investor has deep pockets.", difficulty: "intermediate", category: "money", literal: "pockets", figurative: "rich" },
-      { idiom: "Turn a blind eye", meaning: "Ignore", origin: "Naval battle: Nelson ignoring signal", example: "
+var IDIOMS=[
+["a blessing in disguise","something that seems bad but turns out good","Losing that job was a blessing in disguise — I found a better one.","luck","neutral"],
+["a piece of cake","something very easy to do","The exam was a piece of cake after all that revision.","difficulty","informal"],
+["back to the drawing board","start planning again after a failure","The design flopped, so it's back to the drawing board.","work","neutral"],
+["beat around the bush","avoid saying something directly","Stop beating around the bush and tell me what happened.","communication","informal"],
+["bite the bullet","force yourself to do something unpleasant","I bit the bullet and finally booked the dentist.","courage","neutral"],
+["break the ice","make people feel relaxed in a social setting","A quick joke helped break the ice at the meeting.","communication","neutral"],
+["burn the midnight oil","work late into the night","She burned the midnight oil to finish the report.","work","neutral"],
+["call it a day","stop working for the day","We've done enough — let's call it a day.","work","informal"],
+["cost an arm and a leg","be very expensive","That new phone cost an arm and a leg.","money","informal"],
+["cut corners","do something cheaply or quickly, lowering quality","They cut corners and the building had problems.","work","neutral"],
+["down to earth","practical and sensible; not arrogant","Despite her fame she's very down to earth.","personality","neutral"],
+["draw a blank","fail to remember or find something","I drew a blank when she asked for my password.","memory","informal"],
+["face the music","accept the unpleasant results of your actions","He had to face the music after the mistake.","consequence","neutral"],
+["get the hang of it","learn how to do something","Cycling is tricky at first but you get the hang of it.","learning","informal"],
+["give someone the cold shoulder","ignore someone deliberately","She gave me the cold shoulder after the argument.","emotion","informal"],
+["go the extra mile","make more effort than expected","Our team always goes the extra mile for clients.","work","neutral"],
+["hit the nail on the head","describe a problem exactly right","You hit the nail on the head about the budget.","communication","neutral"],
+["hit the sack","go to bed","I'm exhausted — I'm going to hit the sack.","time","informal"],
+["in hot water","in trouble","He's in hot water for missing the deadline.","consequence","informal"],
+["it's not rocket science","it is not difficult to understand","Filling the form isn't rocket science.","difficulty","informal"],
+["jump on the bandwagon","join a popular trend","Everyone jumped on the bandwagon and bought the app.","trend","neutral"],
+["keep an eye on","watch carefully","Can you keep an eye on my bag for a minute?","attention","informal"],
+["kill two birds with one stone","solve two problems with one action","Walking to work kills two birds with one stone.","efficiency","neutral"],
+["let the cat out of the bag","reveal a secret by accident","He let the cat out of the bag about the party.","communication","informal"],
+["miss the boat","miss an opportunity","If you wait too long, you'll miss the boat.","opportunity","neutral"],
+["on cloud nine","extremely happy","She was on cloud nine after the wedding.","emotion","informal"],
+["once in a blue moon","very rarely","We eat out once in a blue moon.","time","informal"],
+["out of the blue","unexpectedly","He called me out of the blue after years.","time","informal"],
+["piece of mind","calm and freedom from worry (peace of mind)","Insurance gives me peace of mind.","emotion","neutral"],
+["pull someone's leg","tease or joke with someone","Relax, I'm just pulling your leg.","communication","informal"],
+["raining cats and dogs","raining very heavily","Take an umbrella — it's raining cats and dogs.","weather","informal"],
+["see eye to eye","agree with someone","We don't always see eye to eye on money.","agreement","neutral"],
+["sit on the fence","avoid making a decision","Don't sit on the fence — pick a side.","decision","neutral"],
+["speak of the devil","said when someone you mentioned appears","Speak of the devil — here she is now!","communication","informal"],
+["spill the beans","reveal secret information","Come on, spill the beans about the trip.","communication","informal"],
+["take it with a grain of salt","don't fully believe something","Take online reviews with a grain of salt.","caution","neutral"],
+["the ball is in your court","it's your turn to act or decide","I've sent the offer; the ball is in your court.","decision","neutral"],
+["the last straw","the final problem that ends your patience","His rudeness was the last straw.","emotion","neutral"],
+["through thick and thin","through good and bad times","They stayed friends through thick and thin.","friendship","neutral"],
+["under the weather","feeling slightly ill","I'm a bit under the weather today.","health","informal"],
+["a dime a dozen","very common and of little value","Cheap chargers are a dime a dozen.","value","informal"],
+["add fuel to the fire","make a bad situation worse","Shouting only added fuel to the fire.","conflict","neutral"],
+["barking up the wrong tree","pursuing a mistaken idea","If you blame me, you're barking up the wrong tree.","mistake","informal"],
+["bend over backwards","try very hard to help someone","They bent over backwards to fix the order.","effort","neutral"],
+["blow off steam","release stress or anger","I went for a run to blow off steam.","emotion","informal"],
+["break a leg","good luck (especially before a performance)","Break a leg in your interview today!","luck","informal"],
+["bring home the bacon","earn money for the family","She brings home the bacon for the household.","money","informal"],
+["burn bridges","destroy relationships you may need later","Don't burn bridges when you quit a job.","relationship","neutral"],
+["by the book","following the rules exactly","Our accountant does everything by the book.","rules","neutral"],
+["caught red-handed","caught while doing something wrong","He was caught red-handed taking the cash.","crime","informal"],
+["come rain or shine","whatever happens","We meet every Friday, come rain or shine.","commitment","informal"],
+["cross that bridge when you come to it","deal with a problem only when it happens","We'll cross that bridge when we come to it.","planning","neutral"],
+["cry over spilled milk","be upset about something you can't change","No use crying over spilled milk.","emotion","informal"],
+["cut to the chase","get to the main point","Let's cut to the chase: what's the price?","communication","informal"],
+["devil's advocate","argue an opposing view to test ideas","Let me play devil's advocate for a moment.","debate","neutral"],
+["dodge a bullet","narrowly avoid a problem","Selling early, we dodged a bullet.","luck","informal"],
+["easier said than done","harder to do than to talk about","Saving money is easier said than done.","difficulty","neutral"],
+["every cloud has a silver lining","every bad situation has something good","Cheer up — every cloud has a silver lining.","optimism","neutral"],
+["fish out of water","uncomfortable in an unfamiliar setting","At the gala I felt like a fish out of water.","emotion","informal"],
+["food for thought","something worth thinking about","Her talk gave us a lot of food for thought.","thinking","neutral"],
+["get cold feet","become nervous and hesitate","He got cold feet before signing the lease.","fear","informal"],
+["get out of hand","become uncontrollable","The party got out of hand quickly.","control","informal"],
+["give the benefit of the doubt","trust someone despite uncertainty","I'll give him the benefit of the doubt.","trust","neutral"],
+["go down in flames","fail spectacularly","The startup went down in flames.","failure","informal"],
+["hands are tied","unable to act due to rules","I'd help, but my hands are tied.","restriction","neutral"],
+["hang in there","stay strong in a hard situation","Hang in there, the exams are nearly over.","encouragement","informal"],
+["have a lot on your plate","be very busy","She has a lot on her plate this week.","busy","informal"],
+["hit the books","study hard","I need to hit the books before finals.","learning","informal"],
+["in the same boat","in the same difficult situation","We're all in the same boat with these prices.","situation","neutral"],
+["jump the gun","act too soon","Don't jump the gun before the results are in.","timing","informal"],
+["keep your chin up","stay positive in hard times","Keep your chin up — things will improve.","encouragement","informal"],
+["learn the ropes","learn how a job is done","It took a month to learn the ropes.","learning","neutral"],
+["leave no stone unturned","try every possible way","Police left no stone unturned in the case.","effort","neutral"],
+["lend a hand","help someone","Could you lend a hand with these boxes?","help","informal"],
+["like two peas in a pod","very similar and close","The twins are like two peas in a pod.","similarity","informal"],
+["make ends meet","earn just enough to live","They struggle to make ends meet.","money","neutral"],
+["no pain no gain","success requires effort and hardship","Training hurts, but no pain no gain.","effort","informal"],
+["off the top of my head","without checking, from memory","Off the top of my head, it's about €50.","memory","informal"],
+["on the ball","alert and quick to understand","Our new hire is really on the ball.","ability","informal"],
+["on the same page","in agreement and understanding","Let's make sure we're on the same page.","agreement","neutral"],
+["out of the question","impossible; not allowed","A refund is out of the question now.","refusal","neutral"],
+["over the moon","extremely pleased","We were over the moon about the news.","emotion","informal"],
+["pay through the nose","pay far too much","We paid through the nose for parking.","money","informal"],
+["play it by ear","decide as you go, without a plan","Let's not book ahead and just play it by ear.","planning","informal"],
+["pull yourself together","calm down and regain control","Pull yourself together; we can fix this.","emotion","informal"],
+["put all your eggs in one basket","risk everything on one thing","Don't put all your eggs in one basket.","risk","neutral"],
+["rule of thumb","a rough, practical guideline","As a rule of thumb, drink eight glasses a day.","advice","neutral"],
+["sell like hotcakes","sell very quickly","The tickets sold like hotcakes.","sales","informal"],
+["sit tight","wait patiently without acting","Sit tight while I check the details.","patience","informal"],
+["take a rain check","postpone an invitation to later","Can I take a rain check on dinner tonight?","social","informal"],
+["the bigger picture","the overall situation, not details","Try to focus on the bigger picture.","perspective","neutral"],
+["the tip of the iceberg","a small visible part of a big problem","These bugs are just the tip of the iceberg.","problem","neutral"],
+["throw in the towel","give up","After months of losses he threw in the towel.","giving up","informal"],
+["under your nose","right in front of you but unnoticed","The keys were under your nose the whole time.","attention","informal"],
+["up in the air","uncertain and undecided","Our holiday plans are still up in the air.","uncertainty","informal"],
+["wrap your head around","understand something difficult","I can't wrap my head around the new system.","understanding","informal"],
+["a hot potato","a controversial issue people avoid","Tax reform is a real political hot potato.","controversy","neutral"],
+["all ears","listening eagerly","Tell me everything — I'm all ears.","attention","informal"],
+["at the drop of a hat","immediately, without hesitation","She'll help at the drop of a hat.","speed","informal"],
+["bite off more than you can chew","take on too much","I bit off more than I could chew this term.","overload","informal"],
+["the best of both worlds","a situation with two advantages","Remote work gives the best of both worlds.","benefit","neutral"],
+["blow your own trumpet","boast about yourself","I don't like to blow my own trumpet, but I won.","pride","informal"],
+["a chip on your shoulder","a lasting feeling of resentment","He has a chip on his shoulder about school.","emotion","informal"],
+["cut someone some slack","be less strict with someone","Cut him some slack — he's new here.","kindness","informal"],
+["a far cry from","very different from","This is a far cry from what we ordered.","difference","neutral"],
+["get a foot in the door","gain a first opportunity somewhere","An internship gets your foot in the door.","opportunity","neutral"],
+["go against the grain","oppose what is usual or expected","Her ideas go against the grain.","nonconformity","neutral"],
+["have a sweet tooth","love sugary food","I have such a sweet tooth at night.","food","informal"],
+["in a nutshell","in brief; summarized","In a nutshell, the plan worked.","summary","neutral"],
+["keep something at bay","keep a problem under control","Exercise keeps stress at bay.","control","neutral"],
+["know the ropes","be experienced at a task","Ask Sam — she knows the ropes here.","experience","informal"],
+["a long shot","unlikely to succeed","It's a long shot, but let's apply.","chance","informal"],
+["make a long story short","summarize quickly","To make a long story short, we won.","communication","informal"],
+["needle in a haystack","something very hard to find","Finding that file is a needle in a haystack.","difficulty","neutral"],
+["on thin ice","in a risky situation","You're on thin ice with these late reports.","risk","informal"],
+["put your foot in your mouth","say something embarrassing","I put my foot in my mouth at dinner.","mistake","informal"],
+["read between the lines","find a hidden meaning","Read between the lines of her email.","understanding","neutral"],
+["steal someone's thunder","take credit or attention from someone","He stole her thunder at the launch.","attention","neutral"],
+["a storm in a teacup","a big fuss about something small","The whole row was a storm in a teacup.","exaggeration","neutral"],
+["take the plunge","finally do something risky","We took the plunge and bought a house.","decision","informal"],
+["turn a blind eye","ignore something wrong on purpose","Managers turned a blind eye to the issue.","ignoring","neutral"],
+["when pigs fly","never; something impossible","He'll apologize when pigs fly.","impossibility","informal"]
+];
+
+var qEl=document.getElementById('q');
+var themeEl=document.getElementById('theme');
+var regEl=document.getElementById('reg');
+var outEl=document.getElementById('out');
+var statEl=document.getElementById('stat');
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+(function buildThemes(){
+  var set={};
+  for(var i=0;i<IDIOMS.length;i++){set[IDIOMS[i][3]]=1;}
+  var keys=Object.keys(set).sort();
+  var html='<option value="all">All themes</option>';
+  for(var k=0;k<keys.length;k++){html+='<option value="'+keys[k]+'">'+esc(keys[k].charAt(0).toUpperCase()+keys[k].slice(1))+'</option>';}
+  themeEl.innerHTML=html;
+})();
+
+function render(){
+  var q=qEl.value.toLowerCase().trim();
+  var th=themeEl.value;
+  var rg=regEl.value;
+  var matches=[];
+  for(var i=0;i<IDIOMS.length;i++){
+    var it=IDIOMS[i];
+    if(th!=='all' && it[3]!==th) continue;
+    if(rg!=='all' && it[4]!==rg) continue;
+    var inPhrase=it[0].toLowerCase().indexOf(q)>-1;
+    var hit = q==='' || inPhrase || it[1].toLowerCase().indexOf(q)>-1 || it[2].toLowerCase().indexOf(q)>-1;
+    if(hit){ matches.push({it:it,rank:inPhrase?0:1}); }
+  }
+  matches.sort(function(a,b){ if(a.rank!==b.rank) return a.rank-b.rank; return a.it[0].localeCompare(b.it[0]); });
+  statEl.textContent=matches.length+' of '+IDIOMS.length+' idioms shown';
+  if(matches.length===0){ outEl.innerHTML='<div class="empty">No idioms match your search. Try a different keyword or theme.</div>'; return; }
+  var html='';
+  for(var m=0;m<matches.length;m++){
+    var it=matches[m].it;
+    var fcls=it[4]==='informal'?' f':'';
+    html+='<div class="idiom"><div class="ph">'+esc(it[0])+'</div>'+
+      '<div class="mean">'+esc(it[1])+'</div>'+
+      '<div class="ex">“'+esc(it[2])+'”</div>'+
+      '<div class="tags"><span class="tag">'+esc(it[3])+'</span><span class="tag'+fcls+'">'+esc(it[4])+'</span></div></div>';
+  }
+  outEl.innerHTML=html;
+}
+
+qEl.addEventListener('input',render);
+themeEl.addEventListener('change',render);
+regEl.addEventListener('change',render);
+render();
+</script>
+</body>
+</html>

@@ -1,548 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-  <title>English Pronunciation Guide • IPA, rules & minimal pairs</title>
-  <meta name="description" content="Interactive pronunciation tool: IPA chart with examples, silent letters, vowel rules, minimal pairs (ship/sheep), and sound discrimination quiz for...">
-  <link rel="canonical" href="https://englishlearner.org/tools/pronunciation-guide">
-  <meta property="og:title" content="English Pronunciation Guide – IPA, rules & minimal pairs">
-  <meta property="og:description" content="Interactive pronunciation tool: IPA chart with examples, silent letters, vowel rules, minimal pairs (ship/sheep), and sound discrimination quiz for...">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://englishlearner.org/tools/pronunciation-guide">
-  <meta property="og:locale" content="en_GB">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "English Pronunciation Guide",
-    "url": "https://englishlearner.org/tools/pronunciation-guide",
-    "description": "Interactive pronunciation tool with IPA chart, minimal pairs, and quiz for English learners.",
-    "applicationCategory": "Educational Application",
-    "operatingSystem": "All",
-    "browserRequirements": "JavaScript enabled",
-    "author": {
-      "@type": "Organization",
-      "name": "englishlearner.org"
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pronunciation Guide: English Text to IPA Phonetics</title>
+<meta name="description" content="Free pronunciation guide that converts English text to IPA phonetic spelling with syllable breaks and stress marks. Learn how to say any word.">
+<link rel="canonical" href="https://englishlearner.org/tools/pronunciation-guide">
+<meta property="og:title" content="Pronunciation Guide: English Text to IPA Phonetics">
+<meta property="og:description" content="Convert English text to IPA phonetics with syllables and stress. A free ESL pronunciation tool for learners.">
+<meta property="og:url" content="https://englishlearner.org/tools/pronunciation-guide">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Pronunciation Guide: English Text to IPA Phonetics",
+  "url": "https://englishlearner.org/tools/pronunciation-guide",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "Michael Lip", "url": "https://zovo.one" },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://englishlearner.org/" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://englishlearner.org/tools/" },
+      { "@type": "ListItem", "position": 3, "name": "pronunciation guide", "item": "https://englishlearner.org/tools/pronunciation-guide" }
+    ]
   }
-  </script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background: #0f172a;
-      color: #e2e8f0;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      line-height: 1.5;
-      padding: 1.5rem 1rem;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    header {
-      margin-bottom: 2rem;
-      border-bottom: 1px solid #1e293b;
-      padding-bottom: 1rem;
-    }
-    h1 {
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      color: #f1f5f9;
-    }
-    h1 span {
-      color: #38bdf8;
-    }
-    .subhead {
-      color: #94a3b8;
-      margin-top: 0.25rem;
-      font-size: 1rem;
-    }
-    h2 {
-      font-size: 1.4rem;
-      font-weight: 500;
-      margin: 1.5rem 0 0.75rem 0;
-      color: #f1f5f9;
-      border-left: 4px solid #38bdf8;
-      padding-left: 0.75rem;
-    }
-    h3 {
-      font-weight: 500;
-      font-size: 1.1rem;
-      margin: 1rem 0 0.5rem;
-      color: #cbd5e1;
-    }
-    .card {
-      background: #1e293b;
-      border-radius: 1rem;
-      padding: 1.25rem;
-      margin: 1.25rem 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .ipa-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-      gap: 0.5rem;
-    }
-    .ipa-symbol {
-      background: #0f172a;
-      border: 1px solid #334155;
-      border-radius: 0.5rem;
-      padding: 0.5rem 0.2rem;
-      text-align: center;
-      font-size: 1.3rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.1s ease;
-      color: #e2e8f0;
-    }
-    .ipa-symbol:hover, .ipa-symbol:focus-visible {
-      background: #1e3a5f;
-      border-color: #38bdf8;
-      transform: scale(1.02);
-      outline: 2px solid #38bdf8;
-    }
-    .ipa-symbol small {
-      display: block;
-      font-size: 0.6rem;
-      font-weight: 300;
-      color: #94a3b8;
-      word-break: break-word;
-    }
-    .ipa-example {
-      margin-top: 0.75rem;
-      background: #0f172a;
-      padding: 0.75rem 1rem;
-      border-radius: 2rem;
-      border-left: 4px solid #38bdf8;
-      font-size: 1.1rem;
-      min-height: 3rem;
-    }
-    .rule-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .rule-item {
-      background: #0f172a;
-      padding: 0.75rem 1rem;
-      border-radius: 1rem;
-      flex: 1 1 200px;
-      border: 1px solid #2d3a4e;
-    }
-    .rule-item strong {
-      color: #38bdf8;
-    }
-    .pair-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-    }
-    .pair-card {
-      background: #0f172a;
-      border-radius: 1rem;
-      padding: 1rem;
-      text-align: center;
-      border: 1px solid #2d3a4e;
-    }
-    .pair-words {
-      font-size: 1.4rem;
-      font-weight: 500;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 0.5rem;
-    }
-    .pair-words span {
-      background: #1e293b;
-      padding: 0.2rem 0.8rem;
-      border-radius: 2rem;
-    }
-    .pair-ipa {
-      color: #94a3b8;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
-    }
-    .btn {
-      background: #38bdf8;
-      border: none;
-      color: #0f172a;
-      font-weight: 600;
-      padding: 0.5rem 1.2rem;
-      border-radius: 2rem;
-      cursor: pointer;
-      transition: 0.1s;
-      font-size: 0.9rem;
-    }
-    .btn:hover {
-      background: #7dd3fc;
-      transform: scale(0.97);
-    }
-    .btn-outline {
-      background: transparent;
-      border: 1px solid #38bdf8;
-      color: #38bdf8;
-    }
-    .btn-outline:hover {
-      background: #1e3a5f;
-    }
-    .quiz-option {
-      display: block;
-      background: #0f172a;
-      border: 1px solid #334155;
-      padding: 0.6rem 1rem;
-      margin: 0.5rem 0;
-      border-radius: 2rem;
-      cursor: pointer;
-      transition: 0.1s;
-    }
-    .quiz-option:hover {
-      background: #1e293b;
-      border-color: #38bdf8;
-    }
-    .quiz-option.selected {
-      border-color: #38bdf8;
-      background: #1e3a5f;
-    }
-    .feedback {
-      margin-top: 0.75rem;
-      font-weight: 500;
-    }
-    .search-box {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-    .search-box input {
-      flex: 1;
-      background: #0f172a;
-      border: 1px solid #334155;
-      padding: 0.6rem 1rem;
-      border-radius: 2rem;
-      color: #e2e8f0;
-      font-size: 1rem;
-    }
-    .search-box input:focus {
-      outline: 2px solid #38bdf8;
-      border-color: transparent;
-    }
-    .pattern-result {
-      background: #0f172a;
-      padding: 0.5rem 1rem;
-      border-radius: 2rem;
-      margin: 0.25rem 0;
-    }
-    footer {
-      margin-top: 3rem;
-      border-top: 1px solid #1e293b;
-      padding-top: 1.5rem;
-      text-align: center;
-      color: #64748b;
-      font-size: 0.9rem;
-    }
-    footer a {
-      color: #38bdf8;
-      text-decoration: none;
-    }
-    .flex-between {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    @media (max-width: 600px) {
-      h1 { font-size: 1.6rem; }
-      .ipa-grid { grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); }
-    }
-  </style>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2241192243363112" crossorigin="anonymous"></script>
+}
+</script>
+<style>
+:root{--bg:#0e1116;--card:#161b22;--bd:#2a313c;--fg:#e6edf3;--mut:#9aa6b2;--acc:#58a6ff;--acc2:#7ee787;--warn:#f0a05a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+nav{display:flex;gap:18px;padding:14px 20px;border-bottom:1px solid var(--bd);background:#11151b;position:sticky;top:0;z-index:5}
+nav a{color:var(--acc);text-decoration:none;font-weight:600;font-size:14px}
+nav a:hover{text-decoration:underline}
+main{max-width:820px;margin:0 auto;padding:24px 20px 60px}
+h1{font-size:27px;line-height:1.25;margin:18px 0 6px}
+h2{font-size:20px;margin:34px 0 10px;border-bottom:1px solid var(--bd);padding-bottom:6px}
+.lede{color:var(--mut);font-size:16px;margin:0 0 8px}
+section#tool{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:20px;margin:22px 0}
+label{display:block;font-weight:600;font-size:14px;margin:14px 0 6px}
+textarea,select{width:100%;background:#0d1117;color:var(--fg);border:1px solid var(--bd);border-radius:8px;padding:11px 12px;font-size:15px;font-family:inherit}
+textarea{min-height:84px;resize:vertical}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+.row>div{flex:1;min-width:160px}
+.opts{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.opts label{display:inline-flex;align-items:center;gap:7px;margin:0;font-weight:500;color:var(--mut);cursor:pointer}
+#out{margin-top:18px;background:#0d1117;border:1px solid var(--bd);border-radius:8px;padding:16px;min-height:48px}
+.word{display:inline-block;margin:0 10px 12px 0;vertical-align:top}
+.word .orig{font-weight:700;font-size:15px}
+.word .ipa{color:var(--acc2);font-size:18px;letter-spacing:.5px}
+.word .syl{color:var(--mut);font-size:12px}
+.stat{display:flex;gap:22px;flex-wrap:wrap;margin-top:14px;color:var(--mut);font-size:13px;border-top:1px solid var(--bd);padding-top:12px}
+.stat b{color:var(--acc);font-size:16px;display:block}
+.legend{font-size:12px;color:var(--mut);margin-top:10px}
+.exact{color:var(--acc2)}.guess{color:var(--warn)}
+p{margin:12px 0}
+a.inl{color:var(--acc)}
+.related a{display:inline-block;margin:4px 14px 4px 0;color:var(--acc);text-decoration:none;font-weight:600}
+.related a:hover{text-decoration:underline}
+footer{border-top:1px solid var(--bd);padding:22px 20px;text-align:center;color:var(--mut);font-size:13px}
+footer a{color:var(--acc);text-decoration:none;margin:0 8px}
+small{color:var(--mut)}
+</style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <h1>🔊 <span>Pronunciation</span> Guide</h1>
-    <div class="subhead">IPA chart · rules · minimal pairs · quiz · pattern search</div>
-  </header>
+<nav>
+  <a href="/">Home</a>
+  <a href="/tools/">All Tools</a>
+  <a href="/tools/pronunciation-guide">Pronunciation Guide</a>
+</nav>
+<main>
+  <h1>English Pronunciation Guide &amp; IPA Converter</h1>
+  <p class="lede">Type any English word or sentence and get its IPA phonetic spelling, syllable breaks, and stress marks instantly — no sign-up, works offline in your browser.</p>
 
-  <!-- IPA CHART -->
-  <section>
-    <h2>IPA chart – click any symbol</h2>
-    <div class="card">
-      <div class="ipa-grid" id="ipaGrid"></div>
-      <div id="ipaExample" class="ipa-example">👆 Click an IPA symbol to see an example word</div>
-    </div>
-  </section>
-
-  <!-- PRONUNCIATION RULES -->
-  <section>
-    <h2>Common pronunciation rules</h2>
-    <div class="card rule-list">
-      <div class="rule-item"><strong>Silent ‘e’</strong> – <em>hope, make, late</em> (vowel becomes long)</div>
-      <div class="rule-item"><strong>Silent ‘k’</strong> – <em>knife, know, knee</em> (k before n)</div>
-      <div class="rule-item"><strong>Silent ‘b’</strong> – <em>comb, thumb, debt</em> (mb, bt)</div>
-      <div class="rule-item"><strong>‘sh’ /ʃ/</strong> – <em>ship, fish, action</em></div>
-      <div class="rule-item"><strong>‘th’ /θ/ & /ð/</strong> – <em>think, this, mother</em></div>
-      <div class="rule-item"><strong>‘ng’ /ŋ/</strong> – <em>sing, long, walking</em></div>
-      <div class="rule-item"><strong>short /ɪ/ vs /iː/</strong> – <em>ship vs sheep</em></div>
-      <div class="rule-item"><strong>‘ch’ /tʃ/</strong> – <em>chip, teacher, catch</em></div>
-    </div>
-  </section>
-
-  <!-- MINIMAL PAIRS -->
-  <section>
-    <h2>Minimal pairs practice</h2>
-    <div class="card">
-      <div class="pair-grid" id="minimalPairs"></div>
-    </div>
-  </section>
-
-  <!-- INTERACTIVE QUIZ -->
-  <section>
-    <h2>🎧 Sound discrimination quiz</h2>
-    <div class="card" id="quizArea">
-      <div id="quizQuestion" style="font-size:1.2rem; margin-bottom:0.75rem;">Which word do you hear? (text-based)</div>
-      <div id="quizOptions"></div>
-      <div class="flex-between" style="margin-top:0.75rem;">
-        <span id="quizFeedback" class="feedback"></span>
-        <button class="btn" id="nextQuizBtn">Next question</button>
+  <section id="tool">
+    <label for="inp">Enter English text to transcribe</label>
+    <textarea id="inp" spellcheck="false">English pronunciation is really difficult to learn</textarea>
+    <div class="opts">
+      <label><input type="checkbox" id="optSyl" checked> Show syllables</label>
+      <label><input type="checkbox" id="optStress" checked> Show stress mark (ˈ)</label>
+      <label for="optStyle" style="cursor:default">Accent:&nbsp;</label>
+      <div style="max-width:160px;flex:0 0 auto">
+        <select id="optStyle" aria-label="Accent style">
+          <option value="ga" selected>General American</option>
+          <option value="rp">British (RP-ish)</option>
+        </select>
       </div>
     </div>
+    <div id="out" aria-live="polite"></div>
+    <div class="legend"><span class="exact">●</span> dictionary match &nbsp; <span class="guess">●</span> rule-based estimate</div>
+    <div class="stat" id="stat"></div>
   </section>
 
-  <!-- SEARCH PATTERN -->
-  <section>
-    <h2>Search word pronunciation pattern</h2>
-    <div class="card">
-      <div class="search-box">
-        <input type="text" id="patternSearchInput" placeholder="e.g. 'kn', 'sh', 'ee', 'silent e'..." value="kn">
-        <button class="btn" id="patternSearchBtn">Search</button>
-      </div>
-      <div id="patternResults" style="margin-top:0.75rem;"></div>
-    </div>
-  </section>
+  <h2>How this pronunciation tool works</h2>
+  <p>English spelling is famously irregular — the letters <em>ough</em> alone have six different sounds (think <em>though</em>, <em>tough</em>, <em>through</em>, <em>cough</em>, <em>bough</em>, <em>thought</em>). Because of that, no single set of rules can perfectly convert spelling to sound. This tool uses a two-stage method to get close.</p>
+  <p><strong>Stage 1 — dictionary lookup.</strong> The tool ships with a built-in pronunciation dictionary of several hundred of the most common English words, each stored with its hand-checked IPA (International Phonetic Alphabet) transcription. If your word is in the list, you get an exact, authoritative result, marked with a green dot.</p>
+  <p><strong>Stage 2 — grapheme-to-phoneme rules.</strong> When a word is not in the dictionary, the tool falls back to a letter-to-sound algorithm. It scans the word left to right, matching multi-letter spelling patterns (digraphs like <em>sh</em>, <em>ch</em>, <em>th</em>, and vowel teams like <em>ea</em>, <em>oo</em>, <em>igh</em>) before single letters, applies the silent-<em>e</em> rule that lengthens a preceding vowel, and reduces unstressed vowels toward the schwa /ə/. These estimates are marked with an amber dot so you know to double-check them.</p>
+  <p><strong>Syllables and stress.</strong> Syllable count is estimated by counting vowel-sound groups (adjacent vowels count once) and subtracting a silent final <em>e</em>. The primary stress mark <strong>ˈ</strong> is placed before the strongest syllable using a simple heuristic: two-syllable nouns and adjectives usually stress the first syllable, while the General American and British (RP) toggles swap a few vowel qualities such as the <em>a</em> in <em>bath</em> and the rhotic final <em>r</em>. Treat the output as a study aid, not a substitute for a native-speaker recording.</p>
 
-  <footer>
-    <p>© englishlearner.org — <a href="https://englishlearner.org/tools/pronunciation-guide">Pronunciation Guide</a> | IPA data based on standard English phonemes</p>
-  </footer>
-<div style="margin:20px auto;max-width:728px;text-align:center">
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2241192243363112" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-</div>
+  <h2>Related Tools</h2>
+  <p class="related">
+    <a href="/tools/syllable-counter">Syllable Counter</a>
+    <a href="/tools/phonetic-alphabet">Phonetic Alphabet Chart</a>
+    <a href="/tools/word-stress">Word Stress Trainer</a>
+  </p>
+</main>
+
+<footer>
+  <div>
+    <a href="/">Home</a> ·
+    <a href="/tools/">Tools</a> ·
+    <a href="/about">About</a> ·
+    <a href="/tools/pronunciation-guide">Pronunciation Guide</a>
+  </div>
+  <p>© 2026 EnglishLearner.org — a free ESL learning resource.</p>
+</footer>
 
 <script>
-  (function() {
-    // ----- IPA DATA -----
-    const ipaSymbols = [
-      { symbol: 'iː', example: 'see', word: 'see' },
-      { symbol: 'ɪ', example: 'ship', word: 'ship' },
-      { symbol: 'e', example: 'bed', word: 'bed' },
-      { symbol: 'æ', example: 'cat', word: 'cat' },
-      { symbol: 'ʌ', example: 'cup', word: 'cup' },
-      { symbol: 'ɑː', example: 'car', word: 'car' },
-      { symbol: 'ɒ', example: 'hot', word: 'hot' },
-      { symbol: 'ɔː', example: 'saw', word: 'saw' },
-      { symbol: 'ʊ', example: 'put', word: 'put' },
-      { symbol: 'uː', example: 'blue', word: 'blue' },
-      { symbol: 'ə', example: 'about', word: 'about' },
-      { symbol: 'ɜː', example: 'bird', word: 'bird' },
-      { symbol: 'eɪ', example: 'day', word: 'day' },
-      { symbol: 'aɪ', example: 'my', word: 'my' },
-      { symbol: 'ɔɪ', example: 'boy', word: 'boy' },
-      { symbol: 'aʊ', example: 'now', word: 'now' },
-      { symbol: 'əʊ', example: 'go', word: 'go' },
-      { symbol: 'ɪə', example: 'near', word: 'near' },
-      { symbol: 'eə', example: 'hair', word: 'hair' },
-      { symbol: 'ʊə', example: 'pure', word: 'pure' },
-      { symbol: 'p', example: 'pen', word: 'pen' },
-      { symbol: 'b', example: 'bad', word: 'bad' },
-      { symbol: 't', example: 'tea', word: 'tea' },
-      { symbol: 'd', example: 'dog', word: 'dog' },
-      { symbol: 'k', example: 'cat', word: 'cat' },
-      { symbol: 'g', example: 'go', word: 'go' },
-      { symbol: 'tʃ', example: 'chip', word: 'chip' },
-      { symbol: 'dʒ', example: 'judge', word: 'judge' },
-      { symbol: 'f', example: 'fish', word: 'fish' },
-      { symbol: 'v', example: 'van', word: 'van' },
-      { symbol: 'θ', example: 'think', word: 'think' },
-      { symbol: 'ð', example: 'this', word: 'this' },
-      { symbol: 's', example: 'see', word: 'see' },
-      { symbol: 'z', example: 'zoo', word: 'zoo' },
-      { symbol: 'ʃ', example: 'ship', word: 'ship' },
-      { symbol: 'ʒ', example: 'measure', word: 'measure' },
-      { symbol: 'h', example: 'hat', word: 'hat' },
-      { symbol: 'm', example: 'man', word: 'man' },
-      { symbol: 'n', example: 'no', word: 'no' },
-      { symbol: 'ŋ', example: 'sing', word: 'sing' },
-      { symbol: 'l', example: 'leg', word: 'leg' },
-      { symbol: 'r', example: 'red', word: 'red' },
-      { symbol: 'j', example: 'yes', word: 'yes' },
-      { symbol: 'w', example: 'wet', word: 'wet' }
-    ];
+(function(){
+  "use strict";
+  // ---- Stage 1: built-in pronunciation dictionary (General American IPA) ----
+  var DICT = {
+    "the":"ðə","a":"ə","an":"æn","and":"ænd","of":"əv","to":"tu","in":"ɪn","is":"ɪz","it":"ɪt",
+    "you":"juː","that":"ðæt","he":"hiː","she":"ʃiː","was":"wʌz","for":"fɔːr","on":"ɑːn","are":"ɑːr",
+    "as":"æz","with":"wɪð","his":"hɪz","they":"ðeɪ","at":"æt","be":"biː","this":"ðɪs","have":"hæv",
+    "from":"frʌm","or":"ɔːr","one":"wʌn","had":"hæd","by":"baɪ","word":"wɜːrd","but":"bʌt","not":"nɑːt",
+    "what":"wʌt","all":"ɔːl","were":"wɜːr","we":"wiː","when":"wɛn","your":"jʊr","can":"kæn","said":"sɛd",
+    "there":"ðɛr","use":"juːz","each":"iːtʃ","which":"wɪtʃ","do":"duː","how":"haʊ","their":"ðɛr",
+    "if":"ɪf","will":"wɪl","up":"ʌp","other":"ˈʌðər","about":"əˈbaʊt","out":"aʊt","many":"ˈmɛni",
+    "then":"ðɛn","them":"ðɛm","these":"ðiːz","so":"soʊ","some":"sʌm","her":"hɜːr","would":"wʊd",
+    "make":"meɪk","like":"laɪk","him":"hɪm","into":"ˈɪntuː","time":"taɪm","has":"hæz","look":"lʊk",
+    "two":"tuː","more":"mɔːr","write":"raɪt","go":"goʊ","see":"siː","number":"ˈnʌmbər","no":"noʊ",
+    "way":"weɪ","could":"kʊd","people":"ˈpiːpəl","my":"maɪ","than":"ðæn","first":"fɜːrst",
+    "water":"ˈwɔːtər","been":"bɪn","call":"kɔːl","who":"huː","now":"naʊ","find":"faɪnd","long":"lɔːŋ",
+    "down":"daʊn","day":"deɪ","did":"dɪd","get":"ɡɛt","come":"kʌm","made":"meɪd","may":"meɪ",
+    "english":"ˈɪŋɡlɪʃ","pronunciation":"prəˌnʌnsiˈeɪʃən","really":"ˈriːəli","difficult":"ˈdɪfɪkəlt",
+    "learn":"lɜːrn","language":"ˈlæŋɡwɪdʒ","student":"ˈstuːdənt","teacher":"ˈtiːtʃər","study":"ˈstʌdi",
+    "practice":"ˈpræktɪs","grammar":"ˈɡræmər","vocabulary":"voʊˈkæbjəˌlɛri","sentence":"ˈsɛntəns",
+    "question":"ˈkwɛstʃən","answer":"ˈænsər","example":"ɪɡˈzæmpəl","because":"bɪˈkɔːz","through":"θruː",
+    "thought":"θɔːt","enough":"ɪˈnʌf","though":"ðoʊ","tough":"tʌf","cough":"kɔːf","laugh":"læf",
+    "school":"skuːl","friend":"frɛnd","people":"ˈpiːpəl","colour":"ˈkʌlər","color":"ˈkʌlər",
+    "knight":"naɪt","know":"noʊ","write":"raɪt","island":"ˈaɪlənd","hour":"ˈaʊər","honest":"ˈɑːnɪst",
+    "beautiful":"ˈbjuːtɪfəl","comfortable":"ˈkʌmftərbəl","important":"ɪmˈpɔːrtənt","develop":"dɪˈvɛləp",
+    "world":"wɜːrld","work":"wɜːrk","good":"ɡʊd","great":"ɡreɪt","little":"ˈlɪtəl","own":"oʊn",
+    "old":"oʊld","tell":"tɛl","boy":"bɔɪ","follow":"ˈfɑːloʊ","came":"keɪm","want":"wɑːnt","show":"ʃoʊ",
+    "also":"ˈɔːlsoʊ","around":"əˈraʊnd","form":"fɔːrm","three":"θriː","small":"smɔːl","set":"sɛt",
+    "put":"pʊt","end":"ɛnd","does":"dʌz","another":"əˈnʌðər","well":"wɛl","large":"lɑːrdʒ","must":"mʌst",
+    "big":"bɪɡ","even":"ˈiːvən","such":"sʌtʃ","here":"hɪr","why":"waɪ","ask":"æsk","went":"wɛnt",
+    "men":"mɛn","read":"riːd","need":"niːd","land":"lænd","different":"ˈdɪfərənt","home":"hoʊm",
+    "us":"ʌs","move":"muːv","try":"traɪ","kind":"kaɪnd","hand":"hænd","picture":"ˈpɪktʃər","again":"əˈɡɛn",
+    "change":"tʃeɪndʒ","off":"ɔːf","play":"pleɪ","spell":"spɛl","air":"ɛr","away":"əˈweɪ","animal":"ˈænɪməl",
+    "house":"haʊs","point":"pɔɪnt","page":"peɪdʒ","letter":"ˈlɛtər","mother":"ˈmʌðər","father":"ˈfɑːðər",
+    "thing":"θɪŋ","think":"θɪŋk","name":"neɪm","sound":"saʊnd","near":"nɪr","add":"æd","food":"fuːd",
+    "between":"bɪˈtwiːn","city":"ˈsɪti","tree":"triː","cross":"krɔːs","farm":"fɑːrm","hard":"hɑːrd",
+    "start":"stɑːrt","might":"maɪt","story":"ˈstɔːri","saw":"sɔː","left":"lɛft","few":"fjuː","while":"waɪl",
+    "along":"əˈlɔːŋ","night":"naɪt","life":"laɪf","both":"boʊθ","paper":"ˈpeɪpər","together":"təˈɡɛðər",
+    "got":"ɡɑːt","group":"ɡruːp","often":"ˈɔːfən","run":"rʌn","important":"ɪmˈpɔːrtənt","children":"ˈtʃɪldrən",
+    "side":"saɪd","feet":"fiːt","car":"kɑːr","mile":"maɪl","began":"bɪˈɡæn","walk":"wɔːk","white":"waɪt",
+    "sea":"siː","began":"bɪˈɡæn","grow":"ɡroʊ","took":"tʊk","river":"ˈrɪvər","four":"fɔːr","carry":"ˈkæri",
+    "state":"steɪt","once":"wʌns","book":"bʊk","hear":"hɪr","stop":"stɑːp","without":"wɪˈðaʊt","second":"ˈsɛkənd",
+    "later":"ˈleɪtər","miss":"mɪs","idea":"aɪˈdiːə","family":"ˈfæməli","music":"ˈmjuːzɪk","those":"ðoʊz",
+    "happy":"ˈhæpi","young":"jʌŋ","every":"ˈɛvri","listen":"ˈlɪsən","speak":"spiːk","easy":"ˈiːzi","right":"raɪt"
+  };
 
-    const ipaGrid = document.getElementById('ipaGrid');
-    const ipaExampleDiv = document.getElementById('ipaExample');
+  // ---- Stage 2: grapheme-to-phoneme fallback rules (ordered, multi-letter first) ----
+  var RULES = [
+    ["tion","ʃən"],["sion","ʒən"],["ough","ʌf"],["augh","æf"],["eigh","eɪ"],["igh","aɪ"],
+    ["tch","tʃ"],["dge","dʒ"],["ck","k"],["sh","ʃ"],["ch","tʃ"],["th","θ"],["ph","f"],["wh","w"],
+    ["qu","kw"],["ng","ŋ"],["ee","iː"],["ea","iː"],["oo","uː"],["ou","aʊ"],["ow","aʊ"],["oi","ɔɪ"],
+    ["oy","ɔɪ"],["ai","eɪ"],["ay","eɪ"],["au","ɔː"],["aw","ɔː"],["ar","ɑːr"],["er","ər"],["ir","ɜːr"],
+    ["or","ɔːr"],["ur","ɜːr"],["oa","oʊ"],["ie","aɪ"],["ey","eɪ"],
+    ["a","æ"],["e","ɛ"],["i","ɪ"],["o","ɑː"],["u","ʌ"],["y","i"],
+    ["b","b"],["c","k"],["d","d"],["f","f"],["g","ɡ"],["h","h"],["j","dʒ"],["k","k"],["l","l"],
+    ["m","m"],["n","n"],["p","p"],["q","k"],["r","r"],["s","s"],["t","t"],["v","v"],["w","w"],["x","ks"],["z","z"]
+  ];
 
-    function renderIPA() {
-      ipaGrid.innerHTML = '';
-      ipaSymbols.forEach(item => {
-        const btn = document.createElement('button');
-        btn.className = 'ipa-symbol';
-        btn.setAttribute('aria-label', `IPA ${item.symbol}`);
-        btn.innerHTML = `${item.symbol} <small>${item.word}</small>`;
-        btn.addEventListener('click', () => {
-          ipaExampleDiv.innerHTML = `🔊 /${item.symbol}/ → <strong>${item.example}</strong> (as in “${item.word}”)`;
-        });
-        ipaGrid.appendChild(btn);
-      });
+  function gtp(word){
+    var w = word.toLowerCase();
+    var silentE = false;
+    // silent final e after a consonant (e.g. "make","time") -> lengthen vowel, drop e
+    if(w.length>2 && w.charAt(w.length-1)==="e" && "bcdfghjklmnpqrstvwxz".indexOf(w.charAt(w.length-2))>=0){
+      silentE = true;
+      w = w.slice(0,-1);
     }
-    renderIPA();
-
-    // ----- MINIMAL PAIRS -----
-    const pairs = [
-      { w1: 'ship', w2: 'sheep', ipa1: '/ʃɪp/', ipa2: '/ʃiːp/' },
-      { w1: 'bat', w2: 'bet', ipa1: '/bæt/', ipa2: '/bet/' },
-      { w1: 'pen', w2: 'pan', ipa1: '/pen/', ipa2: '/pæn/' },
-      { w1: 'bit', w2: 'beat', ipa1: '/bɪt/', ipa2: '/biːt/' },
-      { w1: 'cot', w2: 'caught', ipa1: '/kɒt/', ipa2: '/kɔːt/' },
-      { w1: 'full', w2: 'fool', ipa1: '/fʊl/', ipa2: '/fuːl/' }
-    ];
-    const pairContainer = document.getElementById('minimalPairs');
-    function renderPairs() {
-      pairContainer.innerHTML = '';
-      pairs.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'pair-card';
-        card.innerHTML = `
-          <div class="pair-words"><span>${p.w1}</span> ↔ <span>${p.w2}</span></div>
-          <div class="pair-ipa">${p.ipa1} &nbsp;|&nbsp; ${p.ipa2}</div>
-        `;
-        pairContainer.appendChild(card);
-      });
-    }
-    renderPairs();
-
-    // ----- QUIZ (text-based sound discrimination) -----
-    const quizData = [
-      { question: 'Which word has a SHORT /ɪ/ sound?', options: ['ship', 'sheep'], correct: 'ship' },
-      { question: 'Which word has a LONG /iː/ sound?', options: ['bit', 'beat'], correct: 'beat' },
-      { question: 'Which word contains /æ/?', options: ['bat', 'bet'], correct: 'bat' },
-      { question: 'Which word has /ʌ/?', options: ['cup', 'cap'], correct: 'cup' },
-      { question: 'Which word ends with /ŋ/?', options: ['sing', 'sin'], correct: 'sing' },
-      { question: 'Which word has /θ/?', options: ['think', 'sink'], correct: 'think' }
-    ];
-    let currentQuiz = 0;
-    let selectedOption = null;
-    const quizQuestion = document.getElementById('quizQuestion');
-    const quizOptions = document.getElementById('quizOptions');
-    const quizFeedback = document.getElementById('quizFeedback');
-    const nextBtn = document.getElementById('nextQuizBtn');
-
-    function loadQuiz(index) {
-      const q = quizData[index];
-      quizQuestion.textContent = q.question;
-      quizOptions.innerHTML = '';
-      selectedOption = null;
-      quizFeedback.textContent = '';
-      q.options.forEach(opt => {
-        const div = document.createElement('div');
-        div.className = 'quiz-option';
-        div.textContent = opt;
-        div.dataset.value = opt;
-        div.addEventListener('click', function(e) {
-          if (selectedOption !== null) {
-            document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
-          }
-          this.classList.add('selected');
-          selectedOption = this.dataset.value;
-          // check correctness
-          const correct = quizData[currentQuiz].correct;
-          if (selectedOption === correct) {
-            quizFeedback.textContent = '✅ Correct!';
-            quizFeedback.style.color = '#7dd3fc';
-          } else {
-            quizFeedback.textContent = `❌ Not quite. The answer is “${correct}”.`;
-            quizFeedback.style.color = '#fca5a5';
-          }
-        });
-        quizOptions.appendChild(div);
-      });
-    }
-
-    function nextQuestion() {
-      currentQuiz = (currentQuiz + 1) % quizData.length;
-      loadQuiz(currentQuiz);
-    }
-    nextBtn.addEventListener('click', nextQuestion);
-    loadQuiz(0);
-
-    // ----- PATTERN SEARCH (word list) -----
-    const wordBank = [
-      { word: 'knife', pattern: 'silent k', ipa: '/naɪf/' },
-      { word: 'know', pattern: 'silent k', ipa: '/nəʊ/' },
-      { word: 'knee', pattern: 'silent k', ipa: '/niː/' },
-      { word: 'comb', pattern: 'silent b', ipa: '/kəʊm/' },
-      { word: 'thumb', pattern: 'silent b', ipa: '/θʌm/' },
-      { word: 'debt', pattern: 'silent b', ipa: '/det/' },
-      { word: 'hope', pattern: 'silent e', ipa: '/həʊp/' },
-      { word: 'make', pattern: 'silent e', ipa: '/meɪk/' },
-      { word: 'late', pattern: 'silent e', ipa: '/leɪt/' },
-      { word: 'ship', pattern: 'sh', ipa: '/ʃɪp/' },
-      { word: 'fish', pattern: 'sh', ipa: '/fɪʃ/' },
-      { word: 'chip', pattern: 'ch', ipa: '/tʃɪp/' },
-      { word: 'teacher', pattern: 'ch', ipa: '/ˈtiːtʃə/' },
-      { word: 'sing', pattern: 'ng', ipa: '/sɪŋ/' },
-      { word: 'long', pattern: 'ng', ipa: '/lɒŋ/' },
-      { word: 'think', pattern: 'th', ipa: '/θɪŋk/' },
-      { word: 'this', pattern: 'th', ipa: '/ðɪs/' },
-      { word: 'sheep', pattern: 'ee', ipa: '/ʃiːp/' },
-      { word: 'beat', pattern: 'ea', ipa: '/biːt/' },
-      { word: 'bat', pattern: 'short a', ipa: '/bæt/' },
-      { word: 'bet', pattern: 'short e', ipa: '/bet/' },
-      { word: 'cup', pattern: 'short u', ipa: '/kʌp/' },
-      { word: 'cat', pattern: 'short a', ipa: '/kæt/' }
-    ];
-
-    const searchInput = document.getElementById('patternSearchInput');
-    const searchBtn = document.getElementById('patternSearchBtn');
-    const patternResults = document.getElementById('patternResults');
-
-    function searchPattern(query) {
-      const q = query.toLowerCase().trim();
-      if (!q) { patternResults.innerHTML = '<span style="color:#94a3b8;">Enter a pattern (e.g. "silent k", "sh", "ng")</span>'; return; }
-      const results = wordBank.filter(item => 
-        item.pattern.toLowerCase().includes(q) || item.word.toLowerCase().includes(q) || item.ipa.includes(q)
-      );
-      if (results.length === 0) {
-        patternResults.innerHTML = `<span style="color:#fca5a5;">No results for “${q}”. Try “silent”, “sh”, “th”, “ng”, “ee”.</span>`;
-        return;
+    var out = "", i = 0;
+    while(i < w.length){
+      var matched = false;
+      for(var r=0;r<RULES.length;r++){
+        var g = RULES[r][0];
+        if(w.substr(i,g.length) === g){
+          out += RULES[r][1];
+          i += g.length;
+          matched = true;
+          break;
+        }
       }
-      let html = `<div style="margin-bottom:0.5rem;color:#94a3b8;">${results.length} match(es)</div>`;
-      results.forEach(r => {
-        html += `<div class="pattern-result"><strong>${r.word}</strong>  /${r.ipa.replace(/\//g,'')}/  <span style="color:#38bdf8;">[${r.pattern}]</span></div>`;
-      });
-      patternResults.innerHTML = html;
+      if(!matched){ i++; } // skip unknown char
     }
+    // silent-e long-vowel adjustment on the last short vowel produced
+    if(silentE){
+      out = out.replace(/æ([^æɛɪɑʌ]*)$/,"eɪ$1")
+               .replace(/ɛ([^æɛɪɑʌ]*)$/,"iː$1")
+               .replace(/ɪ([^æɛɪɑʌ]*)$/,"aɪ$1")
+               .replace(/ɑː([^æɛɪɑʌ]*)$/,"oʊ$1")
+               .replace(/ʌ([^æɛɪɑʌ]*)$/,"juː$1");
+    }
+    return out;
+  }
 
-    searchBtn.addEventListener('click', () => searchPattern(searchInput.value));
-    searchInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') searchPattern(searchInput.value); });
-    // initial search
-    searchPattern('kn');
-  })();
+  function countSyllables(word){
+    var w = word.toLowerCase().replace(/[^a-z]/g,"");
+    if(!w) return 0;
+    if(w.length<=3) return 1;
+    var m = w.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/,"")
+             .replace(/^y/,"")
+             .match(/[aeiouy]{1,2}/g);
+    return m ? m.length : 1;
+  }
+
+  function syllabify(word, n){
+    // light visual hyphenation by vowel groups, capped at n parts
+    var w = word;
+    if(n<=1) return w;
+    var parts = w.match(/[^aeiouyAEIOUY]*[aeiouyAEIOUY]+(?:[^aeiouyAEIOUY]*$|[^aeiouyAEIOUY](?=[^aeiouyAEIOUY]))?/g);
+    if(!parts) return w;
+    return parts.join("·");
+  }
+
+  function applyAccent(ipa, style){
+    if(style==="rp"){
+      // British-ish: drop rhotic r at end of vowel+r, broaden bath-a
+      ipa = ipa.replace(/ɑːr/g,"ɑː").replace(/ɔːr/g,"ɔː").replace(/ər\b/g,"ə").replace(/ɜːr/g,"ɜː");
+      ipa = ipa.replace(/æs/g,"ɑːs").replace(/æf/g,"ɑːf");
+    }
+    return ipa;
+  }
+
+  function addStress(ipa, nSyl, withStress){
+    if(!withStress || nSyl<2) return ipa;
+    if(/[ˈ]/.test(ipa)) return ipa; // dictionary already has it
+    // place ˈ at the start (first-syllable default heuristic)
+    return "ˈ" + ipa;
+  }
+
+  var inp=document.getElementById("inp"),
+      out=document.getElementById("out"),
+      stat=document.getElementById("stat"),
+      optSyl=document.getElementById("optSyl"),
+      optStress=document.getElementById("optStress"),
+      optStyle=document.getElementById("optStyle");
+
+  function esc(s){return s.replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+
+  function render(){
+    var text = inp.value;
+    var style = optStyle.value;
+    var tokens = text.match(/[A-Za-z']+/g) || [];
+    var html = "", exact=0, est=0, totalSyl=0;
+    for(var t=0;t<tokens.length;t++){
+      var raw = tokens[t];
+      var key = raw.toLowerCase().replace(/'/g,"");
+      var ipa, isExact;
+      if(DICT.hasOwnProperty(key)){ ipa = DICT[key]; isExact = true; exact++; }
+      else { ipa = gtp(key); isExact = false; est++; }
+      var nSyl = countSyllables(key);
+      totalSyl += nSyl;
+      ipa = applyAccent(ipa, style);
+      ipa = addStress(ipa, nSyl, optStress.checked);
+      var sylStr = optSyl.checked ? syllabify(raw, nSyl) : raw;
+      var dot = isExact ? '<span class="exact">●</span>' : '<span class="guess">●</span>';
+      html += '<span class="word">'
+            + '<span class="orig">'+dot+' '+esc(raw)+'</span><br>'
+            + '<span class="ipa">/'+esc(ipa)+'/</span>'
+            + (optSyl.checked ? '<br><span class="syl">'+esc(sylStr)+'</span>' : '')
+            + '</span>';
+    }
+    out.innerHTML = html || '<small>Type something above to see its pronunciation.</small>';
+    stat.innerHTML =
+      '<div><b>'+tokens.length+'</b>words</div>' +
+      '<div><b>'+totalSyl+'</b>syllables</div>' +
+      '<div><b>'+exact+'</b>dictionary matches</div>' +
+      '<div><b>'+est+'</b>rule estimates</div>';
+  }
+
+  inp.addEventListener("input", render);
+  optSyl.addEventListener("change", render);
+  optStress.addEventListener("change", render);
+  optStyle.addEventListener("change", render);
+  render(); // prefilled output on load
+})();
 </script>
-<div style="margin:30px auto;max-width:728px;text-align:center;padding:18px 24px;background:linear-gradient(135deg,#0f172a,#1e293b);border:1px solid #334155;border-radius:10px">
-<p style="margin:0 0 6px;color:#94a3b8;font-size:0.85rem">Recommended by our team</p>
-<a href="https://www.belikenative.com?ref=satellite" target="_blank" rel="noopener" style="color:#38bdf8;font-weight:600;font-size:1.05rem;text-decoration:none">BeLikeNative.com</a>
-<p style="margin:6px 0 0;color:#cbd5e1;font-size:0.9rem">The #1 AI writing tool for freelancers — perfect grammar in any language, instantly.</p>
-</div>
 </body>
 </html>
