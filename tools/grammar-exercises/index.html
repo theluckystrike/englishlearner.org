@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Grammar Exercises: Free ESL Practice Quiz</title>
 <meta name="description" content="Free interactive English grammar exercises for ESL learners. Practice tenses, articles, prepositions and more with instant scoring and explanations.">
-<link rel="canonical" href="https://englishlearner.org/tools/grammar-exercises">
+<link rel="canonical" href="https://englishlearner.org/tools/grammar-exercises/">
 <meta property="og:title" content="Grammar Exercises: Free ESL Practice Quiz">
 <meta property="og:description" content="Free interactive English grammar exercises for ESL learners. Practice tenses, articles, prepositions and more with instant scoring and explanations.">
-<meta property="og:url" content="https://englishlearner.org/tools/grammar-exercises">
+<meta property="og:url" content="https://englishlearner.org/tools/grammar-exercises/">
 <meta property="og:type" content="website">
 <script type="application/ld+json">
 {
@@ -17,7 +17,7 @@
     {
       "@type": "WebApplication",
       "name": "Grammar Exercises",
-      "url": "https://englishlearner.org/tools/grammar-exercises",
+      "url": "https://englishlearner.org/tools/grammar-exercises/",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -28,7 +28,7 @@
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://englishlearner.org/" },
         { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://englishlearner.org/tools/" },
-        { "@type": "ListItem", "position": 3, "name": "Grammar Exercises", "item": "https://englishlearner.org/tools/grammar-exercises" }
+        { "@type": "ListItem", "position": 3, "name": "Grammar Exercises", "item": "https://englishlearner.org/tools/grammar-exercises/" }
       ]
     }
   ]
@@ -97,15 +97,21 @@ footer a{color:var(--acc);text-decoration:none;margin:0 8px}
 small.note{color:var(--mut)}
 @media(max-width:520px){h1{font-size:1.55rem}body{font-size:16px}}
 </style>
+<meta name="google-adsense-account" content="ca-pub-2241192243363112">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
 </head>
 <body>
-<nav>
-  <a href="/">Home</a>
-  <a href="/tools/">Tools</a>
-</nav>
+<div class="el-top" role="navigation" aria-label="Site">
+  <a class="el-brand" href="/">English Learner</a>
+  <a href="/lessons/">Lessons</a>
+  <a href="/tools/">Practice tools</a>
+  <a href="/tools/level-assessment/">Level test</a>
+  <a href="/about/">About</a>
+</div>
 <div class="wrap">
   <h1>Interactive English Grammar Practice</h1>
-  <p class="lead">Pick a topic and a level, then answer ten auto-generated multiple-choice questions. Every answer is checked instantly with a short explanation, and your final score is graded the moment you finish.</p>
+  <p class="lead">Pick a topic and a level, then answer the multiple-choice questions. Every answer is checked at once and comes with a short explanation. You get a score at the end.</p>
 
   <section id="tool" aria-label="Grammar exercises tool">
     <div class="controls">
@@ -122,16 +128,16 @@ small.note{color:var(--mut)}
       <div class="field">
         <label for="level">Difficulty</label>
         <select id="level">
-          <option value="easy">Beginner (A1–A2)</option>
-          <option value="med" selected>Intermediate (B1–B2)</option>
+          <option value="easy">Beginner (A1 to A2)</option>
+          <option value="med" selected>Intermediate (B1 to B2)</option>
           <option value="hard">Advanced (C1)</option>
         </select>
       </div>
       <div class="field">
         <label for="count">Questions</label>
         <select id="count">
-          <option>5</option>
-          <option selected>10</option>
+          <option selected>5</option>
+          <option>10</option>
           <option>15</option>
         </select>
       </div>
@@ -142,7 +148,7 @@ small.note{color:var(--mut)}
     </div>
 
     <div class="bar">
-      <div class="score" id="progress">Answered 0 / 10</div>
+      <div class="score" id="progress">Answered 0 / 5</div>
       <div class="score" id="liveScore">Correct: 0</div>
     </div>
 
@@ -153,30 +159,35 @@ small.note{color:var(--mut)}
       <div class="meter"><i id="meterFill"></i></div>
       <div id="resultMsg" class="mut"></div>
     </div>
-    <p><small class="note">Tip: change the topic or level above and press <b>New quiz</b> for a fresh set. Questions are generated locally in your browser — nothing is sent anywhere.</small></p>
+    <p><small class="note">Tip: change the topic or the level and press <b>New quiz</b> for a new set. Your answers are checked in your browser. They are not sent anywhere.</small></p>
   </section>
 
-  <h2>How this grammar trainer works</h2>
-  <p>This tool is a self-contained practice engine for English as a Second Language learners. It holds a curated bank of grammar items grouped by topic — verb tenses, articles, prepositions and irregular verbs — and each item carries a correct answer, three plausible distractors, and a one-line explanation written in plain English. When you choose a topic, the engine filters the bank, optionally narrows it by your selected difficulty band, then shuffles and draws the number of questions you asked for.</p>
-  <p>The scoring algorithm is deliberately simple and transparent so you can trust it. Each question is worth one point. The moment you click an option, the engine compares your choice against the stored key: a match marks the option green and adds one to your running total, while a miss marks your choice red and reveals the correct option in green so you learn the right form immediately. The live counter tracks <em>answered</em> and <em>correct</em> separately, and the final percentage is computed as correct ÷ total × 100, rounded to the nearest whole number. A score of 90% or above earns an "excellent" band, 70–89% is "solid", 50–69% is "keep practising", and below 50% suggests reviewing the topic before retrying.</p>
-  <p>Distractors are not random words — they are common ESL error patterns, such as confusing the past simple with the present perfect, dropping the article before a singular countable noun, or mixing "in", "on" and "at" for time. Seeing the typical mistake next to the correct answer is what makes multiple-choice drilling effective: you train your eye to reject the wrong form. Because every question, key and explanation lives inside this page, the trainer works fully offline and reshuffles instantly, giving you near-unlimited repetition without any account, ads or external requests.</p>
+  <h2>What is in the question bank</h2>
+  <p>There are 60 questions. Each of the four topics has 15: five for beginners (A1 to A2), five for intermediate learners (B1 to B2) and five for advanced learners (C1). One topic at one level gives you five questions. Choose <strong>Mixed Review</strong> to draw questions from all four topics at your level.</p>
+  <ul>
+    <li><strong>Verb tenses.</strong> Present simple and continuous, past simple and continuous, present perfect, past perfect, future forms and "wish".</li>
+    <li><strong>Articles.</strong> A or an by sound, first mention, fixed phrases with no article, and place names.</li>
+    <li><strong>Prepositions.</strong> Time and place with in, on and at, and fixed pairs such as "depend on" and "good at".</li>
+    <li><strong>Irregular verbs.</strong> Past simple and past participle forms.</li>
+  </ul>
 
-  <h2>Related Tools</h2>
+  <h2>How to use your mistakes</h2>
+  <p>A wrong answer is useful. It shows you which rule to read again. The wrong options in each question are errors that learners often make, so read the explanation even when you get the answer right.</p>
+  <ul>
+    <li>Mistakes with tenses? Read <a href="/lessons/present-perfect-vs-past-simple/">present perfect or past simple</a> and <a href="/lessons/conditionals/">conditionals</a>.</li>
+    <li>Mistakes with articles? Read <a href="/lessons/articles-a-an-the/">a, an, the</a>.</li>
+    <li>Mistakes with prepositions? Read <a href="/lessons/prepositions-in-on-at/">in, on, at</a>.</li>
+    <li>Mistakes with irregular verbs? Use the <a href="/tools/irregular-verbs/">irregular verbs list and quiz</a>.</li>
+  </ul>
+  <p>The score at the end is the number of correct answers as a percentage. Try the same topic again the next day and see if the score goes up.</p>
+
+  <h2>Related tools</h2>
   <div class="relbox">
-    <a href="/tools/irregular-verbs">Irregular Verbs List &amp; Trainer →</a>
-    <a href="/tools/idioms">English Idioms Explorer →</a>
-    <a href="/tools/vocabulary-builder">Vocabulary Builder →</a>
+    <a href="/tools/irregular-verbs/">Irregular verbs list and quiz</a>
+    <a href="/tools/preposition-practice-tool/">Preposition practice</a>
+    <a href="/tools/level-assessment/">English level test</a>
   </div>
 </div>
-
-<footer>
-  <div>
-    <a href="/">Home</a>
-    <a href="/tools/">All Tools</a>
-    <a href="/tools/irregular-verbs">Irregular Verbs</a>
-  </div>
-  <p>© 2026 EnglishLearner.org — free ESL practice tools.</p>
-</footer>
 
 <script>
 (function(){
@@ -191,21 +202,33 @@ small.note{color:var(--mut)}
       {b:1,s:"Yesterday I ___ a great film.",o:["see","saw","seen","seeing"],a:1,e:"A finished past time (yesterday) takes past simple: saw."},
       {b:2,s:"I ___ here since 2019.",o:["live","lived","have lived","am living"],a:2,e:"'Since' + a start point uses present perfect: have lived."},
       {b:2,s:"By the time we arrived, the train ___.",o:["left","has left","had left","leaves"],a:2,e:"An action completed before another past action takes past perfect: had left."},
-      {b:2,s:"Look at those clouds — it ___ rain.",o:["is going to","will","goes to","would"],a:0,e:"Present evidence predicts the future with 'be going to'."},
+      {b:2,s:"Look at those clouds. It ___ rain.",o:["is going to","will","goes to","would"],a:0,e:"Present evidence predicts the future with 'be going to'."},
       {b:3,s:"This time next week I ___ on a beach.",o:["will lie","will be lying","lie","have lain"],a:1,e:"An action in progress at a future moment uses future continuous: will be lying."},
       {b:3,s:"If I ___ earlier, I would have caught the bus.",o:["left","had left","have left","would leave"],a:1,e:"Third conditional past: 'if + past perfect' (had left)."},
-      {b:3,s:"By 2030 scientists ___ a cure, hopefully.",o:["will find","will have found","find","are finding"],a:1,e:"Completion by a future deadline uses future perfect: will have found."}
+      {b:3,s:"By 2030 scientists ___ a cure, hopefully.",o:["will find","will have found","find","are finding"],a:1,e:"Completion by a future deadline uses future perfect: will have found."},
+      {b:1,s:"We ___ dinner at the moment.",o:["have","are having","has","had"],a:1,e:"'At the moment' signals present continuous: are having."},
+      {b:1,s:"He ___ like coffee.",o:["don't","doesn't","isn't","not"],a:1,e:"The present simple negative with he, she and it uses 'doesn't'."},
+      {b:2,s:"I ___ TV when the phone rang.",o:["watched","was watching","have watched","watch"],a:1,e:"A longer action interrupted by a shorter one takes past continuous: was watching."},
+      {b:2,s:"She ___ three emails so far today.",o:["wrote","has written","writes","had written"],a:1,e:"'So far today' is an unfinished period, so use present perfect: has written."},
+      {b:3,s:"I wish I ___ more time to read.",o:["have","had","would have","will have"],a:1,e:"'Wish' about the present takes the past simple: I wish I had."},
+      {b:3,s:"By next June, she ___ here for ten years.",o:["will work","will have worked","works","has worked"],a:1,e:"Duration up to a future point uses future perfect: will have worked."}
     ],
     articles: [
-      {b:1,s:"I saw ___ elephant at the zoo.",o:["a","an","the","—"],a:1,e:"Use 'an' before a vowel sound: an elephant."},
-      {b:1,s:"She is ___ honest woman.",o:["a","an","the","—"],a:1,e:"'Honest' starts with a silent h, a vowel sound, so 'an'."},
-      {b:1,s:"Can you pass ___ salt, please?",o:["a","an","the","—"],a:2,e:"A specific, known item shared between speakers takes 'the'."},
-      {b:2,s:"He plays ___ guitar beautifully.",o:["a","an","the","—"],a:2,e:"Musical instruments usually take 'the': the guitar."},
-      {b:2,s:"___ water boils at 100°C.",o:["A","An","The","—"],a:3,e:"General/uncountable nouns take no article: Water boils."},
-      {b:2,s:"We had ___ wonderful time in Rome.",o:["a","an","the","—"],a:0,e:"Singular countable 'time' (an occasion) takes 'a': a time."},
-      {b:3,s:"She is ___ best student in the class.",o:["a","an","the","—"],a:2,e:"Superlatives take 'the': the best."},
-      {b:3,s:"He went to ___ prison to visit his brother.",o:["a","an","the","—"],a:2,e:"Visiting the building uses 'the prison'; 'to prison' (no article) means as an inmate."},
-      {b:3,s:"___ Everest is the tallest mountain.",o:["A","An","The","—"],a:3,e:"Single mountains take no article: Everest (not 'the Everest')."}
+      {b:1,s:"I saw ___ elephant at the zoo.",o:["a","an","the","no article"],a:1,e:"Use 'an' before a vowel sound: an elephant."},
+      {b:1,s:"She is ___ honest woman.",o:["a","an","the","no article"],a:1,e:"'Honest' starts with a silent h, a vowel sound, so 'an'."},
+      {b:1,s:"Can you pass ___ salt, please?",o:["a","an","the","no article"],a:2,e:"A specific, known item shared between speakers takes 'the'."},
+      {b:2,s:"He plays ___ guitar beautifully.",o:["a","an","the","no article"],a:2,e:"Musical instruments usually take 'the': the guitar."},
+      {b:2,s:"___ water boils at 100°C.",o:["A","An","The","No article"],a:3,e:"General/uncountable nouns take no article: Water boils."},
+      {b:2,s:"We had ___ wonderful time in Rome.",o:["a","an","the","no article"],a:0,e:"Singular countable 'time' (an occasion) takes 'a': a time."},
+      {b:3,s:"She is ___ best student in the class.",o:["a","an","the","no article"],a:2,e:"Superlatives take 'the': the best."},
+      {b:3,s:"He went to ___ prison to visit his brother.",o:["a","an","the","no article"],a:2,e:"Visiting the building uses 'the prison'; 'to prison' (no article) means as an inmate."},
+      {b:3,s:"___ Everest is the tallest mountain.",o:["A","An","The","No article"],a:3,e:"Single mountains take no article: Everest (not 'the Everest')."},
+      {b:1,s:"My father is ___ engineer.",o:["a","an","the","no article"],a:1,e:"Jobs take a or an, and 'engineer' starts with a vowel sound: an engineer."},
+      {b:1,s:"I have ___ cat and two dogs.",o:["a","an","the","no article"],a:0,e:"First mention of a singular countable noun: a cat."},
+      {b:2,s:"She goes to ___ work by bus.",o:["a","an","the","no article"],a:3,e:"'Go to work' is a fixed phrase with no article."},
+      {b:2,s:"It takes ___ hour to get there.",o:["a","an","the","no article"],a:1,e:"The h in 'hour' is silent, so use 'an'."},
+      {b:3,s:"They sailed across ___ Pacific.",o:["a","an","the","no article"],a:2,e:"Oceans take 'the': the Pacific."},
+      {b:3,s:"___ Netherlands is famous for tulips.",o:["A","An","The","No article"],a:2,e:"Plural country names take 'the': the Netherlands."}
     ],
     prepositions: [
       {b:1,s:"The cat is ___ the table.",o:["on","in","at","of"],a:0,e:"A surface contact uses 'on': on the table."},
@@ -213,10 +236,16 @@ small.note{color:var(--mut)}
       {b:1,s:"We'll meet ___ 6 o'clock.",o:["on","in","at","to"],a:2,e:"Clock times take 'at': at 6 o'clock."},
       {b:2,s:"She is good ___ mathematics.",o:["in","at","on","for"],a:1,e:"'Good at' is the fixed collocation for skills."},
       {b:2,s:"He apologised ___ being late.",o:["of","for","to","with"],a:1,e:"'Apologise for' + the reason."},
-      {b:2,s:"The shop is ___ the corner.",o:["in","on","at","by"],a:1,e:"'On the corner' for a street corner location."},
+      {b:2,s:"My sister is afraid ___ spiders.",o:["from","of","about","at"],a:1,e:"'Afraid of' is the fixed combination."},
       {b:3,s:"They congratulated her ___ her promotion.",o:["for","on","about","of"],a:1,e:"'Congratulate someone on' an achievement."},
       {b:3,s:"This decision is independent ___ the budget.",o:["from","of","to","on"],a:1,e:"'Independent of' is the standard collocation."},
-      {b:3,s:"We must comply ___ the regulations.",o:["to","with","for","on"],a:1,e:"'Comply with' rules or regulations."}
+      {b:3,s:"We must comply ___ the regulations.",o:["to","with","for","on"],a:1,e:"'Comply with' rules or regulations."},
+      {b:1,s:"My birthday is ___ 5 May.",o:["on","in","at","by"],a:0,e:"Dates take 'on': on 5 May."},
+      {b:1,s:"She lives ___ France.",o:["on","in","at","to"],a:1,e:"Countries take 'in': in France."},
+      {b:2,s:"It depends ___ the weather.",o:["of","on","from","at"],a:1,e:"'Depend on' is the fixed combination."},
+      {b:2,s:"I'm interested ___ history.",o:["in","on","at","for"],a:0,e:"'Interested in' is the fixed combination."},
+      {b:3,s:"He insisted ___ paying for dinner.",o:["to","on","for","at"],a:1,e:"'Insist on' is followed by the -ing form."},
+      {b:3,s:"She has no objection ___ the plan.",o:["against","to","for","on"],a:1,e:"'Objection to' is the standard combination."}
     ],
     irregular: [
       {b:1,s:"Past tense of 'go': I ___ home.",o:["goed","went","gone","go"],a:1,e:"Go → went (past simple) → gone (past participle)."},
@@ -227,7 +256,13 @@ small.note{color:var(--mut)}
       {b:2,s:"Past tense of 'bring': She ___ a gift.",o:["bringed","brought","brung","bring"],a:1,e:"Bring → brought → brought."},
       {b:3,s:"Past participle of 'lie' (recline): He had ___ down.",o:["laid","lain","lied","lay"],a:1,e:"Lie/lay/lain (recline). 'Lied' is for telling untruths."},
       {b:3,s:"Past tense of 'seek': They ___ shelter.",o:["seeked","sought","seekt","seek"],a:1,e:"Seek → sought → sought."},
-      {b:3,s:"Past participle of 'forsake': He had ___ his friends.",o:["forsook","forsaken","forsaked","forsake"],a:1,e:"Forsake → forsook → forsaken."}
+      {b:3,s:"Past participle of 'forsake': He had ___ his friends.",o:["forsook","forsaken","forsaked","forsake"],a:1,e:"Forsake → forsook → forsaken."},
+      {b:1,s:"Past tense of 'see': I ___ him yesterday.",o:["seed","saw","seen","see"],a:1,e:"See → saw → seen."},
+      {b:1,s:"Past tense of 'buy': We ___ a new car.",o:["buyed","bought","buy","boughten"],a:1,e:"Buy → bought → bought."},
+      {b:2,s:"Past participle of 'drink': He has ___ all the juice.",o:["drank","drunk","drinked","drunken"],a:1,e:"Drink → drank → drunk (used after 'have')."},
+      {b:2,s:"Past tense of 'teach': She ___ me to swim.",o:["teached","taught","teach","tought"],a:1,e:"Teach → taught → taught."},
+      {b:3,s:"Past participle of 'swim': She has ___ across the lake.",o:["swam","swum","swimmed","swim"],a:1,e:"Swim → swam → swum."},
+      {b:3,s:"Past tense of 'lay' (put down): She ___ the book on the table.",o:["lay","laid","lain","layed"],a:1,e:"Lay → laid → laid. Do not confuse it with lie → lay → lain."}
     ]
   };
 
@@ -281,7 +316,7 @@ small.note{color:var(--mut)}
   }
 
   function buildQuiz(){
-    var topic=elTopic.value, level=elLevel.value, n=parseInt(elCount.value,10)||10;
+    var topic=elTopic.value, level=elLevel.value, n=parseInt(elCount.value,10)||5;
     var items=bandFilter(pool(topic),level);
     var picked=shuffle(items).slice(0,Math.min(n,items.length)).map(makeQuestion);
     state={questions:picked,answered:0,correct:0,total:picked.length};
@@ -347,10 +382,10 @@ small.note{color:var(--mut)}
     var pct=state.total?Math.round(state.correct/state.total*100):0;
     var band,msg;
     if(pct>=90){band='Excellent!';msg='Outstanding command of this topic. Try a harder level or a new topic.';}
-    else if(pct>=70){band='Solid work.';msg='Good grasp of the rules — review the few you missed and run another round.';}
-    else if(pct>=50){band='Keep practising.';msg='You are getting there. Re-read the explanations above and retry.';}
+    else if(pct>=70){band='Solid work.';msg='Good grasp of the rules. Review the few you missed and run another round.';}
+    else if(pct>=50){band='Keep practising.';msg='You are getting there. Read the explanations above again and retry.';}
     else{band='Needs review.';msg='Study this grammar point, then generate a fresh quiz to lock it in.';}
-    elResBig.textContent='Score: '+state.correct+' / '+state.total+'  ('+pct+'%) — '+band;
+    elResBig.textContent='Score: '+state.correct+' / '+state.total+'  ('+pct+'%). '+band;
     elResMsg.textContent=msg;
     elMeter.style.width=pct+'%';
     elResult.classList.add('show');
@@ -365,5 +400,18 @@ small.note{color:var(--mut)}
   buildQuiz();
 })();
 </script>
+<div class="el-foot" role="contentinfo">
+  <div class="el-links">
+    <a href="/">Home</a>
+    <a href="/lessons/">Lessons</a>
+    <a href="/tools/">Practice tools</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+    <a href="/privacy/">Privacy</a>
+    <button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button>
+  </div>
+  <p>&copy; 2026 englishlearner.org. An independent site. Not connected to any exam board.</p>
+  <p>From the same developer: <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant.</p>
+</div>
 </body>
 </html>

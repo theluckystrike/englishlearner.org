@@ -3,35 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Level Assessment Quiz — Find Your CEFR Level</title>
-    <meta name="description" content="30-question adaptive English quiz: grammar, vocabulary & comprehension. Get your CEFR level (A1–C2), strengths & history.">
-    <link rel="canonical" href="https://englishlearner.org/tools/level-assessment">
-    <!-- JSON-LD structured data: WebApplication + FAQPage + BreadcrumbList -->
+    <title>English Level Test: Find Your Rough CEFR Level (A1 to C2)</title>
+    <meta name="description" content="Free English level test with 30 grammar and reading questions, five for each CEFR level from A1 to C2. See your score for every level and what to study next.">
+    <link rel="canonical" href="https://englishlearner.org/tools/level-assessment/">
+    <!-- JSON-LD structured data: WebApplication + BreadcrumbList -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
         {
           "@type": "WebApplication",
-          "name": "English Level Assessment Quiz",
-          "url": "https://englishlearner.org/level-assessment",
-          "description": "Adaptive 30-question quiz to determine your CEFR English level (A1–C2).",
+          "name": "English Level Test",
+          "url": "https://englishlearner.org/tools/level-assessment/",
+          "description": "A 30-question grammar and reading test that gives a rough CEFR level from A1 to C2.",
           "applicationCategory": "Educational Application",
           "operatingSystem": "All",
           "browserRequirements": "JavaScript enabled"
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "What is CEFR?", "acceptedAnswer": { "@type": "Answer", "text": "Common European Framework of Reference for Languages, from A1 (beginner) to C2 (mastery)." } },
-            { "@type": "Question", "name": "How is my level calculated?", "acceptedAnswer": { "@type": "Answer", "text": "Adaptive algorithm: correct answers increase difficulty, wrong answers decrease. Final level based on performance across grammar, vocabulary, and comprehension." } }
-          ]
-        },
-        {
           "@type": "BreadcrumbList",
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://englishlearner.org/" },
-            { "@type": "ListItem", "position": 2, "name": "Level Assessment", "item": "https://englishlearner.org/level-assessment" }
+            { "@type": "ListItem", "position": 2, "name": "Level Test", "item": "https://englishlearner.org/tools/level-assessment/" }
           ]
         }
       ]
@@ -264,22 +257,31 @@
         }
     </style>
 
-    <meta property="og:title" content="English Level Assessment Quiz — Find Your CEFR Level">
-    <meta property="og:description" content="30-question adaptive English quiz: grammar, vocabulary & comprehension. Get your CEFR level (A1–C2), strengths & history.">
+    <meta property="og:title" content="English Level Test: Find Your Rough CEFR Level (A1 to C2)">
+    <meta property="og:description" content="Free English level test with 30 grammar and reading questions, five for each CEFR level from A1 to C2. See your score for every level and what to study next.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://englishlearner.org/tools/level-assessment">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2241192243363112" crossorigin="anonymous"></script>
+    <meta property="og:url" content="https://englishlearner.org/tools/level-assessment/">
+<meta name="google-adsense-account" content="ca-pub-2241192243363112">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
 </head>
 <body>
+<div class="el-top" role="navigation" aria-label="Site">
+  <a class="el-brand" href="/">English Learner</a>
+  <a href="/lessons/">Lessons</a>
+  <a href="/tools/">Practice tools</a>
+  <a href="/tools/level-assessment/">Level test</a>
+  <a href="/about/">About</a>
+</div>
 <div class="container">
-    <h1>📘 Level Assessment</h1>
-    <div class="subhead">Find your CEFR level · 30 adaptive questions</div>
+    <h1>English Level Test</h1>
+    <div class="subhead">30 grammar and reading questions, from A1 to C2. It takes about 10 minutes.</div>
 
     <!-- progress -->
     <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
     <div style="display:flex; justify-content:space-between; font-size:0.9rem; color:#aaa;">
         <span id="qCounter">Question 1 / 30</span>
-        <span id="difficultyIndicator">Difficulty: A1</span>
+        <span id="difficultyIndicator">Level of this question: A1</span>
     </div>
 
     <!-- question area -->
@@ -288,8 +290,8 @@
         <div id="answerContainer"></div>
         <div id="feedbackArea" class="feedback" style="display:none;"></div>
         <div class="action-row">
-            <button class="btn" id="nextBtn" disabled>Next →</button>
-            <button class="btn" id="resetBtn" style="background:#2a2a2a;">↻ Restart</button>
+            <button class="btn" id="nextBtn" disabled>Next</button>
+            <button class="btn" id="resetBtn" style="background:#2a2a2a;">Restart</button>
         </div>
     </div>
 
@@ -298,12 +300,17 @@
 
     <!-- history -->
     <div style="margin-top:2rem;" id="historySection">
-        <h3 style="margin-bottom:0.5rem;">📋 Assessment history</h3>
+        <h3 style="margin-bottom:0.5rem;">Your past results on this device</h3>
         <div id="historyList"></div>
     </div>
 
-    <div class="footer-link">
-        <a href="https://englishlearner.org/">← englishlearner.org</a>
+    <div class="about-test" style="margin-top:2rem;line-height:1.65;color:#cfcfcf;">
+        <h2 style="font-size:1.25rem;margin:0 0 .5rem;color:#e0e0e0;">How the result is worked out</h2>
+        <p style="margin:.6rem 0;">The test has five questions for each of the six CEFR levels. The questions start at A1 and get harder. You pass a level when you answer at least three of its five questions correctly.</p>
+        <p style="margin:.6rem 0;">Your result is the highest level you pass without failing a lower level first. The result page shows your score for every level, so you can see where the questions became too hard.</p>
+        <h2 style="font-size:1.25rem;margin:1.4rem 0 .5rem;color:#e0e0e0;">What this test cannot tell you</h2>
+        <p style="margin:.6rem 0;">This is a short practice test. It checks grammar and reading only. It does not check speaking, listening or writing, and five questions per level is a small sample. Treat the result as a rough guide and not as an official level. For a certificate you need an exam from a recognised exam board.</p>
+        <p style="margin:.6rem 0;">To learn what each level means, read the <a href="/lessons/cefr-levels/" style="color:#66bb6a;">guide to CEFR levels</a>. To work on weak points, go to the <a href="/lessons/" style="color:#66bb6a;">grammar lessons</a>.</p>
     </div>
 </div>
 
@@ -323,33 +330,33 @@
             { level:1, type:'comprehension', question:'Tom usually wakes up at 7am. He has breakfast and then goes to work. What does Tom do after breakfast?', options:['Wakes up','Has breakfast','Goes to work','Sleeps'], correct:2 },
             // B1 (level 2)
             { level:2, type:'mc', question:'If it rains, I ___ stay home.', options:['will','would','am','was'], correct:0 },
-            { level:2, type:'fill', question:'They have ___ (live) here for 5 years.', correct:'lived' },
+            { level:2, type:'fill', question:'They have ___ (live) here for 5 years.', correct:['lived','been living'] },
             { level:2, type:'mc', question:'I ___ my keys yesterday.', options:['lose','lost','have lost','was losing'], correct:1 },
             { level:2, type:'comprehension', question:'The restaurant was fully booked, so we decided to eat at a small café instead. Why didn\'t they eat at the restaurant?', options:['Too expensive','Fully booked','Closed','Too far'], correct:1 },
             // B2 (level 3)
             { level:3, type:'mc', question:'By the time we arrived, they ___ dinner.', options:['finished','had finished','have finished','were finishing'], correct:1 },
             { level:3, type:'fill', question:'She wishes she ___ (can) fly.', correct:'could' },
             { level:3, type:'mc', question:'The report ___ by the manager tomorrow.', options:['will review','will be reviewed','reviews','reviewed'], correct:1 },
-            { level:3, type:'comprehension', question:'Despite the heavy traffic, we managed to reach the airport on time. However, our flight was delayed by two hours. What can be inferred?', options:['We missed the flight','Flight was on time','We arrived on time but flight delayed','Traffic was light'], correct:2 },
+            { level:3, type:'comprehension', question:'Despite the heavy traffic, we managed to reach the airport on time. However, our flight was delayed by two hours. What happened?', options:['We missed the flight','The flight left on time','We arrived on time but the flight was late','The traffic was light'], correct:2 },
             // C1 (level 4)
             { level:4, type:'mc', question:'Had it not been for your help, I ___ succeeded.', options:['would not have','will not have','had not','would have'], correct:0 },
             { level:4, type:'fill', question:'It’s high time you ___ (make) a decision.', correct:'made' },
             { level:4, type:'mc', question:'The phenomenon, ___ has been widely debated, remains unexplained.', options:['that','which','what','who'], correct:1 },
-            { level:4, type:'comprehension', question:'The author’s critique of neoliberalism is not merely economic but extends to its cultural consequences. Which is most consistent?', options:['Only economic','Only cultural','Both economic and cultural','Neither'], correct:2 },
+            { level:4, type:'comprehension', question:'The author’s critique of the policy is not merely economic but extends to its cultural consequences. What does the critique cover?', options:['Only economic effects','Only cultural effects','Both economic and cultural effects','Neither'], correct:2 },
             // C2 (level 5)
-            { level:5, type:'mc', question:'Were it not for the funding, the project ___ abandoned.', options:['would have been','would be','had been','will be'], correct:0 },
-            { level:5, type:'fill', question:'Not until she arrived ___ (he / realize) the truth.', correct:'did he realize' },
+            { level:5, type:'mc', question:'Little ___ that the decision would change everything.', options:['she knew','did she know','she did know','knew she'], correct:1 },
+            { level:5, type:'fill', question:'Not until she arrived ___ (he / realize) the truth.', correct:['did he realize','did he realise'] },
             { level:5, type:'mc', question:'The obfuscation of the data rendered the analysis ___ .', options:['meaningful','meaningless','profound','transparent'], correct:1 },
             { level:5, type:'comprehension', question:'The subtext of the dialogue suggests a deep-seated ambivalence towards modernity. The characters\' nostalgia is not for the past but for a future that never materialized. Which is implied?', options:['They love modernity','They are ambivalent','They want the past','Future is bright'], correct:1 }
         ];
-        // ensure we have 30 questions by repeating / extending (we have 24 unique – add 6 more)
+        // one more question per level: 5 per level, 30 in total
         const extra = [
             { level:0, type:'mc', question:'This ___ my book.', options:['am','is','are','be'], correct:1 },
-            { level:1, type:'fill', question:'We ___ (not/like) spinach.', correct:'do not like' },
-            { level:2, type:'mc', question:'She told me that she ___ coming.', options:['is','was','will be','has been'], correct:1 },
-            { level:3, type:'fill', question:'I ___ (never/see) such a beautiful sunset.', correct:'have never seen' },
-            { level:4, type:'mc', question:'The professor suggested that the student ___ further research.', options:['conducts','conduct','conducted','would conduct'], correct:1 },
-            { level:5, type:'fill', question:'___ (hardly / he / finish) when the bell rang.', correct:'Hardly had he finished' }
+            { level:1, type:'fill', question:'We ___ (not/like) spinach.', correct:['do not like','don\'t like','don’t like'] },
+            { level:2, type:'mc', question:'I have known her ___ 2015.', options:['for','since','from','at'], correct:1 },
+            { level:3, type:'fill', question:'I ___ (never/see) such a beautiful sunset.', correct:['have never seen','\'ve never seen','’ve never seen'] },
+            { level:4, type:'mc', question:'No sooner had we sat down ___ the phone rang.', options:['when','than','that','then'], correct:1 },
+            { level:5, type:'fill', question:'___ (hardly / he / finish) when the bell rang.', correct:['Hardly had he finished'] }
         ];
         const fullDB = questionsDB.concat(extra); // 30 total
 
@@ -362,6 +369,13 @@
             return arr;
         }
 
+        function loadHistory() {
+            try {
+                const saved = JSON.parse(localStorage.getItem('engLevelHistory') || '[]');
+                return Array.isArray(saved) ? saved : [];
+            } catch (e) { return []; }
+        }
+
         // state
         let state = {
             questions: [],
@@ -371,7 +385,7 @@
             difficulty: 0, // 0..5
             answers: [], // {correct:bool, level:num, area:string}
             finished: false,
-            history: JSON.parse(localStorage.getItem('engLevelHistory') || '[]')
+            history: loadHistory()
         };
 
         // DOM refs
@@ -387,111 +401,101 @@
         const historyList = document.getElementById('historyList');
 
         const levelNames = ['A1','A2','B1','B2','C1','C2'];
+        const PASS_MARK = 3; // correct answers needed out of 5 to pass a level
         const levelDescriptions = [
-            'Can understand and use basic phrases. Introduce yourself and ask simple questions.',
-            'Can communicate in routine tasks. Describe your background and immediate needs.',
-            'Can handle travel situations, produce simple connected text, and describe experiences.',
-            'Can interact with fluency, understand complex texts, and produce detailed essays.',
-            'Can express ideas fluently and spontaneously, use language flexibly for social and professional purposes.',
-            'Can understand virtually everything heard or read, summarize information, and express nuance.'
+            'You can understand and use everyday expressions and very basic phrases, and ask and answer simple questions about yourself.',
+            'You can understand common sentences about family, shopping and work, and handle simple routine tasks.',
+            'You can understand the main points on familiar topics, deal with most travel situations and write simple connected text.',
+            'You can understand the main ideas of complex text, talk with fluent speakers without strain and write clear, detailed text.',
+            'You can understand long, demanding texts, speak fluently without much searching for words and write well-structured text on complex subjects.',
+            'You can understand almost everything you hear or read with ease and express fine differences in meaning.'
         ];
-        const studyResources = [
-            'Start with basic vocabulary, simple grammar drills, and children’s stories.',
-            'Use beginner textbooks, language apps, and listen to slow podcasts.',
-            'Read graded readers, practice writing diaries, join conversation groups.',
-            'Watch movies with subtitles, read news articles, write essays.',
-            'Engage with academic texts, debate topics, watch lectures.',
-            'Read literature, write extensively, practice with native speakers on complex topics.'
+        const studyNext = [
+            'Next: <a href="/lessons/prepositions-in-on-at/">in, on, at</a> and <a href="/lessons/articles-a-an-the/">a, an, the</a>.',
+            'Next: <a href="/lessons/countable-uncountable-nouns/">countable and uncountable nouns</a> and the <a href="/tools/irregular-verbs/">irregular verbs list</a>.',
+            'Next: <a href="/lessons/present-perfect-vs-past-simple/">present perfect or past simple</a> and <a href="/lessons/conditionals/">conditionals</a>.',
+            'Next: the third and mixed patterns in <a href="/lessons/conditionals/">conditionals</a> and the harder <a href="/tools/grammar-exercises/">grammar exercises</a>.',
+            'Next: the <a href="/tools/idioms-dictionary/">idioms dictionary</a> and the C1 words in the <a href="/tools/vocabulary-quiz/">vocabulary quiz</a>.',
+            'You answered the hardest questions here. Keep reading long, real texts and see the <a href="/lessons/cefr-levels/">guide to CEFR levels</a>.'
         ];
 
         function getLevelLabel(d) { return levelNames[d] || 'A1'; }
+
+        function esc(v) {
+            return String(v === undefined ? '' : v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        }
 
         function renderHistory() {
             const h = state.history;
             if (!h.length) { historyList.innerHTML = '<div style="color:#666;">No previous assessments.</div>'; return; }
             historyList.innerHTML = h.slice(-5).reverse().map(item => 
-                `<div class="history-item"><span>${item.date} — ${item.level} (${item.score}%)</span><span>${item.areas}</span></div>`
+                `<div class="history-item"><span>${esc(item.date)}: ${esc(item.level)}</span><span>${esc(item.score)}% correct</span></div>`
             ).join('');
         }
 
-        function saveHistory(levelLabel, score, areas) {
+        function saveHistory(levelLabel, score) {
             const entry = {
                 date: new Date().toLocaleDateString(),
                 level: levelLabel,
-                score: Math.round(score),
-                areas: areas
+                score: Math.round(score)
             };
             state.history.push(entry);
-            localStorage.setItem('engLevelHistory', JSON.stringify(state.history));
+            if (state.history.length > 20) state.history = state.history.slice(-20);
+            try { localStorage.setItem('engLevelHistory', JSON.stringify(state.history)); } catch (e) { /* storage blocked */ }
             renderHistory();
         }
 
-        // compute results
+        // Result: the highest level passed without failing a lower level first.
+        // A level is passed with PASS_MARK or more correct answers out of its questions.
         function computeResults() {
-            const ans = state.answers;
-            if (!ans.length) return { level:0, confidence:0, grammar:0, vocabulary:0, comprehension:0 };
-            const total = ans.length;
-            const correct = ans.filter(a => a.correct).length;
-            const pct = (correct/total)*100;
-            // average level
-            const avgLevel = ans.reduce((s,a) => s + a.level,0)/total;
-            let finalLevel = Math.round(avgLevel);
-            // clamp
-            finalLevel = Math.max(0, Math.min(5, finalLevel));
-            // confidence based on consistency
-            const variance = ans.reduce((s,a) => s + Math.pow(a.level - avgLevel,2),0)/total;
-            const confidence = Math.max(50, Math.min(98, 100 - variance*15));
-            // area breakdown
-            const grammar = ans.filter(a => a.area === 'grammar');
-            const vocab = ans.filter(a => a.area === 'vocabulary');
-            const comp = ans.filter(a => a.area === 'comprehension');
-            const gPct = grammar.length ? (grammar.filter(a=>a.correct).length/grammar.length)*100 : 0;
-            const vPct = vocab.length ? (vocab.filter(a=>a.correct).length/vocab.length)*100 : 0;
-            const cPct = comp.length ? (comp.filter(a=>a.correct).length/comp.length)*100 : 0;
-            return { level:finalLevel, confidence, grammar:gPct, vocabulary:vPct, comprehension:cPct, correct, total };
+            const perLevel = levelNames.map(() => ({ correct: 0, total: 0 }));
+            state.answers.forEach(a => {
+                perLevel[a.level].total++;
+                if (a.correct) perLevel[a.level].correct++;
+            });
+            let level = -1;
+            for (let l = 0; l < perLevel.length; l++) {
+                if (perLevel[l].total > 0 && perLevel[l].correct >= PASS_MARK) level = l; else break;
+            }
+            const total = state.answers.length;
+            const correct = state.answers.filter(a => a.correct).length;
+            return { level, perLevel, correct, total };
         }
 
         function showResults() {
             const res = computeResults();
-            const levelLabel = getLevelLabel(res.level);
-            const desc = levelDescriptions[res.level];
-            const study = studyResources[res.level];
-            const areas = `G:${Math.round(res.grammar)}% V:${Math.round(res.vocabulary)}% C:${Math.round(res.comprehension)}%`;
-            // determine strongest / weakest
-            const map = { grammar:res.grammar, vocabulary:res.vocabulary, comprehension:res.comprehension };
-            const sorted = Object.entries(map).sort((a,b)=>b[1]-a[1]);
-            const strongest = sorted[0][0];
-            const weakest = sorted[2][0];
-            // save history
-            saveHistory(levelLabel, (res.correct/res.total)*100, areas);
+            const passedAny = res.level >= 0;
+            const levelLabel = passedAny ? getLevelLabel(res.level) : 'Below A1';
+            const desc = passedAny ? levelDescriptions[res.level]
+                : 'You did not pass the A1 questions yet. Start with the first lessons and try again later.';
+            const study = studyNext[passedAny ? res.level : 0];
+            const pct = res.total ? (res.correct / res.total) * 100 : 0;
+            saveHistory(levelLabel, pct);
 
             resultPanel.style.display = 'block';
             resultPanel.innerHTML = `
                 <div class="result-card">
-                    <div><span class="level-badge">${levelLabel}</span> <span style="font-size:1.4rem;">CEFR level</span></div>
-                    <div style="margin:0.5rem 0 1rem;">Confidence: <strong>${Math.round(res.confidence)}%</strong> · Score: ${res.correct}/${res.total}</div>
+                    <div><span class="level-badge">${levelLabel}</span> <span style="font-size:1.4rem;">rough CEFR level</span></div>
+                    <div style="margin:0.5rem 0 1rem;">Score: <strong>${res.correct} / ${res.total}</strong> correct</div>
                     <p style="margin-bottom:1rem;">${desc}</p>
-                    <div class="grid-2">
-                        <div class="stat-box"><span class="strength">✅ Strongest: ${strongest}</span> (${Math.round(map[strongest])}%)</div>
-                        <div class="stat-box"><span class="weakness">⚠️ Weakest: ${weakest}</span> (${Math.round(map[weakest])}%)</div>
-                    </div>
-                    <h3>📚 Recommended resources</h3>
-                    <p>${study}</p>
-                    <div style="margin-top:1.2rem;"><strong>Comparison chart</strong></div>
+                    <p style="margin-bottom:1rem;">${study}</p>
+                    <div style="margin-top:1.2rem;"><strong>Your score at each level</strong> (pass mark: ${PASS_MARK} of 5)</div>
                     <div class="cefr-chart">
                         ${levelNames.map((l,i) => `
                             <div class="chart-row">
                                 <span class="chart-label">${l}</span>
-                                <div class="chart-bar"><div class="chart-fill" style="width:${i<=res.level?100:0}%; background:${i===res.level?'#66bb6a':'#444'};"></div></div>
+                                <div class="chart-bar"><div class="chart-fill" style="width:${res.perLevel[i].total ? Math.round(res.perLevel[i].correct / res.perLevel[i].total * 100) : 0}%; background:${res.perLevel[i].correct >= PASS_MARK ? '#66bb6a' : '#888'};"></div></div>
+                                <span style="min-width:3.2rem;text-align:right;">${res.perLevel[i].correct} / ${res.perLevel[i].total}</span>
                             </div>
                         `).join('')}
                     </div>
+                    <p style="margin-top:1rem;color:#aaa;font-size:0.9rem;">This is a rough guide from 30 grammar and reading questions. It is not an official exam result.</p>
                 </div>
             `;
             // hide question area
             document.getElementById('questionArea').style.display = 'none';
             progressFill.style.width = '100%';
-            qCounter.textContent = 'Quiz complete!';
+            qCounter.textContent = 'Test complete';
             difficultyIndicator.textContent = '';
         }
 
@@ -507,7 +511,7 @@
             const pct = ((state.currentIndex) / state.questions.length) * 100;
             progressFill.style.width = pct + '%';
             qCounter.textContent = `Question ${state.currentIndex+1} / ${state.questions.length}`;
-            difficultyIndicator.textContent = `Difficulty: ${getLevelLabel(q.level)}`;
+            difficultyIndicator.textContent = `Level of this question: ${getLevelLabel(q.level)}`;
 
             // clear
             answerContainer.innerHTML = '';
@@ -533,7 +537,7 @@
                         state.answers.push({
                             correct: isCorrect,
                             level: q.level,
-                            area: q.type === 'comprehension' ? 'comprehension' : (q.type==='mc'?'grammar':'vocabulary')
+                            area: q.type === 'comprehension' ? 'reading' : 'grammar'
                         });
                     });
                     optDiv.appendChild(btn);
@@ -552,7 +556,7 @@
                 checkBtn.style.marginTop = '1rem';
                 answerContainer.appendChild(checkBtn);
                 checkBtn.addEventListener('click', function() {
-                    const val = input.value.trim().toLowerCase();
+                    const val = input.value.trim().toLowerCase().replace(/\s+/g, ' ').replace(/[.!?]+$/, '');
                     if (!val) return;
                     input.disabled = true;
                     checkBtn.disabled = true;
@@ -563,7 +567,7 @@
                     state.answers.push({
                         correct: isCorrect,
                         level: q.level,
-                        area: 'vocabulary'
+                        area: 'grammar'
                     });
                 });
             }
@@ -571,7 +575,8 @@
 
         function showFeedback(isCorrect, q) {
             feedbackArea.style.display = 'block';
-            feedbackArea.textContent = isCorrect ? '✓ Correct!' : `✗ Incorrect. Correct answer: ${q.options ? q.options[q.correct] : q.correct}`;
+            const answer = q.options ? q.options[q.correct] : (Array.isArray(q.correct) ? q.correct[0] : q.correct);
+            feedbackArea.textContent = isCorrect ? '✓ Correct!' : `✗ Incorrect. Correct answer: ${answer}`;
             feedbackArea.style.borderLeftColor = isCorrect ? '#66bb6a' : '#f5a623';
         }
 
@@ -586,31 +591,15 @@
             }
         }
 
-        // adaptive shuffle: based on difficulty, pick next question
-        function buildAdaptiveList() {
-            let pool = [...fullDB];
-            // sort by level, but we want adaptive ordering: start easy, then adjust
-            // we'll just shuffle and then sort by level with some randomness
-            pool = shuffle(pool);
-            // adaptive: we want a progression from low to high but with variation
-            pool.sort((a,b) => a.level - b.level);
-            // but keep some randomness within same level
-            let final = [];
-            let buckets = [[],[],[],[],[],[]];
-            pool.forEach(q => buckets[q.level].push(q));
-            // interleave: start from 0, take one from each level, repeat
-            let maxLen = Math.max(...buckets.map(b=>b.length));
-            for (let i=0; i<maxLen; i++) {
-                for (let l=0; l<=5; l++) {
-                    if (buckets[l].length > i) final.push(buckets[l][i]);
-                }
-            }
-            // ensure exactly 30
-            return final.slice(0,30);
+        // Question order: easiest level first, random order inside each level.
+        function buildQuestionList() {
+            const pool = shuffle([...fullDB]);
+            pool.sort((a, b) => a.level - b.level);
+            return pool;
         }
 
         function resetQuiz() {
-            state.questions = buildAdaptiveList();
+            state.questions = buildQuestionList();
             state.currentIndex = 0;
             state.correctCount = 0;
             state.wrongCount = 0;
@@ -633,17 +622,18 @@
     })();
 </script>
 
-    <footer style="text-align:center;padding:2rem 1rem;margin-top:2rem;border-top:1px solid #334155;color:#94a3b8;font-size:0.85rem;">
-        <p>&copy; 2025 englishlearner.org &mdash; Free online tool. No data stored.</p>
-    </footer>
-<div style="margin:20px auto;max-width:728px;text-align:center">
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2241192243363112" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-<div style="margin:30px auto;max-width:728px;text-align:center;padding:18px 24px;background:linear-gradient(135deg,#0f172a,#1e293b);border:1px solid #334155;border-radius:10px">
-<p style="margin:0 0 6px;color:#94a3b8;font-size:0.85rem">Recommended by our team</p>
-<a href="https://www.belikenative.com?ref=satellite" target="_blank" rel="noopener" style="color:#38bdf8;font-weight:600;font-size:1.05rem;text-decoration:none">BeLikeNative.com</a>
-<p style="margin:6px 0 0;color:#cbd5e1;font-size:0.9rem">The #1 AI writing tool for freelancers — perfect grammar in any language, instantly.</p>
+    <div class="el-foot" role="contentinfo">
+  <div class="el-links">
+    <a href="/">Home</a>
+    <a href="/lessons/">Lessons</a>
+    <a href="/tools/">Practice tools</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+    <a href="/privacy/">Privacy</a>
+    <button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button>
+  </div>
+  <p>&copy; 2026 englishlearner.org. An independent site. Not connected to any exam board.</p>
+  <p>From the same developer: <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant.</p>
 </div>
 </body>
 </html>
