@@ -1,6 +1,6 @@
 /* englishlearner.org: ad loader with a consent gate.
    Rules:
-   - Never load ads on localhost / 127.0.0.1.
+   - Load ads only on englishlearner.org and www.englishlearner.org.
    - Never load ads on pages marked <html data-no-ads>.
    - EEA, UK and Switzerland (guessed from the device time zone): load only after Accept.
    - If the time zone is unknown or generic (UTC), ask first.
@@ -21,8 +21,7 @@
   ];
 
   var host = location.hostname;
-  var isLocal = host === 'localhost' || host === '127.0.0.1' || host === '[::1]' ||
-    host === '0.0.0.0' || host === '';
+  var isProduction = host === 'englishlearner.org' || host === 'www.englishlearner.org';
   var noAds = document.documentElement.hasAttribute('data-no-ads');
   var loaded = false;
 
@@ -46,7 +45,7 @@
   }
 
   function loadAds() {
-    if (loaded || isLocal || noAds) { return; }
+    if (loaded || !isProduction || noAds) { return; }
     loaded = true;
     var s = document.createElement('script');
     s.async = true;
@@ -119,7 +118,7 @@
 
   function start() {
     wireChoiceLinks();
-    if (isLocal || noAds) { return; }
+    if (!isProduction || noAds) { return; }
     var choice = readChoice();
     if (choice === 'denied') { return; }
     if (choice === 'granted') { loadAds(); return; }
