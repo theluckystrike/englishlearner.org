@@ -220,3 +220,15 @@ summary{list-style:none}summary::-webkit-details-marker{display:none}
 @media(min-width:1024px){.privacy-layout>article{grid-column:2;grid-row:1}.privacy-layout>.contents{grid-column:1;grid-row:1}}
 
 @media print{:root{--color-surface-alt:#fff;--color-accent-subtle:#fff;--color-success-bg:#fff;--color-error-bg:#fff;--color-warning-bg:#fff;--color-on-accent:#000;--color-control-border:#999;--color-disabled-bg:#fff;--color-disabled-text:#333}a.btn,.btn-primary{background:#fff;color:#000;border-color:#999}.example-incorrect,.example-correct{background:#fff;border:1px solid #999}.example-label{color:#000!important}.lesson-heading .jump-links{display:none!important}th,td{color:#000;background:#fff}tbody tr:nth-child(even){background:#fff}details::details-content{content-visibility:visible!important}details:not([open])>*:not(summary){display:block!important}}
+
+/* Brand drawn inline so it always follows the page theme */
+.el-brand{gap:8px;color:var(--color-text)}.brand-icon{width:32px;height:32px;flex:none;display:block}.brand-icon .bi-bg{fill:var(--color-accent)}.brand-icon .bi-ink{stroke:var(--color-on-accent)}.brand-name{font:700 19px/1 var(--font-reading);letter-spacing:-.01em;white-space:nowrap;color:var(--color-text)}@media(min-width:768px){.brand-icon{width:36px;height:36px}.brand-name{font-size:23px}}@media(max-width:339px){.brand-name{display:none}}
+
+.more-lessons{margin:24px 0 0;padding:16px 20px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:8px}
+.more-lessons h3{margin:0 0 4px;font-size:var(--type-h3)}
+.more-lessons ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;column-gap:24px}
+.more-lessons li{border-bottom:1px solid var(--color-border)}
+.more-lessons li a,.more-lessons .more-all{display:flex;align-items:center;min-height:48px;font-family:var(--font-reading)}
+.more-lessons .more-all{font-family:var(--font-ui);font-size:var(--type-ui)}
+@media(min-width:768px){.more-lessons ul{grid-template-columns:1fr 1fr}}
+.breadcrumb li:not(:last-child):not(:has(svg))::after{content:"";width:16px;height:16px;flex-shrink:0;background:var(--color-secondary);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m9 6 6 6-6 6' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m9 6 6 6-6 6' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
