@@ -6,7 +6,7 @@ if(typeof sharedTrack==='function')window.elTrack=function(name,params){return s
 
 const $=id=>document.getElementById(id);
 const bands=[["rights", "go", "steal", "except", "weight", "yesterday", "return", "spend"], ["heaven", "shift", "bump", "alter", "mental", "knit", "awkward", "comment"], ["define", "assess", "asset", "airline", "transact", "inject", "boost", "factory"], ["abrupt", "matrix", "compile", "absurd", "competence", "tribunal", "compliance", "strap"], ["synthetic", "communal", "bowel", "dispense", "sacks", "comb", "circus", "theological"]];
-const fake=['nustelv','plamvish','drelpish','tromvick','sprolven','flanterp','glostive','prenthil','vasklorn','brumvess'];
+const fake=['plinder','trossle','lannery','contrivial','roblement','chaperise','prendle','sorbal','mabbish','harrowment'];
 let items=[],answers=[],index=0,complete=false;
 function shuffle(a){for(let i=a.length-1;i>0;i-=1){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function start(){items=shuffle(bands.flatMap((list,band)=>list.map(word=>({word,band,real:true}))).concat(fake.map(word=>({word,band:-1,real:false}))));answers=Array(50).fill(null);index=0;complete=false;$('vocab-task').hidden=false;$('vocab-result-body').hidden=true;$('vocab-placeholder').hidden=false;$('vocab-result').classList.remove('is-complete');render();}
