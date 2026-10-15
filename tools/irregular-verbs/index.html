@@ -101,7 +101,7 @@ window.toolResult = function(region, score, total, slug, track) {
 <button class="secondary" id="nextBtn" type="button">New verb</button>
 </div>
 <div aria-live="polite" class="feedback" id="feedback" role="status"></div>
-<div class="score" id="score">Score: 0 correct of 0 tried</div>
+<div class="score" id="score">0 correct of 0 tried</div>
 </div><img alt="" class="tool-art" decoding="async" height="322" loading="lazy" sizes="(min-width:1280px) 320px, (min-width:1024px) 280px, (min-width:768px) 240px, (min-width:390px) 192px, 168px" src="/assets/img/tool-irregular-verbs-480.webp" srcset="/assets/img/tool-irregular-verbs-480.webp 480w, /assets/img/tool-irregular-verbs-960.webp 960w" width="480"/><p><a href="/lessons/present-perfect-vs-past-simple/">Read the tense lesson</a></p></aside>
 <h2>How english irregular verbs work</h2>
 <p>Most English verbs are regular. You add <em>-ed</em> to make the past simple and the past participle: <em>walk → walked → walked</em>. Irregular verbs do not follow that rule. Many of the most common verbs in English are irregular, so you need them from the first lessons.</p>
@@ -115,7 +115,7 @@ window.toolResult = function(region, score, total, slug, track) {
 <div class="related panel">
 <a href="/tools/grammar-exercises/">Grammar exercises</a>
 <a href="/tools/vocabulary-quiz/">Vocabulary quiz</a>
-<a href="/lessons/present-perfect-vs-past-simple/">Lesson: present perfect or past simple</a>
+<a href="/lessons/present-perfect-vs-past-simple/">Present perfect or past simple lesson</a>
 </div>
 <script>
 (function () {
@@ -258,7 +258,7 @@ window.toolResult = function(region, score, total, slug, track) {
         "\" is \"" + current.past + "\".";
       feedback.className = "feedback bad";
     }
-    scoreEl.textContent = "Score: " + correct + " correct of " + tried + " tried";
+    scoreEl.textContent = correct + " correct of " + tried + " tried";
   }
 
   checkBtn.addEventListener("click", check);
