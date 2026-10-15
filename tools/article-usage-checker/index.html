@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article Usage Checker (a/an/the) — Free Tool</title>
+    <title>Article usage checker for a, an and the</title>
     <meta name="description" content="Free article usage checker. Paste text, highlight errors (a/an/the), explain countable/uncountable rules.">
-    <meta property="og:title" content="Article Usage Checker (a/an/the) — Free Tool">
+    <meta property="og:title" content="Article usage checker for a, an and the">
     <meta property="og:description" content="Free article usage checker. Paste text, highlight errors (a/an/the), explain countable/uncountable rules.">
     <meta property="og:url" content="https://englishlearner.org/tools/article-usage-checker/">
     <meta property="og:type" content="website">
@@ -405,15 +405,15 @@
                     errorDiv.className = 'error-item';
                     errorDiv.innerHTML = `
                         <div class="error-text">Error ${index + 1}: ${error.error}</div>
-                        <div class="error-message"><strong>Correction:</strong> Use ${error.correction}</div>
-                        <div class="error-message" style="margin-top: 8px;"><strong>Rule:</strong> ${error.rule}</div>
+                        <div class="error-message"><span class="label">Correction</span> Use ${error.correction}</div>
+                        <div class="error-message" style="margin-top: 8px;"><span class="label">Rule</span> ${error.rule}</div>
                     `;
                     errorsContainer.appendChild(errorDiv);
                 });
             } else {
                 const successDiv = document.createElement('div');
                 successDiv.className = 'empty-state';
-                successDiv.innerHTML = '<strong style="color: #51cf66; font-size: 1.1rem;">✓ No article errors detected!</strong><p style="margin-top: 10px;">Your text uses articles correctly.</p>';
+                successDiv.innerHTML = '<strong style="color: #51cf66; font-size: 1.1rem;">No article errors detected!</strong><p style="margin-top: 10px;">Your text uses articles correctly.</p>';
                 errorsContainer.appendChild(successDiv);
             }
         }

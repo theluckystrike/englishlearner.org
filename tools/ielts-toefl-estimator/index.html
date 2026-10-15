@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IELTS & TOEFL Score Estimator — Test Your Level</title>
+  <title>IELTS and TOEFL score estimator</title>
   <meta name="description" content="Free interactive IELTS (1-9) & TOEFL iBT (0-120) estimator: reading, vocabulary, grammar. Score breakdown, band interpretation, history.">
   <link rel="canonical" href="https://englishlearner.org/tools/ielts-toefl-estimator/">
   <!-- JSON-LD structured data -->
@@ -234,7 +234,7 @@
     .hidden { display: none; }
   </style>
 
-    <meta property="og:title" content="IELTS & TOEFL Score Estimator — Test Your Level">
+    <meta property="og:title" content="IELTS and TOEFL score estimator">
     <meta property="og:description" content="Free interactive IELTS (1-9) & TOEFL iBT (0-120) estimator: reading, vocabulary, grammar. Score breakdown, band interpretation, history.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://englishlearner.org/tools/ielts-toefl-estimator/">
@@ -257,15 +257,15 @@
 </div>
 <div class="container">
   <header>
-    <h1>🎯 IELTS & TOEFL Estimator</h1>
+    <h1>IELTS &amp; TOEFL Estimator</h1>
     <div class="subhead">Practice test · Reading · Vocabulary · Grammar</div>
   </header>
 
   <!-- breadcrumb (visual) -->
   <!-- timer + progress -->
   <div class="timer-bar">
-    <span id="timerDisplay">⏱ 20:00</span>
-    <span id="sectionName">📖 Reading</span>
+    <span id="timerDisplay">20:00</span>
+    <span id="sectionName">Reading</span>
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
 
@@ -282,20 +282,20 @@
 
   <!-- results area (hidden until finish) -->
   <div id="resultsPanel" class="results-panel hidden">
-    <h2 style="margin-bottom:1rem;">📊 Your estimated scores</h2>
+    <h2 style="margin-bottom:1rem;">Your estimated scores</h2>
     <div class="score-row">
-      <div class="score-card"><span style="color:#aaa;">IELTS</span> <div class="score-number" id="ieltsScore">—</div><span style="font-size:0.8rem;">Band 1–9</span></div>
-      <div class="score-card"><span style="color:#aaa;">TOEFL iBT</span> <div class="score-number" id="toeflScore">—</div><span style="font-size:0.8rem;">0–120</span></div>
+      <div class="score-card"><span style="color:#aaa;">IELTS</span> <div class="score-number" id="ieltsScore">–</div><span style="font-size:0.8rem;">Band 1–9</span></div>
+      <div class="score-card"><span style="color:#aaa;">TOEFL iBT</span> <div class="score-number" id="toeflScore">–</div><span style="font-size:0.8rem;">0–120</span></div>
     </div>
     <div style="margin:1rem 0; padding:1rem; background:#1b1b1b; border-radius:20px;">
-      <p><strong>📘 Score interpretation</strong><br>IELTS 7+ / TOEFL 90+ : competitive for top universities (Oxford, Harvard, MIT).<br>IELTS 6–6.5 / TOEFL 70–85 : many US/UK universities accept.<br>IELTS 5–5.5 / TOEFL 50–65 : foundation or pathway programs.</p>
+      <p><span class="label">Score interpretation</span><br>IELTS 7+ / TOEFL 90+ is competitive for top universities (Oxford, Harvard, MIT).<br>IELTS 6–6.5 / TOEFL 70–85 : many US/UK universities accept.<br>IELTS 5–5.5 / TOEFL 50–65 : foundation or pathway programs.</p>
     </div>
     <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-      <button id="resetTestBtn" class="btn">🔄 Retake test</button>
-      <button id="clearHistoryBtn" class="btn" style="background:#2a1a1a;">🗑 Clear history</button>
+      <button id="resetTestBtn" class="btn">Retake test</button>
+      <button id="clearHistoryBtn" class="btn" style="background:#2a1a1a;">Clear history</button>
     </div>
     <div id="historyContainer" style="margin-top:1.5rem;">
-      <h3 style="margin-bottom:0.5rem;">📁 Saved results</h3>
+      <h3 style="margin-bottom:0.5rem;">Saved results</h3>
       <div id="historyList"></div>
     </div>
   </div>
@@ -440,8 +440,8 @@
       const isFirst = (currentSection === 0 && currentQIndex === 0);
       const isLast = (currentSection === sections.length-1 && currentQIndex === sections[currentSection].count-1);
       prevBtn.disabled = isFirst;
-      nextBtn.textContent = isLast ? '📊 See results' : 'Next →';
-      sectionNameEl.textContent = `📖 ${sec.name} (${currentQIndex+1}/${sec.count})`;
+      nextBtn.textContent = isLast ? 'See results' : 'Next';
+      sectionNameEl.textContent = `${sec.name} (${currentQIndex+1}/${sec.count})`;
     }
 
     function updateProgress() {

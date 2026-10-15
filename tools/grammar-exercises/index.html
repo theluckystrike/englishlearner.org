@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Grammar Exercises: Free ESL Practice Quiz</title>
+<title>Grammar exercises, a free ESL practice quiz</title>
 <meta name="description" content="Free interactive English grammar exercises for ESL learners. Practice tenses, articles, prepositions and more with instant scoring and explanations.">
 <link rel="canonical" href="https://englishlearner.org/tools/grammar-exercises/">
-<meta property="og:title" content="Grammar Exercises: Free ESL Practice Quiz">
+<meta property="og:title" content="Grammar exercises, a free ESL practice quiz">
 <meta property="og:description" content="Free interactive English grammar exercises for ESL learners. Practice tenses, articles, prepositions and more with instant scoring and explanations.">
 <meta property="og:url" content="https://englishlearner.org/tools/grammar-exercises/">
 <meta property="og:type" content="website">
@@ -159,11 +159,11 @@ small.note{color:var(--mut)}
       <div class="meter"><i id="meterFill"></i></div>
       <div id="resultMsg" class="mut"></div>
     </div>
-    <p><small class="note">Tip: change the topic or the level and press <b>New quiz</b> for a new set. Your answers are checked in your browser. They are not sent anywhere.</small></p>
+    <p><small class="note">Tip: change the topic or the level and press the New quiz button for a new set. Your answers are checked in your browser. They are not sent anywhere.</small></p>
   </section>
 
   <h2>What is in the question bank</h2>
-  <p>There are 60 questions. Each of the four topics has 15: five for beginners (A1 to A2), five for intermediate learners (B1 to B2) and five for advanced learners (C1). One topic at one level gives you five questions. Choose <strong>Mixed Review</strong> to draw questions from all four topics at your level.</p>
+  <p>There are 60 questions. Each of the four topics has 15 questions, five for beginners (A1 to A2), five for intermediate learners (B1 to B2) and five for advanced learners (C1). One topic at one level gives you five questions. Choose Mixed Review to draw questions from all four topics at your level.</p>
   <ul>
     <li><strong>Verb tenses.</strong> Present simple and continuous, past simple and continuous, present perfect, past perfect, future forms and "wish".</li>
     <li><strong>Articles.</strong> A or an by sound, first mention, fixed phrases with no article, and place names.</li>
@@ -367,7 +367,7 @@ small.note{color:var(--mut)}
     var ok=chosen===q.answer;
     if(ok) state.correct++;
     fbEl.className='fb show '+(ok?'ok':'no');
-    fbEl.innerHTML='<span class="tag">'+(ok?'✓ Correct':'✗ Not quite')+'</span> '+
+    fbEl.innerHTML='<span class="tag">'+(ok?'Correct':'Not quite')+'</span> '+
                    '<span class="exp">'+q.exp+'</span>';
     updateBars();
     if(state.answered===state.total) finish();

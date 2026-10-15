@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vocabulary Quiz: 40 Useful English Adjectives (A2 to C1)</title>
+<title>Vocabulary quiz with 40 useful English adjectives</title>
 <meta name="description" content="A free vocabulary quiz on 40 useful English adjectives from A2 to C1. Match words to meanings, see the full word list, and get tips for remembering new words.">
 <link rel="canonical" href="https://englishlearner.org/tools/vocabulary-quiz/">
-<meta property="og:title" content="Vocabulary Quiz: 40 Useful English Adjectives (A2 to C1)">
+<meta property="og:title" content="Vocabulary quiz with 40 useful English adjectives">
 <meta property="og:description" content="A free vocabulary quiz on 40 useful English adjectives from A2 to C1. Match words to meanings and see the full word list.">
 <meta property="og:url" content="https://englishlearner.org/tools/vocabulary-quiz/">
 <meta property="og:type" content="website">
@@ -107,7 +107,7 @@ footer a{color:var(--accent);text-decoration:none;margin:0 8px}
   <a href="/about/">About</a>
 </div>
 <main>
-  <h1>English vocabulary quiz: 40 useful adjectives</h1>
+  <h1>English vocabulary quiz with 40 useful adjectives</h1>
   <p class="lead">Pick a level and match each word to its meaning. Every answer is checked at once, and a wrong answer shows you the correct meaning.</p>
 
   <section id="tool" aria-label="Vocabulary quiz tool">
@@ -159,9 +159,9 @@ footer a{color:var(--accent);text-decoration:none;margin:0 8px}
   <div class="prose">
     <h2>How the quiz works</h2>
     <p>The quiz uses a list of 40 useful English adjectives. Each quiz has up to ten questions. The three wrong options in each question come from the same list.</p>
-    <p>There are two question types. In <strong>Word &rarr; meaning</strong> you see a word and choose its definition. In <strong>Meaning &rarr; word</strong> you see a definition and choose the word. The second type is harder, because you must recall the word and not only recognise it.</p>
+    <p>There are two question types. In Word &rarr; meaning you see a word and choose its definition. in Meaning &rarr; word you see a definition and choose the word. The second type is harder, because you must recall the word and not only recognise it.</p>
     <p>The levels A2 to C1 are a rough guide to difficulty. They are our own estimate and not an official CEFR word list.</p>
-    <p>The <strong>mastery</strong> number is your percentage of correct answers with a small bonus for a run of correct answers in a row. The bonus is 4% for each answer in the run, up to 20%, and the number never goes above 100. A wrong answer or a skipped question ends the run.</p>
+    <p>The mastery number is your percentage of correct answers with a small bonus for a run of correct answers in a row. The bonus is 4% for each answer in the run, up to 20%, and the number never goes above 100. A wrong answer or a skipped question ends the run.</p>
 
     <h2>The word list</h2>
     <p>These are the 40 words in the quiz. Read the list first if you want to study before you test yourself.</p>
@@ -345,8 +345,8 @@ footer a{color:var(--accent);text-decoration:none;margin:0 8px}
       var pct = state.total ? Math.round(state.correct / state.total * 100) : 0;
       $("qcard").innerHTML =
         '<div class="done"><b>' + masteryScore() + '</b>' +
-        '<p>Quiz complete! You scored <strong>' + state.correct + ' / ' + state.total +
-        '</strong> (' + pct + '% accuracy).</p>' +
+        '<p>Quiz complete! You scored ' + state.correct + ' / ' + state.total +
+        ' (' + pct + '% accuracy).</p>' +
         '<p class="muted">Press <em>New Quiz</em> for a fresh set, or change the level above.</p></div>';
       $("next").textContent = "Start Again";
       return;
@@ -389,13 +389,13 @@ footer a{color:var(--accent);text-decoration:none;margin:0 8px}
     var fb = $("feedback");
     if(isCorrect){
       state.correct++; state.streak++;
-      fb.textContent = "✓ Correct! Streak: " + state.streak;
+      fb.textContent = "Correct! Streak: " + state.streak;
       fb.className = "feedback ok";
     }else{
       btn.classList.add("wrong");
       state.streak = 0;
       var ans = state.current.target;
-      fb.textContent = "✗ Not quite. " + ans.w + ": " + ans.d;
+      fb.textContent = "Not quite. " + ans.w + ": " + ans.d;
       fb.className = "feedback no";
     }
     updateStats();

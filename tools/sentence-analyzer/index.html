@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sentence Structure Analyzer — Parse English Sentences</title>
+  <title>Sentence structure analyzer for English sentences</title>
   <meta name="description" content="Interactive sentence parser: POS tags, sentence components, clause identification, and visual diagrams. Learn English grammar with 15 examples.">
   <link rel="canonical" href="https://englishlearner.org/tools/sentence-analyzer/">
   <script type="application/ld+json">
@@ -202,7 +202,7 @@
     .inline-code { background: #1a1a1a; padding: 0 8px; border-radius: 12px; }
   </style>
 
-    <meta property="og:title" content="Sentence Structure Analyzer — Parse English Sentences">
+    <meta property="og:title" content="Sentence structure analyzer for English sentences">
     <meta property="og:description" content="Interactive sentence parser: POS tags, sentence components, clause identification, and visual diagrams. Learn English grammar with 15 examples.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://englishlearner.org/tools/sentence-analyzer/">
@@ -225,7 +225,7 @@
 </div>
 <div class="container">
   <header>
-    <h1>🔍 Sentence Structure Analyzer</h1>
+    <h1>Sentence Structure Analyzer</h1>
     <p style="color:#aaa;">Parse English sentences: POS tags, components, clauses, and visual diagram</p>
   </header>
 
@@ -236,13 +236,13 @@
       <button class="secondary" id="clearBtn">Clear</button>
     </div>
     <div>
-      <span style="color:#aaa; font-size:0.9rem;">📘 Try examples:</span>
+      <span style="color:#aaa; font-size:0.9rem;">Try examples:</span>
       <div class="example-grid" id="exampleList"></div>
     </div>
   </div>
 
   <div id="resultsContainer" class="results-panel">
-    <h2 style="margin-top:0;">📊 Analysis</h2>
+    <h2 style="margin-top:0;">Analysis</h2>
     <div id="posOutput"><p style="color:#666;">Click "Analyze" to see parts of speech.</p></div>
     <div id="componentsOutput"></div>
     <div id="clauseOutput"></div>
@@ -417,7 +417,7 @@
       if (hasCoord && hasSub) type = 'Compound-Complex';
       else if (hasCoord) type = 'Compound';
       else if (hasSub) type = 'Complex';
-      document.getElementById('sentenceTypeOutput').innerHTML = `<div style="margin:12px 0;"><span style="background:#1e3a1e; padding:6px 18px; border-radius:30px;">📐 Sentence type: <strong>${type}</strong></span></div>`;
+      document.getElementById('sentenceTypeOutput').innerHTML = `<div style="margin:12px 0;"><span style="background:#1e3a1e; padding:6px 18px; border-radius:30px;">Sentence type: <strong>${type}</strong></span></div>`;
 
       // 5) visual diagram (ASCII)
       let diagram = '';

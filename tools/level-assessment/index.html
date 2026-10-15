@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Level Test: Find Your Rough CEFR Level (A1 to C2)</title>
+    <title>English level test, find your rough CEFR level</title>
     <meta name="description" content="Free English level test with 30 grammar and reading questions, five for each CEFR level from A1 to C2. See your score for every level and what to study next.">
     <link rel="canonical" href="https://englishlearner.org/tools/level-assessment/">
     <!-- JSON-LD structured data: WebApplication + BreadcrumbList -->
@@ -257,7 +257,7 @@
         }
     </style>
 
-    <meta property="og:title" content="English Level Test: Find Your Rough CEFR Level (A1 to C2)">
+    <meta property="og:title" content="English level test, find your rough CEFR level">
     <meta property="og:description" content="Free English level test with 30 grammar and reading questions, five for each CEFR level from A1 to C2. See your score for every level and what to study next.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://englishlearner.org/tools/level-assessment/">
@@ -576,7 +576,7 @@
         function showFeedback(isCorrect, q) {
             feedbackArea.style.display = 'block';
             const answer = q.options ? q.options[q.correct] : (Array.isArray(q.correct) ? q.correct[0] : q.correct);
-            feedbackArea.textContent = isCorrect ? '✓ Correct!' : `✗ Incorrect. Correct answer: ${answer}`;
+            feedbackArea.textContent = isCorrect ? 'Correct!' : `Incorrect. Correct answer: ${answer}`;
             feedbackArea.style.borderLeftColor = isCorrect ? '#66bb6a' : '#f5a623';
         }
 
