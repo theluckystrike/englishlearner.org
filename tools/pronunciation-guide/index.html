@@ -1,285 +1,95 @@
 <!DOCTYPE html>
-<html lang="en" data-no-ads>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>English pronunciation guide with IPA phonetics</title>
-<meta name="description" content="Free pronunciation guide that converts English text to IPA phonetic spelling with syllable breaks and stress marks. Learn how to say any word.">
+<meta name="description" content="Look up common English words in an American IPA dictionary and listen with voices available in your browser.">
 <link rel="canonical" href="https://englishlearner.org/tools/pronunciation-guide/">
 <meta property="og:title" content="English pronunciation guide with IPA phonetics">
-<meta property="og:description" content="Convert English text to IPA phonetics with syllables and stress. A free ESL pronunciation tool for learners.">
+<meta property="og:description" content="Look up common English words in an American IPA dictionary and listen with voices available in your browser.">
 <meta property="og:url" content="https://englishlearner.org/tools/pronunciation-guide/">
 <meta property="og:type" content="website">
-<script type="application/ld+json">
-{
+<script type="application/ld+json">{
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "English pronunciation guide with IPA phonetics",
-  "url": "https://englishlearner.org/tools/pronunciation-guide/",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Any",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "author": { "@type": "Person", "name": "Michael Lip", "url": "https://zovo.one" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://englishlearner.org/" },
-      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://englishlearner.org/tools/" },
-      { "@type": "ListItem", "position": 3, "name": "pronunciation guide", "item": "https://englishlearner.org/tools/pronunciation-guide/" }
-    ]
-  }
-}
-</script>
-
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "English pronunciation guide with IPA phonetics",
+      "description": "Look up common English words in an American IPA dictionary and listen with voices available in your browser.",
+      "url": "https://englishlearner.org/tools/pronunciation-guide/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Michael Lip",
+        "url": "https://zovo.one"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://englishlearner.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Practice",
+          "item": "https://englishlearner.org/tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "English pronunciation guide with IPA phonetics",
+          "item": "https://englishlearner.org/tools/pronunciation-guide/"
+        }
+      ]
+    }
+  ]
+}</script>
 <meta name="google-adsense-account" content="ca-pub-2241192243363112">
-<meta name="robots" content="noindex">
 <script src="/assets/site.js" defer></script>
 <link rel="stylesheet" href="/assets/tool.css">
-<meta property="og:image" content="https://englishlearner.org/assets/img/og-default.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="English Learner free lessons and practice">
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
+<meta property="og:image" content="https://englishlearner.org/assets/og/tools-pronunciation-guide.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>.tool-page.tool-vocabulary-level-tester,.tool-page.tool-ielts-toefl-estimator{max-width:1120px}.ref-check{display:flex;align-items:center;gap:12px;min-height:48px}.ref-choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ref-words{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}.ref-word{padding:12px 0;border-bottom:1px solid var(--color-border)}.ref-word h3{margin:0 0 8px;font:400 1rem/1.5 var(--font-ui)}</style>
+<script src="/assets/js/pronunciation-guide.js" defer></script>
 </head>
 <body>
 <!-- shared-header-start -->
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="el-top"><div class="el-top-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><nav class="el-nav" aria-label="Main navigation"><a href="/lessons/">Lessons</a><a href="/tools/" aria-current="true">Practice</a><a href="/tools/level-assessment/" class="nav-wide" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta_id:'nav_level_test'})">Level test</a><a href="/about/" class="nav-wide">About</a></nav></div></header>
 <!-- shared-header-end -->
-<main class="tool-page tool-pronunciation-guide" id="main"><script>
-window.toolResult = function(region, score, total, slug, track) {
- region.classList.add('is-complete');
- const placeholder=document.getElementById('resultPlaceholder'); if(placeholder) placeholder.hidden=true;
- if(track && window.elTrack) window.elTrack('quiz_complete',{tool:slug,score:score,total:total});
- let heading=region.querySelector('h2'); if(!heading){heading=document.createElement('h2');heading.textContent='Your result';region.prepend(heading);}
- heading.tabIndex=-1; heading.focus();
- if(!region.querySelector('.copy-result')){
-  const copy=document.createElement('button');copy.type='button';copy.className='copy-result btn';copy.textContent='Copy my result';
-  copy.onclick=async function(){const value=(region.querySelector('.result-value-long')?region.querySelector('.result-value-long').textContent+'. Rough guide. Grammar and reading only. ':'')+score+' out of '+total+'. Practice only. '+document.querySelector('link[rel=canonical]').href;try{await navigator.clipboard.writeText(value);copy.textContent='Result copied';}catch(e){let output=region.querySelector('.copy-fallback');if(!output){output=document.createElement('textarea');output.className='copy-fallback';output.readOnly=true;output.setAttribute('aria-label','Select the text to copy it');region.append(output);}output.value=value;output.focus();output.select();copy.textContent='Select the text to copy it.';}};
-  region.append(copy);
- }
-};
-</script>
-<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">Pronunciation guide</li></ol></nav><h1>Pronunciation guide</h1><p class="lead">See dictionary forms and estimated pronunciations.</p><p class="badge badge-experimental">Experimental. Results can be wrong.</p><p class="helper"><a href="/lessons/cefr-levels/">Read the CEFR study guide</a></p>
-<p class="lede">Type English text to see stored pronunciations or rule estimates. Check unfamiliar words against a dictionary recording.</p>
-<section class="checker-work" id="tool"><div class="tool-section">
-<label for="inp">Enter English text to transcribe</label>
-<textarea id="inp" spellcheck="false">English pronunciation is really difficult to learn</textarea>
-<div class="opts">
-<label><input checked="" id="optSyl" type="checkbox"/> Show syllables</label>
-<label><input checked="" id="optStress" type="checkbox"/> Show stress mark (ˈ)</label>
-<label for="optStyle">Accent: </label>
-<div>
-<select aria-label="Accent style" id="optStyle">
-<option selected="" value="ga">General American</option>
-<option value="rp">British estimate</option>
-</select>
-</div>
-</div>
-</div><div class="checker-output"><div id="out"></div>
-<div class="legend">Dictionary form   Estimate</div>
-<div aria-live="polite" class="stat" id="stat" role="status"></div>
-</div></section>
-<h2>How this pronunciation tool works</h2>
-<p>English spelling is famously irregular, the letters <em>ough</em> alone have six different sounds (think <em>though</em>, <em>tough</em>, <em>through</em>, <em>cough</em>, <em>bough</em>, <em>thought</em>). Because of that, no single set of rules can perfectly convert spelling to sound. This tool uses a two-stage method to get close.</p>
-<p><span class="label">Stage 1, dictionary lookup</span> The tool ships with a built-in pronunciation dictionary of several hundred of the most common English words, each stored with an IPA (International Phonetic Alphabet) transcription. If your word is in the list, you get one stored pronunciation. Words such as read and use need sentence context. Accent transformations remain estimates.</p>
-<p><span class="label">Stage 2, grapheme-to-phoneme rules</span> When a word is not in the dictionary, the tool falls back to a letter-to-sound algorithm. It scans the word left to right, matching multi-letter spelling patterns (digraphs like <em>sh</em>, <em>ch</em>, <em>th</em>, and vowel teams like <em>ea</em>, <em>oo</em>, <em>igh</em>) before single letters, applies the silent-<em>e</em> rule that lengthens a preceding vowel, and reduces unstressed vowels toward the schwa /ə/. These outputs carry an Estimate label so you know to double-check them.</p>
-<p><span class="label">Syllables and stress</span> Syllable count is estimated by counting vowel-letter groups (adjacent vowels count once) and subtracting a silent final <em>e</em>. For unknown words, the stress mark defaults to the first syllable. This can be wrong. The General American and British (RP) toggles swap a few vowel qualities such as the <em>a</em> in <em>bath</em> and the rhotic final <em>r</em>. Treat the output as a study aid, not a substitute for a native-speaker recording.</p>
-<script>
-(function(){
-  "use strict";
-  // ---- Stage 1: built-in pronunciation dictionary (General American IPA) ----
-  var DICT = {
-    "the":"ðə","a":"ə","an":"æn","and":"ænd","of":"əv","to":"tu","in":"ɪn","is":"ɪz","it":"ɪt",
-    "you":"juː","that":"ðæt","he":"hiː","she":"ʃiː","was":"wʌz","for":"fɔːr","on":"ɑːn","are":"ɑːr",
-    "as":"æz","with":"wɪð","his":"hɪz","they":"ðeɪ","at":"æt","be":"biː","this":"ðɪs","have":"hæv",
-    "from":"frʌm","or":"ɔːr","one":"wʌn","had":"hæd","by":"baɪ","word":"wɜːrd","but":"bʌt","not":"nɑːt",
-    "what":"wʌt","all":"ɔːl","were":"wɜːr","we":"wiː","when":"wɛn","your":"jʊr","can":"kæn","said":"sɛd",
-    "there":"ðɛr","use":"juːz","each":"iːtʃ","which":"wɪtʃ","do":"duː","how":"haʊ","their":"ðɛr",
-    "if":"ɪf","will":"wɪl","up":"ʌp","other":"ˈʌðər","about":"əˈbaʊt","out":"aʊt","many":"ˈmɛni",
-    "then":"ðɛn","them":"ðɛm","these":"ðiːz","so":"soʊ","some":"sʌm","her":"hɜːr","would":"wʊd",
-    "make":"meɪk","like":"laɪk","him":"hɪm","into":"ˈɪntuː","time":"taɪm","has":"hæz","look":"lʊk",
-    "two":"tuː","more":"mɔːr","write":"raɪt","go":"goʊ","see":"siː","number":"ˈnʌmbər","no":"noʊ",
-    "way":"weɪ","could":"kʊd","people":"ˈpiːpəl","my":"maɪ","than":"ðæn","first":"fɜːrst",
-    "water":"ˈwɔːtər","been":"bɪn","call":"kɔːl","who":"huː","now":"naʊ","find":"faɪnd","long":"lɔːŋ",
-    "down":"daʊn","day":"deɪ","did":"dɪd","get":"ɡɛt","come":"kʌm","made":"meɪd","may":"meɪ",
-    "english":"ˈɪŋɡlɪʃ","pronunciation":"prəˌnʌnsiˈeɪʃən","really":"ˈriːəli","difficult":"ˈdɪfɪkəlt",
-    "learn":"lɜːrn","language":"ˈlæŋɡwɪdʒ","student":"ˈstuːdənt","teacher":"ˈtiːtʃər","study":"ˈstʌdi",
-    "practice":"ˈpræktɪs","grammar":"ˈɡræmər","vocabulary":"voʊˈkæbjəˌlɛri","sentence":"ˈsɛntəns",
-    "question":"ˈkwɛstʃən","answer":"ˈænsər","example":"ɪɡˈzæmpəl","because":"bɪˈkɔːz","through":"θruː",
-    "thought":"θɔːt","enough":"ɪˈnʌf","though":"ðoʊ","tough":"tʌf","cough":"kɔːf","laugh":"læf",
-    "school":"skuːl","friend":"frɛnd","people":"ˈpiːpəl","colour":"ˈkʌlər","color":"ˈkʌlər",
-    "knight":"naɪt","know":"noʊ","write":"raɪt","island":"ˈaɪlənd","hour":"ˈaʊər","honest":"ˈɑːnɪst",
-    "beautiful":"ˈbjuːtɪfəl","comfortable":"ˈkʌmftərbəl","important":"ɪmˈpɔːrtənt","develop":"dɪˈvɛləp",
-    "world":"wɜːrld","work":"wɜːrk","good":"ɡʊd","great":"ɡreɪt","little":"ˈlɪtəl","own":"oʊn",
-    "old":"oʊld","tell":"tɛl","boy":"bɔɪ","follow":"ˈfɑːloʊ","came":"keɪm","want":"wɑːnt","show":"ʃoʊ",
-    "also":"ˈɔːlsoʊ","around":"əˈraʊnd","form":"fɔːrm","three":"θriː","small":"smɔːl","set":"sɛt",
-    "put":"pʊt","end":"ɛnd","does":"dʌz","another":"əˈnʌðər","well":"wɛl","large":"lɑːrdʒ","must":"mʌst",
-    "big":"bɪɡ","even":"ˈiːvən","such":"sʌtʃ","here":"hɪr","why":"waɪ","ask":"æsk","went":"wɛnt",
-    "men":"mɛn","read":"riːd","need":"niːd","land":"lænd","different":"ˈdɪfərənt","home":"hoʊm",
-    "us":"ʌs","move":"muːv","try":"traɪ","kind":"kaɪnd","hand":"hænd","picture":"ˈpɪktʃər","again":"əˈɡɛn",
-    "change":"tʃeɪndʒ","off":"ɔːf","play":"pleɪ","spell":"spɛl","air":"ɛr","away":"əˈweɪ","animal":"ˈænɪməl",
-    "house":"haʊs","point":"pɔɪnt","page":"peɪdʒ","letter":"ˈlɛtər","mother":"ˈmʌðər","father":"ˈfɑːðər",
-    "thing":"θɪŋ","think":"θɪŋk","name":"neɪm","sound":"saʊnd","near":"nɪr","add":"æd","food":"fuːd",
-    "between":"bɪˈtwiːn","city":"ˈsɪti","tree":"triː","cross":"krɔːs","farm":"fɑːrm","hard":"hɑːrd",
-    "start":"stɑːrt","might":"maɪt","story":"ˈstɔːri","saw":"sɔː","left":"lɛft","few":"fjuː","while":"waɪl",
-    "along":"əˈlɔːŋ","night":"naɪt","life":"laɪf","both":"boʊθ","paper":"ˈpeɪpər","together":"təˈɡɛðər",
-    "got":"ɡɑːt","group":"ɡruːp","often":"ˈɔːfən","run":"rʌn","important":"ɪmˈpɔːrtənt","children":"ˈtʃɪldrən",
-    "side":"saɪd","feet":"fiːt","car":"kɑːr","mile":"maɪl","began":"bɪˈɡæn","walk":"wɔːk","white":"waɪt",
-    "sea":"siː","began":"bɪˈɡæn","grow":"ɡroʊ","took":"tʊk","river":"ˈrɪvər","four":"fɔːr","carry":"ˈkæri",
-    "state":"steɪt","once":"wʌns","book":"bʊk","hear":"hɪr","stop":"stɑːp","without":"wɪˈðaʊt","second":"ˈsɛkənd",
-    "later":"ˈleɪtər","miss":"mɪs","idea":"aɪˈdiːə","family":"ˈfæməli","music":"ˈmjuːzɪk","those":"ðoʊz",
-    "happy":"ˈhæpi","young":"jʌŋ","every":"ˈɛvri","listen":"ˈlɪsən","speak":"spiːk","easy":"ˈiːzi","right":"raɪt"
-  };
-
-  // ---- Stage 2: grapheme-to-phoneme fallback rules (ordered, multi-letter first) ----
-  var RULES = [
-    ["tion","ʃən"],["sion","ʒən"],["ough","ʌf"],["augh","æf"],["eigh","eɪ"],["igh","aɪ"],
-    ["tch","tʃ"],["dge","dʒ"],["ck","k"],["sh","ʃ"],["ch","tʃ"],["th","θ"],["ph","f"],["wh","w"],
-    ["qu","kw"],["ng","ŋ"],["ee","iː"],["ea","iː"],["oo","uː"],["ou","aʊ"],["ow","aʊ"],["oi","ɔɪ"],
-    ["oy","ɔɪ"],["ai","eɪ"],["ay","eɪ"],["au","ɔː"],["aw","ɔː"],["ar","ɑːr"],["er","ər"],["ir","ɜːr"],
-    ["or","ɔːr"],["ur","ɜːr"],["oa","oʊ"],["ie","aɪ"],["ey","eɪ"],
-    ["a","æ"],["e","ɛ"],["i","ɪ"],["o","ɑː"],["u","ʌ"],["y","i"],
-    ["b","b"],["c","k"],["d","d"],["f","f"],["g","ɡ"],["h","h"],["j","dʒ"],["k","k"],["l","l"],
-    ["m","m"],["n","n"],["p","p"],["q","k"],["r","r"],["s","s"],["t","t"],["v","v"],["w","w"],["x","ks"],["z","z"]
-  ];
-
-  function gtp(word){
-    var w = word.toLowerCase();
-    var silentE = false;
-    // silent final e after a consonant (e.g. "make","time") -> lengthen vowel, drop e
-    if(w.length>2 && w.charAt(w.length-1)==="e" && "bcdfghjklmnpqrstvwxz".indexOf(w.charAt(w.length-2))>=0){
-      silentE = true;
-      w = w.slice(0,-1);
-    }
-    var out = "", i = 0;
-    while(i < w.length){
-      var matched = false;
-      for(var r=0;r<RULES.length;r++){
-        var g = RULES[r][0];
-        if(w.substr(i,g.length) === g){
-          out += RULES[r][1];
-          i += g.length;
-          matched = true;
-          break;
-        }
-      }
-      if(!matched){ i++; } // skip unknown char
-    }
-    // silent-e long-vowel adjustment on the last short vowel produced
-    if(silentE){
-      out = out.replace(/æ([^æɛɪɑʌ]*)$/,"eɪ$1")
-               .replace(/ɛ([^æɛɪɑʌ]*)$/,"iː$1")
-               .replace(/ɪ([^æɛɪɑʌ]*)$/,"aɪ$1")
-               .replace(/ɑː([^æɛɪɑʌ]*)$/,"oʊ$1")
-               .replace(/ʌ([^æɛɪɑʌ]*)$/,"juː$1");
-    }
-    return out;
-  }
-
-  function countSyllables(word){
-    var w = word.toLowerCase().replace(/[^a-z]/g,"");
-    if(!w) return 0;
-    if(w.length<=3) return 1;
-    var m = w.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/,"")
-             .replace(/^y/,"")
-             .match(/[aeiouy]{1,2}/g);
-    return m ? m.length : 1;
-  }
-
-  function syllabify(word, n){
-    // light visual hyphenation by vowel groups, capped at n parts
-    var w = word;
-    if(n<=1) return w;
-    var parts = w.match(/[^aeiouyAEIOUY]*[aeiouyAEIOUY]+(?:[^aeiouyAEIOUY]*$|[^aeiouyAEIOUY](?=[^aeiouyAEIOUY]))?/g);
-    if(!parts) return w;
-    return parts.join("·");
-  }
-
-  function applyAccent(ipa, style){
-    if(style==="rp"){
-      // British-ish: drop rhotic r at end of vowel+r, broaden bath-a
-      ipa = ipa.replace(/ɑːr/g,"ɑː").replace(/ɔːr/g,"ɔː").replace(/ər\b/g,"ə").replace(/ɜːr/g,"ɜː");
-      ipa = ipa.replace(/æs/g,"ɑːs").replace(/æf/g,"ɑːf");
-    }
-    return ipa;
-  }
-
-  function addStress(ipa, nSyl, withStress){
-    if(!withStress) return ipa.replace(/[ˈˌ]/g,'');
-    if(nSyl<2) return ipa;
-    if(/[ˈ]/.test(ipa)) return ipa; // dictionary already has it
-    // place ˈ at the start (first-syllable default heuristic)
-    return "ˈ" + ipa;
-  }
-
-  var inp=document.getElementById("inp"),
-      out=document.getElementById("out"),
-      stat=document.getElementById("stat"),
-      optSyl=document.getElementById("optSyl"),
-      optStress=document.getElementById("optStress"),
-      optStyle=document.getElementById("optStyle");
-
-  function esc(s){return s.replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
-
-  function render(){
-    var text = inp.value;
-    var style = optStyle.value;
-    var tokens = text.match(/[A-Za-z']+/g) || [];
-    var html = "", exact=0, est=0, totalSyl=0;
-    for(var t=0;t<tokens.length;t++){
-      var raw = tokens[t];
-      var key = raw.toLowerCase().replace(/'/g,"");
-      var ipa, isExact;
-      if(DICT.hasOwnProperty(key)){ ipa = DICT[key]; isExact = true; exact++; }
-      else { ipa = gtp(key); isExact = false; est++; }
-      var nSyl = countSyllables(key);
-      totalSyl += nSyl;
-      var original=ipa; ipa = applyAccent(ipa, style);if(ipa!==original && isExact){isExact=false;exact--;est++;}
-      ipa = addStress(ipa, nSyl, optStress.checked);
-      var sylStr = optSyl.checked ? syllabify(raw, nSyl) : raw;
-      var dot = isExact ? '<span class="exact">Dictionary form, check context</span>' : '<span class="guess">Estimate</span>';
-      html += '<span class="word">'
-            + '<span class="orig">'+dot+' '+esc(raw)+'</span><br>'
-            + '<span class="ipa">/'+esc(ipa)+'/</span>'
-            + (optSyl.checked ? '<br><span class="syl">'+esc(sylStr)+'</span>' : '')
-            + '</span>';
-    }
-    out.innerHTML = html || '<small>Type something above to see its pronunciation.</small>';
-    stat.innerHTML =
-      '<div><b>'+tokens.length+'</b>words</div>' +
-      '<div><b>'+totalSyl+'</b>syllables</div>' +
-      '<div><b>'+exact+'</b>dictionary matches</div>' +
-      '<div><b>'+est+'</b>rule estimates</div>';
-  }
-
-  var renderTimer;inp.addEventListener("input", function(){clearTimeout(renderTimer);renderTimer=setTimeout(render,300);});
-  optSyl.addEventListener("change", render);
-  optStress.addEventListener("change", render);
-  optStyle.addEventListener("change", render);
-  render(); // prefilled output on load
-})();
-</script>
-<div class="el-note" role="note">
-Experimental tool. This tool uses simple rules and it makes mistakes. Do not rely on its results.
-  For checked explanations, use the <a href="/lessons/">grammar lessons</a> and the <a href="/tools/">practice tools</a>.
-</div><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/cefr-levels/">Read the CEFR study guide</a><a class="btn" href="/tools/">Choose another practice</a></div></section><noscript><p>Interactive practice needs JavaScript. <a href="/lessons/cefr-levels/">Read the written study guide</a>.</p></noscript><script>
-if(matchMedia('(min-width:1024px)').matches)document.querySelectorAll('.quiz-settings:not([hidden])').forEach(el=>el.open=true);
-</script><script>
-(function(){
- const main=document.getElementById('main');
- const status=document.createElement('p');status.className='typing-status';status.setAttribute('role','status');status.hidden=true;main.append(status);
- const update=()=>{const input=document.activeElement;if(!input||!main.contains(input)||!input.matches('textarea,input:not([type=radio]):not([type=checkbox])')||!window.visualViewport){status.hidden=true;return;}const feedback=main.querySelector('#feedbackArea,#feedback,#errorsContainer,#verbsContainer,#diagramDisplay');const box=feedback&&feedback.getBoundingClientRect();if(box&&box.top>=0&&box.bottom<visualViewport.height){status.hidden=true;return;}status.textContent=(main.querySelector('#qCounter')||{}).textContent||'Answer not checked';status.style.top=visualViewport.offsetTop+'px';status.hidden=false;};
- main.addEventListener('focusin',update);main.addEventListener('focusout',()=>setTimeout(update,0));window.addEventListener('scroll',update,{passive:true});if(window.visualViewport)visualViewport.addEventListener('resize',update);
- main.querySelectorAll('.checker-output .results').forEach(result=>new MutationObserver(()=>{const placeholder=result.parentElement.querySelector('.checker-placeholder');if(placeholder)placeholder.hidden=result.classList.contains('active');}).observe(result,{attributes:true,attributeFilter:['class']}));
- main.querySelectorAll('a[href^="/lessons/"]').forEach(link=>link.addEventListener('click',()=>{if(window.elTrack)window.elTrack('cta_click',{cta_id:'tool_pronunciation-guide_lesson'});}));
-})();
-</script></main>
+<main class="tool-page tool-pronunciation-guide" id="main">
+<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">Pronunciation guide</li></ol></nav><h1>English text to IPA</h1><p class="lead">Look up American pronunciations and listen to English words.</p>
+<div class="tool-layout"><div class="tool-main"><section class="tool-section" aria-label="Pronunciation lookup">
+<form id="pron-form"><div class="field"><label for="inp">English words or a short sentence</label><textarea id="inp" rows="3" spellcheck="false" aria-describedby="pron-help">ship sheep</textarea><p class="helper" id="pron-help">Dictionary forms only. Words may sound different in a sentence. Numbers and unknown words have no IPA.</p></div><label class="ref-check"><input id="optStress" type="checkbox" checked> Show stress marks</label><button type="submit" class="btn btn-primary" id="pron-submit" disabled>Look up IPA</button></form><p class="status" role="status" id="pron-status">Loading the word list.</p>
+<details><summary>Listen settings</summary><div class="field"><label for="accent">Voice accent</label><select id="accent"><option value="en-US">American English</option><option value="en-GB">British English</option></select><p class="helper">This changes the voice only. The IPA stays American.</p><p class="helper" id="voice-status">Checking the voices on this browser.</p></div></details></section>
+<section class="result-slot" id="pron-result" aria-labelledby="pron-heading"><h2 id="pron-heading" tabindex="-1">Dictionary pronunciations</h2><p id="pron-summary">Choose Look up IPA to see the sounds.</p><div class="ref-words" id="out"></div><div class="actions"><button class="btn" id="listen" type="button" disabled>Listen</button><button class="btn" id="stop-listen" type="button" disabled>Stop listening</button></div><p class="helper" id="listen-status" role="status"></p></section></div><aside class="tool-support"><img class="tool-art" src="/assets/img/tool-pronunciation-guide-480.webp" srcset="/assets/img/tool-pronunciation-guide-480.webp 480w, /assets/img/tool-pronunciation-guide-960.webp 960w" sizes="(min-width:1280px) 320px, (min-width:1024px) 280px, (min-width:768px) 240px, (min-width:390px) 192px, 168px" width="480" height="322" alt="" loading="lazy" decoding="async"><div class="rule-box"><span class="rule-label">Read the sounds</span><p>Slashes / / show a word's sounds. The mark ˈ comes before a strongly stressed syllable. The mark ˌ shows a weaker stress.</p></div><p><a href="/lessons/articles-a-an-the/">Use sounds to choose a or an</a></p></aside></div>
+<section class="ref-support reading"><h2>About this guide</h2><h3>American dictionary forms</h3><p>The local list comes from the <a href="https://github.com/cmusphinx/cmudict">CMU Pronouncing Dictionary</a>. It contains 9,363 words. We convert its sound symbols to broad IPA. <a href="CMU-LICENSE.txt">Read the BSD license</a>.</p><h3>Words with more than one sound</h3><p>Read can be /riːd/ in the present or /rɛd/ in the past. Use can end in /s/ as a noun or /z/ as a verb. The tool shows stored forms together. It doesn't choose a meaning.</p><h3>Unknown words</h3><p>If a word isn't in the list, its IPA is not known here. Check a dictionary recording. Names, abbreviations and words from other languages may be missing.</p><h3>Listening in your browser</h3><p>Listen uses a voice supplied by your browser or device. Some browsers have no English voice. A voice may use an online speech service. It may choose a different pronunciation from the IPA.</p></section>
+<section class="reading"><h2>Ten sound contrasts to practise</h2><p>These pairs can help learners whose first language is Chinese, Japanese or Korean. Your needs may differ. Listen first, then say each pair slowly.</p><p>These are broad American forms. British vowels can differ. For example, many British speakers say /əʊ/ where American speakers say /oʊ/.</p>
+<table class="table-cards"><thead><tr><th scope="col">Sounds and words</th><th scope="col">Try this</th></tr></thead><tbody><tr><td data-label="Sounds and words"> /ɪ/ and /iː/<br>ship /ʃɪp/ and sheep /ʃiːp/</td><td data-label="Try this">Keep /ɪ/ relaxed. Move your tongue higher for /iː/.</td></tr><tr><td data-label="Sounds and words">/l/ and /r/<br>light /laɪt/ and right /raɪt/</td><td data-label="Try this">Touch behind your upper teeth for /l/. For American /r/, keep the tongue off the roof.</td></tr><tr><td data-label="Sounds and words">/θ/ and /s/<br>think /θɪŋk/ and sink /sɪŋk/</td><td data-label="Try this">Put the tongue tip lightly between your teeth for /θ/. Blow air without voice.</td></tr><tr><td data-label="Sounds and words">/v/ and /b/<br>very /ˈvɛri/ and berry /ˈbɛri/</td><td data-label="Try this">For /v/, touch your lower lip to your upper teeth. Keep the air moving.</td></tr><tr><td data-label="Sounds and words">/ð/ and /d/<br>they /ðeɪ/ and day /deɪ/</td><td data-label="Try this">Use your voice for /ð/. Let air pass your tongue and teeth.</td></tr><tr><td data-label="Sounds and words">/æ/ and /ɛ/<br>bad /bæd/ and bed /bɛd/</td><td data-label="Try this">Open your mouth wider for /æ/.</td></tr><tr><td data-label="Sounds and words">/ʊ/ and /uː/<br>full /fʊl/ and fool /fuːl/</td><td data-label="Try this">Use a relaxed tongue for /ʊ/. Raise it for /uː/.</td></tr><tr><td data-label="Sounds and words">/s/ and /ʃ/<br>seat /siːt/ and sheet /ʃiːt/</td><td data-label="Try this">For /ʃ/, move your tongue back a little and round your lips slightly.</td></tr><tr><td data-label="Sounds and words">/f/ and /h/<br>fat /fæt/ and hat /hæt/</td><td data-label="Try this">Use your upper teeth and lower lip for /f/. Keep them apart for /h/.</td></tr><tr><td data-label="Sounds and words">Final /s/ and /z/<br>rice /raɪs/ and rise /raɪz/</td><td data-label="Try this">Keep a gentle voice vibration for /z/. Keep /s/ unvoiced.</td></tr></tbody></table></section><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/articles-a-an-the/">Read about a and an</a><a class="btn" href="/tools/vocabulary-quiz/">Practise word meanings</a></div></section>
+<noscript><p>This tool needs JavaScript. You can still read the guide below and visit the linked lessons.</p></noscript>
+</main>
 <!-- shared-footer-start -->
-<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>It isn’t connected to englishlearner.com.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
+<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
 <!-- shared-footer-end -->
 </body>
 </html>

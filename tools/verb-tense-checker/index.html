@@ -1,138 +1,373 @@
 <!DOCTYPE html>
-<html lang="en" data-no-ads>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verb tense checker, a free English tool</title>
-    <meta name="description" content="Free verb tense checker. Paste text, identify tenses, spot inconsistencies, get corrections. Instant feedback.">
-    <meta property="og:title" content="Verb tense checker, a free English tool">
-    <meta property="og:description" content="Free verb tense checker. Paste text, identify tenses, spot inconsistencies, get corrections. Instant feedback.">
-    <meta property="og:url" content="https://englishlearner.org/tools/verb-tense-checker/">
-    <meta property="og:type" content="website">
-    <meta name="theme-color" content="#00d4aa">
-    
-    <link rel="canonical" href="https://englishlearner.org/tools/verb-tense-checker/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verb tense checker for English</title>
+<meta name="description" content="Find common English verb forms, see possible tense meanings, and review clear mistakes with local rules.">
+<link rel="canonical" href="https://englishlearner.org/tools/verb-tense-checker/">
+<meta property="og:title" content="Verb tense checker for English">
+<meta property="og:description" content="Find common English verb forms, see possible tense meanings, and review clear mistakes with local rules.">
+<meta property="og:url" content="https://englishlearner.org/tools/verb-tense-checker/">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Verb Tense Checker",
+        "description": "Find common English verb forms, see possible tense meanings, and review clear mistakes with local rules.",
+        "url": "https://englishlearner.org/tools/verb-tense-checker/",
+        "applicationCategory": "EducationalApplication"
+    }
+    </script>
 <meta name="google-adsense-account" content="ca-pub-2241192243363112">
-<meta name="robots" content="noindex">
 <script src="/assets/site.js" defer></script>
 <link rel="stylesheet" href="/assets/tool.css">
-<meta property="og:image" content="https://englishlearner.org/assets/img/og-default.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="English Learner free lessons and practice">
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
+<meta property="og:image" content="https://englishlearner.org/assets/og/tools-verb-tense-checker.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F7F2E7">
+<style>.typing-status{min-height:48px;font-size:16px;inset-inline:0}</style>
+<script src="/assets/vendor/compromise-14.17.0.min.js" defer></script>
 </head>
 <body>
 <!-- shared-header-start -->
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="el-top"><div class="el-top-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><nav class="el-nav" aria-label="Main navigation"><a href="/lessons/">Lessons</a><a href="/tools/" aria-current="true">Practice</a><a href="/tools/level-assessment/" class="nav-wide" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta_id:'nav_level_test'})">Level test</a><a href="/about/" class="nav-wide">About</a></nav></div></header>
 <!-- shared-header-end -->
-<main class="lookup-tool tool-page tool-verb-tense-checker" id="main"><script>
-window.toolResult = function(region, score, total, slug, track) {
- region.classList.add('is-complete');
- const placeholder=document.getElementById('resultPlaceholder'); if(placeholder) placeholder.hidden=true;
- if(track && window.elTrack) window.elTrack('quiz_complete',{tool:slug,score:score,total:total});
- let heading=region.querySelector('h2'); if(!heading){heading=document.createElement('h2');heading.textContent='Your result';region.prepend(heading);}
- heading.tabIndex=-1; heading.focus();
- if(!region.querySelector('.copy-result')){
-  const copy=document.createElement('button');copy.type='button';copy.className='copy-result btn';copy.textContent='Copy my result';
-  copy.onclick=async function(){const value=(region.querySelector('.result-value-long')?region.querySelector('.result-value-long').textContent+'. Rough guide. Grammar and reading only. ':'')+score+' out of '+total+'. Practice only. '+document.querySelector('link[rel=canonical]').href;try{await navigator.clipboard.writeText(value);copy.textContent='Result copied';}catch(e){let output=region.querySelector('.copy-fallback');if(!output){output=document.createElement('textarea');output.className='copy-fallback';output.readOnly=true;output.setAttribute('aria-label','Select the text to copy it');region.append(output);}output.value=value;output.focus();output.select();copy.textContent='Select the text to copy it.';}};
-  region.append(copy);
- }
-};
-</script>
-<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">Verb tense checker</li></ol></nav><h1>Verb tense checker</h1><p class="lead">Find possible verb forms in your text.</p><p class="badge badge-experimental">Experimental. Results can be wrong.</p><p class="helper"><a href="/lessons/present-perfect-vs-past-simple/">Read the tense lesson</a></p>
-<div class="checker-work"><div class="tool-section">
-<label for="textInput">Paste your text here:</label>
-<textarea id="textInput" placeholder="Example: I went to the store yesterday. I buy milk and some bread. I am returning home now..."></textarea>
-<div class="button-group">
-<button onclick="analyzeVerbs()" type="button">Analyze Verbs</button>
-<button onclick="clearAll()" type="button">Clear</button>
+<main class="lookup-tool tool-page tool-verb-tense-checker" id="main">
+<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">Verb tense checker</li></ol></nav>
+<h1>Verb tense checker</h1>
+<p class="lead">Find verb forms and check common tense mistakes.</p>
+<div class="tool-layout">
+<div class="tool-main">
+<form id="checkerForm" class="tool-section" novalidate>
+<div class="field"><label for="textInput">Your English text</label>
+<textarea id="textInput" rows="5" aria-describedby="inputHelp inputError" placeholder="She has been working here for two years."></textarea>
+<p id="inputHelp" class="helper">Text stays in this browser. Use Ctrl+Enter or Command+Enter to check.</p>
+<p id="inputError" class="field-error" role="status"></p></div>
+<div class="button-group"><button class="btn btn-primary" id="checkButton" type="submit">Check text</button><button class="btn" id="clearButton" type="button">Clear</button></div>
+<div class="actions"><button class="btn" id="exampleButton" type="button">Try an example</button></div>
+</form>
+<section id="results" class="result-slot result-checker" aria-labelledby="resultTitle">
+<h2 id="resultTitle" tabindex="-1">Possible findings</h2>
+<p id="resultSummary">Your result appears here when you check the text.</p>
+<div id="findings"></div><div id="forms"></div><div id="notes"></div>
+</section>
+<p id="resultStatus" class="helper" role="status" aria-live="polite"></p>
 </div>
-</div><div class="checker-output"><section class="result-slot result-checker checker-placeholder"><h2>Possible findings</h2><p>Your result appears here when you finish.</p></section><div class="results" id="results">
-<div class="tense-summary">
-<div>Tense Summary</div>
-<div class="summary-item">
-<span class="summary-label">Total Verbs Found:</span>
-<span class="summary-count" id="totalVerbs">0</span>
+<aside class="tool-support" aria-label="Study help">
+<picture><source srcset="/assets/img/tool-verb-tense-checker-480.webp 480w, /assets/img/tool-verb-tense-checker-960.webp 960w" sizes="(min-width:1280px) 320px, (min-width:1024px) 280px, (min-width:768px) 240px, (min-width:390px) 192px, 168px" type="image/webp"><img class="tool-art" src="/assets/img/tool-verb-tense-checker-480.webp" width="480" height="322" alt="" loading="lazy" decoding="async"></picture>
+<div class="rule-box"><span class="rule-label">Check the meaning too</span><p>A verb form does not tell the whole meaning. The time words and the rest of the sentence matter.</p><p><a href="/lessons/present-perfect-vs-past-simple/">Read a tense lesson</a></p></div>
+<p class="badge badge-experimental">Experimental</p><p class="helper">These rules can miss mistakes and flag correct text. Ask a teacher if you are unsure.</p>
+</aside>
 </div>
-<div class="summary-item">
-<span class="summary-label">Unique Tenses:</span>
-<span class="summary-count" id="uniqueTenses">0</span>
-</div>
-<div class="summary-item">
-<span class="summary-label">Consistency</span>
-<span class="summary-count" id="consistencyScore">0%</span>
-</div>
-</div>
-<div id="inconsistenciesContainer"></div>
-<div id="verbsContainer"></div>
-</div></div></div>
-
-<script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Verb Tense Checker",
-        "description": "Free verb tense checker to identify tenses, spot inconsistencies, and get corrections",
-        "url": "https://englishlearner.org/tools/verb-tense-checker/",
-        "applicationCategory": "EducationalApplication"
-    }
-    </script>
+<section class="reading practice-help"><h2>Verb forms and limits</h2>
+<p>The tool uses local English word tags and verb patterns. It does not send your text to a server.</p>
+<h3>Time and aspect</h3><p>English courses often teach 12 tense and aspect forms. Simple forms show events or states. Continuous forms show an action in progress. Perfect forms look back from a time.</p><p>Will forms can refer to the future. English also uses present forms for future plans. A form name alone cannot tell you the intended time.</p>
+<h3>Passive and modal forms</h3><p>A passive form often has be and a past participle, as in was written. The subject receives the action.</p><p>A modal such as may, must or should adds a meaning such as possibility, need or advice. The tool names the form. It cannot always tell which modal meaning you intend.</p>
+<h3>Check clear mistakes</h3><p>Write He goes, not He go, for an ordinary present statement. After did, use the base form, as in Did she go?</p><p>After have or has in a perfect form, use a past participle. Write have gone, not have went.</p><p>Use for with a period of time, as in for three years. Use since with a starting point, as in since 2020.</p><p>For living somewhere from the past until now, British and American English normally use I have lived or I have been living.</p>
+<h3>State verbs</h3><p>For a state, use know or have known rather than am knowing or have been knowing. Other common state verbs include believe, belong, own, understand, want, need, prefer, mean, seem and contain.</p><p>The meaning matters. Thinking about a problem, having lunch and seeing a friend are actions. Continuous forms can describe them.</p><p>Some continuous forms are fine in special uses. I'm loving it is informal. I've been meaning to call you is also correct.</p>
+<h3>Meaning still matters</h3><p>Different tenses can be correct in the same text. This tool does not give a consistency score.</p><p>Read, put and some other verbs share present and past spellings. The door is closed can describe a state or an action.</p><p>Contractions appear in full in the verb list. The tool may miss even a short sentence when a word gets the wrong tag. Long questions and unusual verbs may need a teacher.</p><p>The explanations describe possible uses of each form. They cannot prove the exact meaning of your sentence.</p>
+</section>
+<section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/present-perfect-vs-past-simple/">Read a tense lesson</a><a class="btn" href="/tools/irregular-verbs/">Look up irregular verbs</a></div></section>
+<noscript><p>This checker needs JavaScript. <a href="/lessons/present-perfect-vs-past-simple/">Read the written lesson</a>.</p></noscript>
+<p id="typingStatus" class="typing-status" role="status" hidden>Answer not checked</p>
+</main>
 <script>
-function inputError(input,message){let error=document.getElementById('inputError');if(!error){error=document.createElement('p');error.id='inputError';error.className='field-error';error.setAttribute('role','status');input.after(error);}error.textContent=message;input.setAttribute('aria-describedby','inputError');input.setAttribute('aria-invalid',message?'true':'false');if(message)input.focus();}
-        const verbPatterns = [
- [/\b(?:have|has|had)\s+(?:not\s+)?been\s+[a-z]+ing\b/gi,'Perfect continuous form','The auxiliary sets the time. Check the sentence context.'],
- [/\b(?:have|has)\s+(?:not\s+)?(?:[a-z]+ed|gone|been|seen|done|written|eaten|taken|known|made|bought|found|spoken|broken|come|run|read)\b/gi,'Present perfect form','Have or has plus a past participle can connect a past event or state to now.'],
- [/\bhad\s+(?:not\s+)?(?:[a-z]+ed|gone|been|seen|done|written|eaten|taken|known|made|bought|found|spoken|broken|come|run|read)\b/gi,'Past perfect form','Had plus a past participle can place an event before a past reference point.'],
- [/\b(?:am|is|are)\s+(?:not\s+)?[a-z]+ing\b/gi,'Present continuous form','Be plus an -ing form can describe an action in progress.'],
- [/\b(?:was|were)\s+(?:not\s+)?[a-z]+ing\b/gi,'Past continuous form','Was or were plus an -ing form can describe a past action in progress.'],
- [/\b(?:will|shall)\s+(?:not\s+)?[a-z]+\b/gi,'Future modal form','Will or shall can express a future meaning.'],
- [/\b(?:was|were|did|went|ran|saw|wrote|ate|took|bought|worked|played|walked|finished)\b/gi,'Possible past simple form','These forms can describe a finished past event. Context still matters.'],
- [/\b(?:am|is|are|do|does|have|has|go|goes|work|works|run|runs|play|plays)\b/gi,'Possible present simple form','A word match alone does not prove its grammatical role.']
- ];
-        function analyzeVerbs(){
- const input=document.getElementById('textInput'),text=input.value;if(!text.trim()){inputError(input,'Enter some text to check.');return;}inputError(input,'');
- const results=document.getElementById('results');results.classList.add('active');let candidates=[];
- verbPatterns.forEach(([regex,label,explanation])=>{for(const m of text.matchAll(regex))candidates.push({word:m[0],start:m.index,end:m.index+m[0].length,label,explanation});});
- candidates.sort((a,b)=>(b.end-b.start)-(a.end-a.start));let verbs=[];candidates.forEach(v=>{if(!verbs.some(x=>v.start<x.end&&v.end>x.start))verbs.push(v);});verbs.sort((a,b)=>a.start-b.start);
- document.getElementById('totalVerbs').textContent=verbs.length;document.getElementById('uniqueTenses').textContent=new Set(verbs.map(x=>x.label)).size;document.getElementById('consistencyScore').textContent='Not measured';
- document.getElementById('inconsistenciesContainer').textContent='Different tenses can be correct in the same text. These word patterns cannot check tense consistency.';
- const out=document.getElementById('verbsContainer');out.replaceChildren();const h=document.createElement('h2');h.className='result-finding';h.tabIndex=-1;h.textContent=verbs.length?'Possible verb forms':'No forms found by these rules.';out.append(h);
- verbs.forEach(v=>{const item=document.createElement('div');item.className='verb-item';const title=document.createElement('h3');title.textContent=v.word;const p=document.createElement('p');p.textContent=v.label+'. '+v.explanation;item.append(title,p);out.append(item);});h.focus();
-        }
+document.addEventListener('DOMContentLoaded', () => {
+/* Pattern-based forms with local word tags. This is not a full sentence parser. */
+(() => {
+  'use strict';
+  const input = document.getElementById('textInput');
+  const result = document.getElementById('results');
+  const error = document.getElementById('inputError');
+  const findings = document.getElementById('findings');
+  const forms = document.getElementById('forms');
+  const notes = document.getElementById('notes');
+  const summary = document.getElementById('resultSummary');
+  const status = document.getElementById('resultStatus');
+  const irregular = `be was been;be were been;go went gone;do did done;have had had;eat ate eaten;write wrote written;see saw seen;take took taken;give gave given;come came come;run ran run;buy bought bought;bring brought brought;think thought thought;teach taught taught;catch caught caught;find found found;make made made;leave left left;feel felt felt;keep kept kept;sleep slept slept;say said said;tell told told;sell sold sold;send sent sent;spend spent spent;build built built;lose lost lost;win won won;sit sat sat;stand stood stood;understand understood understood;know knew known;grow grew grown;throw threw thrown;fly flew flown;draw drew drawn;show showed shown;break broke broken;speak spoke spoken;choose chose chosen;drive drove driven;ride rode ridden;rise rose risen;fall fell fallen;forget forgot forgotten;get got got;get got gotten;begin began begun;drink drank drunk;sing sang sung;swim swam swum;ring rang rung;steal stole stolen;wear wore worn;tear tore torn;hear heard heard;hold held held;lead led led;meet met met;pay paid paid;read read read;put put put;cut cut cut;hit hit hit;hurt hurt hurt;let let let;set set set;cost cost cost;shut shut shut;quit quit quit;beat beat beaten;lie lay lain;lay laid laid;seek sought sought;fight fought fought;light lit lit;learn learnt learnt;learn learned learned;dream dreamt dreamt;spell spelt spelt;burn burnt burnt;mean meant meant;feed fed fed;lend lent lent;shake shook shaken;wake woke woken;hide hid hidden;freeze froze frozen;blow blew blown;forgive forgave forgiven;prove proved proven;hang hung hung;stick stuck stuck;strike struck struck;sweep swept swept;dig dug dug;deal dealt dealt;arise arose arisen;bear bore borne;bite bit bitten;bleed bled bled;bind bound bound;bend bent bent;cling clung clung;creep crept crept;flee fled fled;forbid forbade forbidden;grind ground ground;kneel knelt knelt;lean leant leant;leap leapt leapt;mistake mistook mistaken;overcome overcame overcome;rebuild rebuilt rebuilt;ride rode ridden;shrink shrank shrunk;slide slid slid;spin spun spun;split split split;spread spread spread;spring sprang sprung;sting stung stung;swear swore sworn;weep wept wept`.split(';').map(row => row.split(' '));
+  const bases = new Set(), past = new Map(), participles = new Set();
+  irregular.forEach(([base, p, pp]) => {bases.add(base); past.set(p, {base, pp}); participles.add(pp);});
+  const modals = new Set('will shall would could should can may might must ought'.split(' '));
+  const be = new Set('am is are was were be been being'.split(' '));
+  const have = new Set(['have', 'has', 'had']);
+  const doForms = new Set(['do', 'does', 'did']);
+  const shared = new Set(['read', 'put', 'cut', 'hit', 'hurt', 'let', 'set', 'cost', 'shut', 'quit', 'spread', 'split', 'bid', 'bet', 'cast']);
+  const descriptions = {
+    'Present simple': 'This form can describe a habit, a state or a general fact. It can also refer to a scheduled event.',
+    'Present continuous': 'This form can show an action in progress, a temporary situation or an arranged future event.',
+    'Present perfect': 'This form looks back from now. It can link an earlier event or state to the present.',
+    'Present perfect continuous': 'This form looks back from now at an activity continuing or recently stopped.',
+    'Past simple': 'This form can describe a past event or state. In an if clause, it can describe an unreal situation.',
+    'Past continuous': 'This form can show an action in progress around a past time.',
+    'Past perfect': 'This form looks back from a past time to an earlier event or state.',
+    'Past perfect continuous': 'This form looks back from a past time at an earlier continuing activity.',
+    'Future simple': 'Will with a base form can express a prediction, a decision or willingness.',
+    'Future continuous': 'This form can show an action in progress around a future time.',
+    'Future perfect': 'This form can look back from a future time at something already complete.',
+    'Future perfect continuous': 'This form can look back from a future time at a continuing activity.',
+    'Modal form': 'The modal adds a meaning such as possibility, need or advice. Context decides its meaning.',
+    'Modal continuous': 'The modal applies to an action in progress. Context decides its time and meaning.',
+    'Modal perfect': 'The modal looks back at an earlier event or state. Context decides its meaning.',
+    'Modal perfect continuous': 'The modal looks back at an earlier activity in progress. Context decides its meaning.',
+    'Present or past simple': 'The spelling is shared by present and past forms. Time words or context decide the reading.',
+    'Present perfect or passive': 'A contraction with apostrophe s can mean has or is. This may be a perfect form or a passive. Context decides.',
+    'Past perfect or modal form': 'A contraction with apostrophe d can mean had or would. This verb spelling allows either reading.',
+    'Present simple or passive': 'This can describe a state with an adjective or an action in the passive. Context decides.',
+    'Past simple or passive': 'This can describe a past state with an adjective or a past action in the passive.',
+    'Infinitive': 'To with a base form has no tense of its own. Another verb or the context supplies the time.',
+    'Imperative or base form': 'This base form may give an instruction. It has no tense ending of its own.'
+  };
+  function expand(text) {
+    return text.replace(/’/g, "'")
+      .replace(/\bwon't\b/gi, 'will not').replace(/\bcan't\b/gi, 'can not').replace(/\bshan't\b/gi, 'shall not')
+      .replace(/\b([a-z]+)n't\b/gi, '$1 not')
+      .replace(/\bI'm\b/gi, 'I am').replace(/\b(you|we|they)'re\b/gi, '$1 are')
+      .replace(/\b(I|you|we|they)'ve\b/gi, '$1 have').replace(/\b(I|you|he|she|it|we|they)'ll\b/gi, '$1 will')
+      .replace(/\b(I|you|he|she|it|we|they)'d\s+([a-z]+)/gi, (_, p, word) => p + ' ' + ((participles.has(word.toLowerCase()) || /ed$/.test(word)) && word !== 'have' ? 'had' : 'would') + ' ' + word)
+      .replace(/\b(he|she|it|who|that|there)'s\s+([a-z]+)/gi, (_, p, word) => p + ' ' + (word === 'been' ? 'has' : 'is') + ' ' + word);
+  }
+  function analyze(original) {
+    const text = expand(original), issues = [], hints = [], rows = [];
+    const hint = message => {if (!hints.includes(message)) hints.push(message);};
+    const ranges = [];
+    function flag(regex, kind, message) {
+      for (const m of text.matchAll(regex)) {
+        if (kind === 'modal-base' && /^(Will|May)\s/.test(m[0])) {hint('Will and May can be names. This sentence may be fine if the word names a person.'); continue;}
+        if (ranges.some(r => m.index < r.end && m.index + m[0].length > r.start)) continue;
+        const advice = typeof message === 'function' ? message(m) : message;
+        if (!advice) continue;
+        issues.push({phrase: m[0], kind, message: advice}); ranges.push({start: m.index, end: m.index + m[0].length});
+      }
+    }
+    // Narrow ordinary-clause patterns avoid noun and complex-subject agreement guesses.
+    flag(/(?:^|(?<=[.!?])\s*)(?:he|she|it)\s+(?:go|work|like|want|need|live|play|eat|speak|study|run|have)\b/gim, 'agreement', 'For an ordinary present statement with he, she or it, use the third-person form, such as goes, works or studies.');
+    flag(/(?:^|(?<=[.!?])\s*)(?:he|she|it)\s+do\s+not\b/gim, 'agreement', 'For an ordinary present negative with he, she or it, use does not and a base verb.');
+    flag(/\b(?:I\s+am|(?:he|she|it)\s+is|(?:we|you|they)\s+are)\s+(?:not\s+)?agree\b/gi, 'be-base', 'Agree is already a verb. Write I agree, I do not agree, or the matching form for your subject.');
+    const ambiguousBases = new Set(['saw', 'found', 'fell', 'bore', 'bound', 'ground', 'rose']);
+    const wrongPast = [...past.keys()].filter(w => !bases.has(w) && !shared.has(w) && !ambiguousBases.has(w));
+    const wrongPart = [...past].filter(([w]) => !participles.has(w)).map(([w]) => w);
+    const joined = words => '(?:' + words.join('|') + ')';
+    // Match the auxiliary locally. Do not treat saw (cut) or found (start) as past forms automatically.
+    const regular = 'work walk play study live finish call check arrive wait watch want need like love cook stop travel repair paint clean invite use move open close start visit enjoy ask answer help listen look learn talk stay rain snow wash try carry cry prefer believe belong own seem contain remember explain change follow turn return join offer order plan hope agree'.split(' ');
+    const thirdPerson = base => base === 'have' ? 'has' : base === 'do' ? 'does' : /[^aeiou]y$/.test(base) ? base.slice(0, -1) + 'ies' : /(?:s|sh|ch|x|z|o)$/.test(base) ? base + 'es' : base + 's';
+    const pastForm = base => /e$/.test(base) ? base + 'd' : /[^aeiou]y$/.test(base) ? base.slice(0, -1) + 'ied' : /^(stop|plan|prefer)$/.test(base) ? base + base.at(-1) + 'ed' : base + 'ed';
+    const doCorrections = new Map();
+    past.forEach(({base}, word) => {if (!bases.has(word) && !shared.has(word) && !ambiguousBases.has(word)) doCorrections.set(word, base);});
+    regular.forEach(base => doCorrections.set(pastForm(base), base));
+    doCorrections.set('travelled', 'travel');
+    [...bases, ...regular].filter(base => base !== 'be').forEach(base => doCorrections.set(thirdPerson(base), base));
+    const subjectWord = '(?!(?:who|which|that|when|where|because|and|or|but)\\b)[a-z]+';
+    const subject = '(?:I|you|he|she|it|we|they|(?:the|your|my|our|their|his|her|this|that|these|those|a|an)\\s+(?:' + subjectWord + '\\s+){0,2}?' + subjectWord + ')';
+    const adverbs = '(?:(?:not|really|ever|just|already|always|usually|often|sometimes|still|even|never)\\s+)*';
+    const doPattern = '\\b(do|does|did)\\s+' + adverbs + '(?:(' + subject + ')\\s+)?' + adverbs;
+    flag(new RegExp(doPattern + '(' + [...doCorrections.keys()].join('|') + ')\\b', 'gi'), 'do-base', m => {
+      const word = m[3].toLowerCase(), base = doCorrections.get(word);
+      // Positive lexical do can take a plural noun, as in I do studies or She does repairs.
+      if (!m[2] && !/\bnot\b/i.test(m[0]) && /^(studies|repairs|checks|washes|runs|plays|talks|shows|turns)$/.test(word)) return null;
+      return 'After ' + m[1].toLowerCase() + ', use the base verb ' + base + ', not ' + word + '. Keep the subject and not if they are present.';
+    });
+    flag(new RegExp(doPattern + '(saw)\\b', 'gi'), 'do-base', m => {
+      const tail = text.slice(m.index + m[0].length).split(/[.!?;,:]/)[0];
+      if (/\b(?:wood|timber|metal|steel|iron|plastic|pipe|pipes|board|boards|plank|planks|log|logs|branch|branches|tree|trees|blade|sawing|cut|cutting)\b/i.test(tail)) return null;
+      return 'Check this. If you mean see, use the base verb see after do, does or did. Write Did you see the film? Saw is a base verb only when it means cut with a saw.';
+    });
+    flag(new RegExp('\\b(?:have|has|had)\\s+(?:not\\s+)?' + joined(wrongPart) + '\\b', 'gi'), 'participle', 'A perfect form needs a past participle. For example, use have gone, have written or have seen.');
+    flag(new RegExp('\\b(?:will|shall|would|could|should|can|may|might|must)\\s+(?:not\\s+)?' + joined(wrongPast.filter(w => w !== 'had')) + '\\b', 'gi'), 'modal-base', 'After a modal such as will, use the base form. For example, write will go, not will went.');
+    flag(/\b(?:will|shall|would|could|should|can|may|might|must)\s+(?:not\s+)?(?:worked|walked|played|studied|lived|finished|called|checked|arrived|waited|watched|wanted|needed|liked|loved|cooked|stopped|travelled|traveled|repaired|painted|cleaned|invited|used|moved|opened|closed|started)\b/gi, 'modal-base', 'After a modal such as will, use the base form. For example, write will work, not will worked.');
+    flag(/\bsince\s+(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|several|many)\s+(?:years?|months?|weeks?|days?|hours?|minutes?)\b(?!\s+(?:ago|before|after|earlier|later))/gi, 'since-duration', 'Use for with a period of time, such as for three years. Use since with a starting point, such as since 2020.');
+    const ongoing = new Map('live lived;work worked;study studied;know known;own owned;have had;want wanted;need needed;belong belonged;understand understood;wait waited'.split(';').map(row => row.split(' ')));
+    const ongoingForms = new Map();
+    ongoing.forEach((participle, base) => {
+      ongoingForms.set(base, {base, participle});
+      ongoingForms.set(thirdPerson(base), {base, participle});
+    });
+    ongoingForms.set('living', {base: 'live', participle: 'lived'});
+    ongoingForms.set('working', {base: 'work', participle: 'worked'});
+    ongoingForms.set('studying', {base: 'study', participle: 'studied'});
+    const number = '(?:\\d+|a|an|one|two|three|four|five|six|seven|eight|nine|ten|several|many)';
+    const duration = number + '\\s+(?:years?|months?|weeks?|days?|hours?|minutes?)';
+    const startTime = '(?:\\d{4}|(?:last\\s+)?(?:January|February|March|April|May|June|July|August|September|October|November|December|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|spring|summer|autumn|fall|winter)|yesterday|birth|childhood|then)\\b';
+    // Keep clause boundaries. Since can also mean because, and for can describe a repeated or planned period.
+    flag(new RegExp('\\b(I|you|he|she|it|we|they)\\s+(?:(?:am|is|are)\\s+)?(' + [...ongoingForms.keys()].join('|') + ')\\b([^.!?;,:]*?)\\s+(since\\s+' + startTime + '|for\\s+' + duration + '(?:\\s+now)?)', 'gi'), 'since-present', m => {
+      const between = m[3], tail = text.slice(m.index + m[0].length).split(/[.!?;,:]/)[0];
+      const firstAfter = between.trim().replace(new RegExp('^' + adverbs, 'i'), '').split(/\s+/)[0].toLowerCase();
+      if (/^(have|has)$/.test(m[2].toLowerCase()) && (participles.has(firstAfter) || /ed$/.test(firstAfter))) return null;
+      if (/\b(?:and|but|or|if|when|that|who|which|because|since|until|after|before|to)\b/i.test(between)) return null;
+      if (/\b(?:every|each(?!\s+other)|usually|often|sometimes|always|tomorrow|next|then|will|would|shall|plan|start)\b/i.test(m[0] + tail)) return null;
+      const word = ongoingForms.get(m[2].toLowerCase()), perfect = /^(he|she|it)$/i.test(m[1]) ? 'has' : 'have';
+      return 'Check this. If this ' + (word.base === 'live' ? 'home' : 'situation') + ' continues from the past until now, use ' + perfect + ' ' + word.participle + '. For example, write I have lived here since 2020. A repeated or planned period can use a present form.';
+    });
+    const states = new Map('knowing know;believing believe;belonging belong;owning own;understanding understand;wanting want;needing need;preferring prefer;meaning mean;seeming seem;containing contain'.split(';').map(row => row.split(' ')));
+    const statePattern = '\\b(am|is|are|was|were|be|been)\\s+(?:(' + subject + ')\\s+)?' + adverbs + '(' + [...states.keys()].join('|') + ')\\b';
+    flag(new RegExp(statePattern, 'gi'), 'state-continuous', m => {
+      const word = m[3].toLowerCase(), base = states.get(word), tail = text.slice(m.index + m[0].length).split(/[.!?;,:]/)[0];
+      const before = text.slice(0, m.index).split(/[.!?;,:]/).at(-1);
+      if (word === 'owning' && /^\s+(?:up|the\s+(?:stage|game|room))\b/i.test(tail)) return null;
+      if (word === 'containing' && /\b(?:fire|blaze|spill|outbreak|crowd|riot|virus|spread|anger|laughter|emotion|tears|costs|leak|flood|damage|disease|infection|violence|unrest|crisis)\b/i.test(tail)) return null;
+      if (word === 'meaning' && /^\s+to\b/i.test(tail)) return null;
+      // Perfect continuous wanting and needing can describe a recent or repeated wish or need.
+      if (/^(wanting|needing)$/.test(word) && m[1].toLowerCase() === 'been' && /\b(?:have|has|had)\b/i.test(before)) return null;
+      if (/^(believing|understanding|preferring)$/.test(word) && /\b(?:more|less|better|increasingly|gradually)\b/i.test(m[0] + tail)) return null;
+      const ppState = {know: 'known', understand: 'understood', mean: 'meant'}[base] || pastForm(base);
+      const pastState = irregular.find(row => row[0] === base)?.[1] || pastForm(base);
+      const simple = /^(was|were)$/i.test(m[1]) ? pastState : base;
+      const perfectAux = before.match(/\b(have|has|had)\s+(?:not\s+)?$/i)?.[1].toLowerCase() || 'have';
+      return 'Check this. ' + base[0].toUpperCase() + base.slice(1) + ' normally describes a state in this meaning. Use a simple form of ' + simple + (m[1].toLowerCase() === 'been' ? ', such as ' + perfectAux + ' ' + ppState : ', with the ending your subject needs') + '. A special action meaning can allow a continuous form.';
+    });
+    if (typeof window.nlp !== 'function') return {issues, rows, hints: ['The local English word library did not load. Reload the page to identify verb forms.']};
+    const tokens = window.nlp(text).terms().json({offset: true}).flatMap(item => item.terms).filter(t => t.offset).map(t => ({w: t.normal, raw: t.text, tags: new Set(t.tags), start: t.offset.start, end: t.offset.start + t.offset.length, sentence: t.index[0]}));
+    const pp = t => t && (participles.has(t.w) || (/ed$/.test(t.w) && (t.tags.has('Verb') || t.tags.has('Adjective'))));
+    const ingRoots = new Set([...bases, ...'work study play walk live wait cook talk learn travel dance arrive test check repair paint call watch listen look use move agree hope make take write read sleep'.split(' ')]);
+    const ing = t => t && /ing$/.test(t.w) && (t.tags.has('Verb') || t.tags.has('Gerund') || ingRoots.has(t.w.slice(0, -3)) || ingRoots.has(t.w.slice(0, -3) + 'e') || ingRoots.has(t.w.slice(0, -4)));
+    const verbLike = t => t && (t.tags.has('Verb') || ing(t) || pp(t));
+    const consumed = new Set();
+    function next(i, question) {
+      let j = i + 1;
+      while (j < tokens.length && tokens[j].sentence === tokens[i].sentence && (tokens[j].w === 'not' || tokens[j].tags.has('Adverb'))) j++;
+      if (question && tokens[j] && !verbLike(tokens[j])) {
+        let k = j;
+        while (k < tokens.length && k < j + 7 && tokens[k].sentence === tokens[i].sentence && !verbLike(tokens[k]) && !(tokens[k].tags.has('Conjunction') && tokens[k].w !== 'yet') && !tokens[k].tags.has('Preposition')) k++;
+        if (tokens[k] && tokens[k].sentence === tokens[i].sentence && verbLike(tokens[k])) j = k;
+      }
+      return j < tokens.length && tokens[j].sentence === tokens[i].sentence ? j : -1;
+    }
+    for (let i = 0; i < tokens.length; i++) {
+      const t = tokens[i];
+      if (consumed.has(i) || !t.tags.has('Verb') || t.tags.has('Particle') || t.tags.has('ProperNoun')) continue;
+      if (t.w === 'to') continue;
+      if (/^(Will|May)$/.test(t.raw) && tokens[i + 1] && (be.has(tokens[i + 1].w) || past.has(tokens[i + 1].w) || tokens[i + 1].tags.has('PastTense'))) continue;
+      if (t.tags.has('Gerund') && (!tokens[i - 1] || !be.has(tokens[i - 1].w))) continue;
+      if (tokens[i - 1] && /^(her|his|their|my|your|our)$/.test(tokens[i - 1].w) && !be.has(t.w)) {hint('Some words can be nouns or verbs. Context may change the word tags and the verb list.'); continue;}
+      const chain = [i]; let end = i;
+      const earlier = tokens.filter(x => x.sentence === t.sentence && x.start < t.start);
+      const hasQuestionWord = earlier.some(x => x.tags.has('QuestionWord')) && !earlier.some(x => x.tags.has('Verb'));
+      const isQuestion = (hasQuestionWord || i === 0 || tokens[i - 1].sentence !== t.sentence || /^(who|what|where|when|why|how)$/.test(tokens[i - 1].w)) && (modals.has(t.w) || have.has(t.w) || be.has(t.w) || doForms.has(t.w));
+      let current = i, first = true;
+      for (let count = 0; count < 5; count++) {
+        const c = tokens[current];
+        if (!modals.has(c.w) && !have.has(c.w) && !be.has(c.w) && !(first && doForms.has(c.w))) break;
+        let j = next(current, first && isQuestion);
+        if (c.w === 'ought' && tokens[j] && tokens[j].w === 'to') j = next(j, false);
+        if (j < 0) break;
+        const n = tokens[j];
+        const accept = modals.has(c.w) ? n.tags.has('Verb') || bases.has(n.w) : have.has(c.w) ? pp(n) : be.has(c.w) ? (ing(n) || pp(n)) : n.tags.has('Verb');
+        if (!accept) break;
+        chain.push(j); end = j; current = j; first = false;
+      }
+      if (t.w === 'got' && tokens[end + 1] && tokens[end + 1].w === 'married') {chain.push(end + 1); end++;}
+      const sharedAuxiliary = chain.length > 1 && (have.has(t.w) || be.has(t.w) || modals.has(t.w));
+      while (sharedAuxiliary && tokens[end + 1] && /^(and|or)$/.test(tokens[end + 1].w) && tokens[end + 2] && tokens[end + 2].sentence === t.sentence && ((ing(tokens[end]) && ing(tokens[end + 2])) || (pp(tokens[end]) && pp(tokens[end + 2])))) {chain.push(end + 2); end += 2;}
+      const particle = tokens[end + 1];
+      if (particle && particle.sentence === t.sentence && particle.tags.has('Particle')) {chain.push(end + 1); end++;}
+      chain.forEach(k => consumed.add(k));
+      const start = t.start, finish = tokens[end].end;
+      // A flagged malformed phrase gets advice instead of a valid-form label.
+      if (ranges.some(r => start < r.end && finish > r.start)) continue;
+      const words = chain.filter(k => !tokens[k].tags.has('Particle')).map(k => tokens[k].w);
+      const head = words[0], tail = words[words.length - 1];
+      let label;
+      const perfect = words.length > 1 && have.has(head) || modals.has(head) && words.slice(1).includes('have') && words.length > 2;
+      const continuous = words.slice(0, -1).some(w => be.has(w)) && /ing$/.test(tail) || words.includes('being');
+      const passive = words.length > 1 && words.slice(0, -1).some(w => be.has(w)) && pp(tokens[chain.filter(k => !tokens[k].tags.has('Particle')).at(-1)]) && !/ing$/.test(tail) && tail !== 'been';
+      if (modals.has(head)) {
+        if (head === 'will' || head === 'shall') label = 'Future ' + (perfect ? 'perfect' : (continuous ? 'continuous' : 'simple')) + (perfect && continuous ? ' continuous' : '');
+        else label = 'Modal ' + (perfect ? 'perfect' : (continuous ? 'continuous' : 'form')) + (perfect && continuous ? ' continuous' : '');
+      } else if (perfect) label = (head === 'had' ? 'Past' : 'Present') + ' perfect' + (continuous ? ' continuous' : '');
+      else if (be.has(head) && continuous) label = (head === 'was' || head === 'were' ? 'Past' : 'Present') + ' continuous';
+      else if (doForms.has(head)) label = t.tags.has('Imperative') ? 'Imperative or base form' : (head === 'did' ? 'Past simple' : 'Present simple');
+      else if (tokens[i - 1] && tokens[i - 1].w === 'to') label = 'Infinitive';
+      else if (shared.has(head)) {
+        const sentence = text.slice(tokens.find(x => x.sentence === t.sentence).start, tokens.filter(x => x.sentence === t.sentence).at(-1).end);
+        label = /\b(yesterday|ago|last\s+(?:week|year|month))\b/i.test(sentence) ? 'Past simple' : /\b(every|usually|often|always)\b/i.test(sentence) ? 'Present simple' : 'Present or past simple';
+      } else if (past.has(head) || t.tags.has('PastTense')) label = 'Past simple';
+      else if (!be.has(head) && (i === 0 || tokens[i - 1].sentence !== t.sentence)) label = 'Imperative or base form';
+      else label = 'Present simple';
+      if (passive) {
+        const sentence = tokens.filter(x => x.sentence === t.sentence).map(x => x.w).join(' ');
+        if (be.has(head) && words.length === 2 && /^(closed|tired|worried|interested|excited|married|finished)$/.test(tail) && !/\bby\b/.test(sentence)) label = (head === 'was' || head === 'were' ? 'Past' : 'Present') + ' simple or passive';
+        else label = label.replace(/ form$/, '') + ' passive';
+      }
+      if (head === 'is' && pp(tokens[chain.at(-1)]) && new RegExp("\\b(?:he|she|it|who|that|there)'s\\s+" + tail + '\\b', 'i').test(original.replace(/’/g, "'"))) label = 'Present perfect or passive';
+      if (head === 'had' && shared.has(tail) && /\b(?:I|you|he|she|it|we|they)'d\s+/i.test(original.replace(/’/g, "'"))) label = 'Past perfect or modal form';
+      let explanation = descriptions[label];
+      if (!explanation && / passive$/.test(label)) explanation = (descriptions[label.replace(/ passive$/, '')] || descriptions['Modal form']) + ' The passive subject receives the action.';
+      if (!explanation) explanation = 'This is a possible verb pattern. Check its role and meaning in the full sentence.';
+      rows.push({phrase: text.slice(start, finish), label, explanation});
+    }
+    if (!rows.length && !issues.length) hint('I could not identify a clear English verb form. This is not a claim that the text has no verbs.');
+    hint('The explanations give possible meanings. Word tags can be wrong, and some phrases may be missing.');
+    if (/\b(?:he|she|it|who|that|there)'s\b/i.test(original.replace(/’/g, "'"))) hint('A contraction with apostrophe s can mean is or has. Check the full form in context.');
+    if (/[^\x00-\x7f]/.test(original) && !/[a-z]{3}/i.test(original)) hint('These rules check English only. I cannot identify English verb patterns in this text.');
+    return {issues, rows, hints};
+  }
 
-        function clearAll() {
-            document.getElementById('textInput').value = '';
-            document.getElementById('results').classList.remove('active');
-        }
-
-        document.getElementById('textInput').addEventListener('keydown', function(event) {
-            if (event.ctrlKey && event.key === 'Enter') {
-                analyzeVerbs();
-            }
-        });
-    </script>
-<p class="retained-intro reading">Find possible verb forms and review their time references.</p><div class="el-note" role="note">
-Experimental tool. This tool uses simple rules and it makes mistakes. Do not rely on its results.
-  For checked explanations, use the <a href="/lessons/">grammar lessons</a> and the <a href="/tools/">practice tools</a>.
-</div><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/present-perfect-vs-past-simple/">Read the tense lesson</a><a class="btn" href="/tools/">Choose another practice</a></div></section><noscript><p>Interactive practice needs JavaScript. <a href="/lessons/present-perfect-vs-past-simple/">Read the written study guide</a>.</p></noscript><script>
-if(matchMedia('(min-width:1024px)').matches)document.querySelectorAll('.quiz-settings:not([hidden])').forEach(el=>el.open=true);
-</script><script>
-(function(){
- const main=document.getElementById('main');
- const status=document.createElement('p');status.className='typing-status';status.setAttribute('role','status');status.hidden=true;main.append(status);
- const update=()=>{const input=document.activeElement;if(!input||!main.contains(input)||!input.matches('textarea,input:not([type=radio]):not([type=checkbox])')||!window.visualViewport){status.hidden=true;return;}const feedback=main.querySelector('#feedbackArea,#feedback,#errorsContainer,#verbsContainer,#diagramDisplay');const box=feedback&&feedback.getBoundingClientRect();if(box&&box.top>=0&&box.bottom<visualViewport.height){status.hidden=true;return;}status.textContent=(main.querySelector('#qCounter')||{}).textContent||'Answer not checked';status.style.top=visualViewport.offsetTop+'px';status.hidden=false;};
- main.addEventListener('focusin',update);main.addEventListener('focusout',()=>setTimeout(update,0));window.addEventListener('scroll',update,{passive:true});if(window.visualViewport)visualViewport.addEventListener('resize',update);
- main.querySelectorAll('.checker-output .results').forEach(result=>new MutationObserver(()=>{const placeholder=result.parentElement.querySelector('.checker-placeholder');if(placeholder)placeholder.hidden=result.classList.contains('active');}).observe(result,{attributes:true,attributeFilter:['class']}));
- main.querySelectorAll('a[href^="/lessons/"]').forEach(link=>link.addEventListener('click',()=>{if(window.elTrack)window.elTrack('cta_click',{cta_id:'tool_verb-tense-checker_lesson'});}));
+  function paragraph(parent, text, className) {
+    const p = document.createElement('p'); p.textContent = text;
+    if (className) p.className = className;
+    parent.append(p); return p;
+  }
+  function check(event) {
+    if (event) event.preventDefault();
+    const text = input.value;
+    error.textContent = !text.trim() ? 'Enter some text to check.' : text.length > 40000 ? 'Check up to 40,000 characters at a time.' : '';
+    input.setAttribute('aria-invalid', error.textContent ? 'true' : 'false');
+    if (error.textContent) {input.focus(); return;}
+    const {issues, rows, hints} = analyze(text);
+    findings.replaceChildren(); forms.replaceChildren(); notes.replaceChildren();
+    summary.textContent = rows.length + (rows.length === 1 ? ' verb form listed. ' : ' verb forms listed. ') + (issues.length ? issues.length + (issues.length === 1 ? ' phrase to review below.' : ' phrases to review below.') : 'No issues found by these rules.');
+    for (const item of issues) {
+      const div = document.createElement('div'); div.className = 'verb-item'; div.dataset.kind = item.kind;
+      const h = document.createElement('h3'); h.textContent = item.phrase; div.append(h); paragraph(div, item.message); findings.append(div);
+    }
+    for (const row of rows) {
+      const div = document.createElement('div'); div.className = 'verb-item';
+      const h = document.createElement('h3'); h.textContent = row.phrase; div.append(h);
+      const label = paragraph(div, row.label, 'helper'); label.dataset.label = row.label;
+      paragraph(div, row.explanation); forms.append(div);
+    }
+    paragraph(notes, 'This does not prove the text is correct. Check the time words and the intended meaning.');
+    hints.forEach(message => paragraph(notes, message));
+    result.dataset.stale = 'false'; document.getElementById('resultTitle').textContent = 'Possible findings';
+    result.classList.add('is-complete'); status.textContent = summary.textContent;
+    input.blur(); document.getElementById('resultTitle').focus();
+    if (window.elTrack) window.elTrack('tool_result', {tool: 'verb-tense-checker'});
+  }
+  document.getElementById('checkerForm').addEventListener('submit', check);
+  document.getElementById('clearButton').addEventListener('click', () => {
+    document.getElementById('resultTitle').textContent = 'Possible findings'; result.dataset.stale = 'false';
+    input.value = ''; input.setAttribute('aria-invalid', 'false'); error.textContent = ''; findings.replaceChildren(); forms.replaceChildren(); notes.replaceChildren();
+    result.classList.remove('is-complete'); summary.textContent = 'Your result appears here when you check the text.'; status.textContent = ''; input.focus();
+  });
+  document.getElementById('exampleButton').addEventListener('click', () => {input.value = 'She has been working here for two years. The letter was written yesterday. Will they have finished by Friday?'; input.dispatchEvent(new Event('input', {bubbles: true})); input.focus();});
+  input.addEventListener('keydown', event => {if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') check(event);});
+  input.addEventListener('input', () => {
+    if (result.classList.contains('is-complete')) {result.dataset.stale = 'true'; document.getElementById('resultTitle').textContent = 'Previous findings'; status.textContent = 'Text changed. Check again.';}
+  });
+  const strip = document.getElementById('typingStatus');
+  function updateStrip() {
+    const box = result.getBoundingClientRect(), viewport = window.visualViewport;
+    strip.hidden = document.activeElement !== input || !viewport || (box.top >= viewport.offsetTop && box.bottom <= viewport.offsetTop + viewport.height);
+    strip.textContent = result.dataset.stale === 'true' ? 'Text changed. Check again.' : result.classList.contains('is-complete') ? 'Check complete. Read the advice.' : 'Answer not checked';
+    strip.style.top = (viewport ? viewport.offsetTop : 0) + 'px';
+  }
+  input.addEventListener('focus', updateStrip); input.addEventListener('blur', updateStrip);
+  window.addEventListener('scroll', updateStrip, {passive: true});
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', updateStrip);
 })();
-</script></main>
+
+});
+</script>
 <!-- shared-footer-start -->
-<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>It isn’t connected to englishlearner.com.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
+<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
 <!-- shared-footer-end -->
 </body>
 </html>

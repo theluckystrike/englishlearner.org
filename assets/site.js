@@ -184,7 +184,7 @@
       while (t && t !== main && t.tagName !== 'BUTTON') { t = t.parentNode; }
       if (!t || t === main) { return; }
       sent = true;
-      window.elTrack('tool_use', { tool_path: location.pathname, control: (t.textContent || '').trim().slice(0, 40) });
+      window.elTrack('tool_use', { tool_path: location.pathname });
     }, true);
   }
 

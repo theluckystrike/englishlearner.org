@@ -7,7 +7,7 @@
   var page = document.querySelector('main[data-lesson]');
   if (!page) return;
   var lesson = page.dataset.lesson;
-  var catalog = ['articles-a-an-the', 'prepositions-in-on-at', 'present-perfect-vs-past-simple', 'countable-uncountable-nouns', 'conditionals', 'cefr-levels'];
+  var catalog = ['articles-a-an-the', 'prepositions-in-on-at', 'present-perfect-vs-past-simple', 'countable-uncountable-nouns', 'conditionals', 'cefr-levels', 'past-perfect', 'modal-verbs', 'gerunds-and-infinitives', 'passive-voice'];
   if (catalog.indexOf(lesson) < 0) return;
   function track(name, params) {
     try { if (typeof window.elTrack === 'function') window.elTrack(name, params); } catch (e) { /* Learning works without analytics. */ }
@@ -166,7 +166,7 @@
     result.replaceChildren(); result.classList.add('is-complete');
     var title = element('h3', 'Your result'); title.id = 'quiz-result-title'; title.tabIndex = -1;
     var value = element('p', String(score), 'result-value'); value.append(element('small', 'out of ' + items.length));
-    result.append(title, value, element('p', 'Correct answers in this ten-question lesson quiz. This isn’t a level test.'));
+    result.append(title, value, element('p', 'Correct answers in this lesson quiz. This isn’t a level test.'));
     var links = element('div', undefined, 'link-row');
     var read = element('a', 'Read the rules again'); read.href = '#rules'; links.append(read);
     result.append(links);

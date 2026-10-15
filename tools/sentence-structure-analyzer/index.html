@@ -1,192 +1,657 @@
 <!DOCTYPE html>
-<html lang="en" data-no-ads>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentence structure analyzer, free English tool</title>
-    <meta name="description" content="Free sentence structure analyzer. Identify subject/verb/object, clause types, sentence diagram, complexity score.">
-    <meta property="og:title" content="Sentence structure analyzer, free English tool">
-    <meta property="og:description" content="Free sentence structure analyzer. Identify subject/verb/object, clause types, sentence diagram, complexity score.">
-    <meta property="og:url" content="https://englishlearner.org/tools/sentence-structure-analyzer/">
-    <meta property="og:type" content="website">
-    <meta name="theme-color" content="#00d4aa">
-    
-    <link rel="canonical" href="https://englishlearner.org/tools/sentence-structure-analyzer/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,follow">
+<title>Sentence structure analyzer, clauses and word order</title>
+<meta name="description" content="Find possible clauses, sentence types and subject, verb and object patterns in an English sentence.">
+<link rel="canonical" href="https://englishlearner.org/tools/sentence-structure-analyzer/">
+<meta property="og:title" content="Sentence structure analyzer, clauses and word order">
+<meta property="og:description" content="Find possible clauses, sentence types and subject, verb and object patterns in an English sentence.">
+<meta property="og:url" content="https://englishlearner.org/tools/sentence-structure-analyzer/">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Sentence structure analyzer",
+      "url": "https://englishlearner.org/tools/sentence-structure-analyzer/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "JavaScript enabled",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://englishlearner.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Practice",
+          "item": "https://englishlearner.org/tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sentence structure analyzer",
+          "item": "https://englishlearner.org/tools/sentence-structure-analyzer/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 <meta name="google-adsense-account" content="ca-pub-2241192243363112">
-<meta name="robots" content="noindex">
 <script src="/assets/site.js" defer></script>
 <link rel="stylesheet" href="/assets/tool.css">
-<meta property="og:image" content="https://englishlearner.org/assets/img/og-default.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="English Learner free lessons and practice">
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
+<meta property="og:image" content="https://englishlearner.org/assets/og/tools-sentence-structure-analyzer.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>.parse-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.parse-facts dt,.parse-tag{font:14px/21px var(--font-ui);color:var(--color-secondary)}.parse-facts dd{margin:4px 0}.parse-examples,.parse-words{display:flex;flex-wrap:wrap;gap:8px}.parse-examples button{text-align:left;font-weight:400}.parse-word{display:grid;padding:8px;border-top:3px solid var(--color-accent);background:var(--color-surface)}.parse-word[data-role=Verb]{border-color:var(--color-focus)}.parse-clause-label{font:14px var(--font-ui)}#resultHeading{scroll-margin-top:calc(var(--header-height) + 24px)}.parse-form textarea{min-height:104px}.tool-art{aspect-ratio:480/322;object-fit:contain}
+</style>
+<script src="/assets/vendor/compromise-14.17.0.min.js" defer></script>
 </head>
-<body>
+<body data-no-ads>
 <!-- shared-header-start -->
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="el-top"><div class="el-top-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><nav class="el-nav" aria-label="Main navigation"><a href="/lessons/">Lessons</a><a href="/tools/" aria-current="true">Practice</a><a href="/tools/level-assessment/" class="nav-wide" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta_id:'nav_level_test'})">Level test</a><a href="/about/" class="nav-wide">About</a></nav></div></header>
 <!-- shared-header-end -->
-<main class="lookup-tool tool-page tool-sentence-structure-analyzer" id="main"><script>
-window.toolResult = function(region, score, total, slug, track) {
- region.classList.add('is-complete');
- const placeholder=document.getElementById('resultPlaceholder'); if(placeholder) placeholder.hidden=true;
- if(track && window.elTrack) window.elTrack('quiz_complete',{tool:slug,score:score,total:total});
- let heading=region.querySelector('h2'); if(!heading){heading=document.createElement('h2');heading.textContent='Your result';region.prepend(heading);}
- heading.tabIndex=-1; heading.focus();
- if(!region.querySelector('.copy-result')){
-  const copy=document.createElement('button');copy.type='button';copy.className='copy-result btn';copy.textContent='Copy my result';
-  copy.onclick=async function(){const value=(region.querySelector('.result-value-long')?region.querySelector('.result-value-long').textContent+'. Rough guide. Grammar and reading only. ':'')+score+' out of '+total+'. Practice only. '+document.querySelector('link[rel=canonical]').href;try{await navigator.clipboard.writeText(value);copy.textContent='Result copied';}catch(e){let output=region.querySelector('.copy-fallback');if(!output){output=document.createElement('textarea');output.className='copy-fallback';output.readOnly=true;output.setAttribute('aria-label','Select the text to copy it');region.append(output);}output.value=value;output.focus();output.select();copy.textContent='Select the text to copy it.';}};
-  region.append(copy);
- }
-};
-</script>
-<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">Sentence structure analyzer</li></ol></nav><h1>Sentence structure analyzer</h1><p class="lead">Explore a simple subject and verb pattern.</p><p class="badge badge-experimental">Experimental. Results can be wrong.</p><p class="helper"><a href="/lessons/present-perfect-vs-past-simple/">Read a tense lesson</a></p>
-<div class="checker-work"><div class="tool-section">
-<label for="sentenceInput">Enter a sentence:</label>
-<textarea id="sentenceInput" placeholder="Example: The quick brown fox jumps over the lazy dog while the sun sets."></textarea>
-<div class="button-group">
-<button onclick="analyzeSentence()" type="button">Analyze</button>
-<button onclick="clearAll()" type="button">Clear</button>
-</div>
-</div><div class="checker-output"><section class="result-slot result-checker checker-placeholder"><h2>Possible findings</h2><p>Your result appears here when you finish.</p></section><div class="results" id="results">
-<div class="analysis-grid">
-<div class="analysis-card">
-<div class="card-label">Subject</div>
-<div class="card-content" id="subjectDisplay">–</div>
-</div>
-<div class="analysis-card">
-<div class="card-label">Verb</div>
-<div class="card-content" id="verbDisplay">–</div>
-</div>
-<div class="analysis-card">
-<div class="card-label">Object</div>
-<div class="card-content" id="objectDisplay">–</div>
-</div>
-<div class="analysis-card">
-<div class="card-label">Sentence Type</div>
-<div class="card-content" id="sentenceTypeDisplay">–</div>
-</div>
-</div>
-<div class="diagram-section">
-<div class="diagram-title">Sentence Diagram</div>
-<div class="diagram" id="diagramDisplay"></div>
-</div>
-<div class="diagram-section">
-<div class="diagram-title">Complexity Analysis</div>
-<div class="complexity-meter">
-<div class="complexity-label">
-<span>Complexity Score:</span>
-<span id="complexityScore">0/10</span>
-</div>
-<div class="complexity-bar">
-<div class="complexity-fill" id="complexityFill"></div>
-</div>
-</div>
-</div>
-<div class="details-section">
-<div class="details-title">Structural Details</div>
-<div class="detail-item">
-<div class="detail-label">Word Count</div>
-<div class="detail-content" id="wordCount">0</div>
-</div>
-<div class="detail-item">
-<div class="detail-label">Clause Count</div>
-<div class="detail-content" id="clauseCount">1</div>
-</div>
-<div class="detail-item">
-<div class="detail-label">Main Clause Type</div>
-<div class="detail-content" id="clauseType">Simple</div>
-</div>
-<div class="detail-item">
-<div class="detail-label">Modifiers Detected</div>
-<div class="detail-content" id="modifiers">None</div>
-</div>
-</div>
-</div></div></div>
-
-<script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Sentence Structure Analyzer",
-        "description": "Free sentence structure analyzer to identify components and analyze complexity",
-        "url": "https://englishlearner.org/tools/sentence-structure-analyzer/",
-        "applicationCategory": "EducationalApplication"
-    }
-    </script>
+<main class="tool-page tool-sentence-structure-analyzer" id="main" data-parse-tool="sentence-structure-analyzer">
+<nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">Sentence structure analyzer</li></ol></nav>
+<h1>Sentence structure analyzer</h1><p class="lead">Find clauses and see how the sentence fits together.</p>
+<p class="notice"><span class="badge badge-experimental">Experimental</span> Results can be wrong. A result marked “Not sure” needs a human check.</p>
+<div class="tool-layout"><div class="tool-main">
+<form class="parse-form" id="parseForm" novalidate>
+<div class="field"><label for="sentenceInput">Your English sentence</label><textarea id="sentenceInput" rows="3" aria-describedby="inputHelp inputError" placeholder="She gave him a book."></textarea><p class="helper" id="inputHelp">One sentence, up to 120 words. Your text stays in this browser.</p><p class="field-error" id="inputError" role="status"></p></div>
+<div class="actions"><button class="btn btn-primary" id="analyzeBtn" type="submit">Analyze sentence</button><button class="btn" id="clearBtn" type="button">Clear</button></div>
+</form>
+<p class="notice">Automatic analysis can make mistakes, especially with long or unusual sentences. Check the result against your meaning.</p>
+<p class="helper">Try an example</p><div class="parse-examples" aria-label="Example sentences"><button class="btn" type="button" data-example="The dog runs.">The dog runs.</button><button class="btn" type="button" data-example="She gave him a book.">She gave him a book.</button><button class="btn" type="button" data-example="Did Maria write the letter?">Did Maria write the letter?</button><button class="btn" type="button" data-example="The letter was written by John.">The letter was written by John.</button><button class="btn" type="button" data-example="We stayed home because it rained.">We stayed home because it rained.</button><button class="btn" type="button" data-example="She sings, and he dances.">She sings, and he dances.</button></div>
+<p class="helper" id="analysisStatus" role="status" aria-live="polite">Ready for your sentence</p>
+<section class="result-slot result-checker" id="analysisOutput" aria-labelledby="resultHeading"><h2 id="resultHeading">Your sentence breakdown</h2><p>Your analysis will appear here.</p></section>
+</div><aside class="tool-support"><img class="tool-art" src="/assets/img/tool-sentence-structure-analyzer-480.webp" srcset="/assets/img/tool-sentence-structure-analyzer-480.webp 480w, /assets/img/tool-sentence-structure-analyzer-960.webp 960w" sizes="(min-width:1280px) 320px, (min-width:1024px) 280px, (min-width:768px) 240px, (min-width:390px) 192px, 168px" width="480" height="322" alt="" loading="lazy" decoding="async"><p><a href="/tools/sentence-analyzer/">Explain each word</a></p><p><a href="/lessons/present-perfect-vs-past-simple/">Read a tense lesson</a></p></aside></div>
+<section class="reading parse-help"><h2>About this analysis</h2>
+<h3>What is a main clause?</h3><p>A main clause can stand alone as a sentence. It usually has a subject and a finite verb.</p>
+<h3>Which clauses does it count?</h3>
+<p>This tool counts finite clauses, which contain a verb that can show tense. It does not count every phrase with an infinitive or an -ing form as a separate clause.</p>
+<h3>Read a word order pattern</h3><p>S is the subject. V is the verb. O is an object. C is a complement that describes or identifies something. A is an adverbial, such as a place phrase.</p><p>In “She gave him a book”, the pattern is S-V-O-O. “Him” is the receiver, and “a book” is the thing given.</p><h3>Four sentence types</h3><p>A simple sentence has one main clause. A compound sentence has two or more main clauses.</p><p>A complex sentence has one main clause and at least one subordinate clause. A compound-complex sentence has both kinds, with at least two main clauses.</p><p>Joining nouns does not add a clause. “Tom and Mary play tennis” has one main clause.</p>
+<h3>Limits of the result</h3><p>This tool uses the local compromise word library and clause rules. It can miss clauses or choose a wrong word role.</p><p>Objects and complements are possible matches. “None found” does not prove that a sentence has none. Patterns show grammatical roles, even when a question changes their order.</p><p>A full stop, a question mark or an exclamation mark does not tell the whole story. Context can change a sentence’s function.</p><p>The tool does not check grammar, grade writing or measure complexity. It does not choose between British and American usage.</p>
+<details><summary>More sentences to explore</summary><ul><li><p>The quick brown fox jumps over the lazy dog.</p><button class="btn" type="button" data-example="The quick brown fox jumps over the lazy dog.">Analyze this example</button></li><li><p>She runs every morning before sunrise.</p><button class="btn" type="button" data-example="She runs every morning before sunrise.">Analyze this example</button></li><li><p>Because it was raining, we stayed inside and watched a movie.</p><button class="btn" type="button" data-example="Because it was raining, we stayed inside and watched a movie.">Analyze this example</button></li><li><p>Although he studied hard, he didn’t pass the exam.</p><button class="btn" type="button" data-example="Although he studied hard, he didn’t pass the exam.">Analyze this example</button></li><li><p>The cat that sat on the mat is very fluffy.</p><button class="btn" type="button" data-example="The cat that sat on the mat is very fluffy.">Analyze this example</button></li><li><p>I enjoy reading books and writing stories.</p><button class="btn" type="button" data-example="I enjoy reading books and writing stories.">Analyze this example</button></li><li><p>They went to the park, but it started to rain.</p><button class="btn" type="button" data-example="They went to the park, but it started to rain.">Analyze this example</button></li><li><p>If you work hard, you will succeed.</p><button class="btn" type="button" data-example="If you work hard, you will succeed.">Analyze this example</button></li><li><p>The teacher gave the students a challenging assignment.</p><button class="btn" type="button" data-example="The teacher gave the students a challenging assignment.">Analyze this example</button></li><li><p>A beautiful butterfly landed on a yellow flower.</p><button class="btn" type="button" data-example="A beautiful butterfly landed on a yellow flower.">Analyze this example</button></li><li><p>After the storm ended, the children played outside.</p><button class="btn" type="button" data-example="After the storm ended, the children played outside.">Analyze this example</button></li><li><p>She sings beautifully and dances gracefully.</p><button class="btn" type="button" data-example="She sings beautifully and dances gracefully.">Analyze this example</button></li><li><p>The man who lives next door is a doctor.</p><button class="btn" type="button" data-example="The man who lives next door is a doctor.">Analyze this example</button></li><li><p>We can go to the beach or stay home.</p><button class="btn" type="button" data-example="We can go to the beach or stay home.">Analyze this example</button></li><li><p>The large dog barked loudly at the mailman.</p><button class="btn" type="button" data-example="The large dog barked loudly at the mailman.">Analyze this example</button></li></ul></details>
+</section>
+<section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/tools/sentence-analyzer/">Explain each word</a><a class="btn" href="/lessons/present-perfect-vs-past-simple/">Read a tense lesson</a></div></section>
+<noscript><p>This analysis needs JavaScript. Read the pattern guide above, or <a href="/lessons/present-perfect-vs-past-simple/">read the tense lesson</a>.</p></noscript>
+<p class="typing-status" id="typingStatus" role="status" hidden>Sentence not checked</p>
 <script>
-function inputError(input,message){let error=document.getElementById('inputError');if(!error){error=document.createElement('p');error.id='inputError';error.className='field-error';error.setAttribute('role','status');input.after(error);}error.textContent=message;input.setAttribute('aria-describedby','inputError');input.setAttribute('aria-invalid',message?'true':'false');if(message)input.focus();}
-        const commonVerbs = ['is', 'are', 'am', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'should', 'could', 'can', 'may', 'might', 'must', 'shall', 'go', 'goes', 'went', 'going', 'come', 'comes', 'came', 'coming', 'make', 'makes', 'made', 'making', 'get', 'gets', 'got', 'getting', 'say', 'says', 'said', 'saying', 'take', 'takes', 'took', 'taking', 'give', 'gives', 'gave', 'giving', 'find', 'finds', 'found', 'finding', 'tell', 'tells', 'told', 'telling', 'ask', 'asks', 'asked', 'asking', 'work', 'works', 'worked', 'working', 'seem', 'seems', 'seemed', 'seeming', 'feel', 'feels', 'felt', 'feeling', 'try', 'tries', 'tried', 'trying', 'leave', 'leaves', 'left', 'leaving', 'put', 'puts', 'putting', 'mean', 'means', 'meant', 'meaning', 'keep', 'keeps', 'kept', 'keeping', 'let', 'lets', 'letting', 'begin', 'begins', 'began', 'beginning', 'help', 'helps', 'helped', 'helping', 'talk', 'talks', 'talked', 'talking', 'turn', 'turns', 'turned', 'turning', 'start', 'starts', 'started', 'starting', 'show', 'shows', 'showed', 'shown', 'showing', 'hear', 'hears', 'heard', 'hearing', 'play', 'plays', 'played', 'playing', 'run', 'runs', 'ran', 'running', 'move', 'moves', 'moved', 'moving', 'like', 'likes', 'liked', 'liking', 'live', 'lives', 'lived', 'living', 'believe', 'believes', 'believed', 'believing', 'hold', 'holds', 'held', 'holding', 'bring', 'brings', 'brought', 'bringing', 'happen', 'happens', 'happened', 'happening', 'write', 'writes', 'wrote', 'written', 'writing', 'provide', 'provides', 'provided', 'providing', 'sit', 'sits', 'sat', 'sitting', 'stand', 'stands', 'stood', 'standing'];
-
-        const articles = ['a', 'an', 'the'];
-        const conjunctions = ['and', 'but', 'or', 'nor', 'yet', 'so', 'because', 'although', 'though', 'if', 'unless', 'while', 'when', 'where', 'as', 'since', 'until', 'before', 'after'];
-
-        function analyzeSentence(){
- const input=document.getElementById('sentenceInput'),sentence=input.value.trim();if(!sentence){inputError(input,'Enter a sentence to check.');return;}inputError(input,'');
- document.getElementById('results').classList.add('active');const tokens=sentence.match(/[A-Za-z']+/g)||[];const words=tokens.map(w=>w.toLowerCase());
- const vi=words.findIndex((w,i)=>i>0&&commonVerbs.includes(w));const complex=words.some(w=>conjunctions.includes(w));const found=vi>0&&!complex;
- const subject=found?tokens.slice(0,vi).join(' '):'Not determined';const verb=found?tokens[vi]:'Not determined';const object='Not determined by these rules';
- document.getElementById('subjectDisplay').textContent=subject;document.getElementById('verbDisplay').textContent=verb;document.getElementById('objectDisplay').textContent=object;
- document.getElementById('sentenceTypeDisplay').textContent=found?'Possible simple clause':'Not determined';document.getElementById('wordCount').textContent=words.length+' words';document.getElementById('clauseCount').textContent=found?'One possible clause':'Not determined';document.getElementById('clauseType').textContent='Needs context';document.getElementById('complexityScore').textContent='Not measured';document.getElementById('complexityFill').style.width='0%';
- const diagram=document.getElementById('diagramDisplay');diagram.textContent='Possible subject '+subject+' | Possible verb '+verb+'. Objects, clauses and complexity need a fuller analysis.';
- document.getElementById('modifiers').textContent=findModifiers(sentence,subject,verb,object).join(', ')||'None found by these rules';diagram.tabIndex=-1;diagram.focus();
+/* Local sentence analysis. compromise supplies context tags; these rules add finite clauses and teaching patterns. */
+(function () {
+  'use strict';
+  const root = document.querySelector('[data-parse-tool]');
+  if (!root) return;
+  const slug = root.dataset.parseTool;
+  const structureOnly = slug === 'sentence-structure-analyzer';
+  const input = document.getElementById('sentenceInput');
+  const output = document.getElementById('analysisOutput');
+  const error = document.getElementById('inputError');
+  const status = document.getElementById('analysisStatus');
+  const forms = {};
+  // Common forms also repair known contextual tagging gaps, such as “The dog runs”.
+  const families = [
+    ['run','runs','ran','run','running'],['jump','jumps','jumped','jumped','jumping'],
+    ['sleep','sleeps','slept','slept','sleeping'],['keep','keeps','kept','kept','keeping'],['find','finds','found','found','finding'],['say','says','said','said','saying'],['wake','wakes','woke','woken','waking'],['pay','pays','paid','paid','paying'],['sell','sells','sold','sold','selling'],['steal','steals','stole','stolen','stealing'],['lose','loses','lost','lost','losing'],['ride','rides','rode','ridden','riding'],['grow','grows','grew','grown','growing'],['drive','drives','drove','driven','driving'],['eat','eats','ate','eaten','eating'],
+    ['write','writes','wrote','written','writing'],['read','reads','read','read','reading'],
+    ['give','gives','gave','given','giving'],['send','sends','sent','sent','sending'],
+    ['make','makes','made','made','making'],['take','takes','took','taken','taking'],
+    ['go','goes','went','gone','going'],['come','comes','came','come','coming'],
+    ['leave','leaves','left','left','leaving'],['see','sees','saw','seen','seeing'],
+    ['know','knows','knew','known','knowing'],['think','thinks','thought','thought','thinking'],
+    ['buy','buys','bought','bought','buying'],['bring','brings','brought','brought','bringing'],
+    ['teach','teaches','taught','taught','teaching'],['tell','tells','told','told','telling'],
+    ['sit','sits','sat','sat','sitting'],['sing','sings','sang','sung','singing'],
+    ['become','becomes','became','become','becoming'],['feel','feels','felt','felt','feeling'],
+    ['swim','swims','swam','swum','swimming'],['speak','speaks','spoke','spoken','speaking'],
+    ['lend','lends','lent','lent','lending'],['hold','holds','held','held','holding'],['choose','chooses','chose','chosen','choosing'],['forget','forgets','forgot','forgotten','forgetting'],['cut','cuts','cut','cut','cutting'],['shut','shuts','shut','shut','shutting'],['get','gets','got','gotten','getting'],['put','puts','put','put','putting'],
+    ['have','has','had','had','having'],['do','does','did','done','doing'],
+    ['be','is','was','been','being'],['be','are','were','been','being']
+  ];
+  families.forEach(f => f.forEach((w, i) => { forms[w] = {base:f[0], ...forms[w], ...(i===2?{past:true}:{}), ...(i===3?{part:true}:{}), ...(i===4?{ing:true}:{}), ...(i===0?{bare:true}:{})}; }));
+  const regular = ['like','love','work','play','walk','bark','dance','cook','rain','stay','study','pass','finish','clean','invite','open','touch','turn','look','live','seem','taste','smell','sound','appear','remain','want','need','enjoy','watch','start','try','help','call','ask','show','offer','promise','launch','arrive','wait','land','end','succeed','close','decide','hope','plan','agree','refuse','avoid','consider','paint','elect','appoint','name','vote','visit','move','learn','order','carry','stop','wash','dry','empty','repair','approve','cancel','complete','deliver','cycle','remember','prefer','expect','manage','fail','arrange','intend','save','check','listen','follow','return','answer','wait','print','press','add','remove','pour','mix','stir','try','pay','share'];
+  regular.forEach(base => {
+    const doubled=['stop','plan','prefer','stir'].includes(base);
+    const stem=doubled?base+base.slice(-1):base.endsWith('e')&&!base.endsWith('ee')?base.slice(0,-1):base;
+    const past=/[^aeiou]y$/.test(base)?base.slice(0,-1)+'ied':base.endsWith('e')?base+'d':(doubled?stem:base)+'ed';
+    const present=/[^aeiou]y$/.test(base)?base.slice(0,-1)+'ies':/(ch|sh|ss|x|o)$/.test(base)?base+'es':base+'s';
+    [[base,{}],[present,{}],[past,{past:true,part:true}],[stem+'ing',{ing:true}]].forEach(([w,x])=>forms[w]={base,bare:w===base,...x});
+  });
+  const set = s => new Set(s.split(' '));
+  const aux = set('am is are was were be been being have has had do does did will would shall should can could may might must');
+  const be = set('am is are was were be been being');
+  const modal = set('can could may might must shall should would');
+  const subordinate = set('because although though if unless while when whenever since until before after once whereas whether');
+  const relative = set('who whom whose which that');
+  const coordinate = set('and but or nor yet so');
+  const linking = set('be become seem feel taste smell sound appear remain look');
+  const doubleObject = set('give send tell show offer lend teach bring buy promise hand pass pay owe');
+  const adverbWords = set('ever suddenly soon early late upstairs downstairs away back still not never always often sometimes usually already still just very quite really too here there home outside inside yesterday today tomorrow next');
+  const phrasal = new Set(['turn off','turn on','turn down','turn up','run out of','wake up','sit down','stand up','lie down','come back','go out','go away','put away','take out','get up','get on','get off','come in','check in','fill in','fill out','carry on','look after','look up','give up','wake up','pick up','put on','take off','find out']);
+  const has = (t, tag) => !!t && t.tags.includes(tag);
+  const low = t => t ? t.normal.toLowerCase() : '';
+  const text = ts => ts.map((t,i)=>t.text+(i<ts.length-1?t.post:'')).join('').trim().replace(/[,;.!?]+$/,'');
+  const verbish = t => !!t && !has(t,'Particle') && (has(t,'Verb') || aux.has(low(t)));
+  const finite = t => verbish(t) && !has(t,'Gerund') && !(forms[low(t)]||{}).ing && low(t)!=='to';
+  const nounish = t => has(t,'Noun') || has(t,'Pronoun') || has(t,'Determiner') || has(t,'Value') || has(t,'ProperNoun');
+  const possessives = set('my your his her its our their whose');
+  const pronouns = set('i you he she it we they me him her us them who whom nobody somebody everyone someone');
+  const objectPronouns = set('me you him her it us them');
+  const infinitiveObjects = set('decide want hope plan agree refuse offer promise prefer expect try need learn choose manage fail remember forget attempt arrange intend');
+  const gerundObjects = set('enjoy avoid finish stop mind suggest practise practice consider miss dislike love like prefer start begin continue');
+  const reporting = set('say know think believe hope suppose hear tell see explain admit promise notice remember agree');
+  const objectComplements = set('elect appoint name call make consider find keep leave paint vote');
+  const titles = set('president chair chairman chairwoman captain leader manager director treasurer secretary king queen');
+  const colours = set('red orange yellow green blue purple pink brown black white grey gray');
+  const baseOf = t => (forms[low(t)]||{}).base || low(t);
+  const isAdverb = t => !!t && (has(t,'Adverb') || adverbWords.has(low(t))) && !possessives.has(low(t));
+  const isPossessive = (ts,i) => possessives.has(low(ts[i])) && !!ts[i+1] &&
+    (has(ts[i+1],'Noun') || has(ts[i+1],'Adjective') || has(ts[i+1],'ProperNoun'));
+  // Auxiliary chains and infinitives have only one finite head.
+  function finiteHead(ts,i) {
+    if(!finite(ts[i]))return false;
+    let previous=i-1;
+    while(previous>=0 && isAdverb(ts[previous]))previous--;
+    if(low(ts[previous])==='to' || aux.has(low(ts[previous])))return false;
+    if(coordinate.has(low(ts[previous])) && ((forms[low(ts[i])]||{}).bare || has(ts[i],'Infinitive'))) {
+      // An infinitive may share its “to” across joined verbs, including their objects.
+      for(let j=previous-1;j>=0;j--) {
+        if(infinitiveVerb(ts,j)>j)return false;
+        if(finiteHead(ts,j))break;
+      }
+    }
+    return true;
+  }
+  function infinitiveVerb(ts,start) {
+    if(low(ts[start])!=='to')return -1;
+    let i=start+1;
+    while(isAdverb(ts[i]))i++;
+    return verbish(ts[i])?i:-1;
+  }
+  function patchTags(ts) {
+    // After an infinitive marker, “please” is a verb, not a polite request word.
+    ts.forEach((t,i)=>{if(low(t)==='please' && low(ts[i-1])==='to')t.tags=['Verb','Infinitive'];});
+    ts.forEach((t,i)=>{
+      const w=low(t),prev=ts[i-1];
+      if(['a','an','the'].includes(w) && ts[i+1] && !aux.has(low(ts[i+1])))t.tags=['Determiner'];
+      if(forms[w] && !has(t,'Verb') && !forms[w].ing &&
+        (!prev || !has(prev,'Determiner') && !has(prev,'Possessive') && !has(prev,'Adjective') && !has(prev,'Preposition') && !has(prev,'Value'))) {
+        t.tags=['Verb',forms[w].past?'PastTense':'PresentTense'];
+      }
+      if(set('in on at by with from for of about into through during above below between under over near around without').has(w) && ts[i+1])t.tags=['Preposition'];
+      if(['before','after','since','until'].includes(w) && !ts.slice(i+1).some(finite))t.tags=['Preposition'];
+      if(['tired','excited','interested','worried'].includes(w) && !ts.slice(i+1).some(x=>low(x)==='by'))t.tags=['Adjective'];
+      if(adverbWords.has(w) && !['next','there'].includes(w))t.tags=['Adverb'];
+      if(colours.has(w))t.tags=['Adjective'];
+      if(w==='not')t.tags=['Adverb'];
+      if(prev && (has(prev,'Determiner')||has(prev,'Possessive')) && has(t,'PhrasalVerb') && !has(t,'Particle'))t.tags=['Noun'];
+      if(w==='to' && ts[i+1] && !verbish(ts[i+1]))t.tags=['Preposition'];
+    });
+    // A participle in an auxiliary chain is a verb even if the word tagger chose an adjective.
+    ts.forEach((t,i)=>{
+      if(i && (be.has(low(ts[i-1])) || isAdverb(ts[i-1]) && i>1 && be.has(low(ts[i-2]))) &&
+        ((forms[low(t)]||{}).part || (forms[low(t)]||{}).ing || /(?:ed|en|ing)$/.test(low(t))) && !['tired','excited','interested','worried'].includes(low(t))) {
+        t.tags=['Verb','Participle'];
+      }
+    });
+    const firstVerb=ts.findIndex((t,i)=>finite(t)&&low(ts[i-1])!=='to');
+    const stateWords=set('fit healthy empty open closed ready safe warm clean dry wet full awake alive asleep free quiet still');
+    ts.forEach((t,i)=>{
+      if(i>firstVerb+1 && firstVerb>=0 && objectComplements.has(baseOf(ts[firstVerb])) && stateWords.has(low(t)) && low(ts[i-1])!=='to')t.tags=['Adjective'];
+    });
+    return ts;
+  }
+  // Return the next noun-phrase boundary. Keep possessives, modifiers and noun compounds together.
+  function nounEnd(ts,start=0) {
+    if(!ts[start])return start;
+    if((pronouns.has(low(ts[start])) || has(ts[start],'Pronoun')) && !isPossessive(ts,start))return start+1;
+    let head=false,j=start;
+    for(;j<ts.length;j++) {
+      const t=ts[j],w=low(t),det=has(t,'Determiner')||has(t,'Possessive')||isPossessive(ts,j);
+      if(j>start && head && (det || has(t,'Value')))break;
+      if(has(t,'Preposition') || isAdverb(t) || coordinate.has(w))break;
+      if(j>start && head && has(t,'Adjective'))break;
+      if(verbish(t) && !has(t,'Gerund') && !(forms[w]||{}).ing)break;
+      if(!det && !has(t,'Adjective') && !has(t,'Value'))head=true;
+    }
+    return j;
+  }
+  function tenseOf(vs,command,subject,all) {
+    if(command)return 'Base form in a command';
+    const ws=vs.map(low).filter(w=>w!=='not'&&!adverbWords.has(w)&&!coordinate.has(w));
+    const first=ws[0],last=ws[ws.length-1];
+    const perfect=ws.slice(0,-1).some(w=>['has','have','had'].includes(w));
+    const continuous=ws.some((w,i)=>be.has(w)&&ws[i+1]&&/ing$/.test(ws[i+1])&&ws[i+1]!=='being') || ws.includes('being') && !ws.some(w=>['has','have','had'].includes(w));
+    if(first==='will')return perfect?(continuous?'Future perfect continuous with will':'Future perfect with will'):continuous?'Future continuous with will':'Future with will';
+    if(modal.has(first))return perfect?'Modal with perfect form':'Modal with base form';
+    if(perfect)return (first==='had'?'Past':'Present')+' perfect'+(continuous?' continuous':'');
+    if(continuous)return (['was','were','did'].includes(first)?'Past':'Present')+' continuous';
+    if(['was','were','did','had'].includes(first))return 'Past simple';
+    if(['am','is','are','do','does','has','have'].includes(first))return 'Present simple';
+    if(['read','put','cut','let','hit','cost','set'].includes(first))return all.some(t=>['yesterday','ago'].includes(low(t)))||/^(she|he|it)$/i.test(text(subject))?'Past simple':'Present or past simple';
+    return has(vs[0],'PastTense')||(forms[first]||{}).past?'Past simple':'Present simple';
+  }
+  function subjectWords(ts) {
+    const words=ts.slice();
+    const predicateAdverbs=set('ever never always often sometimes usually already still just really suddenly');
+    while(words.length>1 && predicateAdverbs.has(low(words[words.length-1])))words.pop();
+    return words;
+  }
+  function parseClause(ts, forcedCommand=false, relativeClause=false) {
+    ts=ts.filter(t=>t.text.trim());
+    if(low(ts[0])==='please' && ts.slice(1).some(finite))ts=ts.slice(1);
+    if(low(ts[ts.length-1])==='please' && low(ts[ts.length-2])!=='to' && !aux.has(low(ts[ts.length-2])))ts=ts.slice(0,-1);
+    // In a question, polite “please” can sit between the subject and lexical verb.
+    if(aux.has(low(ts[0])))ts=ts.filter((t,i)=>!(low(t)==='please' && low(ts[i-1])!=='to' && ts.slice(i+1).some(finite)));
+    if(!ts.length)return null;
+    let vi=ts.findIndex((t,i)=>finiteHead(ts,i));
+    if(vi<0)return null;
+    let subject=[],verbs=[],rest=[],command=false,whObject=null;
+    const first=low(ts[0]);
+    const questionStart=!relativeClause && ((aux.has(first) && first!=='be' && !has(ts[0],'Imperative') && !(first==='do' && low(ts[1])==='not')) ||
+      /^(who|what|where|when|why|how|which)$/.test(first) && aux.has(low(ts[1])));
+    if(questionStart && !forcedCommand) {
+      const ai=aux.has(first)?0:1;
+      const next=ts.findIndex((t,i)=>i>ai+1 && (verbish(t) || be.has(low(ts[ai])) && (forms[low(t)]||{}).ing) && low(t)!=='to');
+      if(next>=0 && (forms[low(ts[next])]||{}).ing)ts[next].tags=['Verb','Gerund'];
+      if(next>=0) {
+        subject=subjectWords(ts.slice(ai+1,next));verbs=[ts[ai]];
+        let j=next;
+        while(j<ts.length) {
+          const w=low(ts[j]);
+          if(isAdverb(ts[j])) {if(w==='not')verbs.push(ts[j]);j++;continue;}
+          if(!verbish(ts[j]) || low(ts[j-1])==='to')break;
+          const previous=verbs[verbs.length-1];
+          if(previous && !aux.has(low(previous)) && low(previous)!=='not')break;
+          verbs.push(ts[j++]);
         }
-
-        function findModifiers(sentence, subject, verb, object) {
-            const modifierWords = [];
-            const adjectives = ['quick', 'brown', 'lazy', 'beautiful', 'happy', 'sad', 'big', 'small', 'good', 'bad', 'new', 'old', 'young', 'green', 'red', 'blue', 'fast', 'slow'];
-            const adverbs = ['quickly', 'slowly', 'happily', 'sadly', 'carefully', 'beautifully', 'completely', 'totally', 'very', 'extremely', 'absolutely', 'really', 'quite', 'just', 'only', 'also', 'already', 'still', 'yet', 'never', 'always', 'often', 'sometimes'];
-            const prepositionalPhrases = ['over', 'under', 'in', 'on', 'at', 'by', 'with', 'from', 'to', 'for', 'about', 'during', 'after', 'before'];
-
-            const sentenceLower = sentence.toLowerCase();
-
-            adjectives.forEach(adj => {
-                if (sentenceLower.split(/\W+/).includes(adj)) modifierWords.push(adj + ' (adjective)');
-            });
-
-            adverbs.forEach(adv => {
-                if (sentenceLower.split(/\W+/).includes(adv)) modifierWords.push(adv + ' (adverb)');
-            });
-
-            prepositionalPhrases.forEach(prep => {
-                if (sentenceLower.includes(' ' + prep + ' ')) modifierWords.push(prep + ' (prepositional phrase)');
-            });
-
-            return [...new Set(modifierWords)];
+        rest=ts.slice(j);
+      } else if(be.has(low(ts[ai]))) {
+        let j=ai+1;
+        if(low(ts[j])==='there')j++;
+        else j=nounEnd(ts,j);
+        subject=subjectWords(ts.slice(ai+1,j));verbs=[ts[ai]];rest=ts.slice(j);
+      } else return null;
+      if(['what','whom','which'].includes(first)&&ai===1)whObject=ts[0];
+    } else {
+      command=forcedCommand || ((forms[low(ts[vi])]||{}).bare || low(ts[vi])==='be' || has(ts[vi],'Imperative')) && ts.slice(0,vi).every(t=>isAdverb(t)&&low(t)!=='there');
+      if(first==='do'&&low(ts[1])==='not')command=true;
+      if(!command && vi===0)return null;
+      subject=command?[]:subjectWords(ts.slice(0,vi));
+      let j=vi;
+      while(j<ts.length) {
+        const w=low(ts[j]);
+        if(verbish(ts[j]) && w!=='to') {
+          const previous=verbs[verbs.length-1];
+          if(previous && !aux.has(low(previous)) && !coordinate.has(low(previous)) && low(previous)!=='not' && !isAdverb(previous))break;
+          verbs.push(ts[j++]);continue;
         }
-
-        function clearAll() {
-            document.getElementById('sentenceInput').value = '';
-            document.getElementById('results').classList.remove('active');
+        if(w==='not' || isAdverb(ts[j]) && j>vi && (verbish(ts[j+1]) || coordinate.has(low(ts[j+1]))&&verbish(ts[j+2]))) {verbs.push(ts[j++]);continue;}
+        if(coordinate.has(w)&&verbish(ts[j+1])) {verbs.push(ts[j++]);continue;}
+        break;
+      }
+      rest=ts.slice(j);
+    }
+    if(!verbs.length || !command&&!subject.length)return null;
+    const lexicalBase=baseOf([...verbs].reverse().find(t=>!aux.has(low(t))&&!isAdverb(t))||verbs[verbs.length-1]);
+    // Match longer multiword verbs before their shorter forms.
+    for(const n of [2,1])if(rest.length>=n && phrasal.has(lexicalBase+' '+rest.slice(0,n).map(low).join(' '))) {
+      verbs.push(...rest.splice(0,n));break;
+    }
+    if(rest[0]&&has(rest[0],'Particle'))verbs.push(rest.shift());
+    // Separable particles follow an object, as in “turn the sound off”.
+    let particle=rest.findIndex((t,i)=>i>0 && phrasal.has(lexicalBase+' '+low(t)) &&
+      (has(t,'Particle') || i===rest.length-1 || isAdverb(rest[i+1])));
+    if(particle>0)verbs.push(...rest.splice(particle,1));
+    const lexical=verbs.filter(t=>!isAdverb(t)&&!coordinate.has(low(t))&&!has(t,'Particle')&&low(t)!=='not');
+    const last=lexical[lexical.length-1];
+    const lastBase=phrasal.has(lexicalBase+' '+verbs.slice(-1).map(low).join(' '))?lexicalBase:baseOf(last);
+    const passive=lexical.some((t,i)=>be.has(low(t))&&lexical[i+1]&&!be.has(low(lexical[i+1]))&&
+      ((forms[low(lexical[i+1])]||{}).part || has(lexical[i+1],'Participle') || has(lexical[i+1],'Passive')));
+    let object='',complement='',adverbial='',pattern='S-V',reason='';
+    const timePhrase=/^(?:(?:every|each|last|next|this|all) (?:morning|afternoon|evening|night|day|week|month|year|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)|(?:a|two|three|several) (?:hours?|days?|weeks?) (?:ago|later))/i.test(text(rest));
+    let end=0;
+    while(end<rest.length && !has(rest[end],'Preposition') && !isAdverb(rest[end]) && !timePhrase)end++;
+    const substantive=rest.slice(0,end);
+    const toClause=infinitiveVerb(rest,0)>0;
+    const ingClause=rest[0] && (has(rest[0],'Gerund') || (forms[low(rest[0])]||{}).ing || verbish(rest[0])&&/ing$/.test(low(rest[0])));
+    if(whObject && be.has(low(last)) && !rest.length) {complement=text([whObject]);pattern='S-V-C';}
+    else if(whObject) {object=text([whObject]);pattern='S-V-O';}
+    else if(low(subject[0])==='there' && verbs.some(t=>be.has(low(t))))pattern='There-V-S';
+    else if(!passive && toClause && infinitiveObjects.has(lexicalBase)) {object=text(rest);pattern='S-V-O';}
+    else if(!passive && ingClause && gerundObjects.has(lexicalBase)) {object=text(rest);pattern='S-V-O';}
+    else if(toClause) {pattern='Not sure';reason='I cannot tell how this infinitive clause joins the main verb.';}
+    else if(!passive && !phrasal.has(lexicalBase+' '+verbs.slice(-1).map(low).join(' ')) && (linking.has(lastBase)||be.has(low(last))) && rest.length) {
+      if(has(rest[0],'Preposition') || ['here','there','home','outside','inside','upstairs','downstairs','away'].includes(low(rest[0]))) {
+        adverbial=text(rest);pattern='S-V-A';
+      } else {complement=text(rest);pattern='S-V-C';}
+    }
+    else if(!passive && substantive.length) {
+      if(doubleObject.has(lexicalBase)) {
+        const boundary=nounEnd(substantive);
+        if(boundary>0 && boundary<substantive.length) {
+          object=text(substantive.slice(0,boundary))+' | '+text(substantive.slice(boundary));pattern='S-V-O-O';
         }
+      }
+      if(!object && objectComplements.has(lexicalBase)) {
+        let boundary=nounEnd(rest);
+        // Object pronouns stay separate from a following predicate noun phrase.
+        // “Her” can also be possessive, so require a role noun for that ambiguous split.
+        if(objectPronouns.has(low(rest[0])) && (!isPossessive(rest,0) || titles.has(low(rest[1])) || !rest.slice(1).some(t=>has(t,'Noun'))))boundary=1;
+        // Bare role nouns can follow a full noun phrase without a determiner.
+        if(boundary===rest.length && ['elect','appoint','name','call','make','consider','vote'].includes(lexicalBase)) {
+          const role=rest.findIndex((t,i)=>i>0 && titles.has(low(t)) && (has(rest[i-1],'Actor') || has(rest[i-1],'Person') || has(rest[i-1],'ProperNoun')) && nounEnd(rest.slice(0,i))===i &&
+            !has(rest[i-1],'Determiner') && !has(rest[i-1],'Possessive'));
+          if(role>0)boundary=role;
+        }
+        // Naming verbs can put a proper name after an ordinary object noun phrase.
+        if(['call','name'].includes(lexicalBase) && boundary===rest.length) {
+          const named=rest.findIndex((t,i)=>i>0 && has(t,'ProperNoun') && has(rest[i-1],'Noun') && !has(rest[i-1],'ProperNoun') && !has(rest[i-1],'Possessive'));
+          if(named>0)boundary=named;
+        }
+        let description=boundary;
+        while(description<rest.length && isAdverb(rest[description]) && ['very','really','quite','too','so','rather','extremely'].includes(low(rest[description])))description++;
+        const predicateNoun=nounEnd(rest,boundary)===rest.length && rest.slice(boundary).some(t=>has(t,'Noun')||has(t,'ProperNoun'));
+        if(boundary>0 && boundary<rest.length && (has(rest[description],'Adjective') || predicateNoun)) {
+          object=text(rest.slice(0,boundary));complement=text(rest.slice(boundary));pattern='S-V-O-C';
+        }
+      }
+      if(!object) {object=text(substantive);pattern='S-V-O';}
+    }
+    if(pattern==='S-V-O' && ['put','place','set','lay'].includes(lexicalBase)) {
+      if(rest[end] && (has(rest[end],'Preposition') || isAdverb(rest[end]))) {
+        pattern='S-V-O-A';adverbial=text(rest.slice(end));
+      } else {pattern='Not sure';reason='This use of the verb needs a place phrase that I cannot safely identify.';}
+    }
+    if(doubleObject.has(lexicalBase) && pattern==='S-V-O' && rest[end] && has(rest[end],'Preposition') &&
+      !['to','for','by'].includes(low(rest[end])) && rest.slice(end+1).some(t=>has(t,'Determiner')||has(t,'Possessive'))) {
+      pattern='Not sure';object='Not sure';reason='A phrase after the noun may belong to the receiver. I cannot safely separate the objects.';
+    }
+    if(verbs.some(t=>coordinate.has(low(t)))&&object) {pattern='Not sure';reason='The joined verbs may have different objects.';}
+    // Extraposed clauses use a dummy “it”; ordinary weather “it” stays labelled “It”.
+    let subjectLabel=command?'you (understood)':low(subject[0])==='there'?'There (dummy subject)':text(subject);
+    if(low(subject[0])==='it' && linking.has(lastBase) && (rest.some((t,i)=>low(t)==='to'&&verbish(rest[i+1])) || low(rest[0])==='that'))subjectLabel=text(subject)+' (dummy subject)';
+    const vp=verbs.filter(t=>!isAdverb(t)||low(t)==='not');
+    return {subject:subjectLabel,verb:vp.map(t=>t.text).join(' '),tense:tenseOf(vp,command,subject,ts),voice:passive?'Passive':'Active',object:object||'None found',complement:complement||'None found',adverbial:adverbial||'None found',pattern,reason,base:lexicalBase,command,inverted:questionStart,tokens:ts,remainderTokens:rest};
+  }
+  function clauseTree(ts, depth=0) {
+    if(depth>5)return null;
+    if(!ts.length)return null;
+    const comma=ts.findIndex(t=>t.post.includes(','));
+    // An opening time/place phrase has no finite verb. It is not a dependent clause.
+    if(comma>=0 && !ts.slice(0,comma+1).some(finite) && (has(ts[0],'Preposition') || subordinate.has(low(ts[0])) || isAdverb(ts[0]) || /^(last|next|this|every) /i.test(text(ts)))) {
+      const tail=clauseTree(ts.slice(comma+1),depth+1);
+      if(tail)tail[0].text=text(ts);
+      return tail;
+    }
+    if(subordinate.has(low(ts[0]))) {
+      let end=comma;
+      if(end<0) {
+        const v=ts.findIndex(finite);
+        end=ts.findIndex((t,i)=>i>v+1&&has(t,'Pronoun')&&ts.slice(i+1).some(finite))-1;
+      }
+      if(end>0) {
+        const dep=parseClause(ts.slice(1,end+1)),tail=clauseTree(ts.slice(end+1),depth+1);
+        if(dep&&tail)return [{...dep,kind:'Subordinate clause',join:ts[0].text,text:text(ts.slice(0,end+1))},...tail];
+      }
+      return null;
+    }
+    // Split only when both sides can stand as clauses. Joined nouns stay together.
+    for(let i=1;i<ts.length-1;i++) {
+      const w=low(ts[i]),semicolon=ts[i-1].post.includes(';');
+      if(!coordinate.has(w)&&!semicolon)continue;
+      if(w==='so'&&low(ts[i+1])==='that')continue;
+      const right=ts.slice(coordinate.has(w)?i+1:i),rightHead=parseClause(right);
+      if(!rightHead || rightHead.command)continue;
+      const left=clauseTree(ts.slice(0,i),depth+1),tail=clauseTree(right,depth+1);
+      if(left&&tail) {tail[0].join=coordinate.has(w)?ts[i].text:'semicolon';return [...left,...tail];}
+    }
+    for(let i=1;i<ts.length-1;i++) {
+      const w=low(ts[i]);
+      if(subordinate.has(w)) {
+        const main=parseClause(ts.slice(0,i)),dep=parseClause(ts.slice(i+1));
+        if(main&&dep)return [{...main,kind:'Main clause',join:'None',text:text(ts.slice(0,i))},{...dep,kind:'Subordinate clause',join:ts[i].text,text:text(ts.slice(i))}];
+      }
+      if(relative.has(w)) {
+        const before=parseClause(ts.slice(0,i));
+        if(before && w==='that' && (reporting.has(before.base) || low(ts[0])==='it'&&before.base==='seem')) {
+          const dep=parseClause(ts.slice(i+1));
+          if(dep) {
+            if(before.base==='seem') {before.complement=text(ts.slice(i));before.pattern='S-V-C';before.subject=text(ts.slice(0,1))+' (dummy subject)';}
+            else {before.object=text(ts.slice(i));before.pattern='S-V-O';}
+            return [{...before,kind:'Main clause',join:'None',text:text(ts)},{...dep,kind:'Subordinate clause',join:ts[i].text,joinRole:'Joining word',text:text(ts.slice(i))}];
+          }
+        }
+        const positions=ts.map((t,j)=>j>i&&finiteHead(ts,j)?j:-1).filter(j=>j>=0);
+        if(positions.length>=2 && !before) {
+          let end=positions[positions.length-1];
+          while(end>i+1 && ['ever','never','always','often','sometimes','usually','already','still','just','really','suddenly'].includes(low(ts[end-1])))end--;
+          const relTokens=ts.slice(i,end);
+          const objectRelative=relTokens[1]&&nounish(relTokens[1])&&!verbish(relTokens[1]);
+          const dep=parseClause(objectRelative?relTokens.slice(1):relTokens,false,true),main=parseClause([...ts.slice(0,i),...ts.slice(end)]);
+          if(dep&&objectRelative) {dep.object=relTokens[0].text;dep.pattern='S-V-O';}
+          if(dep&&main) {
+            main.subject=text(ts.slice(0,end));
+            return [{...main,kind:'Main clause',join:'None',text:text(ts)},{...dep,kind:'Subordinate clause',join:ts[i].text,text:text(relTokens)}];
+          }
+        }
+        // A relative clause can modify the object after the main verb.
+        if(before && before.object!=='None found' && positions.length && nounish(ts[i-1])) {
+          const relTokens=ts.slice(i),objectRelative=relTokens[1]&&nounish(relTokens[1])&&!verbish(relTokens[1]);
+          const dep=parseClause(objectRelative?relTokens.slice(1):relTokens,false,true);
+          if(dep) {
+            if(objectRelative) {dep.object=ts[i].text;dep.pattern='S-V-O';}
+            before.object+=' '+text(relTokens);
+            return [{...before,kind:'Main clause',join:'None',text:text(ts)},{...dep,kind:'Subordinate clause',join:ts[i].text,text:text(relTokens)}];
+          }
+        }
+        if(w==='who'||w==='which'||w==='that'&&ts.slice(i+1).some(finite)&&nounish(ts[i-1]))return null;
+      }
+    }
+    const one=parseClause(ts);
+    if(one && reporting.has(one.base)) {
+      const start=ts.findIndex(finite),hidden=ts.findIndex((t,i)=>i>start&&has(t,'Pronoun')&&ts.slice(i+1).some(finite));
+      if(hidden>0) {
+        const head=parseClause(ts.slice(0,hidden)),dep=parseClause(ts.slice(hidden));
+        if(head&&dep) {
+          head.object=text(ts.slice(hidden));head.pattern='S-V-O';
+          return [{...head,kind:'Main clause',join:'None',text:text(ts)},{...dep,kind:'Subordinate clause',join:'No joining word',text:text(ts.slice(hidden))}];
+        }
+      }
+    }
+    return one?[{...one,kind:'Main clause',join:'None',text:text(ts)}]:null;
+  }
+  // What/How exclamations front a complement, object or manner phrase.
+  // Find a complete subject plus finite predicate after that fronted phrase.
+  function exclamationClause(ts) {
+    const first=low(ts[0]);
+    if(!['what','how'].includes(first))return null;
+    for(let split=2;split<ts.length-1;split++) {
+      const front=ts.slice(1,split),tail=ts.slice(split);
+      if(first==='what' && (!['a','an'].includes(low(front[0])) || nounEnd(front)!==front.length || !front.some(t=>has(t,'Noun'))))continue;
+      if(first==='how' && !front.every(t=>has(t,'Adjective')||isAdverb(t)))continue;
+      const main=parseClause(tail);
+      if(!main || main.command || main.inverted || main.object!=='None found' || main.complement!=='None found')continue;
+      if(linking.has(main.base)) {main.complement=text(front);main.pattern='S-V-C';}
+      else if(first==='what') {main.object=text(front);main.pattern='S-V-O';}
+      else main.adverbial=text(front);
+      return [{...main,kind:'Main clause',join:'None',text:text(ts)}];
+    }
+    return null;
+  }
+  function wordClass(t, clauses, index, terms) {
+    const w=low(t),next=terms[index+1];
+    if(w==='to'&&verbish(next))return 'to before a verb (infinitive)';
+    if(['where','when','why','how'].includes(w))return 'Adverb';
+    if(['who','whom'].includes(w))return clauses.some(c=>c.join.toLowerCase()===w)?'Relative word':'Pronoun';
+    if(['what','which'].includes(w)&&has(t,'QuestionWord'))return next&&has(next,'Noun')?'Determiner':'Pronoun';
+    if(['my','your','his','her','our','their','its'].includes(w)&&next&&has(next,'Noun')&&!has(next,'Pronoun'))return 'Determiner';
+    if(clauses.some(c=>c.join.toLowerCase()===w))return (clauses.find(c=>c.join.toLowerCase()===w).joinRole) || (relative.has(w)?'Relative word':'Joining word');
+    if(has(t,'Particle'))return 'Verb particle';
+    if(has(t,'Pronoun'))return 'Pronoun';
+    if(has(t,'Possessive')||has(t,'Determiner'))return 'Determiner';
+    if(has(t,'Value'))return 'Number';
+    if(has(t,'Verb')||aux.has(w))return 'Verb';
+    if(has(t,'Adjective'))return 'Adjective';
+    if(has(t,'Adverb'))return 'Adverb';
+    if(has(t,'Preposition'))return 'Preposition';
+    if(has(t,'Conjunction'))return 'Joining word';
+    if(has(t,'ProperNoun')||has(t,'Person')||has(t,'Acronym'))return 'Name';
+    if(has(t,'Noun'))return 'Noun';
+    return 'Not sure';
+  }
+  function unsure(reason,terms=[]) {
+    return {type:'Not sure',function:'Not sure',subject:'Not sure',verb:'Not sure',pattern:'Not sure',voice:'Not sure',tense:'Not sure',object:'Not sure',complement:'Not sure',clauseCount:'Not sure',clauses:[],terms,notes:[reason],uncertain:true};
+  }
+  function analyze(value) {
+    const original=value.trim().replace(/[’]/g,"'");
+    if(!original)return {error:'Enter a sentence to analyze.'};
+    if(original.split(/\s+/).length>120 || original.length>4000)return {error:'Use one sentence with no more than 120 words.'};
+    if(!/[a-z]/i.test(original)||/[\u3040-\u30ff\u3400-\u9fff\u0400-\u04ff]/.test(original))return {error:'Use an English sentence for this tool.'};
+    if(/[<>]/.test(original))return {error:'Use plain sentence text without HTML tags.'};
+    if(typeof window.nlp!=='function')return {error:'The word library did not load. Reload this page and try again.'};
+    let doc=window.nlp(original);
+    if(doc.json().length!==1)return {error:'Use one sentence at a time.'};
+    doc.contractions().expand();
+    const expanded=doc.text();
+    const terms=patchTags(window.nlp(expanded).json().flatMap(s=>s.terms));
+    // These familiar ambiguous constructions need a speaker’s intended meaning.
+    if(/\bflying planes\b/i.test(original)||/\b(time flies like|(?:saw|see|watch|watched) (?:her|his|their) (?:duck|bat))\b/i.test(original))return unsure('These words have more than one possible meaning, so I cannot choose a structure.',terms);
+    let functionName=/\?$/.test(original)?'Question':/^(what|how)\b.*!$/.test(original.toLowerCase())?'Exclamation':'Statement';
+    const frontedExclamation=functionName==='Exclamation' && /^(what|how)\b/i.test(original);
+    let clauses=frontedExclamation?exclamationClause(terms):clauseTree(terms);
+    const frontQuote=original.match(/^["“]([^"”]+)["”]\s*,?\s*(.+?)[.!?]?$/);
+    const backQuote=original.match(/^(.+?),?\s+["“]([^"”]+)["”][.!?]?$/);
+    if(frontQuote||backQuote) {
+      const quote=frontQuote?frontQuote[1]:backQuote[2],report=frontQuote?frontQuote[2]:backQuote[1];
+      const quoteTerms=patchTags(window.nlp(quote).json().flatMap(s=>s.terms));
+      const reportTerms=patchTags(window.nlp(report).json().flatMap(s=>s.terms));
+      const head=parseClause(reportTerms),dep=parseClause(quoteTerms);
+      if(head&&dep&&reporting.has(head.base)) {
+        head.object=text(quoteTerms);head.pattern='S-V-O';
+        clauses=[{...head,kind:'Main clause',join:'None',text:text(reportTerms)},{...dep,kind:'Subordinate clause',join:'Quoted words',text:text(quoteTerms)}];
+      } else return unsure('I cannot safely join the quoted words to the reporting clause.',terms);
+    }
+    if(!clauses && functionName==='Exclamation')return unsure('This exclamation does not have a clear finite clause.',terms);
+    if(!clauses)return unsure('I cannot safely separate the subject, verb and clauses in this sentence.',terms);
+    const mains=clauses.filter(c=>c.kind==='Main clause'),deps=clauses.filter(c=>c.kind!=='Main clause');
+    if(!mains.length)return unsure('I found a dependent clause but could not find a main clause.',terms);
+    const main=mains[0];
+    for(const clause of clauses) {
+      if(/^(?:am|is|are|was|were) (?:broken|closed|married)$/.test(clause.verb.toLowerCase()) &&
+        !clause.tokens.some(t=>low(t)==='by')) {
+        clause.voice='Not sure';clause.pattern='Not sure';clause.verb='Not sure';
+        clause.reason='This past participle can describe a state or a passive action. I cannot choose from these words alone.';
+      }
+    }
+    // Do not flatten an unhandled second predicate into a noun object.
+    if(main.pattern==='S-V-O' && main.remainderTokens.some(finite) &&
+      !infinitiveObjects.has(main.base) && !gerundObjects.has(main.base) && !deps.length)
+      return unsure('I found another verb but cannot safely show its role in this clause.',terms);
 
-        document.getElementById('sentenceInput').addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                analyzeSentence();
-            }
-        });
-    </script>
-<p class="retained-intro reading">Analyze sentence components, clauses, and complexity</p><div class="el-note" role="note">
-Experimental tool. This tool uses simple rules and it makes mistakes. Do not rely on its results.
-  For checked explanations, use the <a href="/lessons/">grammar lessons</a> and the <a href="/tools/">practice tools</a>.
-</div><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/present-perfect-vs-past-simple/">Read a tense lesson</a><a class="btn" href="/tools/">Choose another practice</a></div></section><noscript><p>Interactive practice needs JavaScript. <a href="/lessons/present-perfect-vs-past-simple/">Read the written study guide</a>.</p></noscript><script>
-if(matchMedia('(min-width:1024px)').matches)document.querySelectorAll('.quiz-settings:not([hidden])').forEach(el=>el.open=true);
-</script><script>
-(function(){
- const main=document.getElementById('main');
- const status=document.createElement('p');status.className='typing-status';status.setAttribute('role','status');status.hidden=true;main.append(status);
- const update=()=>{const input=document.activeElement;if(!input||!main.contains(input)||!input.matches('textarea,input:not([type=radio]):not([type=checkbox])')||!window.visualViewport){status.hidden=true;return;}const feedback=main.querySelector('#feedbackArea,#feedback,#errorsContainer,#verbsContainer,#diagramDisplay');const box=feedback&&feedback.getBoundingClientRect();if(box&&box.top>=0&&box.bottom<visualViewport.height){status.hidden=true;return;}status.textContent=(main.querySelector('#qCounter')||{}).textContent||'Answer not checked';status.style.top=visualViewport.offsetTop+'px';status.hidden=false;};
- main.addEventListener('focusin',update);main.addEventListener('focusout',()=>setTimeout(update,0));window.addEventListener('scroll',update,{passive:true});if(window.visualViewport)visualViewport.addEventListener('resize',update);
- main.querySelectorAll('.checker-output .results').forEach(result=>new MutationObserver(()=>{const placeholder=result.parentElement.querySelector('.checker-placeholder');if(placeholder)placeholder.hidden=result.classList.contains('active');}).observe(result,{attributes:true,attributeFilter:['class']}));
- main.querySelectorAll('a[href^="/lessons/"]').forEach(link=>link.addEventListener('click',()=>{if(window.elTrack)window.elTrack('cta_click',{cta_id:'tool_sentence-structure-analyzer_lesson'});}));
+    if(main.command)functionName='Command';
+    else if(main.inverted)functionName='Question';
+    else if(/!$/.test(original))functionName='Exclamation';
+    const type=mains.length>1?(deps.length?'Compound-complex':'Compound'):(deps.length?'Complex':'Simple');
+    if(main.reason)return {...main,type,function:functionName,clauseCount:String(clauses.length),clauses,terms,notes:[main.reason],uncertain:true};
+    const notes=[];
+    if(deps.length&&deps[0].join==='Quoted words')notes.push('The quoted words give the content of the reporting verb.');
+    else if(deps.length&&deps[0].join==='No joining word')notes.push('The subordinate clause has no joining word. You could add “that” before it here.');
+    else if(deps.length)notes.push('“'+deps[0].join+'” introduces a subordinate clause. Read it with the main clause.');
+    else if(mains.length>1)notes.push('Each main clause has its own subject and verb. “'+mains[1].join+'” connects them.');
+    else if(main.reason)notes.push(main.reason);
+    else if(main.command)notes.push('The subject is understood as “you”. Commands often leave this subject out.');
+    else notes.push('“'+main.subject+'” is the subject of the main clause. Its verb phrase is “'+main.verb+'”.');
+    if(main.voice==='Passive')notes.push('The subject receives the action in this passive form. A phrase with “by” can name the doer.');
+    else if(main.pattern==='S-V-O-O')notes.push('The first object names the receiver. The second names the thing given, sent or shown.');
+    else if(main.pattern.includes('C'))notes.push('A complement describes or identifies the subject or object. It does not name a separate action.');
+    else if(main.tense.includes('perfect'))notes.push('“Have”, “has” or “had” works with a past participle here. Together they form the perfect verb phrase.');
+    else if(functionName==='Question')notes.push('Questions can place a helping verb before the subject. The pattern below shows the roles, not their reading order.');
+    else if(main.verb.includes('not'))notes.push('“Not” makes the verb phrase negative. It belongs with the helping verb.');
+    else notes.push(main.object!=='None found'?'“'+main.object+'” is the object found after the verb.':'No direct object was found. A place or time phrase is not automatically an object.');
+    if(expanded!==original)notes.push('The word view splits short forms such as “doesn’t” into their full words.');
+    return {...main,type,function:functionName,clauseCount:String(clauses.length),clauses,terms,notes};
+  }
+  const el = (tag, cls, value) => {const e=document.createElement(tag);if(cls)e.className=cls;if(value!==undefined)e.textContent=value;return e;};
+  function pair(dl,label,key,value) {const box=el('div','parse-fact');box.append(el('dt','',label));const dd=el('dd','',value);dd.dataset.field=key;box.append(dd);dl.append(box);}
+  function render(result) {
+    output.replaceChildren();
+    const heading=el('h2','','Your sentence breakdown');heading.id='resultHeading';heading.tabIndex=-1;output.append(heading);
+    const summary=el('div','parse-summary');
+    const type=el('p','result-finding',result.type);type.dataset.field='type';summary.append(type);
+    const fn=el('p','helper');fn.append(el('span','','Function '));const f=el('span','',result.function);f.dataset.field='function';fn.append(f);summary.append(fn);output.append(summary);
+    const qualifier=el('p','helper',result.uncertain?'I cannot give a reliable breakdown for this sentence.':'Automatic estimate. Check the words and clauses against the meaning you intend.');output.append(qualifier);
+    const dl=el('dl','parse-facts');
+    pair(dl,'Main subject','subject',result.subject||'Not sure');pair(dl,'Main verb phrase','verb',result.verb||'Not sure');
+    pair(dl,'Word order pattern','pattern',result.pattern);pair(dl,'Clauses found','clauseCount',result.clauseCount);
+    if(!structureOnly)pair(dl,'Tense or verb form','tense',result.tense||'Not sure');
+    pair(dl,'Voice','voice',result.voice||'Not sure');
+    pair(dl,'Object','object',result.object||'None found');pair(dl,'Complement','complement',result.complement||'None found');
+    if(result.adverbial&&result.adverbial!=='None found')pair(dl,'Adverbial','adverbial',result.adverbial);output.append(dl);
+    output.append(el('p','helper','S means subject. V means verb. O means object. C means complement. A means adverbial, such as a place phrase. Patterns show roles in the main clause.'));
+    if(result.pattern==='There-V-S')output.append(el('p','helper','“There” fills the subject position. The noun phrase after the verb names what exists.'));
+    if(result.clauses.length) {
+      output.append(el('h3','','Clauses in this sentence'));
+      const list=el('ol','parse-clauses');
+      result.clauses.forEach(c=>{const li=el('li','');li.append(el('p','parse-clause-label',c.kind),el('p','parse-quote',c.text));if(c.join!=='None')li.append(el('p','helper','Joining word '+c.join));li.append(el('p','helper',c.subject+' → '+c.verb+' · '+c.pattern));list.append(li);});output.append(list);
+    }
+    if(!structureOnly) {
+      output.append(el('h3','','Each word and its role'));
+      const words=el('div','parse-words');
+      result.terms.forEach((t,index)=>{const label=wordClass(t,result.clauses,index,result.terms),chip=el('span','parse-word');chip.dataset.role=label;chip.append(el('span','parse-token',t.text),el('span','parse-tag',label));words.append(chip);});output.append(words);
+      output.append(el('p','helper','Word roles are estimates. The same word can have a different role in another sentence.'));
+    }
+    output.append(el('h3','','What to notice'));
+    const notes=el('ul','parse-notes');result.notes.forEach(n=>notes.append(el('li','',n)));output.append(notes);
+    output.classList.add('is-complete');output.hidden=false;return heading;
+  }
+  function submit() {
+    const result=analyze(input.value);
+    error.textContent=result.error||'';input.setAttribute('aria-invalid',result.error?'true':'false');
+    if(result.error) {output.hidden=true;output.replaceChildren();status.textContent='No analysis shown';input.focus();return;}
+    const heading=render(result);status.textContent=result.uncertain?'Not sure. Check the reason below.':'Analysis ready. '+result.type+'.';
+    if(!result.uncertain&&window.elTrack)window.elTrack('tool_result',{tool:slug});
+    input.blur();heading.focus({preventScroll:true});heading.scrollIntoView({block:'start',behavior:'instant'});
+  }
+  document.getElementById('parseForm').addEventListener('submit',e=>{e.preventDefault();submit();});
+  document.getElementById('clearBtn').addEventListener('click',()=>{input.value='';input.setAttribute('aria-invalid','false');error.textContent='';output.hidden=false;output.classList.remove('is-complete');const heading=el('h2','','Your sentence breakdown');heading.id='resultHeading';output.replaceChildren(heading,el('p','','Your analysis will appear here.'));status.textContent='Sentence cleared';input.focus();});
+  input.addEventListener('input',()=>{error.textContent='';input.setAttribute('aria-invalid','false');if(output.classList.contains('is-complete')){output.hidden=true;status.textContent='Text changed. Analyze it to see a new result.';}});
+  input.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();submit();}});
+  document.querySelectorAll('[data-example]').forEach(button=>button.addEventListener('click',()=>{input.value=button.dataset.example;submit();}));
+  const strip=document.getElementById('typingStatus');
+  const updateStrip=()=>{const rect=output.getBoundingClientRect(),vv=window.visualViewport;strip.hidden=!(document.activeElement===input&&vv&&(output.hidden||rect.top>vv.height||rect.bottom<0));strip.textContent='Sentence not checked';if(!strip.hidden)strip.style.top=vv.offsetTop+'px';};
+  input.addEventListener('focus',updateStrip);input.addEventListener('blur',updateStrip);window.addEventListener('scroll',updateStrip,{passive:true});if(window.visualViewport)window.visualViewport.addEventListener('resize',updateStrip);
 })();
-</script></main>
+
+</script>
+</main>
 <!-- shared-footer-start -->
-<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>It isn’t connected to englishlearner.com.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
+<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
 <!-- shared-footer-end -->
 </body>
 </html>

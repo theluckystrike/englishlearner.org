@@ -1,393 +1,93 @@
 <!DOCTYPE html>
-<html lang="en" data-no-ads>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IELTS and TOEFL score estimator</title>
-  <meta name="description" content="Free interactive IELTS (1-9) & TOEFL iBT (0-120) estimator: reading, vocabulary, grammar. Score breakdown, band interpretation, history.">
-  <link rel="canonical" href="https://englishlearner.org/tools/ielts-toefl-estimator/">
-  <!-- JSON-LD structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "IELTS & TOEFL Score Estimator",
-    "url": "https://englishlearner.org/tools/ielts-toefl-estimator/",
-    "description": "Interactive practice test and score estimator for IELTS and TOEFL iBT.",
-    "applicationCategory": "Educational Application",
-    "operatingSystem": "All"
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type":"Question","name":"What is a good IELTS score?","acceptedAnswer":{"@type":"Answer","text":"Band 7+ is generally considered good for most universities."}},
-      {"@type":"Question","name":"What TOEFL score do I need for top universities?","acceptedAnswer":{"@type":"Answer","text":"Many top US universities require 90-100 iBT."}}
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type":"ListItem","position":1,"name":"Home","item":"https://englishlearner.org/"},
-      {"@type":"ListItem","position":2,"name":"IELTS & TOEFL Estimator","item":"https://englishlearner.org/tools/ielts-toefl-estimator/"}
-    ]
-  }
-  </script>
-  
-
-    <meta property="og:title" content="IELTS and TOEFL score estimator">
-    <meta property="og:description" content="Free interactive IELTS (1-9) & TOEFL iBT (0-120) estimator: reading, vocabulary, grammar. Score breakdown, band interpretation, history.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://englishlearner.org/tools/ielts-toefl-estimator/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IELTS and TOEFL score comparison with official tables</title>
+<meta name="description" content="Compare existing IELTS and TOEFL scores with official tables and practise reading, grammar and vocabulary without an exam prediction.">
+<link rel="canonical" href="https://englishlearner.org/tools/ielts-toefl-estimator/">
+<meta property="og:title" content="IELTS and TOEFL score comparison with official tables">
+<meta property="og:description" content="Compare existing IELTS and TOEFL scores with official tables and practise reading, grammar and vocabulary without an exam prediction.">
+<meta property="og:url" content="https://englishlearner.org/tools/ielts-toefl-estimator/">
+<meta property="og:type" content="website">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "IELTS and TOEFL score comparison with official tables",
+      "description": "Compare existing IELTS and TOEFL scores with official tables and practise reading, grammar and vocabulary without an exam prediction.",
+      "url": "https://englishlearner.org/tools/ielts-toefl-estimator/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Michael Lip",
+        "url": "https://zovo.one"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://englishlearner.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Practice",
+          "item": "https://englishlearner.org/tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "IELTS and TOEFL score comparison with official tables",
+          "item": "https://englishlearner.org/tools/ielts-toefl-estimator/"
+        }
+      ]
+    }
+  ]
+}</script>
 <meta name="google-adsense-account" content="ca-pub-2241192243363112">
-<meta name="robots" content="noindex">
 <script src="/assets/site.js" defer></script>
 <link rel="stylesheet" href="/assets/tool.css">
-<meta property="og:image" content="https://englishlearner.org/assets/img/og-default.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="English Learner free lessons and practice">
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
+<meta property="og:image" content="https://englishlearner.org/assets/og/tools-ielts-toefl-estimator.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>.tool-page.tool-vocabulary-level-tester,.tool-page.tool-ielts-toefl-estimator{max-width:1120px}.ref-check{display:flex;align-items:center;gap:12px;min-height:48px}.ref-choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ref-words{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}.ref-word{padding:12px 0;border-bottom:1px solid var(--color-border)}.ref-word h3{margin:0 0 8px;font:400 1rem/1.5 var(--font-ui)}</style>
+<script src="/assets/js/ielts-toefl-estimator.js" defer></script>
 </head>
 <body>
 <!-- shared-header-start -->
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="el-top"><div class="el-top-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><nav class="el-nav" aria-label="Main navigation"><a href="/lessons/">Lessons</a><a href="/tools/" aria-current="true">Practice</a><a href="/tools/level-assessment/" class="nav-wide" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta_id:'nav_level_test'})">Level test</a><a href="/about/" class="nav-wide">About</a></nav></div></header>
 <!-- shared-header-end -->
-<main class="tool-page tool-ielts-toefl-estimator" id="main"><script>
-window.toolResult = function(region, score, total, slug, track) {
- region.classList.add('is-complete');
- const placeholder=document.getElementById('resultPlaceholder'); if(placeholder) placeholder.hidden=true;
- if(track && window.elTrack) window.elTrack('quiz_complete',{tool:slug,score:score,total:total});
- let heading=region.querySelector('h2'); if(!heading){heading=document.createElement('h2');heading.textContent='Your result';region.prepend(heading);}
- heading.tabIndex=-1; heading.focus();
- if(!region.querySelector('.copy-result')){
-  const copy=document.createElement('button');copy.type='button';copy.className='copy-result btn';copy.textContent='Copy my result';
-  copy.onclick=async function(){const value=(region.querySelector('.result-value-long')?region.querySelector('.result-value-long').textContent+'. Rough guide. Grammar and reading only. ':'')+score+' out of '+total+'. Practice only. '+document.querySelector('link[rel=canonical]').href;try{await navigator.clipboard.writeText(value);copy.textContent='Result copied';}catch(e){let output=region.querySelector('.copy-fallback');if(!output){output=document.createElement('textarea');output.className='copy-fallback';output.readOnly=true;output.setAttribute('aria-label','Select the text to copy it');region.append(output);}output.value=value;output.focus();output.select();copy.textContent='Select the text to copy it.';}};
-  region.append(copy);
- }
-};
-</script>
-<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">IELTS and TOEFL practice estimator</li></ol></nav><h1>IELTS and TOEFL practice estimator</h1><p class="lead">Practise reading, vocabulary and grammar.</p><p class="badge badge-experimental">Experimental. Results can be wrong.</p><p class="helper"><a href="/lessons/cefr-levels/">Read the CEFR study guide</a></p>
-<div class="timer-bar"><button id="startTimer" type="button">Start 20 minute timer</button><button id="pauseTimer" type="button">Pause timer</button>
-<span id="timerDisplay">20:00</span>
-<span id="sectionName">Reading</span>
-</div>
-<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-<div class="card" id="appCard">
-<div id="dynamicContent"></div>
-<div style="display:flex">
-<button class="btn" disabled="" id="prevBtn" type="button">← Previous</button>
-<button class="btn btn-primary" id="nextBtn" type="button">Next →</button>
-</div>
-</div>
-<div class="result result-slot results-panel hidden" id="resultsPanel">
-<h2>Your practice score</h2>
-<div class="practice-score">
-<div class="score-card"><span>Correct answers</span> <div class="result-value" id="ieltsScore">–</div><span>This practice set</span></div>
-<div class="score-card caption"><span>Practice accuracy</span> <div class="caption" id="toeflScore">–</div><span>Not an exam conversion</span></div>
-</div>
-<div>
-<p>These questions cannot predict IELTS or TOEFL scores. Check each exam provider for official scoring information.</p><p id="practiceBreakdown"></p><details><summary>Review the answers</summary><ol id="practiceReview"></ol></details>
-</div>
-<div style="display:flex">
-<button class="btn" id="resetTestBtn" type="button">Retake test</button>
-<button class="btn" id="clearHistoryBtn" type="button">Clear history</button>
-</div>
-<div id="historyContainer">
-<h3>Saved results</h3>
-<div id="historyList"></div>
-</div>
-</div><section class="result-slot" id="resultPlaceholder"><h2>Your result</h2><p>Your result appears here when you finish.</p></section>
-<script>
-  (function() {
-    // ---------- DATABASES (built-in) ----------
-    const PASSAGES = [
-      { title: "The Solar System", text: "The Solar System consists of the Sun and eight planets. Mercury, Venus, Earth, and Mars are terrestrial planets, while Jupiter and Saturn are gas giants. Uranus and Neptune are ice giants. Earth is the only known planet with liquid water and life." },
-      { title: "Climate Change", text: "Climate change refers to long-term shifts in temperatures and weather patterns. Human activities, especially burning fossil fuels, have increased greenhouse gases such as carbon dioxide. This leads to rising sea levels, extreme weather, and biodiversity loss." },
-      { title: "Artificial Intelligence", text: "AI enables machines to learn from experience. Modern AI includes machine learning. Deep learning is part of machine learning. Applications range from voice assistants to medical diagnosis. Ethical concerns include bias, privacy, and job displacement." }
-    ];
-
-    // 5 questions per passage (total 15 reading)
-    const READING_QUESTIONS = [
-      { q: "How many planets are in the Solar System?", opts: ["7","8","9","10"], ans: 1 },
-      { q: "Which planet is known for liquid water?", opts: ["Venus","Mars","Earth","Jupiter"], ans: 2 },
-      { q: "What are Jupiter and Saturn classified as?", opts: ["Terrestrial","Gas giants","Dwarf","Ice giants"], ans: 1 },
-      { q: "Which is NOT a terrestrial planet?", opts: ["Mercury","Venus","Earth","Neptune"], ans: 3 },
-      { q: "What makes Earth unique?", opts: ["Rings","Life","Red color","Largest"], ans: 1 },
-      { q: "What is the main cause of recent climate change?", opts: ["Volcanoes","Human activities","Solar cycles","Ocean currents"], ans: 1 },
-      { q: "Which gas is a major greenhouse gas?", opts: ["Oxygen","Nitrogen","Carbon dioxide","Argon"], ans: 2 },
-      { q: "What is NOT an effect of climate change?", opts: ["Sea level rise","Extreme weather","Biodiversity loss","Decreased CO2"], ans: 3 },
-      { q: "What has increased due to human activities?", opts: ["Ice cover","Greenhouse gases","Forest area","Ozone layer"], ans: 1 },
-      { q: "Climate change leads to:", opts: ["Cooler temperatures","Stable weather","Biodiversity loss","More ice"], ans: 2 },
-      { q: "What does AI stand for?", opts: ["Artificial Intelligence","Automated Input","Advanced Integration","Algorithmic Index"], ans: 0 },
-      { q: "Which is a subfield of AI?", opts: ["Spreadsheets","Machine learning","Web design","Databases"], ans: 1 },
-      { q: "AI is used in:", opts: ["Medical diagnosis","Cooking","Shoelaces","Painting walls"], ans: 0 },
-      { q: "What is an ethical concern of AI?", opts: ["Speed","Bias","Color","Size"], ans: 1 },
-      { q: "Deep learning is part of:", opts: ["Classical physics","Machine learning","Botany","Astronomy"], ans: 1 }
-    ];
-
-    // vocabulary 20 progressive
-    const VOCAB_QUESTIONS = [
-      { q: "Abundant means:", opts: ["Scarce","Plentiful","Rare","Heavy"], ans: 1 },
-      { q: "Benevolent is closest to:", opts: ["Cruel","Kind","Strict","Weak"], ans: 1 },
-      { q: "Candid means:", opts: ["Secretive","Honest","Vague","Angry"], ans: 1 },
-      { q: "Diligent means:", opts: ["Lazy","Reckless","Hardworking","Slow"], ans: 2 },
-      { q: "Eloquent means:", opts: ["Rough","Persuasive","Quiet","Clumsy"], ans: 1 },
-      { q: "Frugal means:", opts: ["Wasteful","Economical","Generous","Lavish"], ans: 1 },
-      { q: "Gregarious means:", opts: ["Shy","Outgoing","Hostile","Lonely"], ans: 1 },
-      { q: "Hypothetical means:", opts: ["Real","Assumed","Proven","Concrete"], ans: 1 },
-      { q: "Inevitable means:", opts: ["Avoidable","Uncertain","Certain","Rare"], ans: 2 },
-      { q: "Juxtapose means:", opts: ["Separate","Compare","Ignore","Combine"], ans: 1 },
-      { q: "Lucid means:", opts: ["Confusing","Clear","Dark","Dull"], ans: 1 },
-      { q: "Meticulous means:", opts: ["Careless","Precise","Quick","Rough"], ans: 1 },
-      { q: "Novel (adj) means:", opts: ["Old","New","Common","Dull"], ans: 1 },
-      { q: "Obsolete means:", opts: ["Modern","Outdated","Useful","Active"], ans: 1 },
-      { q: "Pragmatic means:", opts: ["Idealistic","Practical","Theoretical","Emotional"], ans: 1 },
-      { q: "Resilient means:", opts: ["Fragile","Tough","Weak","Rigid"], ans: 1 },
-      { q: "Skeptical means:", opts: ["Trusting","Doubtful","Certain","Naive"], ans: 1 },
-      { q: "Tenacious means:", opts: ["Weak","Persistent","Loose","Yielding"], ans: 1 },
-      { q: "Ubiquitous means:", opts: ["Rare","Everywhere","Hidden","Local"], ans: 1 },
-      { q: "Verbose means:", opts: ["Concise","Wordy","Silent","Brief"], ans: 1 }
-    ];
-
-    // grammar 15
-    const GRAMMAR_QUESTIONS = [
-      { q: "She ___ to the store yesterday.", opts: ["go","went","gone","going"], ans: 1 },
-      { q: "If I ___ rich, I would travel.", opts: ["am","was","were","be"], ans: 2 },
-      { q: "He has been studying ___ three hours.", opts: ["since","for","during","by"], ans: 1 },
-      { q: "The book ___ on the table.", opts: ["is","are","am","be"], ans: 0 },
-      { q: "They ___ finished the project.", opts: ["has","have","having","having been"], ans: 1 },
-      { q: "I ___ like coffee.", opts: ["doesn't","don't","am not","not"], ans: 1 },
-      { q: "She is ___ than her sister.", opts: ["tall","taller","tallest","more tall"], ans: 1 },
-      { q: "We ___ to the park every Sunday.", opts: ["go","goes","going","went"], ans: 0 },
-      { q: "He ___ his homework yet.", opts: ["hasn't done","haven't done","didn't","not done"], ans: 0 },
-      { q: "This is the ___ movie I've seen.", opts: ["good","better","best","most good"], ans: 2 },
-      { q: "She asked ___ help.", opts: ["for","to","with","at"], ans: 0 },
-      { q: "I would have called if I ___ time.", opts: ["had had","have","having","has"], ans: 0 },
-      { q: "He is interested ___ learning Spanish.", opts: ["in","on","at","for"], ans: 0 },
-      { q: "The car ___ stolen yesterday.", opts: ["is","was","were","been"], ans: 1 },
-      { q: "You should ___ your teeth twice a day.", opts: ["brush","brushes","brushing","brushed"], ans: 0 }
-    ];
-
-    // ---------- state ----------
-    const sections = [
-      { name: 'Reading', count: 15, questions: READING_QUESTIONS },
-      { name: 'Vocabulary', count: 20, questions: VOCAB_QUESTIONS },
-      { name: 'Grammar', count: 15, questions: GRAMMAR_QUESTIONS }
-    ];
-
-    let currentSection = 0; // 0,1,2
-    let currentQIndex = 0;
-    let answers = []; // flat array of selected index per question
-    let totalQuestions = 0;
-    sections.forEach(s => totalQuestions += s.count);
-    // init answers
-    for (let i=0; i<totalQuestions; i++) answers.push(-1);
-
-    let timerInterval = null;
-    let secondsLeft = 1200; // 20 min
-    const totalTime = 1200;
-
-    const dynamicEl = document.getElementById('dynamicContent');
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const progressFill = document.getElementById('progressFill');
-    const timerDisplay = document.getElementById('timerDisplay');
-    const sectionNameEl = document.getElementById('sectionName');
-    const resultsPanel = document.getElementById('resultsPanel');
-    const appCard = document.getElementById('appCard');
-
-    // helper: get flat index
-    function getFlatIndex() {
-      let idx = 0;
-      for (let s=0; s<currentSection; s++) idx += sections[s].count;
-      idx += currentQIndex;
-      return idx;
-    }
-
-    function renderQuestion() {
-      const flat = getFlatIndex();
-      const sec = sections[currentSection];
-      const qData = sec.questions[currentQIndex];
-      const passageIdx = Math.floor(currentQIndex / 5); // 0,1,2 for reading
-      const isReading = (currentSection === 0);
-      let html = '';
-      if (isReading) {
-        const p = PASSAGES[passageIdx];
-        html += `<div class="passage-box"><span>${p.title}</span><br>${p.text}</div>`;
-      }
-      html += `<div class="question-block"><div class="question-text">${sec.name} Q${currentQIndex+1}/${sec.count}: ${qData.q}</div><div class="options">`;
-      qData.opts.forEach((opt, oi) => {
-        const checked = (answers[flat] === oi) ? 'checked' : '';
-        html += `<label class="option"><input type="radio" name="q_${flat}" value="${oi}" ${checked}><span>${opt}</span></label>`;
-      });
-      html += `</div></div>`;
-      dynamicEl.innerHTML = html;
-
-      // attach listeners
-      document.querySelectorAll(`input[name="q_${flat}"]`).forEach(el => {
-        el.addEventListener('change', function(e) {
-          answers[flat] = parseInt(e.target.value);
-          updateProgress();
-        });
-      });
-
-      // update nav
-      const isFirst = (currentSection === 0 && currentQIndex === 0);
-      const isLast = (currentSection === sections.length-1 && currentQIndex === sections[currentSection].count-1);
-      prevBtn.disabled = isFirst;
-      nextBtn.textContent = isLast ? 'See results' : 'Next';
-      sectionNameEl.textContent = `${sec.name} (${currentQIndex+1}/${sec.count})`;
-    }
-
-    function updateProgress() {
-      const answered = answers.filter(a => a !== -1).length;
-      const pct = (answered / totalQuestions) * 100;
-      progressFill.style.width = Math.min(pct, 100) + '%';
-    }
-
-    function goNext() {
-      const sec = sections[currentSection];
-      if (currentQIndex < sec.count-1) {
-        currentQIndex++;
-        renderQuestion();
-      } else if (currentSection < sections.length-1) {
-        currentSection++;
-        currentQIndex = 0;
-        renderQuestion();
-      } else {
-        // finish test
-        finishTest();
-      }
-    }
-
-    function goPrev() {
-      if (currentQIndex > 0) {
-        currentQIndex--;
-        renderQuestion();
-      } else if (currentSection > 0) {
-        currentSection--;
-        currentQIndex = sections[currentSection].count-1;
-        renderQuestion();
-      }
-    }
-
-    function finishTest() {
-      if (timerInterval) clearInterval(timerInterval);
-      // calculate scores
-      let readingCorrect = 0, vocabCorrect = 0, grammarCorrect = 0;
-      let idx = 0;
-      for (let s=0; s<sections.length; s++) {
-        for (let q=0; q<sections[s].count; q++) {
-          const ans = answers[idx];
-          const correct = sections[s].questions[q].ans;
-          if (ans === correct) {
-            if (s===0) readingCorrect++;
-            else if (s===1) vocabCorrect++;
-            else if (s===2) grammarCorrect++;
-          }
-          idx++;
-        }
-      }
-      const totalCorrect = readingCorrect + vocabCorrect + grammarCorrect;
-      const maxReading = 15, maxVocab=20, maxGrammar=15;
-      const readingPct = readingCorrect/maxReading;
-      const vocabPct = vocabCorrect/maxVocab;
-      const grammarPct = grammarCorrect/maxGrammar;
-      const overallPct = totalCorrect/totalQuestions;
-
-      document.getElementById('ieltsScore').innerHTML=totalCorrect+' <small>out of '+totalQuestions+'</small>';
-      document.getElementById('toeflScore').textContent=Math.round(overallPct*100)+'%';
-      appCard.classList.add('hidden');resultsPanel.classList.remove('hidden');
-      document.getElementById('practiceBreakdown').textContent='Reading '+readingCorrect+' out of '+maxReading+'. Vocabulary '+vocabCorrect+' out of '+maxVocab+'. Grammar '+grammarCorrect+' out of '+maxGrammar+'.';
-      const review=document.getElementById('practiceReview');review.replaceChildren();let offset=0;sections.forEach(section=>{section.questions.forEach(q=>{const item=document.createElement('li');item.textContent=q.q+' Answer '+q.opts[q.ans]+'. '+(answers[offset++]===q.ans?'Correct.':'Review this item.');review.append(item);});});
-      saveHistory(totalCorrect,totalQuestions);renderHistory();toolResult(resultsPanel,totalCorrect,totalQuestions,'ielts-toefl-estimator',false);
-    }
-    function readHistory(){try{const data=JSON.parse(localStorage.getItem('ielts_toefl_history')||'[]');return Array.isArray(data)?data.filter(h=>h&&typeof h.date==='string'&&Number.isInteger(h.correct)&&Number.isInteger(h.total)&&h.total>0&&h.correct>=0&&h.correct<=h.total):[];}catch(e){return [];}}
-    function saveHistory(correct,total){const history=readHistory();history.unshift({date:new Date().toISOString().slice(0,10),correct,total});try{localStorage.setItem('ielts_toefl_history',JSON.stringify(history.slice(0,20)));}catch(e){}}
-    function renderHistory(){const out=document.getElementById('historyList');out.replaceChildren();const history=readHistory();if(!history.length)out.textContent='No saved results yet.';history.forEach(h=>{const p=document.createElement('p');p.textContent=h.date+' '+h.correct+' out of '+h.total+'. Practice only.';out.append(p);});}
-    function resetTest() {
-      if (timerInterval) clearInterval(timerInterval);
-      document.getElementById('resultPlaceholder').hidden=false;
-      // reset state
-      currentSection = 0;
-      currentQIndex = 0;
-      for (let i=0; i<totalQuestions; i++) answers[i] = -1;
-      secondsLeft = totalTime;
-      timerDisplay.textContent = '⏱ 20:00';
-      progressFill.style.width = '0%';
-      appCard.classList.remove('hidden');
-      resultsPanel.classList.add('hidden');
-      renderQuestion();
-      timerDisplay.textContent='Untimed practice';
-    }
-
-    function startTimer() {
-      if (timerInterval) clearInterval(timerInterval);
-      timerInterval = setInterval(() => {
-        secondsLeft--;
-        if (secondsLeft <= 0) {
-          clearInterval(timerInterval);
-          timerInterval = null;
-          finishTest();
-          return;
-        }
-        const m = Math.floor(secondsLeft/60);
-        const s = secondsLeft%60;
-        timerDisplay.textContent = `⏱ ${m}:${s<10?'0':''}${s}`;
-      }, 1000);
-    }
-
-    document.getElementById('startTimer').onclick=startTimer;document.getElementById('pauseTimer').onclick=()=>{clearInterval(timerInterval);timerInterval=null;timerDisplay.textContent='Timer paused';};
-    // event binding
-    nextBtn.addEventListener('click', goNext);
-    prevBtn.addEventListener('click', goPrev);
-    document.getElementById('resetTestBtn').addEventListener('click', resetTest);
-    document.getElementById('clearHistoryBtn').addEventListener('click', function() {
-      try{localStorage.removeItem('ielts_toefl_history');}catch(e){}
-      renderHistory();
-    });
-
-    // init
-    renderQuestion();
-    timerDisplay.textContent='Untimed practice';
-    renderHistory();
-    updateProgress();
-
-    // keyboard support
-    window.addEventListener('keydown', (e) => {
-      if (e.target.matches('input,textarea,select,button'))return;
-      if (e.key === 'ArrowRight' && !nextBtn.disabled) goNext();
-      if (e.key === 'ArrowLeft' && !prevBtn.disabled) goPrev();
-    });
-  })();
-</script>
-<div class="retained-intro reading">Practice test · Reading · Vocabulary · Grammar</div><div class="el-note" role="note">
-Experimental tool. This tool uses simple rules and it makes mistakes. Do not rely on its results.
-  For checked explanations, use the <a href="/lessons/">grammar lessons</a> and the <a href="/tools/">practice tools</a>.
-</div><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/cefr-levels/">Read the CEFR study guide</a><a class="btn" href="/tools/">Choose another practice</a></div></section><noscript><p>Interactive practice needs JavaScript. <a href="/lessons/cefr-levels/">Read the written study guide</a>.</p></noscript><script>
-if(matchMedia('(min-width:1024px)').matches)document.querySelectorAll('.quiz-settings:not([hidden])').forEach(el=>el.open=true);
-</script><script>
-(function(){
- const main=document.getElementById('main');
- const status=document.createElement('p');status.className='typing-status';status.setAttribute('role','status');status.hidden=true;main.append(status);
- const update=()=>{const input=document.activeElement;if(!input||!main.contains(input)||!input.matches('textarea,input:not([type=radio]):not([type=checkbox])')||!window.visualViewport){status.hidden=true;return;}const feedback=main.querySelector('#feedbackArea,#feedback,#errorsContainer,#verbsContainer,#diagramDisplay');const box=feedback&&feedback.getBoundingClientRect();if(box&&box.top>=0&&box.bottom<visualViewport.height){status.hidden=true;return;}status.textContent=(main.querySelector('#qCounter')||{}).textContent||'Answer not checked';status.style.top=visualViewport.offsetTop+'px';status.hidden=false;};
- main.addEventListener('focusin',update);main.addEventListener('focusout',()=>setTimeout(update,0));window.addEventListener('scroll',update,{passive:true});if(window.visualViewport)visualViewport.addEventListener('resize',update);
- main.querySelectorAll('.checker-output .results').forEach(result=>new MutationObserver(()=>{const placeholder=result.parentElement.querySelector('.checker-placeholder');if(placeholder)placeholder.hidden=result.classList.contains('active');}).observe(result,{attributes:true,attributeFilter:['class']}));
- main.querySelectorAll('a[href^="/lessons/"]').forEach(link=>link.addEventListener('click',()=>{if(window.elTrack)window.elTrack('cta_click',{cta_id:'tool_ielts-toefl-estimator_lesson'});}));
-})();
-</script></main>
+<main class="tool-page tool-ielts-toefl-estimator" id="main">
+<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">IELTS and TOEFL comparison</li></ol></nav><h1>IELTS and TOEFL score comparison</h1><p class="lead">Compare an existing score using the official tables.</p>
+<div class="tool-layout"><div class="tool-main"><section class="tool-section" aria-label="Official score comparison"><form id="score-form" novalidate><div class="field"><label for="score-kind">Your score type</label><select id="score-kind"><option value="toefl-current">TOEFL iBT 1 to 6</option><option value="ielts-legacy">IELTS Academic</option><option value="toefl-legacy">TOEFL iBT 0 to 120 before 2026</option></select></div><div class="field"><label for="score-input">Overall score</label><input id="score-input" type="text" inputmode="decimal" autocomplete="off" aria-describedby="score-help"><p class="helper" id="score-help">Use 1 to 6, in half points. This shows the ETS CEFR comparison.</p></div><button class="btn btn-primary" type="submit">Compare my score</button></form></section>
+<section class="result-slot" id="score-result"><h2 id="score-result-heading" tabindex="-1">Score comparison</h2><p class="result-finding" id="score-output">Enter an existing score</p><p id="score-note">This tool cannot predict an exam score from practice answers.</p><p id="score-source"></p></section></div><aside class="tool-support"><img class="tool-art" src="/assets/img/tool-ielts-toefl-estimator-480.webp" srcset="/assets/img/tool-ielts-toefl-estimator-480.webp 480w, /assets/img/tool-ielts-toefl-estimator-960.webp 960w" sizes="(min-width:1280px) 320px, (min-width:1024px) 280px, (min-width:768px) 240px, (min-width:390px) 192px, 168px" width="480" height="322" alt="" loading="lazy" decoding="async"><div class="rule-box"><span class="rule-label">Check the test date</span><p>TOEFL iBT changed on 21 January 2026. Its current scale runs from 1 to 6. Older IELTS comparisons need the earlier TOEFL test.</p></div><p><a href="/lessons/cefr-levels/">Read about CEFR levels</a></p></aside></div>
+<section class="ref-support reading"><h2>Use the right comparison</h2><h3>Current TOEFL scores</h3><p>ETS maps the 1 to 6 TOEFL iBT scale to CEFR. It also publishes an IELTS comparison. Our current-score mode shows only the direct ETS CEFR table. <a href="https://www.ets.org/toefl/institutions/ibt/score-scale-update.html">Read the ETS score-scale guide</a>.</p><h3>IELTS and older TOEFL scores</h3><p>Our IELTS comparison uses the IELTS Academic table for TOEFL tests taken before January 2026. IELTS warns against applying that table to the revised test. <a href="https://ielts.org/organisations/ielts-for-organisations/compare-ielts">Read the IELTS comparison and test-date warning</a>.</p><h3>CEFR is a comparison</h3><p>A comparison is not a new test result. IELTS says its bands and CEFR levels do not match one to one. <a href="https://ielts.org/organisations/ielts-for-organisations/compare-ielts/ielts-and-the-cefr">Read the IELTS CEFR guidance</a>.</p><h3>Check each course requirement</h3><p>Check the university or course page for its test dates, accepted tests and section requirements. No score here promises admission.</p></section>
+<section class="reading"><h2>The official tables used here</h2><p>These are overall scores. Do not use them to convert individual section scores.</p><details><summary>IELTS Academic and TOEFL before January 2026</summary><p>Source is the IELTS comparison page. This table does not apply to the revised TOEFL test.</p><table><thead><tr><th scope="col">IELTS Academic</th><th scope="col">Earlier TOEFL iBT</th></tr></thead><tbody><tr><td>4</td><td>14 to 25</td></tr><tr><td>4.5</td><td>26 to 36</td></tr><tr><td>5</td><td>37 to 50</td></tr><tr><td>5.5</td><td>51 to 66</td></tr><tr><td>6</td><td>67 to 80</td></tr><tr><td>6.5</td><td>81 to 90</td></tr><tr><td>7</td><td>91 to 99</td></tr><tr><td>7.5</td><td>100 to 107</td></tr><tr><td>8</td><td>108 to 114</td></tr><tr><td>8.5</td><td>115 to 119</td></tr><tr><td>9</td><td>120 to 120</td></tr></tbody></table></details><details><summary>TOEFL iBT 1 to 6 and CEFR from ETS</summary><table><thead><tr><th scope="col">TOEFL iBT</th><th scope="col">CEFR</th></tr></thead><tbody><tr><td>1</td><td>A1</td></tr><tr><td>1.5</td><td>A1</td></tr><tr><td>2</td><td>A2</td></tr><tr><td>2.5</td><td>A2</td></tr><tr><td>3</td><td>B1</td></tr><tr><td>3.5</td><td>B1</td></tr><tr><td>4</td><td>B2</td></tr><tr><td>4.5</td><td>B2</td></tr><tr><td>5</td><td>C1</td></tr><tr><td>5.5</td><td>C1</td></tr><tr><td>6</td><td>C2</td></tr></tbody></table></details></section>
+<section class="reading"><h2>Practise reading, vocabulary and grammar</h2><p>The 50 questions below give a practice score only. They do not test listening or speaking. There is no IELTS or TOEFL score estimate.</p><details id="practice-details"><summary>Open the 50-question practice</summary><p>Practice is untimed unless you start the optional timer. You can skip a question. A skipped answer counts as incorrect.</p><div id="exam-task"><div class="timer-bar"><button class="btn" id="exam-timer-start" type="button">Start 20 minute timer</button><button class="btn" id="exam-timer-pause" type="button" disabled>Pause timer</button><span id="exam-time">Untimed practice</span></div><p id="exam-progress" class="ref-progress caption"></p><progress class="progress" id="exam-bar" value="0" max="50">0 of 50</progress><div class="ref-passage rule-box" id="exam-passage"></div><fieldset><legend class="question-text" id="exam-question"></legend><div class="options" id="exam-options"></div></fieldset><div class="actions"><button class="btn" id="exam-prev" type="button" disabled>Previous</button><button class="btn btn-primary" id="exam-next" type="button">Next or skip</button><button class="btn" id="exam-restart" type="button">Start again</button></div></div><section class="result-slot" id="exam-result"><h3 id="exam-result-heading" tabindex="-1">Your practice score</h3><p id="exam-placeholder">Your score appears after all 50 questions.</p><div id="exam-result-body" hidden><p class="result-value" id="exam-score"></p><p id="exam-breakdown"></p><p>Practice only. It is not an IELTS or TOEFL score.</p><details><summary>Review every answer</summary><ol id="exam-review"></ol></details><div class="actions"><button type="button" class="btn" id="exam-retake">Try again</button><button type="button" class="btn" id="exam-copy">Copy my result</button></div><p id="exam-copy-status" role="status"></p><h3>Saved practice results</h3><p class="helper">Saved in this browser when storage is available.</p><div id="exam-history"></div><button class="btn" type="button" id="exam-clear">Clear practice history</button></div></section></details></section><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/tools/level-assessment/">Take the English level test</a><a class="btn" href="/lessons/cefr-levels/">Read about CEFR levels</a></div></section>
+<noscript><p>This tool needs JavaScript. You can still read the guide below and visit the linked lessons.</p></noscript>
+</main>
 <!-- shared-footer-start -->
-<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>It isn’t connected to englishlearner.com.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
+<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
 <!-- shared-footer-end -->
 </body>
 </html>
