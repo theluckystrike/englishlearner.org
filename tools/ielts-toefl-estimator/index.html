@@ -38,201 +38,7 @@
     ]
   }
   </script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background-color: #0a0a0a;
-      color: #e0e0e0;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      line-height: 1.5;
-      padding: 20px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .container {
-      max-width: 1000px;
-      width: 100%;
-    }
-    header {
-      margin-bottom: 2rem;
-      border-bottom: 1px solid #2a2a2a;
-      padding-bottom: 0.5rem;
-    }
-    h1 {
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: #f0f0f0;
-    }
-    .subhead {
-      color: #9e9e9e;
-      margin-top: 0.2rem;
-    }
-    .progress-bar {
-      background: #1e1e1e;
-      height: 8px;
-      border-radius: 12px;
-      margin: 1.5rem 0 1rem;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: #66bb6a;
-      transition: width 0.3s ease;
-    }
-    .timer-bar {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.9rem;
-      color: #b0b0b0;
-      margin-bottom: 0.5rem;
-    }
-    .section-grid {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-    .section-tag {
-      background: #1f1f1f;
-      padding: 0.25rem 0.9rem;
-      border-radius: 30px;
-      font-size: 0.8rem;
-      border: 1px solid #333;
-      color: #ccc;
-    }
-    .section-tag.active {
-      background: #2a4a2a;
-      border-color: #66bb6a;
-      color: #c8f0c8;
-    }
-    .card {
-      background: #121212;
-      border: 1px solid #2a2a2a;
-      border-radius: 24px;
-      padding: 1.8rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-    }
-    .question-block {
-      margin-bottom: 1.8rem;
-    }
-    .question-text {
-      font-weight: 500;
-      margin-bottom: 0.75rem;
-    }
-    .options {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .option {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.5rem 1rem;
-      border-radius: 40px;
-      background: #1a1a1a;
-      border: 1px solid #2e2e2e;
-      cursor: pointer;
-      transition: 0.15s;
-    }
-    .option:hover {
-      background: #262626;
-    }
-    .option input {
-      accent-color: #66bb6a;
-      transform: scale(1.1);
-    }
-    .passage-box {
-      background: #0f0f0f;
-      padding: 1.2rem;
-      border-radius: 20px;
-      border-left: 4px solid #66bb6a;
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
-      color: #cfcfcf;
-    }
-    .btn {
-      background: #2a2a2a;
-      border: none;
-      color: #e0e0e0;
-      padding: 0.8rem 2rem;
-      border-radius: 40px;
-      font-weight: 500;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.2s;
-      border: 1px solid #3a3a3a;
-    }
-    .btn-primary {
-      background: #1f4f2a;
-      border-color: #66bb6a;
-      color: #e6ffe6;
-    }
-    .btn-primary:hover {
-      background: #2f6f3a;
-      transform: scale(1.02);
-    }
-    .btn:disabled {
-      opacity: 0.4;
-      pointer-events: none;
-    }
-    .results-panel {
-      background: #101010;
-      border-radius: 28px;
-      padding: 2rem;
-      border: 1px solid #2d2d2d;
-    }
-    .score-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 1rem;
-      margin: 1rem 0;
-    }
-    .score-card {
-      background: #1a1a1a;
-      padding: 1rem 1.8rem;
-      border-radius: 40px;
-      flex: 1;
-      min-width: 130px;
-      border: 1px solid #333;
-    }
-    .score-number {
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: #66bb6a;
-    }
-    .history-item {
-      background: #141414;
-      border-radius: 20px;
-      padding: 0.8rem 1.2rem;
-      margin: 0.4rem 0;
-      border-left: 4px solid #66bb6a;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    footer {
-      margin-top: 3rem;
-      text-align: center;
-      color: #6a6a6a;
-      font-size: 0.9rem;
-    }
-    footer a {
-      color: #8ab88a;
-      text-decoration: none;
-    }
-    .hidden { display: none; }
-  </style>
+  
 
     <meta property="og:title" content="IELTS and TOEFL score estimator">
     <meta property="og:description" content="Free interactive IELTS (1-9) & TOEFL iBT (0-120) estimator: reading, vocabulary, grammar. Score breakdown, band interpretation, history.">
@@ -240,75 +46,74 @@
     <meta property="og:url" content="https://englishlearner.org/tools/ielts-toefl-estimator/">
 <meta name="google-adsense-account" content="ca-pub-2241192243363112">
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/site.js" defer></script>
+<link rel="stylesheet" href="/assets/tool.css">
+<meta property="og:image" content="https://englishlearner.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="English Learner free lessons and practice">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
 </head>
 <body>
-<div class="el-top" role="navigation" aria-label="Site">
-  <a class="el-brand" href="/">English Learner</a>
-  <a href="/lessons/">Lessons</a>
-  <a href="/tools/">Practice tools</a>
-  <a href="/tools/level-assessment/">Level test</a>
-  <a href="/about/">About</a>
+<!-- shared-header-start -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="el-top"><div class="el-top-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><nav class="el-nav" aria-label="Main navigation"><a href="/lessons/">Lessons</a><a href="/tools/" aria-current="true">Practice</a><a href="/tools/level-assessment/" class="nav-wide" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta_id:'nav_level_test'})">Level test</a><a href="/about/" class="nav-wide">About</a></nav></div></header>
+<!-- shared-header-end -->
+<main class="tool-page tool-ielts-toefl-estimator" id="main"><script>
+window.toolResult = function(region, score, total, slug, track) {
+ region.classList.add('is-complete');
+ const placeholder=document.getElementById('resultPlaceholder'); if(placeholder) placeholder.hidden=true;
+ if(track && window.elTrack) window.elTrack('quiz_complete',{tool:slug,score:score,total:total});
+ let heading=region.querySelector('h2'); if(!heading){heading=document.createElement('h2');heading.textContent='Your result';region.prepend(heading);}
+ heading.tabIndex=-1; heading.focus();
+ if(!region.querySelector('.copy-result')){
+  const copy=document.createElement('button');copy.type='button';copy.className='copy-result btn';copy.textContent='Copy my result';
+  copy.onclick=async function(){const value=(region.querySelector('.result-value-long')?region.querySelector('.result-value-long').textContent+'. Rough guide. Grammar and reading only. ':'')+score+' out of '+total+'. Practice only. '+document.querySelector('link[rel=canonical]').href;try{await navigator.clipboard.writeText(value);copy.textContent='Result copied';}catch(e){let output=region.querySelector('.copy-fallback');if(!output){output=document.createElement('textarea');output.className='copy-fallback';output.readOnly=true;output.setAttribute('aria-label','Select the text to copy it');region.append(output);}output.value=value;output.focus();output.select();copy.textContent='Select the text to copy it.';}};
+  region.append(copy);
+ }
+};
+</script>
+<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">IELTS and TOEFL practice estimator</li></ol></nav><h1>IELTS and TOEFL practice estimator</h1><p class="lead">Practise reading, vocabulary and grammar.</p><p class="badge badge-experimental">Experimental. Results can be wrong.</p><p class="helper"><a href="/lessons/cefr-levels/">Read the CEFR study guide</a></p>
+<div class="timer-bar"><button id="startTimer" type="button">Start 20 minute timer</button><button id="pauseTimer" type="button">Pause timer</button>
+<span id="timerDisplay">20:00</span>
+<span id="sectionName">Reading</span>
 </div>
-<div class="el-note" role="note">
-  <strong>Experimental tool.</strong> This tool uses simple rules and it makes mistakes. Do not rely on its results.
-  For checked explanations, use the <a href="/lessons/">grammar lessons</a> and the <a href="/tools/">practice tools</a>.
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+<div class="card" id="appCard">
+<div id="dynamicContent"></div>
+<div style="display:flex">
+<button class="btn" disabled="" id="prevBtn" type="button">← Previous</button>
+<button class="btn btn-primary" id="nextBtn" type="button">Next →</button>
 </div>
-<div class="container">
-  <header>
-    <h1>IELTS &amp; TOEFL Estimator</h1>
-    <div class="subhead">Practice test · Reading · Vocabulary · Grammar</div>
-  </header>
-
-  <!-- breadcrumb (visual) -->
-  <!-- timer + progress -->
-  <div class="timer-bar">
-    <span id="timerDisplay">20:00</span>
-    <span id="sectionName">Reading</span>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-
-  <!-- main card -->
-  <div id="appCard" class="card">
-    <!-- dynamic content -->
-    <div id="dynamicContent"></div>
-    <!-- navigation buttons -->
-    <div style="display:flex; justify-content:space-between; margin-top:2rem;">
-      <button id="prevBtn" class="btn" disabled>← Previous</button>
-      <button id="nextBtn" class="btn btn-primary">Next →</button>
-    </div>
-  </div>
-
-  <!-- results area (hidden until finish) -->
-  <div id="resultsPanel" class="results-panel hidden">
-    <h2 style="margin-bottom:1rem;">Your estimated scores</h2>
-    <div class="score-row">
-      <div class="score-card"><span style="color:#aaa;">IELTS</span> <div class="score-number" id="ieltsScore">–</div><span style="font-size:0.8rem;">Band 1–9</span></div>
-      <div class="score-card"><span style="color:#aaa;">TOEFL iBT</span> <div class="score-number" id="toeflScore">–</div><span style="font-size:0.8rem;">0–120</span></div>
-    </div>
-    <div style="margin:1rem 0; padding:1rem; background:#1b1b1b; border-radius:20px;">
-      <p><span class="label">Score interpretation</span><br>IELTS 7+ / TOEFL 90+ is competitive for top universities (Oxford, Harvard, MIT).<br>IELTS 6–6.5 / TOEFL 70–85 : many US/UK universities accept.<br>IELTS 5–5.5 / TOEFL 50–65 : foundation or pathway programs.</p>
-    </div>
-    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-      <button id="resetTestBtn" class="btn">Retake test</button>
-      <button id="clearHistoryBtn" class="btn" style="background:#2a1a1a;">Clear history</button>
-    </div>
-    <div id="historyContainer" style="margin-top:1.5rem;">
-      <h3 style="margin-bottom:0.5rem;">Saved results</h3>
-      <div id="historyList"></div>
-    </div>
-  </div>
-
-  </div>
-
+</div>
+<div class="result result-slot results-panel hidden" id="resultsPanel">
+<h2>Your practice score</h2>
+<div class="practice-score">
+<div class="score-card"><span>Correct answers</span> <div class="result-value" id="ieltsScore">–</div><span>This practice set</span></div>
+<div class="score-card caption"><span>Practice accuracy</span> <div class="caption" id="toeflScore">–</div><span>Not an exam conversion</span></div>
+</div>
+<div>
+<p>These questions cannot predict IELTS or TOEFL scores. Check each exam provider for official scoring information.</p><p id="practiceBreakdown"></p><details><summary>Review the answers</summary><ol id="practiceReview"></ol></details>
+</div>
+<div style="display:flex">
+<button class="btn" id="resetTestBtn" type="button">Retake test</button>
+<button class="btn" id="clearHistoryBtn" type="button">Clear history</button>
+</div>
+<div id="historyContainer">
+<h3>Saved results</h3>
+<div id="historyList"></div>
+</div>
+</div><section class="result-slot" id="resultPlaceholder"><h2>Your result</h2><p>Your result appears here when you finish.</p></section>
 <script>
   (function() {
     // ---------- DATABASES (built-in) ----------
     const PASSAGES = [
-      { title: "The Solar System", text: "The Solar System consists of the Sun and eight planets. Mercury, Venus, Earth, and Mars are terrestrial planets, while Jupiter, Saturn, Uranus, and Neptune are gas giants. Earth is the only known planet with liquid water and life." },
-      { title: "Climate Change", text: "Climate change refers to long-term shifts in temperatures and weather patterns. Human activities, especially burning fossil fuels, have increased greenhouse gases. This leads to rising sea levels, extreme weather, and biodiversity loss." },
-      { title: "Artificial Intelligence", text: "AI enables machines to learn from experience. Modern AI includes machine learning and deep learning. Applications range from voice assistants to medical diagnosis. Ethical concerns include bias, privacy, and job displacement." }
+      { title: "The Solar System", text: "The Solar System consists of the Sun and eight planets. Mercury, Venus, Earth, and Mars are terrestrial planets, while Jupiter and Saturn are gas giants. Uranus and Neptune are ice giants. Earth is the only known planet with liquid water and life." },
+      { title: "Climate Change", text: "Climate change refers to long-term shifts in temperatures and weather patterns. Human activities, especially burning fossil fuels, have increased greenhouse gases such as carbon dioxide. This leads to rising sea levels, extreme weather, and biodiversity loss." },
+      { title: "Artificial Intelligence", text: "AI enables machines to learn from experience. Modern AI includes machine learning. Deep learning is part of machine learning. Applications range from voice assistants to medical diagnosis. Ethical concerns include bias, privacy, and job displacement." }
     ];
 
     // 5 questions per passage (total 15 reading)
@@ -335,7 +140,7 @@
       { q: "Abundant means:", opts: ["Scarce","Plentiful","Rare","Heavy"], ans: 1 },
       { q: "Benevolent is closest to:", opts: ["Cruel","Kind","Strict","Weak"], ans: 1 },
       { q: "Candid means:", opts: ["Secretive","Honest","Vague","Angry"], ans: 1 },
-      { q: "Diligent means:", opts: ["Lazy","Careful","Hardworking","Slow"], ans: 2 },
+      { q: "Diligent means:", opts: ["Lazy","Reckless","Hardworking","Slow"], ans: 2 },
       { q: "Eloquent means:", opts: ["Rough","Persuasive","Quiet","Clumsy"], ans: 1 },
       { q: "Frugal means:", opts: ["Wasteful","Economical","Generous","Lavish"], ans: 1 },
       { q: "Gregarious means:", opts: ["Shy","Outgoing","Hostile","Lonely"], ans: 1 },
@@ -360,14 +165,14 @@
       { q: "If I ___ rich, I would travel.", opts: ["am","was","were","be"], ans: 2 },
       { q: "He has been studying ___ three hours.", opts: ["since","for","during","by"], ans: 1 },
       { q: "The book ___ on the table.", opts: ["is","are","am","be"], ans: 0 },
-      { q: "They ___ finished the project.", opts: ["has","have","having","had"], ans: 1 },
+      { q: "They ___ finished the project.", opts: ["has","have","having","having been"], ans: 1 },
       { q: "I ___ like coffee.", opts: ["doesn't","don't","am not","not"], ans: 1 },
       { q: "She is ___ than her sister.", opts: ["tall","taller","tallest","more tall"], ans: 1 },
       { q: "We ___ to the park every Sunday.", opts: ["go","goes","going","went"], ans: 0 },
       { q: "He ___ his homework yet.", opts: ["hasn't done","haven't done","didn't","not done"], ans: 0 },
       { q: "This is the ___ movie I've seen.", opts: ["good","better","best","most good"], ans: 2 },
       { q: "She asked ___ help.", opts: ["for","to","with","at"], ans: 0 },
-      { q: "I would have called if I ___ time.", opts: ["had","have","having","has"], ans: 0 },
+      { q: "I would have called if I ___ time.", opts: ["had had","have","having","has"], ans: 0 },
       { q: "He is interested ___ learning Spanish.", opts: ["in","on","at","for"], ans: 0 },
       { q: "The car ___ stolen yesterday.", opts: ["is","was","were","been"], ans: 1 },
       { q: "You should ___ your teeth twice a day.", opts: ["brush","brushes","brushing","brushed"], ans: 0 }
@@ -416,9 +221,9 @@
       const passageIdx = Math.floor(currentQIndex / 5); // 0,1,2 for reading
       const isReading = (currentSection === 0);
       let html = '';
-      if (isReading && currentQIndex % 5 === 0) {
+      if (isReading) {
         const p = PASSAGES[passageIdx];
-        html += `<div class="passage-box"><strong>${p.title}</strong><br>${p.text}</div>`;
+        html += `<div class="passage-box"><span>${p.title}</span><br>${p.text}</div>`;
       }
       html += `<div class="question-block"><div class="question-text">${sec.name} Q${currentQIndex+1}/${sec.count}: ${qData.q}</div><div class="options">`;
       qData.opts.forEach((opt, oi) => {
@@ -500,45 +305,19 @@
       const grammarPct = grammarCorrect/maxGrammar;
       const overallPct = totalCorrect/totalQuestions;
 
-      // IELTS 1-9 (simple linear mapping)
-      let ielts = 1 + overallPct * 8;
-      ielts = Math.min(9, Math.max(1, Math.round(ielts*10)/10));
-      // TOEFL iBT 0-120
-      let toefl = Math.round(overallPct * 120);
-      toefl = Math.min(120, Math.max(0, toefl));
-
-      document.getElementById('ieltsScore').textContent = ielts.toFixed(1);
-      document.getElementById('toeflScore').textContent = toefl;
-
-      // show results
-      appCard.classList.add('hidden');
-      resultsPanel.classList.remove('hidden');
-      // save history
-      saveHistory(ielts, toefl, totalCorrect, totalQuestions);
-      renderHistory();
+      document.getElementById('ieltsScore').innerHTML=totalCorrect+' <small>out of '+totalQuestions+'</small>';
+      document.getElementById('toeflScore').textContent=Math.round(overallPct*100)+'%';
+      appCard.classList.add('hidden');resultsPanel.classList.remove('hidden');
+      document.getElementById('practiceBreakdown').textContent='Reading '+readingCorrect+' out of '+maxReading+'. Vocabulary '+vocabCorrect+' out of '+maxVocab+'. Grammar '+grammarCorrect+' out of '+maxGrammar+'.';
+      const review=document.getElementById('practiceReview');review.replaceChildren();let offset=0;sections.forEach(section=>{section.questions.forEach(q=>{const item=document.createElement('li');item.textContent=q.q+' Answer '+q.opts[q.ans]+'. '+(answers[offset++]===q.ans?'Correct.':'Review this item.');review.append(item);});});
+      saveHistory(totalCorrect,totalQuestions);renderHistory();toolResult(resultsPanel,totalCorrect,totalQuestions,'ielts-toefl-estimator',false);
     }
-
-    function saveHistory(ielts, toefl, correct, total) {
-      let history = JSON.parse(localStorage.getItem('ielts_toefl_history') || '[]');
-      const entry = { date: new Date().toISOString().slice(0,10), ielts, toefl, correct, total };
-      history.unshift(entry);
-      if (history.length > 20) history = history.slice(0,20);
-      localStorage.setItem('ielts_toefl_history', JSON.stringify(history));
-    }
-
-    function renderHistory() {
-      const container = document.getElementById('historyList');
-      const history = JSON.parse(localStorage.getItem('ielts_toefl_history') || '[]');
-      if (history.length===0) { container.innerHTML = '<p style="color:#666;">No saved results yet.</p>'; return; }
-      let html = '';
-      history.forEach((h, i) => {
-        html += `<div class="history-item"><span>#${i+1} ${h.date}</span><span>IELTS ${h.ielts.toFixed(1)} · TOEFL ${h.toefl} · ${h.correct}/${h.total}</span></div>`;
-      });
-      container.innerHTML = html;
-    }
-
+    function readHistory(){try{const data=JSON.parse(localStorage.getItem('ielts_toefl_history')||'[]');return Array.isArray(data)?data.filter(h=>h&&typeof h.date==='string'&&Number.isInteger(h.correct)&&Number.isInteger(h.total)&&h.total>0&&h.correct>=0&&h.correct<=h.total):[];}catch(e){return [];}}
+    function saveHistory(correct,total){const history=readHistory();history.unshift({date:new Date().toISOString().slice(0,10),correct,total});try{localStorage.setItem('ielts_toefl_history',JSON.stringify(history.slice(0,20)));}catch(e){}}
+    function renderHistory(){const out=document.getElementById('historyList');out.replaceChildren();const history=readHistory();if(!history.length)out.textContent='No saved results yet.';history.forEach(h=>{const p=document.createElement('p');p.textContent=h.date+' '+h.correct+' out of '+h.total+'. Practice only.';out.append(p);});}
     function resetTest() {
       if (timerInterval) clearInterval(timerInterval);
+      document.getElementById('resultPlaceholder').hidden=false;
       // reset state
       currentSection = 0;
       currentQIndex = 0;
@@ -549,7 +328,7 @@
       appCard.classList.remove('hidden');
       resultsPanel.classList.add('hidden');
       renderQuestion();
-      startTimer();
+      timerDisplay.textContent='Untimed practice';
     }
 
     function startTimer() {
@@ -568,40 +347,47 @@
       }, 1000);
     }
 
+    document.getElementById('startTimer').onclick=startTimer;document.getElementById('pauseTimer').onclick=()=>{clearInterval(timerInterval);timerInterval=null;timerDisplay.textContent='Timer paused';};
     // event binding
     nextBtn.addEventListener('click', goNext);
     prevBtn.addEventListener('click', goPrev);
     document.getElementById('resetTestBtn').addEventListener('click', resetTest);
     document.getElementById('clearHistoryBtn').addEventListener('click', function() {
-      localStorage.removeItem('ielts_toefl_history');
+      try{localStorage.removeItem('ielts_toefl_history');}catch(e){}
       renderHistory();
     });
 
     // init
     renderQuestion();
-    startTimer();
+    timerDisplay.textContent='Untimed practice';
     renderHistory();
     updateProgress();
 
     // keyboard support
     window.addEventListener('keydown', (e) => {
+      if (e.target.matches('input,textarea,select,button'))return;
       if (e.key === 'ArrowRight' && !nextBtn.disabled) goNext();
       if (e.key === 'ArrowLeft' && !prevBtn.disabled) goPrev();
     });
   })();
 </script>
-<div class="el-foot" role="contentinfo">
-  <div class="el-links">
-    <a href="/">Home</a>
-    <a href="/lessons/">Lessons</a>
-    <a href="/tools/">Practice tools</a>
-    <a href="/about/">About</a>
-    <a href="/contact/">Contact</a>
-    <a href="/privacy/">Privacy</a>
-    <button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button>
-  </div>
-  <p>&copy; 2026 englishlearner.org. An independent site. Not connected to any exam board.</p>
-  <p>From the same developer: <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant.</p>
-</div>
+<div class="retained-intro reading">Practice test · Reading · Vocabulary · Grammar</div><div class="el-note" role="note">
+Experimental tool. This tool uses simple rules and it makes mistakes. Do not rely on its results.
+  For checked explanations, use the <a href="/lessons/">grammar lessons</a> and the <a href="/tools/">practice tools</a>.
+</div><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/cefr-levels/">Read the CEFR study guide</a><a class="btn" href="/tools/">Choose another practice</a></div></section><noscript><p>Interactive practice needs JavaScript. <a href="/lessons/cefr-levels/">Read the written study guide</a>.</p></noscript><script>
+if(matchMedia('(min-width:1024px)').matches)document.querySelectorAll('.quiz-settings:not([hidden])').forEach(el=>el.open=true);
+</script><script>
+(function(){
+ const main=document.getElementById('main');
+ const status=document.createElement('p');status.className='typing-status';status.setAttribute('role','status');status.hidden=true;main.append(status);
+ const update=()=>{const input=document.activeElement;if(!input||!main.contains(input)||!input.matches('textarea,input:not([type=radio]):not([type=checkbox])')||!window.visualViewport){status.hidden=true;return;}const feedback=main.querySelector('#feedbackArea,#feedback,#errorsContainer,#verbsContainer,#diagramDisplay');const box=feedback&&feedback.getBoundingClientRect();if(box&&box.top>=0&&box.bottom<visualViewport.height){status.hidden=true;return;}status.textContent=(main.querySelector('#qCounter')||{}).textContent||'Answer not checked';status.style.top=visualViewport.offsetTop+'px';status.hidden=false;};
+ main.addEventListener('focusin',update);main.addEventListener('focusout',()=>setTimeout(update,0));window.addEventListener('scroll',update,{passive:true});if(window.visualViewport)visualViewport.addEventListener('resize',update);
+ main.querySelectorAll('.checker-output .results').forEach(result=>new MutationObserver(()=>{const placeholder=result.parentElement.querySelector('.checker-placeholder');if(placeholder)placeholder.hidden=result.classList.contains('active');}).observe(result,{attributes:true,attributeFilter:['class']}));
+ main.querySelectorAll('a[href^="/lessons/"]').forEach(link=>link.addEventListener('click',()=>{if(window.elTrack)window.elTrack('cta_click',{cta_id:'tool_ielts-toefl-estimator_lesson'});}));
+})();
+</script></main>
+<!-- shared-footer-start -->
+<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>It isn’t connected to englishlearner.com.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
+<!-- shared-footer-end -->
 </body>
 </html>

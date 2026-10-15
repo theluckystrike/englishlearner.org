@@ -34,161 +34,108 @@
   ]
 }
 </script>
-<style>
-:root{
-  --bg:#0f1115;--panel:#171a21;--panel2:#1f232c;--line:#2a2f3a;
-  --txt:#e6e9ef;--mut:#9aa3b2;--acc:#5eb1ff;--acc2:#7ee0a8;
-  --bad:#ff7a7a;--good:#7ee0a8;--warn:#ffd479;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;background:var(--bg);color:var(--txt);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  line-height:1.6;font-size:17px;
-}
-nav{display:flex;gap:18px;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5}
-nav a{color:var(--acc);text-decoration:none;font-weight:600}
-nav a:hover{text-decoration:underline}
-.wrap{max-width:820px;margin:0 auto;padding:24px 20px 60px}
-h1{font-size:1.9rem;line-height:1.2;margin:.4em 0 .2em}
-h2{font-size:1.25rem;margin:1.6em 0 .4em;border-bottom:1px solid var(--line);padding-bottom:.3em}
-.lead{color:var(--mut);font-size:1.05rem}
-#tool{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin:22px 0}
-.controls{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:18px}
-.field{display:flex;flex-direction:column;gap:6px}
-.field label{font-size:.85rem;color:var(--mut);font-weight:600;letter-spacing:.02em}
-select,button{
-  font:inherit;background:var(--panel2);color:var(--txt);
-  border:1px solid var(--line);border-radius:9px;padding:9px 12px;
-}
-select:focus,button:focus,input:focus{outline:2px solid var(--acc);outline-offset:1px}
-button{cursor:pointer;font-weight:600}
-button.primary{background:var(--acc);color:#04121f;border-color:var(--acc)}
-button:hover{filter:brightness(1.08)}
-.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
-.score{font-weight:700}
-.q{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:14px 16px;margin:12px 0}
-.q .num{color:var(--acc);font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
-.q .stem{font-size:1.08rem;margin:6px 0 12px}
-.q .stem .blank{color:var(--warn);font-weight:700;border-bottom:2px dashed var(--warn);padding:0 4px}
-.opts{display:grid;gap:8px}
-.opt{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;cursor:pointer;background:var(--panel);transition:.12s}
-.opt:hover{border-color:var(--acc)}
-.opt input{accent-color:var(--acc);width:17px;height:17px;cursor:pointer}
-.opt.correct{border-color:var(--good);background:rgba(126,224,168,.10)}
-.opt.wrong{border-color:var(--bad);background:rgba(255,122,122,.10)}
-.opt.locked{cursor:default}
-.fb{margin-top:10px;font-size:.95rem;display:none}
-.fb.show{display:block}
-.fb .tag{font-weight:700}
-.fb.ok .tag{color:var(--good)}
-.fb.no .tag{color:var(--bad)}
-.fb .exp{color:var(--mut)}
-.result{margin-top:16px;padding:16px;border-radius:11px;background:var(--panel2);border:1px solid var(--line);display:none}
-.result.show{display:block}
-.result .big{font-size:1.5rem;font-weight:800}
-.meter{height:10px;border-radius:6px;background:var(--line);overflow:hidden;margin:10px 0}
-.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));width:0;transition:width .5s}
-.relbox{display:grid;gap:8px;margin-top:8px}
-.relbox a{color:var(--acc);text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:11px 14px;display:block}
-.relbox a:hover{border-color:var(--acc)}
-footer{border-top:1px solid var(--line);padding:24px 20px;text-align:center;color:var(--mut);font-size:.9rem}
-footer a{color:var(--acc);text-decoration:none;margin:0 8px}
-small.note{color:var(--mut)}
-@media(max-width:520px){h1{font-size:1.55rem}body{font-size:16px}}
-</style>
+
 <meta name="google-adsense-account" content="ca-pub-2241192243363112">
-<link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/site.js" defer></script>
+<link rel="stylesheet" href="/assets/tool.css">
+<meta property="og:image:alt" content="English Learner free lessons and practice">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
+<meta property="og:image" content="https://englishlearner.org/assets/og/tools-grammar-exercises.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
-<div class="el-top" role="navigation" aria-label="Site">
-  <a class="el-brand" href="/">English Learner</a>
-  <a href="/lessons/">Lessons</a>
-  <a href="/tools/">Practice tools</a>
-  <a href="/tools/level-assessment/">Level test</a>
-  <a href="/about/">About</a>
+<!-- shared-header-start -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="el-top"><div class="el-top-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><nav class="el-nav" aria-label="Main navigation"><a href="/lessons/">Lessons</a><a href="/tools/" aria-current="true">Practice</a><a href="/tools/level-assessment/" class="nav-wide" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta_id:'nav_level_test'})">Level test</a><a href="/about/" class="nav-wide">About</a></nav></div></header>
+<!-- shared-header-end -->
+<main class="tool-page tool-grammar-exercises public-tool" id="main"><script>
+window.toolResult = function(region, score, total, slug, track) {
+ region.classList.add('is-complete');
+ const placeholder=document.getElementById('resultPlaceholder'); if(placeholder) placeholder.hidden=true;
+ if(track && window.elTrack) window.elTrack('quiz_complete',{tool:slug,score:score,total:total});
+ let heading=region.querySelector('h2'); if(!heading){heading=document.createElement('h2');heading.textContent='Your result';region.prepend(heading);}
+ heading.tabIndex=-1; heading.focus();
+ if(!region.querySelector('.copy-result')){
+  const copy=document.createElement('button');copy.type='button';copy.className='copy-result btn';copy.textContent='Copy my result';
+  copy.onclick=async function(){const value=(region.querySelector('.result-value-long')?region.querySelector('.result-value-long').textContent+'. Rough guide. Grammar and reading only. ':'')+score+' out of '+total+'. Practice only. '+document.querySelector('link[rel=canonical]').href;try{await navigator.clipboard.writeText(value);copy.textContent='Result copied';}catch(e){let output=region.querySelector('.copy-fallback');if(!output){output=document.createElement('textarea');output.className='copy-fallback';output.readOnly=true;output.setAttribute('aria-label','Select the text to copy it');region.append(output);}output.value=value;output.focus();output.select();copy.textContent='Select the text to copy it.';}};
+  region.append(copy);
+ }
+};
+</script>
+<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">Grammar exercises</li></ol></nav><h1>Grammar exercises</h1><p class="lead">Choose an answer and read the explanation.</p>
+<section aria-label="Grammar exercises tool" id="tool"><p class="helper" id="currentTopic"></p>
+<details class="quiz-settings"><summary>Quiz settings</summary><div class="controls">
+<div class="field">
+<label for="topic">Grammar topic</label>
+<select id="topic">
+<option value="tenses">Verb Tenses</option>
+<option value="articles">Articles (a / an / the)</option>
+<option value="prepositions">Prepositions</option>
+<option value="irregular">Irregular Verbs</option>
+<option value="mixed">Mixed Review</option>
+</select>
 </div>
-<div class="wrap">
-  <h1>Interactive English Grammar Practice</h1>
-  <p class="lead">Pick a topic and a level, then answer the multiple-choice questions. Every answer is checked at once and comes with a short explanation. You get a score at the end.</p>
-
-  <section id="tool" aria-label="Grammar exercises tool">
-    <div class="controls">
-      <div class="field">
-        <label for="topic">Grammar topic</label>
-        <select id="topic">
-          <option value="tenses">Verb Tenses</option>
-          <option value="articles">Articles (a / an / the)</option>
-          <option value="prepositions">Prepositions</option>
-          <option value="irregular">Irregular Verbs</option>
-          <option value="mixed">Mixed Review</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="level">Difficulty</label>
-        <select id="level">
-          <option value="easy">Beginner (A1 to A2)</option>
-          <option value="med" selected>Intermediate (B1 to B2)</option>
-          <option value="hard">Advanced (C1)</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="count">Questions</label>
-        <select id="count">
-          <option selected>5</option>
-          <option>10</option>
-          <option>15</option>
-        </select>
-      </div>
-      <div class="field" style="justify-content:flex-end">
-        <label>&nbsp;</label>
-        <button id="newQuiz" class="primary" type="button">New quiz</button>
-      </div>
-    </div>
-
-    <div class="bar">
-      <div class="score" id="progress">Answered 0 / 5</div>
-      <div class="score" id="liveScore">Correct: 0</div>
-    </div>
-
-    <div id="quiz" aria-live="polite"></div>
-
-    <div class="result" id="result" aria-live="polite">
-      <div class="big" id="resultBig"></div>
-      <div class="meter"><i id="meterFill"></i></div>
-      <div id="resultMsg" class="mut"></div>
-    </div>
-    <p><small class="note">Tip: change the topic or the level and press the New quiz button for a new set. Your answers are checked in your browser. They are not sent anywhere.</small></p>
-  </section>
-
-  <h2>What is in the question bank</h2>
-  <p>There are 60 questions. Each of the four topics has 15 questions, five for beginners (A1 to A2), five for intermediate learners (B1 to B2) and five for advanced learners (C1). One topic at one level gives you five questions. Choose Mixed Review to draw questions from all four topics at your level.</p>
-  <ul>
-    <li><strong>Verb tenses.</strong> Present simple and continuous, past simple and continuous, present perfect, past perfect, future forms and "wish".</li>
-    <li><strong>Articles.</strong> A or an by sound, first mention, fixed phrases with no article, and place names.</li>
-    <li><strong>Prepositions.</strong> Time and place with in, on and at, and fixed pairs such as "depend on" and "good at".</li>
-    <li><strong>Irregular verbs.</strong> Past simple and past participle forms.</li>
-  </ul>
-
-  <h2>How to use your mistakes</h2>
-  <p>A wrong answer is useful. It shows you which rule to read again. The wrong options in each question are errors that learners often make, so read the explanation even when you get the answer right.</p>
-  <ul>
-    <li>Mistakes with tenses? Read <a href="/lessons/present-perfect-vs-past-simple/">present perfect or past simple</a> and <a href="/lessons/conditionals/">conditionals</a>.</li>
-    <li>Mistakes with articles? Read <a href="/lessons/articles-a-an-the/">a, an, the</a>.</li>
-    <li>Mistakes with prepositions? Read <a href="/lessons/prepositions-in-on-at/">in, on, at</a>.</li>
-    <li>Mistakes with irregular verbs? Use the <a href="/tools/irregular-verbs/">irregular verbs list and quiz</a>.</li>
-  </ul>
-  <p>The score at the end is the number of correct answers as a percentage. Try the same topic again the next day and see if the score goes up.</p>
-
-  <h2>Related tools</h2>
-  <div class="relbox">
-    <a href="/tools/irregular-verbs/">Irregular verbs list and quiz</a>
-    <a href="/tools/preposition-practice-tool/">Preposition practice</a>
-    <a href="/tools/level-assessment/">English level test</a>
-  </div>
+<div class="field">
+<label for="level">Difficulty</label>
+<select id="level">
+<option value="easy">Beginner (A1 to A2)</option>
+<option selected="" value="med">Intermediate (B1 to B2)</option>
+<option value="hard">Advanced (C1)</option>
+</select>
 </div>
-
+<div class="field">
+<label for="count">Questions</label>
+<select id="count">
+<option selected="">5</option>
+<option>10</option>
+<option>15</option>
+</select>
+</div>
+<div class="field">
+<label> </label>
+<button class="primary" id="newQuiz" type="button">New quiz</button>
+</div>
+</div></details>
+<div class="bar">
+<div class="score" id="progress">Answered 0 / 5</div>
+<div class="score" id="liveScore">Correct: 0</div>
+</div>
+<div id="quiz"></div>
+<div aria-live="polite" class="result result-slot" id="result">
+<h2>Your result</h2><p class="result-value" id="resultBig"></p><p><a href="/lessons/" id="resultLesson">Read the matching lesson</a></p>
+<div class="meter"><i id="meterFill"></i></div>
+<div class="mut" id="resultMsg"></div>
+</div>
+<p><small class="note">Changing a setting starts a new quiz. Difficulty labels are rough estimates. Your answers are checked in your browser. They are not sent anywhere.</small></p>
+</section><aside class="tool-support"><img alt="" class="tool-art" decoding="async" height="322" loading="lazy" sizes="(min-width:1280px) 320px, (min-width:1024px) 280px, (min-width:768px) 240px, (min-width:390px) 192px, 168px" src="/assets/img/tool-grammar-exercises-480.webp" srcset="/assets/img/tool-grammar-exercises-480.webp 480w, /assets/img/tool-grammar-exercises-960.webp 960w" width="480"/><p><a href="/lessons/present-perfect-vs-past-simple/">Read the tense lesson</a></p></aside><section class="practice-help reading"><h2>About this practice</h2><h3>Why are there only five questions?</h3><p>Each default topic and difficulty group contains five items. Mixed review has a larger pool.</p><h3>How are answers checked?</h3><p>The browser compares your answer with the saved key. Lesson modes require every gap in an item.</p><h3>Lesson practice</h3><p>A lesson link opens its ten matching prompts. Choose other practice to return to the default question bank.</p><h3>Learn from a correction</h3><p>Read the explanation after each answer. The result links back to the topic’s lesson.</p></section>
+<h2>What is in the question bank</h2>
+<p>There are 60 questions. Each of the four topics has 15 questions, five for beginners (A1 to A2), five for intermediate learners (B1 to B2) and five for advanced learners (C1). One topic at one level gives you five questions. Choose Mixed Review to draw questions from all four topics at your level.</p>
+<ul>
+<li>Verb tenses. Present simple and continuous, past simple and continuous, present perfect, past perfect, future forms and "wish".</li>
+<li>Articles. A or an by sound, first mention, fixed phrases with no article, and place names.</li>
+<li>Prepositions. Time and place with in, on and at, and fixed pairs such as "depend on" and "good at".</li>
+<li>Irregular verbs. Past simple and past participle forms.</li>
+</ul>
+<h2>How to use your mistakes</h2>
+<p>A wrong answer is useful. It shows you which rule to read again. The wrong options in each question are errors that learners often make, so read the explanation even when you get the answer right.</p>
+<ul>
+<li>Mistakes with tenses? Read <a href="/lessons/present-perfect-vs-past-simple/">present perfect or past simple</a> and <a href="/lessons/conditionals/">conditionals</a>.</li>
+<li>Mistakes with articles? Read <a href="/lessons/articles-a-an-the/">a, an, the</a>.</li>
+<li>Mistakes with prepositions? Read <a href="/lessons/prepositions-in-on-at/">in, on, at</a>.</li>
+<li>Mistakes with irregular verbs? Use the <a href="/tools/irregular-verbs/">irregular verbs list and quiz</a>.</li>
+</ul>
+<p>The score at the end is the number of correct answers as a percentage. Try the same topic again the next day and see if the score goes up.</p>
+<h2>Related tools</h2>
+<div class="relbox">
+<a href="/tools/irregular-verbs/">Irregular verbs list and quiz</a>
+<a href="/tools/preposition-practice-tool/">Preposition practice</a>
+<a href="/tools/level-assessment/">English level test</a>
+</div>
 <script>
 (function(){
   "use strict";
@@ -231,7 +178,7 @@ small.note{color:var(--mut)}
       {b:3,s:"___ Netherlands is famous for tulips.",o:["A","An","The","No article"],a:2,e:"Plural country names take 'the': the Netherlands."}
     ],
     prepositions: [
-      {b:1,s:"The cat is ___ the table.",o:["on","in","at","of"],a:0,e:"A surface contact uses 'on': on the table."},
+      {b:1,s:"The cat is resting on the tabletop. It is ___ the table.",o:["on","in","at","of"],a:0,e:"A surface contact uses 'on': on the table."},
       {b:1,s:"I was born ___ May.",o:["on","in","at","by"],a:1,e:"Months take 'in': in May."},
       {b:1,s:"We'll meet ___ 6 o'clock.",o:["on","in","at","to"],a:2,e:"Clock times take 'at': at 6 o'clock."},
       {b:2,s:"She is good ___ mathematics.",o:["in","at","on","for"],a:1,e:"'Good at' is the fixed collocation for skills."},
@@ -315,23 +262,28 @@ small.note{color:var(--mut)}
     return {stem:raw.s,opts:mixed.map(function(p){return p.text;}),answer:correctIdx,exp:raw.e};
   }
 
+  var LESSON_MODES={"articles-a-an-the": {"title": "Articles in English", "questions": [{"stem": "My sister is ___ engineer.", "accepted": [["an"]], "exp": "an . A job, and \"engineer\" starts with a vowel sound."}, {"stem": "We stayed at ___ hotel near the station. ___ hotel was very quiet.", "accepted": [["a"], ["The"]], "exp": "a , then The . First mention, then second mention."}, {"stem": "It takes about ___ hour to get there.", "accepted": [["an"]], "exp": "an . The \"h\" in \"hour\" is silent."}, {"stem": "___ Nile is longer than ___ Thames.", "accepted": [["The"], ["the"]], "exp": "The , the . Rivers take \"the\"."}, {"stem": "I usually have ___ breakfast at seven.", "accepted": [["no article"]], "exp": "no article . Meals take no article."}, {"stem": "She wants to study at ___ university in Canada.", "accepted": [["a"]], "exp": "a . \"University\" starts with a \"you\" sound."}, {"stem": "___ honesty is important in a friendship.", "accepted": [["No article"]], "exp": "No article . An uncountable noun in a general statement."}, {"stem": "This is ___ most interesting book I have read this year.", "accepted": [["the"]], "exp": "the . A superlative."}, {"stem": "He goes to work by ___ train.", "accepted": [["no article"]], "exp": "no article . \"By\" plus transport takes no article."}, {"stem": "They live in ___ Netherlands.", "accepted": [["the"]], "exp": "the . A plural country name."}]}, "present-perfect-vs-past-simple": {"title": "Present perfect or past simple", "questions": [{"stem": "I ___ (see) that film last night.", "accepted": [["saw"]], "exp": "saw . \"Last night\" is a finished time."}, {"stem": "___ you ever ___ (try) Thai food?", "accepted": [["Have"], ["tried"]], "exp": "Have you ever tried . Experience at any time up to now."}, {"stem": "She ___ (work) here since 2020.", "accepted": [["has worked"]], "exp": "has worked . It started in 2020 and continues now."}, {"stem": "We ___ (buy) this house ten years ago.", "accepted": [["bought"]], "exp": "bought . \"Ago\" always takes the past simple."}, {"stem": "I can't open the door. I ___ (lose) my key.", "accepted": [["have lost"]], "exp": "have lost . A result now."}, {"stem": "He ___ (not finish) his homework yet.", "accepted": [["hasn't finished", "has not finished"]], "exp": "hasn't finished . \"Yet\" in a negative."}, {"stem": "When ___ they ___ (get) married?", "accepted": [["did"], ["get"]], "exp": "When did they get married? \"When\" asks for a finished time."}, {"stem": "I ___ (know) Maria for a long time. We are still good friends.", "accepted": [["have known"]], "exp": "have known . It continues now."}, {"stem": "My grandfather ___ (live) in Madrid all his life. He died in 2015.", "accepted": [["lived"]], "exp": "lived . His life is over, so the period is finished."}, {"stem": "They ___ (be) to London three times this year.", "accepted": [["have been"]], "exp": "have been . \"This year\" is not finished."}]}, "countable-uncountable-nouns": {"title": "Countable and uncountable nouns", "questions": [{"stem": "How (much / many) money do you have?", "accepted": [["much"]], "exp": "much . \"Money\" is uncountable."}, {"stem": "There are only (a few / a little) tickets left.", "accepted": [["a few"]], "exp": "a few . \"Tickets\" is countable."}, {"stem": "Can you give me (an advice / some advice)?", "accepted": [["some advice"]], "exp": "some advice . \"Advice\" is uncountable."}, {"stem": "The news (is / are) very good today.", "accepted": [["is"]], "exp": "is . \"News\" takes a singular verb."}, {"stem": "We don't have (much / many) time.", "accepted": [["much"]], "exp": "much . \"Time\" is uncountable here."}, {"stem": "I'd like two (breads / slices of bread), please.", "accepted": [["slices of bread"]], "exp": "slices of bread . Use a unit word to count bread."}, {"stem": "She did (a research / some research) on the topic.", "accepted": [["some research"]], "exp": "some research . \"Research\" is uncountable."}, {"stem": "(Few / A few) people came, so the room looked empty.", "accepted": [["Few"]], "exp": "Few . Almost none, which is why the room looked empty."}, {"stem": "Is there (any / some) milk in the fridge?", "accepted": [["any"]], "exp": "any . A normal question."}, {"stem": "All my (luggage is / luggages are) in the car.", "accepted": [["luggage is"]], "exp": "luggage is . No plural, singular verb."}]}, "conditionals": {"title": "English conditionals", "questions": [{"stem": "If you ___ (mix) red and yellow, you get orange.", "accepted": [["mix"]], "exp": "mix . Zero conditional: a fact."}, {"stem": "If it ___ (be) sunny tomorrow, we ___ (go) to the beach.", "accepted": [["is"], ["will go"]], "exp": "is , will go . First conditional."}, {"stem": "If I ___ (be) you, I ___ (take) the job.", "accepted": [["were"], ["would take"]], "exp": "were , would take . Second conditional for advice."}, {"stem": "If she ___ (know) his number, she would call him.", "accepted": [["knew"]], "exp": "knew . Second conditional. She does not know it."}, {"stem": "If we ___ (leave) on time, we wouldn't have missed the flight.", "accepted": [["had left"]], "exp": "had left . Third conditional."}, {"stem": "I ___ (help) you if I had known you were in trouble.", "accepted": [["would have helped"]], "exp": "would have helped . Third conditional."}, {"stem": "We won't finish unless everyone ___ (help).", "accepted": [["helps"]], "exp": "helps . \"Unless\" plus present simple."}, {"stem": "What ___ you ___ (do) if you lost your passport?", "accepted": [["would"], ["do"]], "exp": "What would you do . Second conditional."}, {"stem": "If he ___ (not eat) so much last night, he wouldn't feel ill now.", "accepted": [["hadn't eaten", "had not eaten"]], "exp": "hadn't eaten . Mixed: past condition, present result."}, {"stem": "I ___ (send) you a message if my train is late.", "accepted": [["will send"]], "exp": "will send . First conditional."}]}};
+  var requestedLesson=new URLSearchParams(location.search).get("lesson");
+  var lessonMode=Object.prototype.hasOwnProperty.call(LESSON_MODES,requestedLesson)?requestedLesson:null;
   function buildQuiz(){
+    if(lessonMode){buildLesson();return;}
     var topic=elTopic.value, level=elLevel.value, n=parseInt(elCount.value,10)||5;
     var items=bandFilter(pool(topic),level);
     var picked=shuffle(items).slice(0,Math.min(n,items.length)).map(makeQuestion);
     state={questions:picked,answered:0,correct:0,total:picked.length};
+    document.getElementById("currentTopic").textContent="Practice for "+elTopic.options[elTopic.selectedIndex].text+". "+picked.length+" questions available at this setting.";
     render();
     updateBars();
-    elResult.classList.remove('show');
+    elResult.classList.remove('show','is-complete');elResBig.textContent='';elResMsg.textContent='Your result appears here when you finish.';
   }
 
   function render(){
     elQuiz.innerHTML='';
     state.questions.forEach(function(q,qi){
-      var card=document.createElement('div');
+      var card=document.createElement('fieldset');
       card.className='q';
       var stemHtml=q.stem.replace('___','<span class="blank">_____</span>');
-      card.innerHTML='<div class="num">Question '+(qi+1)+'</div><div class="stem">'+stemHtml+'</div>';
+      card.innerHTML='<legend>Question '+(qi+1)+'. '+stemHtml+'</legend>';
       var opts=document.createElement('div');
       opts.className='opts';
       q.opts.forEach(function(text,oi){
@@ -341,7 +293,7 @@ small.note{color:var(--mut)}
         opts.appendChild(lab);
       });
       var fb=document.createElement('div');
-      fb.className='fb';
+      fb.className='fb';fb.setAttribute('role','status');
       card.appendChild(opts);
       card.appendChild(fb);
       opts.addEventListener('change',function(ev){
@@ -381,14 +333,17 @@ small.note{color:var(--mut)}
   function finish(){
     var pct=state.total?Math.round(state.correct/state.total*100):0;
     var band,msg;
-    if(pct>=90){band='Excellent!';msg='Outstanding command of this topic. Try a harder level or a new topic.';}
+    if(pct>=90){band='Excellent.';msg='Outstanding command of this topic. Try a harder level or a new topic.';}
     else if(pct>=70){band='Solid work.';msg='Good grasp of the rules. Review the few you missed and run another round.';}
     else if(pct>=50){band='Keep practising.';msg='You are getting there. Read the explanations above again and retry.';}
     else{band='Needs review.';msg='Study this grammar point, then generate a fresh quiz to lock it in.';}
-    elResBig.textContent='Score: '+state.correct+' / '+state.total+'  ('+pct+'%). '+band;
+    elResBig.textContent=state.correct+' out of '+state.total; 
     elResMsg.textContent=msg;
     elMeter.style.width=pct+'%';
     elResult.classList.add('show');
+    var paths={articles:'articles-a-an-the',prepositions:'prepositions-in-on-at',tenses:'present-perfect-vs-past-simple',irregular:'present-perfect-vs-past-simple'};
+    var dest=lessonMode||paths[elTopic.value];var link=document.getElementById('resultLesson');link.href=dest?'/lessons/'+dest+'/':'/lessons/';link.textContent=lessonMode?'Read the '+({ 'articles-a-an-the':'articles','present-perfect-vs-past-simple':'tense','countable-uncountable-nouns':'nouns','conditionals':'conditionals'}[lessonMode])+' lesson':'Read the matching lesson';
+    toolResult(elResult,state.correct,state.total,'grammar-exercises',true);
   }
 
   elNew.addEventListener('click',buildQuiz);
@@ -396,22 +351,39 @@ small.note{color:var(--mut)}
   elLevel.addEventListener('change',buildQuiz);
   elCount.addEventListener('change',buildQuiz);
 
+  function buildLesson(){
+    var mode=LESSON_MODES[lessonMode];state={questions:mode.questions,answered:0,correct:0,total:mode.questions.length};
+    document.getElementById('currentTopic').textContent='Practice for '+mode.title+'. '+state.total+' questions.';
+    var settings=document.querySelector('.quiz-settings');settings.hidden=true;
+    if(!document.getElementById('otherPractice')){var other=document.createElement('a');other.id='otherPractice';other.href='/tools/grammar-exercises/';other.textContent='Choose other practice';settings.before(other);}
+    elQuiz.replaceChildren();elResult.classList.remove('show','is-complete');elResBig.textContent='';elResMsg.textContent='Your result appears here when you finish.';
+    mode.questions.forEach(function(q,qi){
+      var card=document.createElement('fieldset');card.className='q';var legend=document.createElement('legend');legend.textContent=(qi+1)+'. '+q.stem;card.append(legend);
+      var inputs=[];q.accepted.forEach(function(forms,i){var label=document.createElement('label');var input=document.createElement('input');input.id='lesson-'+qi+'-'+i;label.htmlFor=input.id;label.textContent=q.accepted.length>1?'Answer '+(i+1):'Your answer';input.autocomplete='off';card.append(label,input);inputs.push(input);});
+      if(lessonMode==='articles-a-an-the'){var hint=document.createElement('p');hint.className='helper';hint.textContent='For an empty gap, type no article.';card.append(hint);}
+      var button=document.createElement('button');button.type='button';button.textContent='Check answer';var feedback=document.createElement('p');feedback.setAttribute('role','status');var done=false;
+      button.onclick=function(){if(done)return;if(inputs.some(x=>!x.value.trim())){feedback.textContent='Enter every answer.';inputs.find(x=>!x.value.trim()).focus();return;}done=true;var norm=x=>x.trim().toLowerCase().replace(/’/g,"'").replace(/\s+/g,' ');var ok=inputs.every((input,i)=>q.accepted[i].some(a=>norm(a)===norm(input.value)));state.answered++;if(ok)state.correct++;inputs.forEach(x=>x.disabled=true);button.disabled=true;feedback.textContent=(ok?'Correct. ':'Incorrect. ')+q.exp;updateBars();if(state.answered===state.total)finish();};
+      inputs.forEach(input=>input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();button.click();}}));card.append(button,feedback);elQuiz.append(card);
+    });updateBars();
+  }
   // Prefill so output shows on load.
   buildQuiz();
 })();
 </script>
-<div class="el-foot" role="contentinfo">
-  <div class="el-links">
-    <a href="/">Home</a>
-    <a href="/lessons/">Lessons</a>
-    <a href="/tools/">Practice tools</a>
-    <a href="/about/">About</a>
-    <a href="/contact/">Contact</a>
-    <a href="/privacy/">Privacy</a>
-    <button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button>
-  </div>
-  <p>&copy; 2026 englishlearner.org. An independent site. Not connected to any exam board.</p>
-  <p>From the same developer: <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant.</p>
-</div>
+<p class="retained-intro reading">Pick a topic and a level, then answer the multiple-choice questions. Every answer is checked at once and comes with a short explanation. You get a score at the end.</p><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/present-perfect-vs-past-simple/">Read the tense lesson</a><a class="btn" href="/tools/">Choose another practice</a></div></section><noscript><p>Interactive practice needs JavaScript. <a href="/lessons/present-perfect-vs-past-simple/">Read the written study guide</a>.</p></noscript><script>
+if(matchMedia('(min-width:1024px)').matches)document.querySelectorAll('.quiz-settings:not([hidden])').forEach(el=>el.open=true);
+</script><script>
+(function(){
+ const main=document.getElementById('main');
+ const status=document.createElement('p');status.className='typing-status';status.setAttribute('role','status');status.hidden=true;main.append(status);
+ const update=()=>{const input=document.activeElement;if(!input||!main.contains(input)||!input.matches('textarea,input:not([type=radio]):not([type=checkbox])')||!window.visualViewport){status.hidden=true;return;}const feedback=main.querySelector('#feedbackArea,#feedback,#errorsContainer,#verbsContainer,#diagramDisplay');const box=feedback&&feedback.getBoundingClientRect();if(box&&box.top>=0&&box.bottom<visualViewport.height){status.hidden=true;return;}status.textContent=(main.querySelector('#qCounter')||{}).textContent||'Answer not checked';status.style.top=visualViewport.offsetTop+'px';status.hidden=false;};
+ main.addEventListener('focusin',update);main.addEventListener('focusout',()=>setTimeout(update,0));window.addEventListener('scroll',update,{passive:true});if(window.visualViewport)visualViewport.addEventListener('resize',update);
+ main.querySelectorAll('.checker-output .results').forEach(result=>new MutationObserver(()=>{const placeholder=result.parentElement.querySelector('.checker-placeholder');if(placeholder)placeholder.hidden=result.classList.contains('active');}).observe(result,{attributes:true,attributeFilter:['class']}));
+ main.querySelectorAll('a[href^="/lessons/"]').forEach(link=>link.addEventListener('click',()=>{if(window.elTrack)window.elTrack('cta_click',{cta_id:'tool_grammar-exercises_lesson'});}));
+})();
+</script></main>
+<!-- shared-footer-start -->
+<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>It isn’t connected to englishlearner.com.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
+<!-- shared-footer-end -->
 </body>
 </html>

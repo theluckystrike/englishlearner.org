@@ -30,290 +30,76 @@
       ]
     }
     </script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background-color: #0a0a0a;
-            color: #e0e0e0;
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2rem 1rem;
-        }
-        .container {
-            max-width: 900px;
-            width: 100%;
-            background: #111;
-            padding: 2rem;
-            border-radius: 32px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-            border: 1px solid #2a2a2a;
-        }
-        h1, h2, h3 {
-            font-weight: 500;
-            letter-spacing: -0.02em;
-        }
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.25rem;
-            color: #f0f0f0;
-        }
-        .subhead {
-            color: #aaa;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid #2a2a2a;
-            padding-bottom: 0.75rem;
-        }
-        .progress-bar {
-            background: #2a2a2a;
-            height: 8px;
-            border-radius: 20px;
-            margin: 1.5rem 0 1rem;
-            overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%;
-            width: 0%;
-            background: #66bb6a;
-            transition: width 0.3s ease;
-        }
-        .question-area {
-            background: #141414;
-            padding: 1.8rem;
-            border-radius: 24px;
-            margin: 1.2rem 0;
-            border: 1px solid #2a2a2a;
-        }
-        .question-text {
-            font-size: 1.3rem;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
-        }
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-        .option-btn {
-            background: #1e1e1e;
-            border: 1px solid #333;
-            color: #e0e0e0;
-            padding: 0.9rem 1.2rem;
-            border-radius: 40px;
-            font-size: 1rem;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.15s;
-        }
-        .option-btn:hover:not(:disabled) {
-            background: #2a2a2a;
-            border-color: #66bb6a;
-        }
-        .option-btn.selected {
-            border-color: #66bb6a;
-            background: #1e3a1e;
-        }
-        .option-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-        .fill-input {
-            background: #1e1e1e;
-            border: 1px solid #444;
-            color: #e0e0e0;
-            padding: 0.9rem 1.2rem;
-            border-radius: 40px;
-            font-size: 1rem;
-            width: 100%;
-            outline: none;
-        }
-        .fill-input:focus {
-            border-color: #66bb6a;
-        }
-        .action-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1.8rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        .btn {
-            background: #2a2a2a;
-            border: none;
-            color: #e0e0e0;
-            padding: 0.7rem 1.8rem;
-            border-radius: 40px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.15s;
-            border: 1px solid #3a3a3a;
-        }
-        .btn-primary {
-            background: #66bb6a;
-            color: #0a0a0a;
-            font-weight: 600;
-            border: none;
-        }
-        .btn-primary:hover {
-            background: #7ecf7e;
-        }
-        .btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-        .feedback {
-            margin-top: 1rem;
-            padding: 0.75rem 1rem;
-            border-radius: 30px;
-            background: #1a1a1a;
-            border-left: 4px solid #66bb6a;
-        }
-        .result-card {
-            background: #141414;
-            padding: 2rem;
-            border-radius: 28px;
-            border: 1px solid #2a2a2a;
-            margin: 1.5rem 0;
-        }
-        .level-badge {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #66bb6a;
-            display: inline-block;
-            margin-right: 1rem;
-        }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        .stat-box {
-            background: #1a1a1a;
-            padding: 1.2rem;
-            border-radius: 20px;
-        }
-        .weakness {
-            color: #f5a623;
-        }
-        .strength {
-            color: #66bb6a;
-        }
-        .history-item {
-            background: #1a1a1a;
-            padding: 0.8rem 1.2rem;
-            border-radius: 40px;
-            margin: 0.4rem 0;
-            display: flex;
-            justify-content: space-between;
-        }
-        .footer-link {
-            margin-top: 2.5rem;
-            text-align: center;
-            color: #666;
-        }
-        .footer-link a {
-            color: #66bb6a;
-            text-decoration: none;
-        }
-        .cefr-chart {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-            margin: 1rem 0;
-        }
-        .chart-row {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .chart-label {
-            width: 40px;
-            font-weight: 600;
-        }
-        .chart-bar {
-            height: 12px;
-            background: #2a2a2a;
-            border-radius: 20px;
-            flex: 1;
-        }
-        .chart-fill {
-            height: 100%;
-            background: #66bb6a;
-            border-radius: 20px;
-            width: 0%;
-        }
-        @media (max-width: 600px) {
-            .container { padding: 1.2rem; }
-            h1 { font-size: 1.6rem; }
-            .grid-2 { grid-template-columns: 1fr; }
-        }
-    </style>
+    
 
     <meta property="og:title" content="English level test, find your rough CEFR level">
     <meta property="og:description" content="Free English level test with 30 grammar and reading questions, five for each CEFR level from A1 to C2. See your score for every level and what to study next.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://englishlearner.org/tools/level-assessment/">
 <meta name="google-adsense-account" content="ca-pub-2241192243363112">
-<link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/site.js" defer></script>
+<link rel="stylesheet" href="/assets/tool.css">
+<meta property="og:image:alt" content="English Learner free lessons and practice">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
+<meta property="og:image" content="https://englishlearner.org/assets/og/tools-level-assessment.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
-<div class="el-top" role="navigation" aria-label="Site">
-  <a class="el-brand" href="/">English Learner</a>
-  <a href="/lessons/">Lessons</a>
-  <a href="/tools/">Practice tools</a>
-  <a href="/tools/level-assessment/">Level test</a>
-  <a href="/about/">About</a>
-</div>
-<div class="container">
-    <h1>English Level Test</h1>
-    <div class="subhead">30 grammar and reading questions, from A1 to C2. It takes about 10 minutes.</div>
+<!-- shared-header-start -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="el-top"><div class="el-top-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><nav class="el-nav" aria-label="Main navigation"><a href="/lessons/">Lessons</a><a href="/tools/">Practice</a><a href="/tools/level-assessment/" class="nav-wide" aria-current="page" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta_id:'nav_level_test'})">Level test</a><a href="/about/" class="nav-wide">About</a></nav></div></header>
+<!-- shared-header-end -->
+<main class="tool-page tool-level-assessment public-tool" id="main"><script>
+window.toolResult = function(region, score, total, slug, track) {
+ region.classList.add('is-complete');
+ const placeholder=document.getElementById('resultPlaceholder'); if(placeholder) placeholder.hidden=true;
+ if(track && window.elTrack) window.elTrack('quiz_complete',{tool:slug,score:score,total:total});
+ let heading=region.querySelector('h2'); if(!heading){heading=document.createElement('h2');heading.textContent='Your result';region.prepend(heading);}
+ heading.tabIndex=-1; heading.focus();
+ if(!region.querySelector('.copy-result')){
+  const copy=document.createElement('button');copy.type='button';copy.className='copy-result btn';copy.textContent='Copy my result';
+  copy.onclick=async function(){const value=(region.querySelector('.result-value-long')?region.querySelector('.result-value-long').textContent+'. Rough guide. Grammar and reading only. ':'')+score+' out of '+total+'. Practice only. '+document.querySelector('link[rel=canonical]').href;try{await navigator.clipboard.writeText(value);copy.textContent='Result copied';}catch(e){let output=region.querySelector('.copy-fallback');if(!output){output=document.createElement('textarea');output.className='copy-fallback';output.readOnly=true;output.setAttribute('aria-label','Select the text to copy it');region.append(output);}output.value=value;output.focus();output.select();copy.textContent='Select the text to copy it.';}};
+  region.append(copy);
+ }
+};
+</script>
+<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">English level test</li></ol></nav><h1>English level test</h1><p class="lead">30 questions. About 10 minutes.</p><p class="helper"><span class="badge">Rough guide</span> Grammar and reading only.</p>
 
-    <!-- progress -->
-    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-    <div style="display:flex; justify-content:space-between; font-size:0.9rem; color:#aaa;">
-        <span id="qCounter">Question 1 / 30</span>
-        <span id="difficultyIndicator">Level of this question: A1</span>
-    </div>
-
-    <!-- question area -->
-    <div class="question-area" id="questionArea">
-        <div class="question-text" id="questionText">Loading question...</div>
-        <div id="answerContainer"></div>
-        <div id="feedbackArea" class="feedback" style="display:none;"></div>
-        <div class="action-row">
-            <button class="btn" id="nextBtn" disabled>Next</button>
-            <button class="btn" id="resetBtn" style="background:#2a2a2a;">Restart</button>
-        </div>
-    </div>
-
-    <!-- result panel (hidden) -->
-    <div id="resultPanel" style="display:none;"></div>
-
-    <!-- history -->
-    <div style="margin-top:2rem;" id="historySection">
-        <h3 style="margin-bottom:0.5rem;">Your past results on this device</h3>
-        <div id="historyList"></div>
-    </div>
-
-    <div class="about-test" style="margin-top:2rem;line-height:1.65;color:#cfcfcf;">
-        <h2 style="font-size:1.25rem;margin:0 0 .5rem;color:#e0e0e0;">How the result is worked out</h2>
-        <p style="margin:.6rem 0;">The test has five questions for each of the six CEFR levels. The questions start at A1 and get harder. You pass a level when you answer at least three of its five questions correctly.</p>
-        <p style="margin:.6rem 0;">Your result is the highest level you pass without failing a lower level first. The result page shows your score for every level, so you can see where the questions became too hard.</p>
-        <h2 style="font-size:1.25rem;margin:1.4rem 0 .5rem;color:#e0e0e0;">What this test cannot tell you</h2>
-        <p style="margin:.6rem 0;">This is a short practice test. It checks grammar and reading only. It does not check speaking, listening or writing, and five questions per level is a small sample. Treat the result as a rough guide and not as an official level. For a certificate you need an exam from a recognised exam board.</p>
-        <p style="margin:.6rem 0;">To learn what each level means, read the <a href="/lessons/cefr-levels/" style="color:#66bb6a;">guide to CEFR levels</a>. To work on weak points, go to the <a href="/lessons/" style="color:#66bb6a;">grammar lessons</a>.</p>
-    </div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+<div class="question-meta">
+<span id="qCounter">Question 1 / 30</span>
+<span id="difficultyIndicator">Level of this question: A1</span>
 </div>
 
+<div class="question-area" id="questionArea">
+<div class="question-text" id="questionText" tabindex="-1">Loading question...</div>
+<div id="answerContainer"></div>
+<div aria-live="polite" class="feedback" id="feedbackArea" role="status" style="display:none"></div>
+<div class="action-row">
+<button class="btn" disabled="" id="nextBtn" type="button">Next</button>
+<button class="btn" id="resetBtn" type="button">Restart</button>
+</div>
+</div>
+
+<div id="resultPanel" style="display:none"></div>
+
+<div id="historySection">
+<h2>Your past results on this device</h2>
+<div id="historyList"></div>
+</div><aside class="tool-support"><img alt="" class="tool-art" decoding="async" height="322" loading="lazy" sizes="(min-width:1280px) 320px, (min-width:1024px) 280px, (min-width:768px) 240px, (min-width:390px) 192px, 168px" src="/assets/img/tool-level-test-480.webp" srcset="/assets/img/tool-level-test-480.webp 480w, /assets/img/tool-level-test-960.webp 960w" width="480"/><p><a href="/lessons/cefr-levels/">Read the CEFR study guide</a></p></aside>
+<div class="about-test" id="how-the-test-works">
+<h2>How the result is worked out</h2>
+<p>The test has five questions for each of the six CEFR levels. The questions start at A1 and get harder. You pass a level when you answer at least three of its five questions correctly.</p>
+<p>Your result is the highest level you pass without failing a lower level first. The result page shows your score for every level, so you can see where the questions became too hard.</p>
+<h2>What this test cannot tell you</h2>
+<p>This is a short practice test. It checks grammar and reading only. It does not check speaking, listening or writing, and five questions per level is a small sample. Treat the result as a rough guide and not as an official level. For a certificate you need an exam from a recognised exam board.</p>
+<p>To learn what each level means, read the <a href="/lessons/cefr-levels/">guide to CEFR levels</a>. To work on weak points, go to the <a href="/lessons/">grammar lessons</a>.</p>
+</div>
 <script>
     (function() {
         // ---------- DATABASE ----------
@@ -359,6 +145,8 @@
             { level:5, type:'fill', question:'___ (hardly / he / finish) when the bell rang.', correct:['Hardly had he finished'] }
         ];
         const fullDB = questionsDB.concat(extra); // 30 total
+        const explanations=["Use am with I in the present simple of be.", "Use is with she in the present simple of be.", "Use have with I. Has goes with he, she and it.", "Apple begins with a vowel sound, so use an.", "In the present simple, add -es to go after he.", "After she, watch takes -es in the present simple.", "Use do to form a present simple question with you.", "The passage says breakfast comes before going to work.", "For a possible future condition, use if plus present simple and will plus the base verb.", "Have lived and have been living both describe a situation that continues now.", "Yesterday names a finished past time. Use the past simple lost.", "Fully booked means the restaurant had no tables available.", "The past perfect had finished places dinner before the past arrival.", "After wish, could describes an ability that is not real now.", "The passive future uses will be plus a past participle.", "They arrived on time. The flight was delayed.", "Had it not been for means if it had not been for. Use would not have plus a past participle.", "After it is high time, a past form can express that an action is overdue.", "Use which for a non-defining relative clause about a thing.", "Not merely economic means the critique also covers another area. Here that area is culture.", "An opening negative expression such as little requires auxiliary and subject inversion.", "After not until at the start, use did before the subject and the base verb realize.", "Obfuscation makes information unclear, which prevents a meaningful analysis.", "The passage explicitly describes ambivalence, or mixed feelings.", "This is singular, so it takes is.", "Use do not or don’t plus the base verb with we.", "Since introduces a starting point in time. For introduces a duration.", "The present perfect here uses have plus the past participle seen.", "The fixed pair is no sooner ... than.", "After hardly at the start, put had before the subject, then the past participle."];
+        fullDB.forEach((q,i)=>q.explanation=explanations[i]);
 
         // shuffle array
         function shuffle(arr) {
@@ -372,7 +160,7 @@
         function loadHistory() {
             try {
                 const saved = JSON.parse(localStorage.getItem('engLevelHistory') || '[]');
-                return Array.isArray(saved) ? saved : [];
+                return Array.isArray(saved) ? saved.filter(x=>x && typeof x.date==='string' && typeof x.level==='string' && Number.isFinite(x.score)) : [];
             } catch (e) { return []; }
         }
 
@@ -427,7 +215,7 @@
 
         function renderHistory() {
             const h = state.history;
-            if (!h.length) { historyList.innerHTML = '<div style="color:#666;">No previous assessments.</div>'; return; }
+            if (!h.length) { historyList.innerHTML = '<div class="helper">No previous assessments.</div>'; return; }
             historyList.innerHTML = h.slice(-5).reverse().map(item => 
                 `<div class="history-item"><span>${esc(item.date)}: ${esc(item.level)}</span><span>${esc(item.score)}% correct</span></div>`
             ).join('');
@@ -463,6 +251,7 @@
         }
 
         function showResults() {
+            if(state.reported) return; state.reported=true;
             const res = computeResults();
             const passedAny = res.level >= 0;
             const levelLabel = passedAny ? getLevelLabel(res.level) : 'Below A1';
@@ -470,28 +259,13 @@
                 : 'You did not pass the A1 questions yet. Start with the first lessons and try again later.';
             const study = studyNext[passedAny ? res.level : 0];
             const pct = res.total ? (res.correct / res.total) * 100 : 0;
+            if(window.elTrack) window.elTrack('level_test_complete',{level:levelLabel});
             saveHistory(levelLabel, pct);
 
             resultPanel.style.display = 'block';
-            resultPanel.innerHTML = `
-                <div class="result-card">
-                    <div><span class="level-badge">${levelLabel}</span> <span style="font-size:1.4rem;">rough CEFR level</span></div>
-                    <div style="margin:0.5rem 0 1rem;">Score: <strong>${res.correct} / ${res.total}</strong> correct</div>
-                    <p style="margin-bottom:1rem;">${desc}</p>
-                    <p style="margin-bottom:1rem;">${study}</p>
-                    <div style="margin-top:1.2rem;"><strong>Your score at each level</strong> (pass mark: ${PASS_MARK} of 5)</div>
-                    <div class="cefr-chart">
-                        ${levelNames.map((l,i) => `
-                            <div class="chart-row">
-                                <span class="chart-label">${l}</span>
-                                <div class="chart-bar"><div class="chart-fill" style="width:${res.perLevel[i].total ? Math.round(res.perLevel[i].correct / res.perLevel[i].total * 100) : 0}%; background:${res.perLevel[i].correct >= PASS_MARK ? '#66bb6a' : '#888'};"></div></div>
-                                <span style="min-width:3.2rem;text-align:right;">${res.perLevel[i].correct} / ${res.perLevel[i].total}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <p style="margin-top:1rem;color:#aaa;font-size:0.9rem;">This is a rough guide from 30 grammar and reading questions. It is not an official exam result.</p>
-                </div>
-            `;
+            resultPanel.innerHTML = `<div class="level-content"><h2 tabindex="-1">Your rough CEFR level</h2><span class="badge">Rough guide</span><p class="result-value-long">${levelLabel}</p><p>Grammar and reading only. This isn’t an official result.</p><p>${study}</p><p>${res.correct} out of ${res.total} correct.</p><p>${passedAny ? 'A typical description of this level follows. This test did not measure all these skills. '+desc : desc}</p><table><caption>Your score at each level</caption><thead><tr><th scope="col">Level</th><th scope="col">Correct</th><th scope="col">Threshold met</th></tr></thead><tbody>${levelNames.map((l,i)=>`<tr><th scope="row">${l}</th><td>${res.perLevel[i].correct} out of ${res.perLevel[i].total}</td><td>${res.perLevel[i].correct>=PASS_MARK?'Yes':'No'}</td></tr>`).join('')}</tbody></table><p>Three correct answers meet a level’s threshold. The result stops at the first lower level you miss.</p><button type="button" id="retakeTest">Retake test</button></div>`;
+            document.getElementById('retakeTest').onclick=resetQuiz;
+            toolResult(resultPanel,res.correct,res.total,'level-assessment',false);
             // hide question area
             document.getElementById('questionArea').style.display = 'none';
             progressFill.style.width = '100%';
@@ -499,6 +273,7 @@
             difficultyIndicator.textContent = '';
         }
 
+        function markStarted(){if(!state.started){state.started=true;if(window.elTrack) window.elTrack('level_test_start');}}
         function loadQuestion() {
             if (state.finished || state.currentIndex >= state.questions.length) {
                 state.finished = true;
@@ -527,6 +302,7 @@
                     btn.textContent = opt;
                     btn.dataset.idx = idx;
                     btn.addEventListener('click', function(e) {
+                        if(this.disabled) return; markStarted();
                         // disable all
                         optDiv.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
                         this.classList.add('selected');
@@ -546,18 +322,22 @@
             } else if (q.type === 'fill') {
                 const input = document.createElement('input');
                 input.className = 'fill-input';
+                input.id='levelAnswer'; const label=document.createElement('label');label.htmlFor=input.id;label.textContent='Your answer';answerContainer.append(label);
                 input.placeholder = 'Type your answer...';
+                input.addEventListener('input',()=>{if(input.value.trim()) markStarted();});
                 input.autocomplete = 'off';
                 answerContainer.appendChild(input);
-                input.focus();
+
                 const checkBtn = document.createElement('button');
                 checkBtn.className = 'btn btn-primary';
                 checkBtn.textContent = 'Check';
                 checkBtn.style.marginTop = '1rem';
                 answerContainer.appendChild(checkBtn);
+                input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();checkBtn.click();}});
                 checkBtn.addEventListener('click', function() {
                     const val = input.value.trim().toLowerCase().replace(/\s+/g, ' ').replace(/[.!?]+$/, '');
-                    if (!val) return;
+                    if(checkBtn.disabled) return; markStarted();
+                    if (!val){feedbackArea.style.display='block';feedbackArea.textContent='Enter an answer.';input.focus();return;}
                     input.disabled = true;
                     checkBtn.disabled = true;
                     const correctAnswers = Array.isArray(q.correct) ? q.correct.map(c=>c.toLowerCase()) : [q.correct.toLowerCase()];
@@ -576,8 +356,8 @@
         function showFeedback(isCorrect, q) {
             feedbackArea.style.display = 'block';
             const answer = q.options ? q.options[q.correct] : (Array.isArray(q.correct) ? q.correct[0] : q.correct);
-            feedbackArea.textContent = isCorrect ? 'Correct!' : `Incorrect. Correct answer: ${answer}`;
-            feedbackArea.style.borderLeftColor = isCorrect ? '#66bb6a' : '#f5a623';
+            feedbackArea.textContent = (isCorrect ? 'Correct. ' : `Incorrect. The answer is ${answer}. `) + (q.explanation || 'Read the answer in the sentence, then compare its form with your choice.');
+            feedbackArea.className='feedback '+(isCorrect?'is-correct':'is-wrong');const guide=document.createElement('a');guide.href=q.question.includes('apple')?'/lessons/articles-a-an-the/':'/tools/grammar-exercises/';guide.textContent=q.question.includes('apple')?' Read the articles lesson':' Practise more grammar';feedbackArea.append(guide);
         }
 
         function nextQuestion() {
@@ -587,7 +367,7 @@
                 state.finished = true;
                 showResults();
             } else {
-                loadQuestion();
+                loadQuestion(); questionText.focus();
             }
         }
 
@@ -605,8 +385,8 @@
             state.wrongCount = 0;
             state.difficulty = 0;
             state.answers = [];
-            state.finished = false;
-            resultPanel.style.display = 'none';
+            state.finished = false; state.started=false; state.reported=false;
+            resultPanel.style.display = 'block'; resultPanel.className='result-slot result-level';resultPanel.innerHTML='<h2>Your result</h2><p>Your result appears here when you finish.</p>';
             document.getElementById('questionArea').style.display = 'block';
             nextBtn.disabled = true;
             loadQuestion();
@@ -621,19 +401,20 @@
         renderHistory();
     })();
 </script>
-
-    <div class="el-foot" role="contentinfo">
-  <div class="el-links">
-    <a href="/">Home</a>
-    <a href="/lessons/">Lessons</a>
-    <a href="/tools/">Practice tools</a>
-    <a href="/about/">About</a>
-    <a href="/contact/">Contact</a>
-    <a href="/privacy/">Privacy</a>
-    <button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button>
-  </div>
-  <p>&copy; 2026 englishlearner.org. An independent site. Not connected to any exam board.</p>
-  <p>From the same developer: <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant.</p>
-</div>
+<div class="retained-intro reading">30 grammar and reading questions, from A1 to C2. It takes about 10 minutes.</div><section class="practice-help reading"><h2>About this practice</h2><h3>How is my level chosen?</h3><p>Three correct answers meet a level’s threshold. The result stops at the first lower level you miss.</p><h3>Does this test check speaking?</h3><p>No. It checks grammar and reading through 30 questions. Treat the result as a rough guide.</p><h3>Results on this device</h3><p>Your recent results are stored in this browser. Storage failures do not stop the test.</p><h3>Choose your next lesson</h3><p>Your result includes a study suggestion. The CEFR guide explains what the level names mean.</p></section><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/cefr-levels/">Read the CEFR study guide</a><a class="btn" href="/tools/">Choose another practice</a></div></section><noscript><p>Interactive practice needs JavaScript. <a href="/lessons/cefr-levels/">Read the written study guide</a>.</p></noscript><script>
+if(matchMedia('(min-width:1024px)').matches)document.querySelectorAll('.quiz-settings:not([hidden])').forEach(el=>el.open=true);
+</script><script>
+(function(){
+ const main=document.getElementById('main');
+ const status=document.createElement('p');status.className='typing-status';status.setAttribute('role','status');status.hidden=true;main.append(status);
+ const update=()=>{const input=document.activeElement;if(!input||!main.contains(input)||!input.matches('textarea,input:not([type=radio]):not([type=checkbox])')||!window.visualViewport){status.hidden=true;return;}const feedback=main.querySelector('#feedbackArea,#feedback,#errorsContainer,#verbsContainer,#diagramDisplay');const box=feedback&&feedback.getBoundingClientRect();if(box&&box.top>=0&&box.bottom<visualViewport.height){status.hidden=true;return;}status.textContent=(main.querySelector('#qCounter')||{}).textContent||'Answer not checked';status.style.top=visualViewport.offsetTop+'px';status.hidden=false;};
+ main.addEventListener('focusin',update);main.addEventListener('focusout',()=>setTimeout(update,0));window.addEventListener('scroll',update,{passive:true});if(window.visualViewport)visualViewport.addEventListener('resize',update);
+ main.querySelectorAll('.checker-output .results').forEach(result=>new MutationObserver(()=>{const placeholder=result.parentElement.querySelector('.checker-placeholder');if(placeholder)placeholder.hidden=result.classList.contains('active');}).observe(result,{attributes:true,attributeFilter:['class']}));
+ main.querySelectorAll('a[href^="/lessons/"]').forEach(link=>link.addEventListener('click',()=>{if(window.elTrack)window.elTrack('cta_click',{cta_id:'tool_level-assessment_lesson'});}));
+})();
+</script></main>
+<!-- shared-footer-start -->
+<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>It isn’t connected to englishlearner.com.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
+<!-- shared-footer-end -->
 </body>
 </html>

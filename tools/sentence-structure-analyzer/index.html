@@ -10,339 +10,105 @@
     <meta property="og:url" content="https://englishlearner.org/tools/sentence-structure-analyzer/">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#00d4aa">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #0a0e27;
-            color: #e0e6ed;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            flex: 1;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-top: 20px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            color: #00d4aa;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        .subtitle {
-            font-size: 1.1rem;
-            color: #a8b2c1;
-        }
-        .tool-section {
-            background: #151d3f;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid #2a3550;
-        }
-        label {
-            display: block;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: #00d4aa;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 15px;
-            background: #0f1629;
-            border: 1px solid #2a3550;
-            border-radius: 8px;
-            color: #e0e6ed;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #00d4aa;
-        }
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        button {
-            padding: 12px 24px;
-            background: #00d4aa;
-            color: #0a0e27;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        button:hover {
-            background: #00b896;
-            transform: translateY(-2px);
-        }
-        button:active {
-            transform: translateY(0);
-        }
-        .results {
-            margin-top: 30px;
-            display: none;
-        }
-        .results.active {
-            display: block;
-        }
-        .analysis-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        .analysis-card {
-            background: #0f1629;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #2a3550;
-            border-left: 4px solid #00d4aa;
-        }
-        .card-label {
-            color: #a8b2c1;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-        }
-        .card-content {
-            color: #00d4aa;
-            font-size: 1.1rem;
-            font-weight: 600;
-            font-family: monospace;
-            word-break: break-word;
-            line-height: 1.6;
-        }
-        .diagram-section {
-            background: #0f1629;
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #2a3550;
-        }
-        .diagram-title {
-            color: #00d4aa;
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1rem;
-        }
-        .diagram {
-            background: #1a2338;
-            padding: 20px;
-            border-radius: 6px;
-            font-family: monospace;
-            font-size: 0.9rem;
-            overflow-x: auto;
-            color: #e0e6ed;
-            line-height: 2;
-        }
-        .diagram-subject {
-            color: #51cf66;
-            font-weight: 600;
-        }
-        .diagram-verb {
-            color: #ffd43b;
-            font-weight: 600;
-        }
-        .diagram-object {
-            color: #74c7ec;
-            font-weight: 600;
-        }
-        .diagram-modifier {
-            color: #ff8787;
-            font-style: italic;
-        }
-        .complexity-meter {
-            margin-top: 20px;
-        }
-        .complexity-label {
-            color: #a8b2c1;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .complexity-bar {
-            width: 100%;
-            height: 12px;
-            background: #2a3550;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        .complexity-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #51cf66, #ffd43b, #ff8787);
-            transition: width 0.3s;
-        }
-        .details-section {
-            margin-top: 25px;
-        }
-        .details-title {
-            color: #00d4aa;
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1rem;
-        }
-        .detail-item {
-            background: #0f1629;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            border-left: 4px solid #00d4aa;
-        }
-        .detail-label {
-            color: #a8b2c1;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-        .detail-content {
-            color: #e0e6ed;
-            font-family: monospace;
-        }
-        .empty-state {
-            text-align: center;
-            color: #7a8195;
-            padding: 40px 20px;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #7a8195;
-            font-size: 0.9rem;
-            border-top: 1px solid #2a3550;
-        }
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-            .tool-section {
-                padding: 20px;
-            }
-            .analysis-grid {
-                grid-template-columns: 1fr;
-            }
-            button {
-                width: 100%;
-            }
-        }
-    </style>
+    
     <link rel="canonical" href="https://englishlearner.org/tools/sentence-structure-analyzer/">
 <meta name="google-adsense-account" content="ca-pub-2241192243363112">
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/site.js" defer></script>
+<link rel="stylesheet" href="/assets/tool.css">
+<meta property="og:image" content="https://englishlearner.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="English Learner free lessons and practice">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
 </head>
 <body>
-<div class="el-top" role="navigation" aria-label="Site">
-  <a class="el-brand" href="/">English Learner</a>
-  <a href="/lessons/">Lessons</a>
-  <a href="/tools/">Practice tools</a>
-  <a href="/tools/level-assessment/">Level test</a>
-  <a href="/about/">About</a>
+<!-- shared-header-start -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="el-top"><div class="el-top-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><nav class="el-nav" aria-label="Main navigation"><a href="/lessons/">Lessons</a><a href="/tools/" aria-current="true">Practice</a><a href="/tools/level-assessment/" class="nav-wide" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta_id:'nav_level_test'})">Level test</a><a href="/about/" class="nav-wide">About</a></nav></div></header>
+<!-- shared-header-end -->
+<main class="lookup-tool tool-page tool-sentence-structure-analyzer" id="main"><script>
+window.toolResult = function(region, score, total, slug, track) {
+ region.classList.add('is-complete');
+ const placeholder=document.getElementById('resultPlaceholder'); if(placeholder) placeholder.hidden=true;
+ if(track && window.elTrack) window.elTrack('quiz_complete',{tool:slug,score:score,total:total});
+ let heading=region.querySelector('h2'); if(!heading){heading=document.createElement('h2');heading.textContent='Your result';region.prepend(heading);}
+ heading.tabIndex=-1; heading.focus();
+ if(!region.querySelector('.copy-result')){
+  const copy=document.createElement('button');copy.type='button';copy.className='copy-result btn';copy.textContent='Copy my result';
+  copy.onclick=async function(){const value=(region.querySelector('.result-value-long')?region.querySelector('.result-value-long').textContent+'. Rough guide. Grammar and reading only. ':'')+score+' out of '+total+'. Practice only. '+document.querySelector('link[rel=canonical]').href;try{await navigator.clipboard.writeText(value);copy.textContent='Result copied';}catch(e){let output=region.querySelector('.copy-fallback');if(!output){output=document.createElement('textarea');output.className='copy-fallback';output.readOnly=true;output.setAttribute('aria-label','Select the text to copy it');region.append(output);}output.value=value;output.focus();output.select();copy.textContent='Select the text to copy it.';}};
+  region.append(copy);
+ }
+};
+</script>
+<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">Sentence structure analyzer</li></ol></nav><h1>Sentence structure analyzer</h1><p class="lead">Explore a simple subject and verb pattern.</p><p class="badge badge-experimental">Experimental. Results can be wrong.</p><p class="helper"><a href="/lessons/present-perfect-vs-past-simple/">Read a tense lesson</a></p>
+<div class="checker-work"><div class="tool-section">
+<label for="sentenceInput">Enter a sentence:</label>
+<textarea id="sentenceInput" placeholder="Example: The quick brown fox jumps over the lazy dog while the sun sets."></textarea>
+<div class="button-group">
+<button onclick="analyzeSentence()" type="button">Analyze</button>
+<button onclick="clearAll()" type="button">Clear</button>
 </div>
-<div class="el-note" role="note">
-  <strong>Experimental tool.</strong> This tool uses simple rules and it makes mistakes. Do not rely on its results.
-  For checked explanations, use the <a href="/lessons/">grammar lessons</a> and the <a href="/tools/">practice tools</a>.
+</div><div class="checker-output"><section class="result-slot result-checker checker-placeholder"><h2>Possible findings</h2><p>Your result appears here when you finish.</p></section><div class="results" id="results">
+<div class="analysis-grid">
+<div class="analysis-card">
+<div class="card-label">Subject</div>
+<div class="card-content" id="subjectDisplay">–</div>
 </div>
-    <div class="container">
-        <header>
-            <h1>Sentence Structure Analyzer</h1>
-            <p class="subtitle">Analyze sentence components, clauses, and complexity</p>
-        </header>
+<div class="analysis-card">
+<div class="card-label">Verb</div>
+<div class="card-content" id="verbDisplay">–</div>
+</div>
+<div class="analysis-card">
+<div class="card-label">Object</div>
+<div class="card-content" id="objectDisplay">–</div>
+</div>
+<div class="analysis-card">
+<div class="card-label">Sentence Type</div>
+<div class="card-content" id="sentenceTypeDisplay">–</div>
+</div>
+</div>
+<div class="diagram-section">
+<div class="diagram-title">Sentence Diagram</div>
+<div class="diagram" id="diagramDisplay"></div>
+</div>
+<div class="diagram-section">
+<div class="diagram-title">Complexity Analysis</div>
+<div class="complexity-meter">
+<div class="complexity-label">
+<span>Complexity Score:</span>
+<span id="complexityScore">0/10</span>
+</div>
+<div class="complexity-bar">
+<div class="complexity-fill" id="complexityFill"></div>
+</div>
+</div>
+</div>
+<div class="details-section">
+<div class="details-title">Structural Details</div>
+<div class="detail-item">
+<div class="detail-label">Word Count</div>
+<div class="detail-content" id="wordCount">0</div>
+</div>
+<div class="detail-item">
+<div class="detail-label">Clause Count</div>
+<div class="detail-content" id="clauseCount">1</div>
+</div>
+<div class="detail-item">
+<div class="detail-label">Main Clause Type</div>
+<div class="detail-content" id="clauseType">Simple</div>
+</div>
+<div class="detail-item">
+<div class="detail-label">Modifiers Detected</div>
+<div class="detail-content" id="modifiers">None</div>
+</div>
+</div>
+</div></div></div>
 
-        <div class="tool-section">
-            <label for="sentenceInput">Enter a sentence:</label>
-            <input type="text" id="sentenceInput" placeholder="Example: The quick brown fox jumps over the lazy dog while the sun sets.">
-            <div class="button-group">
-                <button onclick="analyzeSentence()">Analyze</button>
-                <button onclick="clearAll()">Clear</button>
-            </div>
-        </div>
-
-        <div id="results" class="results">
-            <div class="analysis-grid">
-                <div class="analysis-card">
-                    <div class="card-label">Subject</div>
-                    <div class="card-content" id="subjectDisplay">&#8211;</div>
-                </div>
-                <div class="analysis-card">
-                    <div class="card-label">Verb</div>
-                    <div class="card-content" id="verbDisplay">&#8211;</div>
-                </div>
-                <div class="analysis-card">
-                    <div class="card-label">Object</div>
-                    <div class="card-content" id="objectDisplay">&#8211;</div>
-                </div>
-                <div class="analysis-card">
-                    <div class="card-label">Sentence Type</div>
-                    <div class="card-content" id="sentenceTypeDisplay">&#8211;</div>
-                </div>
-            </div>
-
-            <div class="diagram-section">
-                <div class="diagram-title">Sentence Diagram</div>
-                <div class="diagram" id="diagramDisplay"></div>
-            </div>
-
-            <div class="diagram-section">
-                <div class="diagram-title">Complexity Analysis</div>
-                <div class="complexity-meter">
-                    <div class="complexity-label">
-                        <span>Complexity Score:</span>
-                        <span id="complexityScore">0/10</span>
-                    </div>
-                    <div class="complexity-bar">
-                        <div id="complexityFill" class="complexity-fill"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="details-section">
-                <div class="details-title">Structural Details</div>
-                <div class="detail-item">
-                    <div class="detail-label">Word Count</div>
-                    <div class="detail-content" id="wordCount">0</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Clause Count</div>
-                    <div class="detail-content" id="clauseCount">1</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Main Clause Type</div>
-                    <div class="detail-content" id="clauseType">Simple</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Modifiers Detected</div>
-                    <div class="detail-content" id="modifiers">None</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script type="application/ld+json">
+<script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
@@ -352,91 +118,22 @@
         "applicationCategory": "EducationalApplication"
     }
     </script>
-
-    <script>
+<script>
+function inputError(input,message){let error=document.getElementById('inputError');if(!error){error=document.createElement('p');error.id='inputError';error.className='field-error';error.setAttribute('role','status');input.after(error);}error.textContent=message;input.setAttribute('aria-describedby','inputError');input.setAttribute('aria-invalid',message?'true':'false');if(message)input.focus();}
         const commonVerbs = ['is', 'are', 'am', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'should', 'could', 'can', 'may', 'might', 'must', 'shall', 'go', 'goes', 'went', 'going', 'come', 'comes', 'came', 'coming', 'make', 'makes', 'made', 'making', 'get', 'gets', 'got', 'getting', 'say', 'says', 'said', 'saying', 'take', 'takes', 'took', 'taking', 'give', 'gives', 'gave', 'giving', 'find', 'finds', 'found', 'finding', 'tell', 'tells', 'told', 'telling', 'ask', 'asks', 'asked', 'asking', 'work', 'works', 'worked', 'working', 'seem', 'seems', 'seemed', 'seeming', 'feel', 'feels', 'felt', 'feeling', 'try', 'tries', 'tried', 'trying', 'leave', 'leaves', 'left', 'leaving', 'put', 'puts', 'putting', 'mean', 'means', 'meant', 'meaning', 'keep', 'keeps', 'kept', 'keeping', 'let', 'lets', 'letting', 'begin', 'begins', 'began', 'beginning', 'help', 'helps', 'helped', 'helping', 'talk', 'talks', 'talked', 'talking', 'turn', 'turns', 'turned', 'turning', 'start', 'starts', 'started', 'starting', 'show', 'shows', 'showed', 'shown', 'showing', 'hear', 'hears', 'heard', 'hearing', 'play', 'plays', 'played', 'playing', 'run', 'runs', 'ran', 'running', 'move', 'moves', 'moved', 'moving', 'like', 'likes', 'liked', 'liking', 'live', 'lives', 'lived', 'living', 'believe', 'believes', 'believed', 'believing', 'hold', 'holds', 'held', 'holding', 'bring', 'brings', 'brought', 'bringing', 'happen', 'happens', 'happened', 'happening', 'write', 'writes', 'wrote', 'written', 'writing', 'provide', 'provides', 'provided', 'providing', 'sit', 'sits', 'sat', 'sitting', 'stand', 'stands', 'stood', 'standing'];
 
         const articles = ['a', 'an', 'the'];
         const conjunctions = ['and', 'but', 'or', 'nor', 'yet', 'so', 'because', 'although', 'though', 'if', 'unless', 'while', 'when', 'where', 'as', 'since', 'until', 'before', 'after'];
 
-        function analyzeSentence() {
-            const sentence = document.getElementById('sentenceInput').value.trim();
-            if (!sentence) {
-                alert('Please enter a sentence to analyze.');
-                return;
-            }
-
-            const results = document.getElementById('results');
-            results.classList.add('active');
-
-            const words = sentence.toLowerCase().split(/\s+/);
-
-            // Find subject (typically first noun/pronoun before main verb)
-            let subject = '';
-            let subjectEnd = 0;
-            for (let i = 0; i < words.length; i++) {
-                if (commonVerbs.some(v => words[i].includes(v))) {
-                    subject = words.slice(0, i).join(' ');
-                    subjectEnd = i;
-                    break;
-                }
-            }
-
-            // Find main verb
-            let mainVerb = '';
-            let verbIndex = -1;
-            for (let i = 0; i < words.length; i++) {
-                if (commonVerbs.some(v => words[i].includes(v))) {
-                    mainVerb = words[i];
-                    verbIndex = i;
-                    break;
-                }
-            }
-
-            // Find object (what the verb acts upon)
-            let object = '';
-            if (verbIndex !== -1 && verbIndex < words.length - 1) {
-                object = words.slice(verbIndex + 1).join(' ').split(/\s+(and|but|or|because|although|while|when|if)\s+/)[0];
-            }
-
-            // Determine sentence type
-            const hasConjunction = conjunctions.some(c => sentence.toLowerCase().includes(' ' + c + ' '));
-            const clauseCount = conjunctions.reduce((count, c) => count + (sentence.toLowerCase().match(new RegExp('\\s' + c + '\\s', 'g')) || []).length, 1);
-            let sentenceType = 'Simple';
-            if (clauseCount > 1) {
-                sentenceType = hasConjunction && /\b(because|although|since|while|when|if|unless|before|after)\b/i.test(sentence) ? 'Complex' : 'Compound';
-            }
-
-            // Count complexity
-            const complexity = Math.min(10, Math.floor((clauseCount * 2 + (subject.split(' ').length > 3 ? 2 : 0) + (object.split(' ').length > 3 ? 2 : 0))));
-
-            // Display results
-            document.getElementById('subjectDisplay').textContent = subject || '(implied)';
-            document.getElementById('verbDisplay').textContent = mainVerb;
-            document.getElementById('objectDisplay').textContent = object || '(intransitive)';
-            document.getElementById('sentenceTypeDisplay').textContent = sentenceType;
-            document.getElementById('wordCount').textContent = words.length + ' words';
-            document.getElementById('clauseCount').textContent = clauseCount + ' clause' + (clauseCount > 1 ? 's' : '');
-            document.getElementById('clauseType').textContent = sentenceType;
-            document.getElementById('complexityScore').textContent = complexity + '/10';
-            document.getElementById('complexityFill').style.width = (complexity * 10) + '%';
-
-            // Build diagram
-            const diagram = buildDiagram(subject, mainVerb, object);
-            document.getElementById('diagramDisplay').innerHTML = diagram;
-
-            // Find modifiers
-            const modifierWords = findModifiers(sentence, subject, mainVerb, object);
-            document.getElementById('modifiers').textContent = modifierWords.length > 0 ? modifierWords.join(', ') : 'None detected';
-        }
-
-        function buildDiagram(subject, verb, object) {
-            let diagram = '<span class="diagram-subject">' + (subject || '(Subject)') + '</span>';
-            diagram += ' | <span class="diagram-verb">' + verb + '</span>';
-            if (object) {
-                diagram += ' | <span class="diagram-object">' + object + '</span>';
-            }
-            return diagram;
+        function analyzeSentence(){
+ const input=document.getElementById('sentenceInput'),sentence=input.value.trim();if(!sentence){inputError(input,'Enter a sentence to check.');return;}inputError(input,'');
+ document.getElementById('results').classList.add('active');const tokens=sentence.match(/[A-Za-z']+/g)||[];const words=tokens.map(w=>w.toLowerCase());
+ const vi=words.findIndex((w,i)=>i>0&&commonVerbs.includes(w));const complex=words.some(w=>conjunctions.includes(w));const found=vi>0&&!complex;
+ const subject=found?tokens.slice(0,vi).join(' '):'Not determined';const verb=found?tokens[vi]:'Not determined';const object='Not determined by these rules';
+ document.getElementById('subjectDisplay').textContent=subject;document.getElementById('verbDisplay').textContent=verb;document.getElementById('objectDisplay').textContent=object;
+ document.getElementById('sentenceTypeDisplay').textContent=found?'Possible simple clause':'Not determined';document.getElementById('wordCount').textContent=words.length+' words';document.getElementById('clauseCount').textContent=found?'One possible clause':'Not determined';document.getElementById('clauseType').textContent='Needs context';document.getElementById('complexityScore').textContent='Not measured';document.getElementById('complexityFill').style.width='0%';
+ const diagram=document.getElementById('diagramDisplay');diagram.textContent='Possible subject '+subject+' | Possible verb '+verb+'. Objects, clauses and complexity need a fuller analysis.';
+ document.getElementById('modifiers').textContent=findModifiers(sentence,subject,verb,object).join(', ')||'None found by these rules';diagram.tabIndex=-1;diagram.focus();
         }
 
         function findModifiers(sentence, subject, verb, object) {
@@ -448,11 +145,11 @@
             const sentenceLower = sentence.toLowerCase();
 
             adjectives.forEach(adj => {
-                if (sentenceLower.includes(adj)) modifierWords.push(adj + ' (adjective)');
+                if (sentenceLower.split(/\W+/).includes(adj)) modifierWords.push(adj + ' (adjective)');
             });
 
             adverbs.forEach(adv => {
-                if (sentenceLower.includes(adv)) modifierWords.push(adv + ' (adverb)');
+                if (sentenceLower.split(/\W+/).includes(adv)) modifierWords.push(adv + ' (adverb)');
             });
 
             prepositionalPhrases.forEach(prep => {
@@ -473,18 +170,23 @@
             }
         });
     </script>
-<div class="el-foot" role="contentinfo">
-  <div class="el-links">
-    <a href="/">Home</a>
-    <a href="/lessons/">Lessons</a>
-    <a href="/tools/">Practice tools</a>
-    <a href="/about/">About</a>
-    <a href="/contact/">Contact</a>
-    <a href="/privacy/">Privacy</a>
-    <button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button>
-  </div>
-  <p>&copy; 2026 englishlearner.org. An independent site. Not connected to any exam board.</p>
-  <p>From the same developer: <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant.</p>
-</div>
+<p class="retained-intro reading">Analyze sentence components, clauses, and complexity</p><div class="el-note" role="note">
+Experimental tool. This tool uses simple rules and it makes mistakes. Do not rely on its results.
+  For checked explanations, use the <a href="/lessons/">grammar lessons</a> and the <a href="/tools/">practice tools</a>.
+</div><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/present-perfect-vs-past-simple/">Read a tense lesson</a><a class="btn" href="/tools/">Choose another practice</a></div></section><noscript><p>Interactive practice needs JavaScript. <a href="/lessons/present-perfect-vs-past-simple/">Read the written study guide</a>.</p></noscript><script>
+if(matchMedia('(min-width:1024px)').matches)document.querySelectorAll('.quiz-settings:not([hidden])').forEach(el=>el.open=true);
+</script><script>
+(function(){
+ const main=document.getElementById('main');
+ const status=document.createElement('p');status.className='typing-status';status.setAttribute('role','status');status.hidden=true;main.append(status);
+ const update=()=>{const input=document.activeElement;if(!input||!main.contains(input)||!input.matches('textarea,input:not([type=radio]):not([type=checkbox])')||!window.visualViewport){status.hidden=true;return;}const feedback=main.querySelector('#feedbackArea,#feedback,#errorsContainer,#verbsContainer,#diagramDisplay');const box=feedback&&feedback.getBoundingClientRect();if(box&&box.top>=0&&box.bottom<visualViewport.height){status.hidden=true;return;}status.textContent=(main.querySelector('#qCounter')||{}).textContent||'Answer not checked';status.style.top=visualViewport.offsetTop+'px';status.hidden=false;};
+ main.addEventListener('focusin',update);main.addEventListener('focusout',()=>setTimeout(update,0));window.addEventListener('scroll',update,{passive:true});if(window.visualViewport)visualViewport.addEventListener('resize',update);
+ main.querySelectorAll('.checker-output .results').forEach(result=>new MutationObserver(()=>{const placeholder=result.parentElement.querySelector('.checker-placeholder');if(placeholder)placeholder.hidden=result.classList.contains('active');}).observe(result,{attributes:true,attributeFilter:['class']}));
+ main.querySelectorAll('a[href^="/lessons/"]').forEach(link=>link.addEventListener('click',()=>{if(window.elTrack)window.elTrack('cta_click',{cta_id:'tool_sentence-structure-analyzer_lesson'});}));
+})();
+</script></main>
+<!-- shared-footer-start -->
+<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>It isn’t connected to englishlearner.com.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
+<!-- shared-footer-end -->
 </body>
 </html>

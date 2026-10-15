@@ -10,250 +10,69 @@
     <meta property="og:url" content="https://englishlearner.org/tools/verb-tense-checker/">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#00d4aa">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #0a0e27;
-            color: #e0e6ed;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            flex: 1;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-top: 20px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            color: #00d4aa;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        .subtitle {
-            font-size: 1.1rem;
-            color: #a8b2c1;
-        }
-        .tool-section {
-            background: #151d3f;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid #2a3550;
-        }
-        label {
-            display: block;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: #00d4aa;
-        }
-        textarea {
-            width: 100%;
-            height: 150px;
-            padding: 15px;
-            background: #0f1629;
-            border: 1px solid #2a3550;
-            border-radius: 8px;
-            color: #e0e6ed;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 1rem;
-            resize: vertical;
-            transition: border-color 0.3s;
-        }
-        textarea:focus {
-            outline: none;
-            border-color: #00d4aa;
-        }
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        button {
-            padding: 12px 24px;
-            background: #00d4aa;
-            color: #0a0e27;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        button:hover {
-            background: #00b896;
-            transform: translateY(-2px);
-        }
-        button:active {
-            transform: translateY(0);
-        }
-        .results {
-            margin-top: 30px;
-            display: none;
-        }
-        .results.active {
-            display: block;
-        }
-        .verb-item {
-            background: #0f1629;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border-left: 4px solid #00d4aa;
-        }
-        .verb-word {
-            font-weight: 600;
-            color: #00d4aa;
-            font-family: monospace;
-        }
-        .verb-tense {
-            color: #a8b2c1;
-            font-size: 0.95rem;
-            margin-top: 5px;
-        }
-        .verb-explanation {
-            color: #7a8195;
-            font-size: 0.9rem;
-            margin-top: 8px;
-            line-height: 1.5;
-        }
-        .tense-summary {
-            background: #0f1629;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #2a3550;
-        }
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #2a3550;
-        }
-        .summary-item:last-child {
-            border-bottom: none;
-        }
-        .summary-label {
-            color: #a8b2c1;
-            font-weight: 500;
-        }
-        .summary-count {
-            color: #00d4aa;
-            font-weight: 600;
-        }
-        .inconsistency {
-            background: #3d2a2a;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border-left: 4px solid #ff6b6b;
-        }
-        .inconsistency-title {
-            color: #ff6b6b;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .inconsistency-text {
-            color: #a8b2c1;
-            font-size: 0.95rem;
-        }
-        .empty-state {
-            text-align: center;
-            color: #7a8195;
-            padding: 40px 20px;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #7a8195;
-            font-size: 0.9rem;
-            border-top: 1px solid #2a3550;
-        }
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-            .tool-section {
-                padding: 20px;
-            }
-            .button-group {
-                flex-direction: column;
-            }
-            button {
-                width: 100%;
-            }
-        }
-    </style>
+    
     <link rel="canonical" href="https://englishlearner.org/tools/verb-tense-checker/">
 <meta name="google-adsense-account" content="ca-pub-2241192243363112">
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/site.js" defer></script>
+<link rel="stylesheet" href="/assets/tool.css">
+<meta property="og:image" content="https://englishlearner.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="English Learner free lessons and practice">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
 </head>
 <body>
-<div class="el-top" role="navigation" aria-label="Site">
-  <a class="el-brand" href="/">English Learner</a>
-  <a href="/lessons/">Lessons</a>
-  <a href="/tools/">Practice tools</a>
-  <a href="/tools/level-assessment/">Level test</a>
-  <a href="/about/">About</a>
+<!-- shared-header-start -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="el-top"><div class="el-top-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><nav class="el-nav" aria-label="Main navigation"><a href="/lessons/">Lessons</a><a href="/tools/" aria-current="true">Practice</a><a href="/tools/level-assessment/" class="nav-wide" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta_id:'nav_level_test'})">Level test</a><a href="/about/" class="nav-wide">About</a></nav></div></header>
+<!-- shared-header-end -->
+<main class="lookup-tool tool-page tool-verb-tense-checker" id="main"><script>
+window.toolResult = function(region, score, total, slug, track) {
+ region.classList.add('is-complete');
+ const placeholder=document.getElementById('resultPlaceholder'); if(placeholder) placeholder.hidden=true;
+ if(track && window.elTrack) window.elTrack('quiz_complete',{tool:slug,score:score,total:total});
+ let heading=region.querySelector('h2'); if(!heading){heading=document.createElement('h2');heading.textContent='Your result';region.prepend(heading);}
+ heading.tabIndex=-1; heading.focus();
+ if(!region.querySelector('.copy-result')){
+  const copy=document.createElement('button');copy.type='button';copy.className='copy-result btn';copy.textContent='Copy my result';
+  copy.onclick=async function(){const value=(region.querySelector('.result-value-long')?region.querySelector('.result-value-long').textContent+'. Rough guide. Grammar and reading only. ':'')+score+' out of '+total+'. Practice only. '+document.querySelector('link[rel=canonical]').href;try{await navigator.clipboard.writeText(value);copy.textContent='Result copied';}catch(e){let output=region.querySelector('.copy-fallback');if(!output){output=document.createElement('textarea');output.className='copy-fallback';output.readOnly=true;output.setAttribute('aria-label','Select the text to copy it');region.append(output);}output.value=value;output.focus();output.select();copy.textContent='Select the text to copy it.';}};
+  region.append(copy);
+ }
+};
+</script>
+<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">Verb tense checker</li></ol></nav><h1>Verb tense checker</h1><p class="lead">Find possible verb forms in your text.</p><p class="badge badge-experimental">Experimental. Results can be wrong.</p><p class="helper"><a href="/lessons/present-perfect-vs-past-simple/">Read the tense lesson</a></p>
+<div class="checker-work"><div class="tool-section">
+<label for="textInput">Paste your text here:</label>
+<textarea id="textInput" placeholder="Example: I went to the store yesterday. I buy milk and some bread. I am returning home now..."></textarea>
+<div class="button-group">
+<button onclick="analyzeVerbs()" type="button">Analyze Verbs</button>
+<button onclick="clearAll()" type="button">Clear</button>
 </div>
-<div class="el-note" role="note">
-  <strong>Experimental tool.</strong> This tool uses simple rules and it makes mistakes. Do not rely on its results.
-  For checked explanations, use the <a href="/lessons/">grammar lessons</a> and the <a href="/tools/">practice tools</a>.
+</div><div class="checker-output"><section class="result-slot result-checker checker-placeholder"><h2>Possible findings</h2><p>Your result appears here when you finish.</p></section><div class="results" id="results">
+<div class="tense-summary">
+<div>Tense Summary</div>
+<div class="summary-item">
+<span class="summary-label">Total Verbs Found:</span>
+<span class="summary-count" id="totalVerbs">0</span>
 </div>
-    <div class="container">
-        <header>
-            <h1>Verb Tense Checker</h1>
-            <p class="subtitle">Identify verb tenses, spot inconsistencies, and improve your writing</p>
-        </header>
+<div class="summary-item">
+<span class="summary-label">Unique Tenses:</span>
+<span class="summary-count" id="uniqueTenses">0</span>
+</div>
+<div class="summary-item">
+<span class="summary-label">Consistency</span>
+<span class="summary-count" id="consistencyScore">0%</span>
+</div>
+</div>
+<div id="inconsistenciesContainer"></div>
+<div id="verbsContainer"></div>
+</div></div></div>
 
-        <div class="tool-section">
-            <label for="textInput">Paste your text here:</label>
-            <textarea id="textInput" placeholder="Example: I went to the store yesterday. I buy milk and some bread. I am returning home now..."></textarea>
-            <div class="button-group">
-                <button onclick="analyzeVerbs()">Analyze Verbs</button>
-                <button onclick="clearAll()">Clear</button>
-            </div>
-        </div>
-
-        <div id="results" class="results">
-            <div class="tense-summary">
-                <div style="font-weight: 600; margin-bottom: 15px; color: #00d4aa;">Tense Summary</div>
-                <div class="summary-item">
-                    <span class="summary-label">Total Verbs Found:</span>
-                    <span class="summary-count" id="totalVerbs">0</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Unique Tenses:</span>
-                    <span class="summary-count" id="uniqueTenses">0</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Consistency Score:</span>
-                    <span class="summary-count" id="consistencyScore">0%</span>
-                </div>
-            </div>
-
-            <div id="inconsistenciesContainer"></div>
-            <div id="verbsContainer"></div>
-        </div>
-    </div>
-
-    <script type="application/ld+json">
+<script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
@@ -263,118 +82,27 @@
         "applicationCategory": "EducationalApplication"
     }
     </script>
-
-    <script>
-        const verbPatterns = {
-            'simple_present': {
-                regex: /\b(am|is|are|do|does|have|has|go|goes|make|makes|take|takes|say|says|give|gives|find|finds|tell|tells|ask|asks|work|works|seem|seems|feel|feels|try|tries|leave|leaves|put|puts|mean|means|keep|keeps|let|lets|begin|begins|seem|seems|help|helps|talk|talks|turn|turns|start|starts|show|shows|hear|hears|play|plays|run|runs|move|moves|like|likes|live|lives|believe|believes|hold|holds|bring|brings|happen|happens|write|writes|provide|provides|sit|sits|stand|stands|lose|loses|pay|pays|meet|meets|include|includes|continue|continues|set|sets|learn|learns|change|changes|lead|leads|understand|understands|watch|watches|follow|follows|stop|stops|create|creates|speak|speaks|read|reads|allow|allows|add|adds|spend|spends|grow|grows|open|opens|walk|walks|win|wins|offer|offers|remember|remembers|love|loves|consider|considers|appear|appears|buy|buys|wait|waits|serve|serves|die|dies|send|sends|expect|expects|build|builds|stay|stays|fall|falls|cut|cuts|reach|reaches|kill|kills|remain|remains|suggest|suggests|raise|raises|pass|passes|sell|sells|require|requires|report|reports|decide|decides|pull|pulls|explain|explains|develop|develops|carry|carries|break|breaks|receive|receives|agree|agrees|support|supports|hit|hits|produce|produces|eat|eats|cover|covers|catch|catches|draw|draws|choose|chooses|cover|covers|claim|claims|close|closes|deal|deals|drive|drives|eat|eats|establish|establishes|face|faces|feed|feeds|feel|feels|fight|fights|find|finds|finish|finishes|fit|fits|fly|flies|focus|focuses|force|forces|form|forms|gather|gathers|generate|generates|get|gets)\b/gi,
-                label: 'Simple Present',
-                explanation: 'Used for habitual actions, general truths, or present states.'
-            },
-            'simple_past': {
-                regex: /\b(was|were|did|had|went|made|took|said|gave|found|told|asked|worked|seemed|felt|tried|left|put|meant|kept|let|began|seemed|helped|talked|turned|started|showed|heard|played|ran|moved|liked|lived|believed|held|brought|happened|wrote|provided|sat|stood|lost|paid|met|included|continued|set|learned|changed|led|understood|watched|followed|stopped|created|spoke|read|allowed|added|spent|grew|opened|walked|won|offered|remembered|loved|considered|appeared|bought|waited|served|died|sent|expected|built|stayed|fell|cut|reached|killed|remained|suggested|raised|passed|sold|required|reported|decided|pulled|explained|developed|carried|broke|received|agreed|supported|hit|produced|ate|covered|caught|drew|chose|claimed|closed|dealt|drove|established|faced|fed|fought|finished|fit|flew|focused|forced|formed|gathered|generated|got|arrived|became|began|believed|brought|bought|built|caught|caused|chose|came|could|cut|decided|did|drew|dreamed|dressed|drove|drove|dropped|earned|ended|entered|explained|felt|filled|found|forgot|formed|gained|gave|got|grew|ground|had|happened|heard|held|helped|hoped|hung|hurt|included|involved|joined|kept|killed|knew|knocked|laid|landed|lasted|learned|left|let|lied|lifted|lived|loaded|looked|lost|loved|made|managed|marked|married|meant|measured|met|might|missed|moved|needed|noticed|offered|opened|ordered|organized|paid|passed|passed|paused|picked|placed|planned|played|pleased|pointed|poured|prepared|pressed|prevented|pulled|purchased|pushed|put|raised|reached|read|realized|received|recognized|recorded|reduced|referred|reflected|refused|regarded|related|released|relied|remained|remembered|reminded|removed|rendered|repaired|repeated|replaced|reported|represented|required|reserved|resolved|responded|resulted|retained|retired|returned|revealed|reversed|reviewed|revised|revoked|rode|rolled|rushed|said|saved|saw|scared|scattered|sealed|searched|seated|secured|seemed|selected|separated|served|set|settled|shared|shed|shined|shook|shouted|showed|shrieked|shut|signed|silenced|singled|sounded|sped|spent|spilled|spitted|split|spoke|spoiled|spread|sprung|squeezed|stood|stopped|stored|straightened|strained|stretched|stripped|struggled|stuck|studied|stuffed|stumbled|stunned|submitted|subscribed|substituted|succeeded|suffered|suggested|suited|summarized|supplied|supported|supposed|suppressed|surfaced|surged|surprised|surrounded|surveyed|suspected|suspended|swallowed|swam|swapped|swore|swung|symbolized|sympathized|synthesized|tackled|tagged|tailed|tailored|talked|tamed|tapped|targeted|taught|teased|telephoned|tempered|tempted|tendered|tested|thanked|thawed|threatened|threw|thrust|ticked|tied|tightened|tilled|tilted|timed|tingled|tipped|tired|titled|toggled|tolerated|tolled|toned|tongued|topped|tormented|tossed|totaled|touched|toured|toweled|traced|tracked|tracked|traded|trained|transferred|transformed|transited|translated|transmitted|trapped|traveled|traversed|treated|trembled|trenched|trespassed|trialed|triangulated|tricked|triggered|trimmed|tripled|triumphed|trolled|tromped|trooped|troubled|trousered|trounced|trucked|trudged|truly|trumped|trumpeted|truncated|trusted|tried|tugged|tumbled|tuned|tunneled|turbocharged|turfed|turned|tweaked|tweeted|tweezed|twirled|twisted|typed|typified|tyrannized|uglified|ulcerated|umpired|unaffected|unarmed|unasked|unaware|unbaked|unbanded|unbaptized|unbaptized|unbaptized|unbarked|unbarred|unbeaten|unbedded|unbecoming|unbegotten|unbeknown|unbelief|unbelieved|unbelted|unbenefited|unbent|unbereft|unbesmirched|unbesought|unbespoken|unbesmutted|unbetrayed|unbetrayed|unbetrayed|unbiased|unbidden|unbilled|unbilled|unbiological|unbiological|unbiological|unbitted|unblessed|unblest|unblessed|unblind|unblinkingly|unblocked|unblown|unblubbering|unblunted|unblurred|unblushing|unboarded|unboarded|unboarded|unboarded|unboarded|unboarded|unboarded|unboarded|unboarded|unboarded|unboasted|unboastful|unboated|unbobbed|unbodied|unbodily|unbodily|unbodily|unbodily|unboiled|unbolted|unboned|unbonet|unbonhomm|unbonned|unbonneted|unbonny|unbonny|unbonny|unbonny|unbonny|unbonny|unbonny|unbonny|unbonny|unbonny|unbonny|unbonny|unbonny|unbonobo|unbonny|unbonny|unbonny|unbonny|unbonny|unbonny)\b/gi,
-                label: 'Simple Past',
-                explanation: 'Used for completed actions at a specific time in the past.'
-            },
-            'present_progressive': {
-                regex: /\b(am\s+\w+ing|is\s+\w+ing|are\s+\w+ing)\b/gi,
-                label: 'Present Progressive',
-                explanation: 'Used for ongoing actions happening right now.'
-            },
-            'past_progressive': {
-                regex: /\b(was\s+\w+ing|were\s+\w+ing)\b/gi,
-                label: 'Past Progressive',
-                explanation: 'Used for ongoing actions in the past.'
-            },
-            'present_perfect': {
-                regex: /\b(have\s+\w+ed|has\s+\w+ed|have\s+been|has\s+been)\b/gi,
-                label: 'Present Perfect',
-                explanation: 'Used for actions that started in the past and continue to the present.'
-            },
-            'past_perfect': {
-                regex: /\b(had\s+\w+ed|had\s+been)\b/gi,
-                label: 'Past Perfect',
-                explanation: 'Used for an action completed before another past action.'
-            },
-            'future': {
-                regex: /\b(will\s+\w+|shall\s+\w+|is\s+going\s+to|are\s+going\s+to|am\s+going\s+to)\b/gi,
-                label: 'Future Tense',
-                explanation: 'Used for actions that will happen in the future.'
-            }
-        };
-
-        function analyzeVerbs() {
-            const text = document.getElementById('textInput').value.trim();
-            if (!text) {
-                alert('Please paste some text to analyze.');
-                return;
-            }
-
-            const results = document.getElementById('results');
-            results.classList.add('active');
-
-            const verbs = [];
-            const tenseCounts = {};
-            const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
-
-            for (const [tenseKey, pattern] of Object.entries(verbPatterns)) {
-                const matches = text.matchAll(pattern.regex);
-                for (const match of matches) {
-                    verbs.push({
-                        word: match[0],
-                        tense: pattern.label,
-                        explanation: pattern.explanation,
-                        position: match.index
-                    });
-                    tenseCounts[pattern.label] = (tenseCounts[pattern.label] || 0) + 1;
-                }
-            }
-
-            verbs.sort((a, b) => a.position - b.position);
-
-            // Calculate consistency score
-            const uniqueTenses = Object.keys(tenseCounts).length;
-            let consistencyScore = 100;
-            if (uniqueTenses > 1) {
-                consistencyScore = Math.max(40, 100 - (uniqueTenses - 1) * 15);
-            }
-
-            document.getElementById('totalVerbs').textContent = verbs.length;
-            document.getElementById('uniqueTenses').textContent = uniqueTenses;
-            document.getElementById('consistencyScore').textContent = consistencyScore + '%';
-
-            // Display inconsistencies
-            const inconsistenciesContainer = document.getElementById('inconsistenciesContainer');
-            inconsistenciesContainer.innerHTML = '';
-
-            if (uniqueTenses > 1) {
-                const inconsistencyDiv = document.createElement('div');
-                inconsistencyDiv.className = 'inconsistency';
-                inconsistencyDiv.innerHTML = `
-                    <div class="inconsistency-title">Tense inconsistency detected</div>
-                    <div class="inconsistency-text">Your text uses ${uniqueTenses} different tenses. Consider maintaining a consistent tense throughout your writing to improve clarity.</div>
-                `;
-                inconsistenciesContainer.appendChild(inconsistencyDiv);
-            }
-
-            // Display verbs
-            const verbsContainer = document.getElementById('verbsContainer');
-            verbsContainer.innerHTML = '<div style="font-weight: 600; margin-bottom: 15px; color: #00d4aa;">Verbs Found</div>';
-
-            if (verbs.length === 0) {
-                verbsContainer.innerHTML += '<div class="empty-state">No verbs detected. Try pasting text with more verbs.</div>';
-            } else {
-                verbs.forEach((verb, index) => {
-                    const verbDiv = document.createElement('div');
-                    verbDiv.className = 'verb-item';
-                    verbDiv.innerHTML = `
-                        <span class="verb-word">${verb.word}</span>
-                        <div class="verb-tense">${verb.tense}</div>
-                        <div class="verb-explanation">${verb.explanation}</div>
-                    `;
-                    verbsContainer.appendChild(verbDiv);
-                });
-            }
+<script>
+function inputError(input,message){let error=document.getElementById('inputError');if(!error){error=document.createElement('p');error.id='inputError';error.className='field-error';error.setAttribute('role','status');input.after(error);}error.textContent=message;input.setAttribute('aria-describedby','inputError');input.setAttribute('aria-invalid',message?'true':'false');if(message)input.focus();}
+        const verbPatterns = [
+ [/\b(?:have|has|had)\s+(?:not\s+)?been\s+[a-z]+ing\b/gi,'Perfect continuous form','The auxiliary sets the time. Check the sentence context.'],
+ [/\b(?:have|has)\s+(?:not\s+)?(?:[a-z]+ed|gone|been|seen|done|written|eaten|taken|known|made|bought|found|spoken|broken|come|run|read)\b/gi,'Present perfect form','Have or has plus a past participle can connect a past event or state to now.'],
+ [/\bhad\s+(?:not\s+)?(?:[a-z]+ed|gone|been|seen|done|written|eaten|taken|known|made|bought|found|spoken|broken|come|run|read)\b/gi,'Past perfect form','Had plus a past participle can place an event before a past reference point.'],
+ [/\b(?:am|is|are)\s+(?:not\s+)?[a-z]+ing\b/gi,'Present continuous form','Be plus an -ing form can describe an action in progress.'],
+ [/\b(?:was|were)\s+(?:not\s+)?[a-z]+ing\b/gi,'Past continuous form','Was or were plus an -ing form can describe a past action in progress.'],
+ [/\b(?:will|shall)\s+(?:not\s+)?[a-z]+\b/gi,'Future modal form','Will or shall can express a future meaning.'],
+ [/\b(?:was|were|did|went|ran|saw|wrote|ate|took|bought|worked|played|walked|finished)\b/gi,'Possible past simple form','These forms can describe a finished past event. Context still matters.'],
+ [/\b(?:am|is|are|do|does|have|has|go|goes|work|works|run|runs|play|plays)\b/gi,'Possible present simple form','A word match alone does not prove its grammatical role.']
+ ];
+        function analyzeVerbs(){
+ const input=document.getElementById('textInput'),text=input.value;if(!text.trim()){inputError(input,'Enter some text to check.');return;}inputError(input,'');
+ const results=document.getElementById('results');results.classList.add('active');let candidates=[];
+ verbPatterns.forEach(([regex,label,explanation])=>{for(const m of text.matchAll(regex))candidates.push({word:m[0],start:m.index,end:m.index+m[0].length,label,explanation});});
+ candidates.sort((a,b)=>(b.end-b.start)-(a.end-a.start));let verbs=[];candidates.forEach(v=>{if(!verbs.some(x=>v.start<x.end&&v.end>x.start))verbs.push(v);});verbs.sort((a,b)=>a.start-b.start);
+ document.getElementById('totalVerbs').textContent=verbs.length;document.getElementById('uniqueTenses').textContent=new Set(verbs.map(x=>x.label)).size;document.getElementById('consistencyScore').textContent='Not measured';
+ document.getElementById('inconsistenciesContainer').textContent='Different tenses can be correct in the same text. These word patterns cannot check tense consistency.';
+ const out=document.getElementById('verbsContainer');out.replaceChildren();const h=document.createElement('h2');h.className='result-finding';h.tabIndex=-1;h.textContent=verbs.length?'Possible verb forms':'No forms found by these rules.';out.append(h);
+ verbs.forEach(v=>{const item=document.createElement('div');item.className='verb-item';const title=document.createElement('h3');title.textContent=v.word;const p=document.createElement('p');p.textContent=v.label+'. '+v.explanation;item.append(title,p);out.append(item);});h.focus();
         }
 
         function clearAll() {
@@ -388,18 +116,23 @@
             }
         });
     </script>
-<div class="el-foot" role="contentinfo">
-  <div class="el-links">
-    <a href="/">Home</a>
-    <a href="/lessons/">Lessons</a>
-    <a href="/tools/">Practice tools</a>
-    <a href="/about/">About</a>
-    <a href="/contact/">Contact</a>
-    <a href="/privacy/">Privacy</a>
-    <button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button>
-  </div>
-  <p>&copy; 2026 englishlearner.org. An independent site. Not connected to any exam board.</p>
-  <p>From the same developer: <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant.</p>
-</div>
+<p class="retained-intro reading">Find possible verb forms and review their time references.</p><div class="el-note" role="note">
+Experimental tool. This tool uses simple rules and it makes mistakes. Do not rely on its results.
+  For checked explanations, use the <a href="/lessons/">grammar lessons</a> and the <a href="/tools/">practice tools</a>.
+</div><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/present-perfect-vs-past-simple/">Read the tense lesson</a><a class="btn" href="/tools/">Choose another practice</a></div></section><noscript><p>Interactive practice needs JavaScript. <a href="/lessons/present-perfect-vs-past-simple/">Read the written study guide</a>.</p></noscript><script>
+if(matchMedia('(min-width:1024px)').matches)document.querySelectorAll('.quiz-settings:not([hidden])').forEach(el=>el.open=true);
+</script><script>
+(function(){
+ const main=document.getElementById('main');
+ const status=document.createElement('p');status.className='typing-status';status.setAttribute('role','status');status.hidden=true;main.append(status);
+ const update=()=>{const input=document.activeElement;if(!input||!main.contains(input)||!input.matches('textarea,input:not([type=radio]):not([type=checkbox])')||!window.visualViewport){status.hidden=true;return;}const feedback=main.querySelector('#feedbackArea,#feedback,#errorsContainer,#verbsContainer,#diagramDisplay');const box=feedback&&feedback.getBoundingClientRect();if(box&&box.top>=0&&box.bottom<visualViewport.height){status.hidden=true;return;}status.textContent=(main.querySelector('#qCounter')||{}).textContent||'Answer not checked';status.style.top=visualViewport.offsetTop+'px';status.hidden=false;};
+ main.addEventListener('focusin',update);main.addEventListener('focusout',()=>setTimeout(update,0));window.addEventListener('scroll',update,{passive:true});if(window.visualViewport)visualViewport.addEventListener('resize',update);
+ main.querySelectorAll('.checker-output .results').forEach(result=>new MutationObserver(()=>{const placeholder=result.parentElement.querySelector('.checker-placeholder');if(placeholder)placeholder.hidden=result.classList.contains('active');}).observe(result,{attributes:true,attributeFilter:['class']}));
+ main.querySelectorAll('a[href^="/lessons/"]').forEach(link=>link.addEventListener('click',()=>{if(window.elTrack)window.elTrack('cta_click',{cta_id:'tool_verb-tense-checker_lesson'});}));
+})();
+</script></main>
+<!-- shared-footer-start -->
+<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>It isn’t connected to englishlearner.com.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
+<!-- shared-footer-end -->
 </body>
 </html>

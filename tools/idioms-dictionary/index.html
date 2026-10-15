@@ -30,105 +30,84 @@
   }
 }
 </script>
-<style>
-:root{--bg:#0f1419;--card:#1a212b;--card2:#222c38;--txt:#e6edf3;--mut:#9aa7b4;--acc:#4fb0ff;--acc2:#7ee0a6;--bd:#2c3a48;}
-*{box-sizing:border-box;}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;}
-nav{display:flex;gap:18px;padding:14px 20px;border-bottom:1px solid var(--bd);background:#0c1117;font-size:.95rem;}
-nav a{color:var(--acc);text-decoration:none;}
-nav a:hover{text-decoration:underline;}
-.wrap{max-width:880px;margin:0 auto;padding:26px 20px 60px;}
-h1{font-size:1.9rem;line-height:1.25;margin:.2em 0 .3em;}
-h2{font-size:1.3rem;margin:1.6em 0 .5em;border-bottom:1px solid var(--bd);padding-bottom:.3em;}
-.lead{color:var(--mut);font-size:1.05rem;}
-#tool{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px;margin:22px 0;}
-.controls{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;}
-.fld{display:flex;flex-direction:column;gap:5px;flex:1 1 200px;}
-label{font-size:.82rem;color:var(--mut);font-weight:600;letter-spacing:.02em;}
-input,select{background:var(--card2);border:1px solid var(--bd);color:var(--txt);padding:10px 12px;border-radius:9px;font-size:1rem;width:100%;}
-input:focus,select:focus{outline:none;border-color:var(--acc);}
-.stat{margin:14px 0 4px;color:var(--mut);font-size:.9rem;}
-.results{display:flex;flex-direction:column;gap:12px;margin-top:8px;}
-.idiom{background:var(--card2);border:1px solid var(--bd);border-left:3px solid var(--acc);border-radius:10px;padding:13px 15px;}
-.idiom .ph{font-size:1.08rem;font-weight:700;color:#fff;}
-.idiom .mean{margin:5px 0;}
-.idiom .ex{color:var(--mut);font-style:italic;font-size:.94rem;}
-.tags{margin-top:7px;display:flex;gap:7px;flex-wrap:wrap;}
-.tag{font-size:.72rem;background:#0c1117;border:1px solid var(--bd);color:var(--acc2);padding:2px 9px;border-radius:20px;}
-.tag.f{color:#ffcf6b;}
-.empty{color:var(--mut);padding:16px;text-align:center;}
-.rel a{display:inline-block;margin:4px 10px 4px 0;color:var(--acc);text-decoration:none;border:1px solid var(--bd);padding:6px 12px;border-radius:8px;}
-.rel a:hover{border-color:var(--acc);}
-footer{border-top:1px solid var(--bd);margin-top:40px;padding:22px 20px;text-align:center;color:var(--mut);font-size:.88rem;}
-footer a{color:var(--acc);text-decoration:none;margin:0 8px;}
-p{margin:.7em 0;}
-</style>
+
 <meta name="google-adsense-account" content="ca-pub-2241192243363112">
-<link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/site.js" defer></script>
+<link rel="stylesheet" href="/assets/tool.css">
+<meta property="og:image:alt" content="English Learner free lessons and practice">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
+<meta property="og:image" content="https://englishlearner.org/assets/og/tools-idioms-dictionary.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
-<div class="el-top" role="navigation" aria-label="Site">
-  <a class="el-brand" href="/">English Learner</a>
-  <a href="/lessons/">Lessons</a>
-  <a href="/tools/">Practice tools</a>
-  <a href="/tools/level-assessment/">Level test</a>
-  <a href="/about/">About</a>
-</div>
-<div class="wrap">
-<h1>English idioms dictionary</h1>
-<p class="lead">Search more than 120 common English idioms by word or by theme. Each entry gives a plain meaning, an example sentence and a note on how formal the idiom is.</p>
-
+<!-- shared-header-start -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="el-top"><div class="el-top-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><nav class="el-nav" aria-label="Main navigation"><a href="/lessons/">Lessons</a><a href="/tools/" aria-current="true">Practice</a><a href="/tools/level-assessment/" class="nav-wide" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta_id:'nav_level_test'})">Level test</a><a href="/about/" class="nav-wide">About</a></nav></div></header>
+<!-- shared-header-end -->
+<main class="lookup-tool tool-page tool-idioms-dictionary public-tool" id="main"><script>
+window.toolResult = function(region, score, total, slug, track) {
+ region.classList.add('is-complete');
+ const placeholder=document.getElementById('resultPlaceholder'); if(placeholder) placeholder.hidden=true;
+ if(track && window.elTrack) window.elTrack('quiz_complete',{tool:slug,score:score,total:total});
+ let heading=region.querySelector('h2'); if(!heading){heading=document.createElement('h2');heading.textContent='Your result';region.prepend(heading);}
+ heading.tabIndex=-1; heading.focus();
+ if(!region.querySelector('.copy-result')){
+  const copy=document.createElement('button');copy.type='button';copy.className='copy-result btn';copy.textContent='Copy my result';
+  copy.onclick=async function(){const value=(region.querySelector('.result-value-long')?region.querySelector('.result-value-long').textContent+'. Rough guide. Grammar and reading only. ':'')+score+' out of '+total+'. Practice only. '+document.querySelector('link[rel=canonical]').href;try{await navigator.clipboard.writeText(value);copy.textContent='Result copied';}catch(e){let output=region.querySelector('.copy-fallback');if(!output){output=document.createElement('textarea');output.className='copy-fallback';output.readOnly=true;output.setAttribute('aria-label','Select the text to copy it');region.append(output);}output.value=value;output.focus();output.select();copy.textContent='Select the text to copy it.';}};
+  region.append(copy);
+ }
+};
+</script>
+<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">Idioms dictionary</li></ol></nav><h1>Idioms dictionary</h1><p class="lead">Find a meaning and an example.</p>
 <section id="tool">
-  <div class="controls">
-    <div class="fld">
-      <label for="q">Search idiom or meaning</label>
-      <input id="q" type="text" placeholder="e.g. money, rain, give up…" value="">
-    </div>
-    <div class="fld" style="flex:0 1 170px;">
-      <label for="theme">Theme</label>
-      <select id="theme"></select>
-    </div>
-    <div class="fld" style="flex:0 1 150px;">
-      <label for="reg">Formality</label>
-      <select id="reg">
-        <option value="all">Any</option>
-        <option value="informal">Informal</option>
-        <option value="neutral">Neutral</option>
-      </select>
-    </div>
-  </div>
-  <div class="stat" id="stat"></div>
-  <div class="results" id="out"></div>
-</section>
-
+<div class="controls">
+<div class="fld">
+<label for="q">Search idiom or meaning</label>
+<input id="q" placeholder="e.g. money, rain, give up…" type="text" value=""/>
+</div>
+<div class="fld">
+<label for="theme">Theme</label>
+<select id="theme"></select>
+</div>
+<div class="fld">
+<label for="reg">Formality</label>
+<select id="reg">
+<option value="all">Any</option>
+<option value="informal">Informal</option>
+<option value="neutral">Neutral</option>
+</select>
+</div>
+</div>
+<button id="clearFilters" type="button">Clear filters</button><p class="helper">Use the formality label to choose a suitable expression. <a href="/lessons/cefr-levels/">Choose what to study</a>.</p><div aria-live="polite" class="stat" id="stat" role="status">122 idioms shown</div>
+<div class="reference-results" id="out"><article class="idiom"><h3 class="ph">a blessing in disguise</h3><p class="mean">something that seems bad but turns out good</p><p class="ex">Losing that job was a blessing in disguise. I found a better one.</p><p class="tags">luck · neutral</p></article><article class="idiom"><h3 class="ph">a chip on your shoulder</h3><p class="mean">a lasting feeling of resentment</p><p class="ex">He has a chip on his shoulder about school.</p><p class="tags">emotion · informal</p></article><article class="idiom"><h3 class="ph">a dime a dozen</h3><p class="mean">very common and of little value</p><p class="ex">Cheap chargers are a dime a dozen.</p><p class="tags">value · informal</p></article><article class="idiom"><h3 class="ph">a far cry from</h3><p class="mean">very different from</p><p class="ex">This is a far cry from what we ordered.</p><p class="tags">difference · neutral</p></article><article class="idiom"><h3 class="ph">a hot potato</h3><p class="mean">a controversial issue people avoid</p><p class="ex">Tax reform is a real political hot potato.</p><p class="tags">controversy · neutral</p></article><article class="idiom"><h3 class="ph">a long shot</h3><p class="mean">unlikely to succeed</p><p class="ex">It's a long shot, but let's apply.</p><p class="tags">chance · informal</p></article><article class="idiom"><h3 class="ph">a piece of cake</h3><p class="mean">something very easy to do</p><p class="ex">The exam was a piece of cake after all that revision.</p><p class="tags">difficulty · informal</p></article><article class="idiom"><h3 class="ph">a storm in a teacup</h3><p class="mean">a big fuss about something small</p><p class="ex">The whole row was a storm in a teacup.</p><p class="tags">exaggeration · neutral</p></article><article class="idiom"><h3 class="ph">add fuel to the fire</h3><p class="mean">make a bad situation worse</p><p class="ex">Shouting only added fuel to the fire.</p><p class="tags">conflict · neutral</p></article><article class="idiom"><h3 class="ph">all ears</h3><p class="mean">listening eagerly</p><p class="ex">Tell me everything. I'm all ears.</p><p class="tags">attention · informal</p></article><article class="idiom"><h3 class="ph">at the drop of a hat</h3><p class="mean">immediately, without hesitation</p><p class="ex">She'll help at the drop of a hat.</p><p class="tags">speed · informal</p></article><article class="idiom"><h3 class="ph">back to the drawing board</h3><p class="mean">start planning again after a failure</p><p class="ex">The design flopped, so it's back to the drawing board.</p><p class="tags">work · neutral</p></article><article class="idiom"><h3 class="ph">barking up the wrong tree</h3><p class="mean">pursuing a mistaken idea</p><p class="ex">If you blame me, you're barking up the wrong tree.</p><p class="tags">mistake · informal</p></article><article class="idiom"><h3 class="ph">beat around the bush</h3><p class="mean">avoid saying something directly</p><p class="ex">Stop beating around the bush and tell me what happened.</p><p class="tags">communication · informal</p></article><article class="idiom"><h3 class="ph">bend over backwards</h3><p class="mean">try very hard to help someone</p><p class="ex">They bent over backwards to fix the order.</p><p class="tags">effort · neutral</p></article><article class="idiom"><h3 class="ph">bite off more than you can chew</h3><p class="mean">take on too much</p><p class="ex">I bit off more than I could chew this term.</p><p class="tags">overload · informal</p></article><article class="idiom"><h3 class="ph">bite the bullet</h3><p class="mean">force yourself to do something unpleasant</p><p class="ex">I bit the bullet and finally booked the dentist.</p><p class="tags">courage · neutral</p></article><article class="idiom"><h3 class="ph">blow off steam</h3><p class="mean">release stress or anger</p><p class="ex">I went for a run to blow off steam.</p><p class="tags">emotion · informal</p></article><article class="idiom"><h3 class="ph">blow your own trumpet</h3><p class="mean">boast about yourself</p><p class="ex">I don't like to blow my own trumpet, but I won.</p><p class="tags">pride · informal</p></article><article class="idiom"><h3 class="ph">break a leg</h3><p class="mean">good luck (especially before a performance)</p><p class="ex">Break a leg in your interview today.</p><p class="tags">luck · informal</p></article><article class="idiom"><h3 class="ph">break the ice</h3><p class="mean">make people feel relaxed in a social setting</p><p class="ex">A quick joke helped break the ice at the meeting.</p><p class="tags">communication · neutral</p></article><article class="idiom"><h3 class="ph">bring home the bacon</h3><p class="mean">earn money for the family</p><p class="ex">She brings home the bacon for the household.</p><p class="tags">money · informal</p></article><article class="idiom"><h3 class="ph">burn bridges</h3><p class="mean">destroy relationships you may need later</p><p class="ex">Don't burn bridges when you quit a job.</p><p class="tags">relationship · neutral</p></article><article class="idiom"><h3 class="ph">burn the midnight oil</h3><p class="mean">work late into the night</p><p class="ex">She burned the midnight oil to finish the report.</p><p class="tags">work · neutral</p></article><article class="idiom"><h3 class="ph">by the book</h3><p class="mean">following the rules exactly</p><p class="ex">Our accountant does everything by the book.</p><p class="tags">rules · neutral</p></article><article class="idiom"><h3 class="ph">call it a day</h3><p class="mean">stop working for the day</p><p class="ex">We've done enough. Let's call it a day.</p><p class="tags">work · informal</p></article><article class="idiom"><h3 class="ph">caught red-handed</h3><p class="mean">caught while doing something wrong</p><p class="ex">He was caught red-handed taking the cash.</p><p class="tags">crime · informal</p></article><article class="idiom"><h3 class="ph">come rain or shine</h3><p class="mean">whatever happens</p><p class="ex">We meet every Friday, come rain or shine.</p><p class="tags">commitment · informal</p></article><article class="idiom"><h3 class="ph">cost an arm and a leg</h3><p class="mean">be very expensive</p><p class="ex">That new phone cost an arm and a leg.</p><p class="tags">money · informal</p></article><article class="idiom"><h3 class="ph">cross that bridge when you come to it</h3><p class="mean">deal with a problem only when it happens</p><p class="ex">We'll cross that bridge when we come to it.</p><p class="tags">planning · neutral</p></article><article class="idiom"><h3 class="ph">cry over spilled milk</h3><p class="mean">be upset about something you can't change</p><p class="ex">No use crying over spilled milk.</p><p class="tags">emotion · informal</p></article><article class="idiom"><h3 class="ph">cut corners</h3><p class="mean">do something cheaply or quickly, lowering quality</p><p class="ex">They cut corners and the building had problems.</p><p class="tags">work · neutral</p></article><article class="idiom"><h3 class="ph">cut someone some slack</h3><p class="mean">be less strict with someone</p><p class="ex">Cut him some slack. He's new here.</p><p class="tags">kindness · informal</p></article><article class="idiom"><h3 class="ph">cut to the chase</h3><p class="mean">get to the main point</p><p class="ex">Let's cut to the chase: what's the price?</p><p class="tags">communication · informal</p></article><article class="idiom"><h3 class="ph">devil's advocate</h3><p class="mean">argue an opposing view to test ideas</p><p class="ex">Let me play devil's advocate for a moment.</p><p class="tags">debate · neutral</p></article><article class="idiom"><h3 class="ph">dodge a bullet</h3><p class="mean">narrowly avoid a problem</p><p class="ex">Selling early, we dodged a bullet.</p><p class="tags">luck · informal</p></article><article class="idiom"><h3 class="ph">down to earth</h3><p class="mean">practical and sensible; not arrogant</p><p class="ex">Despite her fame she's very down to earth.</p><p class="tags">personality · neutral</p></article><article class="idiom"><h3 class="ph">draw a blank</h3><p class="mean">fail to remember or find something</p><p class="ex">I drew a blank when she asked for my password.</p><p class="tags">memory · informal</p></article><article class="idiom"><h3 class="ph">easier said than done</h3><p class="mean">harder to do than to talk about</p><p class="ex">Saving money is easier said than done.</p><p class="tags">difficulty · neutral</p></article><article class="idiom"><h3 class="ph">every cloud has a silver lining</h3><p class="mean">every bad situation has something good</p><p class="ex">Cheer up. Every cloud has a silver lining.</p><p class="tags">optimism · neutral</p></article><article class="idiom"><h3 class="ph">face the music</h3><p class="mean">accept the unpleasant results of your actions</p><p class="ex">He had to face the music after the mistake.</p><p class="tags">consequence · neutral</p></article><article class="idiom"><h3 class="ph">fish out of water</h3><p class="mean">uncomfortable in an unfamiliar setting</p><p class="ex">At the gala I felt like a fish out of water.</p><p class="tags">emotion · informal</p></article><article class="idiom"><h3 class="ph">food for thought</h3><p class="mean">something worth thinking about</p><p class="ex">Her talk gave us a lot of food for thought.</p><p class="tags">thinking · neutral</p></article><article class="idiom"><h3 class="ph">get a foot in the door</h3><p class="mean">gain a first opportunity somewhere</p><p class="ex">An internship gets your foot in the door.</p><p class="tags">opportunity · neutral</p></article><article class="idiom"><h3 class="ph">get cold feet</h3><p class="mean">become nervous and hesitate</p><p class="ex">He got cold feet before signing the lease.</p><p class="tags">fear · informal</p></article><article class="idiom"><h3 class="ph">get out of hand</h3><p class="mean">become uncontrollable</p><p class="ex">The party got out of hand quickly.</p><p class="tags">control · informal</p></article><article class="idiom"><h3 class="ph">get the hang of it</h3><p class="mean">learn how to do something</p><p class="ex">Cycling is tricky at first but you get the hang of it.</p><p class="tags">learning · informal</p></article><article class="idiom"><h3 class="ph">give someone the cold shoulder</h3><p class="mean">ignore someone deliberately</p><p class="ex">She gave me the cold shoulder after the argument.</p><p class="tags">emotion · informal</p></article><article class="idiom"><h3 class="ph">give the benefit of the doubt</h3><p class="mean">trust someone despite uncertainty</p><p class="ex">I'll give him the benefit of the doubt.</p><p class="tags">trust · neutral</p></article><article class="idiom"><h3 class="ph">go against the grain</h3><p class="mean">oppose what is usual or expected</p><p class="ex">Her ideas go against the grain.</p><p class="tags">nonconformity · neutral</p></article><article class="idiom"><h3 class="ph">go down in flames</h3><p class="mean">fail spectacularly</p><p class="ex">The startup went down in flames.</p><p class="tags">failure · informal</p></article><article class="idiom"><h3 class="ph">go the extra mile</h3><p class="mean">make more effort than expected</p><p class="ex">Our team always goes the extra mile for clients.</p><p class="tags">work · neutral</p></article><article class="idiom"><h3 class="ph">hands are tied</h3><p class="mean">unable to act due to rules</p><p class="ex">I'd help, but my hands are tied.</p><p class="tags">restriction · neutral</p></article><article class="idiom"><h3 class="ph">hang in there</h3><p class="mean">stay strong in a hard situation</p><p class="ex">Hang in there, the exams are nearly over.</p><p class="tags">encouragement · informal</p></article><article class="idiom"><h3 class="ph">have a lot on your plate</h3><p class="mean">be very busy</p><p class="ex">She has a lot on her plate this week.</p><p class="tags">busy · informal</p></article><article class="idiom"><h3 class="ph">have a sweet tooth</h3><p class="mean">love sugary food</p><p class="ex">I have such a sweet tooth at night.</p><p class="tags">food · informal</p></article><article class="idiom"><h3 class="ph">hit the books</h3><p class="mean">study hard</p><p class="ex">I need to hit the books before finals.</p><p class="tags">learning · informal</p></article><article class="idiom"><h3 class="ph">hit the nail on the head</h3><p class="mean">describe a problem exactly right</p><p class="ex">You hit the nail on the head about the budget.</p><p class="tags">communication · neutral</p></article><article class="idiom"><h3 class="ph">hit the sack</h3><p class="mean">go to bed</p><p class="ex">I'm exhausted. I'm going to hit the sack.</p><p class="tags">sleep · informal</p></article><article class="idiom"><h3 class="ph">in a nutshell</h3><p class="mean">in brief; summarized</p><p class="ex">In a nutshell, the plan worked.</p><p class="tags">summary · neutral</p></article><article class="idiom"><h3 class="ph">in hot water</h3><p class="mean">in trouble</p><p class="ex">He's in hot water for missing the deadline.</p><p class="tags">consequence · informal</p></article><article class="idiom"><h3 class="ph">in the same boat</h3><p class="mean">in the same difficult situation</p><p class="ex">We're all in the same boat with these prices.</p><p class="tags">situation · neutral</p></article><article class="idiom"><h3 class="ph">it's not rocket science</h3><p class="mean">it is not difficult to understand</p><p class="ex">Filling the form isn't rocket science.</p><p class="tags">difficulty · informal</p></article><article class="idiom"><h3 class="ph">jump on the bandwagon</h3><p class="mean">join a popular trend</p><p class="ex">Everyone jumped on the bandwagon and bought the app.</p><p class="tags">trend · neutral</p></article><article class="idiom"><h3 class="ph">jump the gun</h3><p class="mean">act too soon</p><p class="ex">Don't jump the gun before the results are in.</p><p class="tags">timing · informal</p></article><article class="idiom"><h3 class="ph">keep an eye on</h3><p class="mean">watch carefully</p><p class="ex">Can you keep an eye on my bag for a minute?</p><p class="tags">attention · informal</p></article><article class="idiom"><h3 class="ph">keep something at bay</h3><p class="mean">keep a problem under control</p><p class="ex">Exercise keeps stress at bay.</p><p class="tags">control · neutral</p></article><article class="idiom"><h3 class="ph">keep your chin up</h3><p class="mean">stay positive in hard times</p><p class="ex">Keep your chin up. Things will improve.</p><p class="tags">encouragement · informal</p></article><article class="idiom"><h3 class="ph">kill two birds with one stone</h3><p class="mean">solve two problems with one action</p><p class="ex">Walking to work kills two birds with one stone.</p><p class="tags">efficiency · neutral</p></article><article class="idiom"><h3 class="ph">know the ropes</h3><p class="mean">be experienced at a task</p><p class="ex">Ask Sam. She knows the ropes here.</p><p class="tags">experience · informal</p></article><article class="idiom"><h3 class="ph">learn the ropes</h3><p class="mean">learn how a job is done</p><p class="ex">It took a month to learn the ropes.</p><p class="tags">learning · neutral</p></article><article class="idiom"><h3 class="ph">leave no stone unturned</h3><p class="mean">try every possible way</p><p class="ex">Police left no stone unturned in the case.</p><p class="tags">effort · neutral</p></article><article class="idiom"><h3 class="ph">lend a hand</h3><p class="mean">help someone</p><p class="ex">Could you lend a hand with these boxes?</p><p class="tags">help · informal</p></article><article class="idiom"><h3 class="ph">let the cat out of the bag</h3><p class="mean">reveal a secret by accident</p><p class="ex">He let the cat out of the bag about the party.</p><p class="tags">communication · informal</p></article><article class="idiom"><h3 class="ph">like two peas in a pod</h3><p class="mean">very similar and close</p><p class="ex">The twins are like two peas in a pod.</p><p class="tags">similarity · informal</p></article><article class="idiom"><h3 class="ph">make a long story short</h3><p class="mean">summarize quickly</p><p class="ex">To make a long story short, we won.</p><p class="tags">communication · informal</p></article><article class="idiom"><h3 class="ph">make ends meet</h3><p class="mean">earn just enough to live</p><p class="ex">They struggle to make ends meet.</p><p class="tags">money · neutral</p></article><article class="idiom"><h3 class="ph">miss the boat</h3><p class="mean">miss an opportunity</p><p class="ex">If you wait too long, you'll miss the boat.</p><p class="tags">opportunity · neutral</p></article><article class="idiom"><h3 class="ph">needle in a haystack</h3><p class="mean">something very hard to find</p><p class="ex">Finding that file is like looking for a needle in a haystack.</p><p class="tags">difficulty · neutral</p></article><article class="idiom"><h3 class="ph">no pain no gain</h3><p class="mean">success requires effort and hardship</p><p class="ex">Training hurts, but no pain no gain.</p><p class="tags">effort · informal</p></article><article class="idiom"><h3 class="ph">off the top of my head</h3><p class="mean">without checking, from memory</p><p class="ex">Off the top of my head, it's about €50.</p><p class="tags">memory · informal</p></article><article class="idiom"><h3 class="ph">on cloud nine</h3><p class="mean">extremely happy</p><p class="ex">She was on cloud nine after the wedding.</p><p class="tags">emotion · informal</p></article><article class="idiom"><h3 class="ph">on the ball</h3><p class="mean">alert and quick to understand</p><p class="ex">Our new hire is really on the ball.</p><p class="tags">ability · informal</p></article><article class="idiom"><h3 class="ph">on the same page</h3><p class="mean">in agreement and understanding</p><p class="ex">Let's make sure we're on the same page.</p><p class="tags">agreement · neutral</p></article><article class="idiom"><h3 class="ph">on thin ice</h3><p class="mean">in a risky situation</p><p class="ex">You're on thin ice with these late reports.</p><p class="tags">risk · informal</p></article><article class="idiom"><h3 class="ph">once in a blue moon</h3><p class="mean">very rarely</p><p class="ex">We eat out once in a blue moon.</p><p class="tags">time · informal</p></article><article class="idiom"><h3 class="ph">out of the blue</h3><p class="mean">unexpectedly</p><p class="ex">He called me out of the blue after years.</p><p class="tags">time · informal</p></article><article class="idiom"><h3 class="ph">out of the question</h3><p class="mean">impossible; not allowed</p><p class="ex">A refund is out of the question now.</p><p class="tags">refusal · neutral</p></article><article class="idiom"><h3 class="ph">over the moon</h3><p class="mean">extremely pleased</p><p class="ex">We were over the moon about the news.</p><p class="tags">emotion · informal</p></article><article class="idiom"><h3 class="ph">pay through the nose</h3><p class="mean">pay far too much</p><p class="ex">We paid through the nose for parking.</p><p class="tags">money · informal</p></article><article class="idiom"><h3 class="ph">peace of mind</h3><p class="mean">a feeling of calm and freedom from worry</p><p class="ex">Insurance gives me peace of mind.</p><p class="tags">emotion · neutral</p></article><article class="idiom"><h3 class="ph">play it by ear</h3><p class="mean">decide as you go, without a plan</p><p class="ex">Let's not book ahead and just play it by ear.</p><p class="tags">planning · informal</p></article><article class="idiom"><h3 class="ph">pull someone's leg</h3><p class="mean">tease or joke with someone</p><p class="ex">Relax, I'm just pulling your leg.</p><p class="tags">communication · informal</p></article><article class="idiom"><h3 class="ph">pull yourself together</h3><p class="mean">calm down and regain control</p><p class="ex">Pull yourself together; we can fix this.</p><p class="tags">emotion · informal</p></article><article class="idiom"><h3 class="ph">put all your eggs in one basket</h3><p class="mean">risk everything on one thing</p><p class="ex">Don't put all your eggs in one basket.</p><p class="tags">risk · neutral</p></article><article class="idiom"><h3 class="ph">put your foot in your mouth</h3><p class="mean">say something embarrassing</p><p class="ex">I put my foot in my mouth at dinner.</p><p class="tags">mistake · informal</p></article><article class="idiom"><h3 class="ph">raining cats and dogs</h3><p class="mean">raining very heavily</p><p class="ex">Take an umbrella. It's raining cats and dogs.</p><p class="tags">weather · informal</p></article><article class="idiom"><h3 class="ph">read between the lines</h3><p class="mean">find a hidden meaning</p><p class="ex">Read between the lines of her email.</p><p class="tags">understanding · neutral</p></article><article class="idiom"><h3 class="ph">rule of thumb</h3><p class="mean">a rough, practical guideline</p><p class="ex">As a rule of thumb, allow an hour to get to the airport.</p><p class="tags">advice · neutral</p></article><article class="idiom"><h3 class="ph">see eye to eye</h3><p class="mean">agree with someone</p><p class="ex">We don't always see eye to eye on money.</p><p class="tags">agreement · neutral</p></article><article class="idiom"><h3 class="ph">sell like hotcakes</h3><p class="mean">sell very quickly</p><p class="ex">The tickets sold like hotcakes.</p><p class="tags">sales · informal</p></article><article class="idiom"><h3 class="ph">sit on the fence</h3><p class="mean">avoid making a decision</p><p class="ex">Don't sit on the fence. Pick a side.</p><p class="tags">decision · neutral</p></article><article class="idiom"><h3 class="ph">sit tight</h3><p class="mean">wait patiently without acting</p><p class="ex">Sit tight while I check the details.</p><p class="tags">patience · informal</p></article><article class="idiom"><h3 class="ph">speak of the devil</h3><p class="mean">said when someone you mentioned appears</p><p class="ex">Speak of the devil. Here she is now.</p><p class="tags">communication · informal</p></article><article class="idiom"><h3 class="ph">spill the beans</h3><p class="mean">reveal secret information</p><p class="ex">Come on, spill the beans about the trip.</p><p class="tags">communication · informal</p></article><article class="idiom"><h3 class="ph">steal someone's thunder</h3><p class="mean">take credit or attention from someone</p><p class="ex">He stole her thunder at the launch.</p><p class="tags">attention · neutral</p></article><article class="idiom"><h3 class="ph">take a rain check</h3><p class="mean">postpone an invitation to later</p><p class="ex">Can I take a rain check on dinner tonight?</p><p class="tags">social · informal</p></article><article class="idiom"><h3 class="ph">take it with a grain of salt</h3><p class="mean">don't fully believe something</p><p class="ex">Take online reviews with a grain of salt.</p><p class="tags">caution · neutral</p></article><article class="idiom"><h3 class="ph">take the plunge</h3><p class="mean">finally do something risky</p><p class="ex">We took the plunge and bought a house.</p><p class="tags">decision · informal</p></article><article class="idiom"><h3 class="ph">the ball is in your court</h3><p class="mean">it's your turn to act or decide</p><p class="ex">I've sent the offer; the ball is in your court.</p><p class="tags">decision · neutral</p></article><article class="idiom"><h3 class="ph">the best of both worlds</h3><p class="mean">a situation with two advantages</p><p class="ex">Remote work gives the best of both worlds.</p><p class="tags">benefit · neutral</p></article><article class="idiom"><h3 class="ph">the bigger picture</h3><p class="mean">the overall situation, not details</p><p class="ex">Try to focus on the bigger picture.</p><p class="tags">perspective · neutral</p></article><article class="idiom"><h3 class="ph">the last straw</h3><p class="mean">the final problem that ends your patience</p><p class="ex">His rudeness was the last straw.</p><p class="tags">emotion · neutral</p></article><article class="idiom"><h3 class="ph">the tip of the iceberg</h3><p class="mean">a small visible part of a big problem</p><p class="ex">These bugs are just the tip of the iceberg.</p><p class="tags">problem · neutral</p></article><article class="idiom"><h3 class="ph">through thick and thin</h3><p class="mean">through good and bad times</p><p class="ex">They stayed friends through thick and thin.</p><p class="tags">friendship · neutral</p></article><article class="idiom"><h3 class="ph">throw in the towel</h3><p class="mean">give up</p><p class="ex">After months of losses he threw in the towel.</p><p class="tags">giving up · informal</p></article><article class="idiom"><h3 class="ph">turn a blind eye</h3><p class="mean">ignore something wrong on purpose</p><p class="ex">Managers turned a blind eye to the issue.</p><p class="tags">ignoring · neutral</p></article><article class="idiom"><h3 class="ph">under the weather</h3><p class="mean">feeling slightly ill</p><p class="ex">I'm a bit under the weather today.</p><p class="tags">health · informal</p></article><article class="idiom"><h3 class="ph">under your nose</h3><p class="mean">right in front of you but unnoticed</p><p class="ex">The keys were under your nose the whole time.</p><p class="tags">attention · informal</p></article><article class="idiom"><h3 class="ph">up in the air</h3><p class="mean">uncertain and undecided</p><p class="ex">Our holiday plans are still up in the air.</p><p class="tags">uncertainty · informal</p></article><article class="idiom"><h3 class="ph">when pigs fly</h3><p class="mean">never; something impossible</p><p class="ex">He'll apologize when pigs fly.</p><p class="tags">impossibility · informal</p></article><article class="idiom"><h3 class="ph">wrap your head around</h3><p class="mean">understand something difficult</p><p class="ex">I can't wrap my head around the new system.</p><p class="tags">understanding · informal</p></article></div>
+</section><aside class="tool-support"><img alt="" class="tool-art" decoding="async" height="322" loading="lazy" sizes="(min-width:1280px) 320px, (min-width:1024px) 280px, (min-width:768px) 240px, (min-width:390px) 192px, 168px" src="/assets/img/tool-idioms-480.webp" srcset="/assets/img/tool-idioms-480.webp 480w, /assets/img/tool-idioms-960.webp 960w" width="480"/><p><a href="/lessons/cefr-levels/">Choose what to study</a></p></aside><section class="practice-help reading"><h2>About this practice</h2><h3>Can I use idioms in an essay?</h3><p>Check the formality label. Informal expressions may not suit formal writing.</p><h3>Can I change an idiom’s words?</h3><p>Many idioms are fixed expressions. Use the example to check the usual wording.</p><h3>Formality labels</h3><p>Neutral expressions fit more settings than informal ones. Context still matters.</p><h3>Learn an idiom in context</h3><p>Read the meaning and the complete example together. Try using the expression in a sentence of your own.</p></section>
 <h2>What is an idiom?</h2>
 <p>An idiom is a fixed phrase with a meaning that you cannot work out from its separate words. "Kick the bucket" has nothing to do with buckets. It is an informal way to say "die". You have to learn an idiom as one unit, in the same way that you learn a single word.</p>
 <p>You usually cannot change the words in an idiom. People say "spill the beans", not "spill the peas" or "drop the beans". Only the grammar changes: "she spilled the beans", "don't spill the beans".</p>
-
 <h2>Informal or neutral?</h2>
 <p>Every entry has a formality label.</p>
 <ul>
-  <li><strong>Informal</strong> idioms are fine with friends and in casual messages. Avoid them in essays, reports and job applications.</li>
-  <li><strong>Neutral</strong> idioms are safe in most situations, including work emails.</li>
+<li>Informal idioms are fine with friends and in casual messages. Avoid them in essays, reports and job applications.</li>
+<li>Neutral idioms are safe in most situations, including work emails.</li>
 </ul>
 <p>In very formal writing, such as an academic essay, a plain word is usually better than any idiom. Write "very expensive", not "cost an arm and a leg".</p>
-
 <h2>How to learn idioms</h2>
 <ul>
-  <li><strong>Understand first, use later.</strong> You will hear idioms much more often than you need to say them. Learn to recognise many, and choose a few to use.</li>
-  <li><strong>Learn them by theme.</strong> Use the theme menu above. Five idioms about money are easier to remember together than five random ones.</li>
-  <li><strong>Learn the whole example.</strong> The example sentence shows the grammar around the idiom and a typical situation for it.</li>
-  <li><strong>Check the variety.</strong> Some idioms are more common in British English, such as "a storm in a teacup" and "blow your own trumpet". American English says "a tempest in a teapot" and "blow your own horn".</li>
+<li>Understand first, use later. You will hear idioms much more often than you need to say them. Learn to recognise many, and choose a few to use.</li>
+<li>Learn them by theme. Use the theme menu above. Five idioms about money are easier to remember together than five random ones.</li>
+<li>Learn the whole example. The example sentence shows the grammar around the idiom and a typical situation for it.</li>
+<li>Check the variety. Some idioms are more common in British English, such as "a storm in a teacup" and "blow your own trumpet". American English says "a tempest in a teapot" and "blow your own horn".</li>
 </ul>
-
 <h2>Related tools</h2>
 <div class="rel">
-  <a href="/tools/vocabulary-quiz/">Vocabulary quiz</a>
-  <a href="/tools/irregular-verbs/">Irregular verbs list</a>
-  <a href="/lessons/">Grammar lessons</a>
-</div>
-
+<a href="/tools/vocabulary-quiz/">Vocabulary quiz</a>
+<a href="/tools/irregular-verbs/">Irregular verbs list</a>
+<a href="/lessons/">Grammar lessons</a>
 </div>
 <script>
 var IDIOMS=[
@@ -165,7 +144,7 @@ var IDIOMS=[
 ["raining cats and dogs","raining very heavily","Take an umbrella. It's raining cats and dogs.","weather","informal"],
 ["see eye to eye","agree with someone","We don't always see eye to eye on money.","agreement","neutral"],
 ["sit on the fence","avoid making a decision","Don't sit on the fence. Pick a side.","decision","neutral"],
-["speak of the devil","said when someone you mentioned appears","Speak of the devil! Here she is now.","communication","informal"],
+["speak of the devil","said when someone you mentioned appears","Speak of the devil. Here she is now.","communication","informal"],
 ["spill the beans","reveal secret information","Come on, spill the beans about the trip.","communication","informal"],
 ["take it with a grain of salt","don't fully believe something","Take online reviews with a grain of salt.","caution","neutral"],
 ["the ball is in your court","it's your turn to act or decide","I've sent the offer; the ball is in your court.","decision","neutral"],
@@ -177,7 +156,7 @@ var IDIOMS=[
 ["barking up the wrong tree","pursuing a mistaken idea","If you blame me, you're barking up the wrong tree.","mistake","informal"],
 ["bend over backwards","try very hard to help someone","They bent over backwards to fix the order.","effort","neutral"],
 ["blow off steam","release stress or anger","I went for a run to blow off steam.","emotion","informal"],
-["break a leg","good luck (especially before a performance)","Break a leg in your interview today!","luck","informal"],
+["break a leg","good luck (especially before a performance)","Break a leg in your interview today.","luck","informal"],
 ["bring home the bacon","earn money for the family","She brings home the bacon for the household.","money","informal"],
 ["burn bridges","destroy relationships you may need later","Don't burn bridges when you quit a job.","relationship","neutral"],
 ["by the book","following the rules exactly","Our accountant does everything by the book.","rules","neutral"],
@@ -245,7 +224,7 @@ var IDIOMS=[
 ["know the ropes","be experienced at a task","Ask Sam. She knows the ropes here.","experience","informal"],
 ["a long shot","unlikely to succeed","It's a long shot, but let's apply.","chance","informal"],
 ["make a long story short","summarize quickly","To make a long story short, we won.","communication","informal"],
-["needle in a haystack","something very hard to find","Finding that file is a needle in a haystack.","difficulty","neutral"],
+["needle in a haystack","something very hard to find","Finding that file is like looking for a needle in a haystack.","difficulty","neutral"],
 ["on thin ice","in a risky situation","You're on thin ice with these late reports.","risk","informal"],
 ["put your foot in your mouth","say something embarrassing","I put my foot in my mouth at dinner.","mistake","informal"],
 ["read between the lines","find a hidden meaning","Read between the lines of her email.","understanding","neutral"],
@@ -293,31 +272,33 @@ function render(){
   for(var m=0;m<matches.length;m++){
     var it=matches[m].it;
     var fcls=it[4]==='informal'?' f':'';
-    html+='<div class="idiom"><div class="ph">'+esc(it[0])+'</div>'+
+    html+='<article class="idiom"><h3 class="ph">'+esc(it[0])+'</h3>'+
       '<div class="mean">'+esc(it[1])+'</div>'+
       '<div class="ex">“'+esc(it[2])+'”</div>'+
-      '<div class="tags"><span class="tag">'+esc(it[3])+'</span><span class="tag'+fcls+'">'+esc(it[4])+'</span></div></div>';
+      '<div class="tags"><span class="tag">'+esc(it[3])+'</span><span class="tag'+fcls+'">'+esc(it[4])+'</span></div></article>';
   }
   outEl.innerHTML=html;
 }
 
-qEl.addEventListener('input',render);
+var searchTimer;qEl.addEventListener('input',()=>{clearTimeout(searchTimer);searchTimer=setTimeout(render,300);});document.getElementById('clearFilters').onclick=()=>{qEl.value='';themeEl.value='all';regEl.value='all';render();qEl.focus();};
 themeEl.addEventListener('change',render);
 regEl.addEventListener('change',render);
 render();
 </script>
-<div class="el-foot" role="contentinfo">
-  <div class="el-links">
-    <a href="/">Home</a>
-    <a href="/lessons/">Lessons</a>
-    <a href="/tools/">Practice tools</a>
-    <a href="/about/">About</a>
-    <a href="/contact/">Contact</a>
-    <a href="/privacy/">Privacy</a>
-    <button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button>
-  </div>
-  <p>&copy; 2026 englishlearner.org. An independent site. Not connected to any exam board.</p>
-  <p>From the same developer: <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant.</p>
-</div>
+<p class="retained-intro reading">Search more than 120 common English idioms by word or by theme. Each entry gives a plain meaning, an example sentence and a note on how formal the idiom is.</p><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/cefr-levels/">Choose what to study</a><a class="btn" href="/tools/">Choose another practice</a></div></section><noscript><p>Interactive practice needs JavaScript. <a href="/lessons/cefr-levels/">Read the written study guide</a>.</p></noscript><script>
+if(matchMedia('(min-width:1024px)').matches)document.querySelectorAll('.quiz-settings:not([hidden])').forEach(el=>el.open=true);
+</script><script>
+(function(){
+ const main=document.getElementById('main');
+ const status=document.createElement('p');status.className='typing-status';status.setAttribute('role','status');status.hidden=true;main.append(status);
+ const update=()=>{const input=document.activeElement;if(!input||!main.contains(input)||!input.matches('textarea,input:not([type=radio]):not([type=checkbox])')||!window.visualViewport){status.hidden=true;return;}const feedback=main.querySelector('#feedbackArea,#feedback,#errorsContainer,#verbsContainer,#diagramDisplay');const box=feedback&&feedback.getBoundingClientRect();if(box&&box.top>=0&&box.bottom<visualViewport.height){status.hidden=true;return;}status.textContent=(main.querySelector('#qCounter')||{}).textContent||'Answer not checked';status.style.top=visualViewport.offsetTop+'px';status.hidden=false;};
+ main.addEventListener('focusin',update);main.addEventListener('focusout',()=>setTimeout(update,0));window.addEventListener('scroll',update,{passive:true});if(window.visualViewport)visualViewport.addEventListener('resize',update);
+ main.querySelectorAll('.checker-output .results').forEach(result=>new MutationObserver(()=>{const placeholder=result.parentElement.querySelector('.checker-placeholder');if(placeholder)placeholder.hidden=result.classList.contains('active');}).observe(result,{attributes:true,attributeFilter:['class']}));
+ main.querySelectorAll('a[href^="/lessons/"]').forEach(link=>link.addEventListener('click',()=>{if(window.elTrack)window.elTrack('cta_click',{cta_id:'tool_idioms-dictionary_lesson'});}));
+})();
+</script></main>
+<!-- shared-footer-start -->
+<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>It isn’t connected to englishlearner.com.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
+<!-- shared-footer-end -->
 </body>
 </html>

@@ -1,0 +1,63 @@
+/* Code is exempt from prose checks.
+```css
+*/
+/* Lesson-only geometry. Shared controls and teaching states live in site.css. */
+.lesson-page .eg{font-style:normal}
+.lesson-heading{margin-bottom:24px}
+.lesson-heading h1{text-wrap:balance}
+.lesson-heading-copy{min-width:0;max-width:720px}
+.lesson-badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.lesson-heading .rule-box{margin:0 0 16px}
+.lesson-heading .jump-links{margin:0}
+.lesson-header-art{aspect-ratio:480/322;object-fit:contain}
+.lesson-introduction{margin:0 0 24px}
+.lesson-introduction .meta{margin-top:16px}
+.lesson-page .lesson-layout{align-items:start}
+.lesson-contents{min-width:0}
+.lesson-contents details{margin:0}
+.lesson-contents ol{list-style:none;padding:0;margin:0}
+.lesson-contents li{margin:0}
+.lesson-contents a{padding:8px 0;font:14px/21px var(--font-ui)}
+.lesson-body>h2:first-child{margin-top:0}
+.lesson-body .lesson-examples{margin:16px 0}
+.lesson-body .example-row p:last-child{margin-bottom:0}
+.lesson-body .example-row .no,.lesson-body .example-row .ok{color:inherit}
+.lesson-body .written-quiz>li{padding:12px 8px;border-bottom:1px solid var(--color-border);margin:0}
+.lesson-body .written-quiz{padding-left:24px;margin:16px 0 24px}
+.lesson-practice{margin:24px 0}
+.lesson-practice>h3{margin-top:0}
+.lesson-practice .task-shell{margin-top:24px}
+.lesson-practice h4{margin:16px 0}
+.lesson-practice legend{font-family:var(--font-reading)}
+.lesson-practice .field input,.lesson-practice .field select{width:100%}
+.lesson-practice .field{margin:16px 0}
+.lesson-practice .field.is-correct input,.lesson-practice .field.is-correct select{background:var(--color-success-bg)}
+.lesson-practice .field.is-wrong input,.lesson-practice .field.is-wrong select{background:var(--color-error-bg)}
+.lesson-practice .progress{display:block;margin:12px 0 16px}
+.lesson-practice .result-slot h3{margin-top:0}
+.lesson-practice .result-slot .link-row{margin:16px 0}
+.lesson-practice .quiz-review li{margin:16px 0}
+.lesson-practice .quiz-review p{margin:8px 0}
+.lesson-practice .result-copy{width:100%;margin-top:12px}
+.lesson-answers{margin-top:24px}
+.lesson-references{margin-top:16px}
+.lesson-sr{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.lesson-page .typing-status{min-height:48px;font:16px/24px var(--font-ui);position:fixed;left:0;right:0;top:0;margin:0;display:flex;align-items:center}
+@media(min-width:768px){.lesson-page[data-lesson="prepositions-in-on-at"] table th:first-child,.lesson-page[data-lesson="prepositions-in-on-at"] table td:first-child{width:112px}}
+@media(min-width:1024px){
+ .lesson-heading{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:48px;align-items:end}
+ .lesson-heading .lesson-header-art{margin:0 0 0 auto;align-self:center}
+ .lesson-page .lesson-layout{grid-template-columns:minmax(0,680px)}
+}
+@media(min-width:1280px){
+ .lesson-heading{grid-template-columns:720px 320px;gap:80px}
+ .lesson-introduction{margin-left:280px}
+ .lesson-page .lesson-layout{grid-template-columns:232px minmax(0,680px);gap:48px}
+ .lesson-contents{position:sticky;top:calc(var(--header-height) + 24px);max-height:calc(100dvh - var(--header-height) - 48px);overflow:auto}
+ .lesson-contents summary{cursor:default}
+}
+@media print{.lesson-practice,.lesson-contents{display:none}.lesson-introduction{margin-left:0}.lesson-page .lesson-layout{display:block}}
+
+/*
+```
+*/

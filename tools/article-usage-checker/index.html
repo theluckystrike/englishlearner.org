@@ -10,304 +10,95 @@
     <meta property="og:url" content="https://englishlearner.org/tools/article-usage-checker/">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#00d4aa">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #0a0e27;
-            color: #e0e6ed;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            flex: 1;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-top: 20px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            color: #00d4aa;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        .subtitle {
-            font-size: 1.1rem;
-            color: #a8b2c1;
-        }
-        .tool-section {
-            background: #151d3f;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid #2a3550;
-        }
-        label {
-            display: block;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: #00d4aa;
-        }
-        textarea {
-            width: 100%;
-            height: 150px;
-            padding: 15px;
-            background: #0f1629;
-            border: 1px solid #2a3550;
-            border-radius: 8px;
-            color: #e0e6ed;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 1rem;
-            resize: vertical;
-            transition: border-color 0.3s;
-        }
-        textarea:focus {
-            outline: none;
-            border-color: #00d4aa;
-        }
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        button {
-            padding: 12px 24px;
-            background: #00d4aa;
-            color: #0a0e27;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        button:hover {
-            background: #00b896;
-            transform: translateY(-2px);
-        }
-        button:active {
-            transform: translateY(0);
-        }
-        .results {
-            margin-top: 30px;
-            display: none;
-        }
-        .results.active {
-            display: block;
-        }
-        .analysis-summary {
-            background: #0f1629;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #2a3550;
-        }
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #2a3550;
-        }
-        .summary-item:last-child {
-            border-bottom: none;
-        }
-        .summary-label {
-            color: #a8b2c1;
-            font-weight: 500;
-        }
-        .summary-count {
-            color: #00d4aa;
-            font-weight: 600;
-        }
-        .highlighted-text {
-            background: #0f1629;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #2a3550;
-            line-height: 2;
-            font-family: 'Monaco', monospace;
-            font-size: 0.95rem;
-        }
-        .highlight-correct {
-            background: #2a3d2a;
-            padding: 2px 4px;
-            border-radius: 3px;
-            color: #51cf66;
-            font-weight: 600;
-        }
-        .highlight-error {
-            background: #3d2a2a;
-            padding: 2px 4px;
-            border-radius: 3px;
-            color: #ff6b6b;
-            font-weight: 600;
-            text-decoration: underline wavy;
-        }
-        .error-item {
-            background: #3d2a2a;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border-left: 4px solid #ff6b6b;
-        }
-        .error-text {
-            color: #ff6b6b;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-family: monospace;
-        }
-        .error-message {
-            color: #a8b2c1;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        .rule-card {
-            background: #0f1629;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            border-left: 4px solid #00d4aa;
-        }
-        .rule-title {
-            color: #00d4aa;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .rule-text {
-            color: #a8b2c1;
-            font-size: 0.95rem;
-        }
-        .empty-state {
-            text-align: center;
-            color: #7a8195;
-            padding: 40px 20px;
-        }
-        .rules-section {
-            margin-top: 30px;
-        }
-        .rules-title {
-            color: #00d4aa;
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #7a8195;
-            font-size: 0.9rem;
-            border-top: 1px solid #2a3550;
-        }
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-            .tool-section {
-                padding: 20px;
-            }
-            button {
-                width: 100%;
-            }
-        }
-    </style>
+    
     <link rel="canonical" href="https://englishlearner.org/tools/article-usage-checker/">
 <meta name="google-adsense-account" content="ca-pub-2241192243363112">
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/site.js" defer></script>
+<link rel="stylesheet" href="/assets/tool.css">
+<meta property="og:image" content="https://englishlearner.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="English Learner free lessons and practice">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
 </head>
 <body>
-<div class="el-top" role="navigation" aria-label="Site">
-  <a class="el-brand" href="/">English Learner</a>
-  <a href="/lessons/">Lessons</a>
-  <a href="/tools/">Practice tools</a>
-  <a href="/tools/level-assessment/">Level test</a>
-  <a href="/about/">About</a>
+<!-- shared-header-start -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="el-top"><div class="el-top-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><nav class="el-nav" aria-label="Main navigation"><a href="/lessons/">Lessons</a><a href="/tools/" aria-current="true">Practice</a><a href="/tools/level-assessment/" class="nav-wide" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta_id:'nav_level_test'})">Level test</a><a href="/about/" class="nav-wide">About</a></nav></div></header>
+<!-- shared-header-end -->
+<main class="lookup-tool tool-page tool-article-usage-checker" id="main"><script>
+window.toolResult = function(region, score, total, slug, track) {
+ region.classList.add('is-complete');
+ const placeholder=document.getElementById('resultPlaceholder'); if(placeholder) placeholder.hidden=true;
+ if(track && window.elTrack) window.elTrack('quiz_complete',{tool:slug,score:score,total:total});
+ let heading=region.querySelector('h2'); if(!heading){heading=document.createElement('h2');heading.textContent='Your result';region.prepend(heading);}
+ heading.tabIndex=-1; heading.focus();
+ if(!region.querySelector('.copy-result')){
+  const copy=document.createElement('button');copy.type='button';copy.className='copy-result btn';copy.textContent='Copy my result';
+  copy.onclick=async function(){const value=(region.querySelector('.result-value-long')?region.querySelector('.result-value-long').textContent+'. Rough guide. Grammar and reading only. ':'')+score+' out of '+total+'. Practice only. '+document.querySelector('link[rel=canonical]').href;try{await navigator.clipboard.writeText(value);copy.textContent='Result copied';}catch(e){let output=region.querySelector('.copy-fallback');if(!output){output=document.createElement('textarea');output.className='copy-fallback';output.readOnly=true;output.setAttribute('aria-label','Select the text to copy it');region.append(output);}output.value=value;output.focus();output.select();copy.textContent='Select the text to copy it.';}};
+  region.append(copy);
+ }
+};
+</script>
+<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">Article usage checker</li></ol></nav><h1>Article usage checker</h1><p class="lead">Check a few common article patterns.</p><p class="badge badge-experimental">Experimental. Results can be wrong.</p><p class="helper"><a href="/lessons/articles-a-an-the/">Read the articles lesson</a></p>
+<div class="checker-work"><div class="tool-section">
+<label for="textInput">Paste your text here:</label>
+<textarea id="textInput" placeholder="Example: I have a dog and a cat. The dog is black. Cats are animals..."></textarea>
+<div class="button-group">
+<button onclick="checkArticles()" type="button">Check Articles</button>
+<button onclick="clearAll()" type="button">Clear</button>
 </div>
-<div class="el-note" role="note">
-  <strong>Experimental tool.</strong> This tool uses simple rules and it makes mistakes. Do not rely on its results.
-  For checked explanations, use the <a href="/lessons/">grammar lessons</a> and the <a href="/tools/">practice tools</a>.
+</div><div class="checker-output"><section class="result-slot result-checker checker-placeholder"><h2>Possible findings</h2><p>Your result appears here when you finish.</p></section><div class="results" id="results">
+<div class="analysis-summary">
+<div>Analysis Summary</div>
+<div class="summary-item">
+<span class="summary-label">Articles found</span>
+<span class="summary-count" id="totalArticles">0</span>
 </div>
-    <div class="container">
-        <header>
-            <h1>Article Usage Checker</h1>
-            <p class="subtitle">Check a/an/the usage and learn countable/uncountable rules</p>
-        </header>
+<div class="summary-item">
+<span class="summary-label">Possible issues</span>
+<span class="summary-count" id="errorCount">0</span>
+</div>
+<div class="summary-item">
+<span class="summary-label">Accuracy</span>
+<span class="summary-count" id="accuracyScore">100%</span>
+</div>
+</div>
+<div>
+<div>Highlighted Text</div>
+<div class="highlighted-text" id="highlightedText"></div>
+</div>
+<div id="errorsContainer"></div>
 
-        <div class="tool-section">
-            <label for="textInput">Paste your text here:</label>
-            <textarea id="textInput" placeholder="Example: I have a dog and a cat. The dog is black. Cats are animals..."></textarea>
-            <div class="button-group">
-                <button onclick="checkArticles()">Check Articles</button>
-                <button onclick="clearAll()">Clear</button>
-            </div>
-        </div>
+</div></div></div><div class="rules-section">
+<div class="rules-title">Article Usage Rules</div>
+<div class="rule-card">
+<div class="rule-title">A vs An</div>
+<div class="rule-text">Use "a" before words starting with consonant sounds (a book, a house). Use "an" before words starting with vowel sounds (an apple, an hour).</div>
+</div>
+<div class="rule-card">
+<div class="rule-title">The (Definite Article)</div>
+<div class="rule-text">Use "the" when referring to something specific or already mentioned. Example: I saw a cat. The cat was orange.</div>
+</div>
+<div class="rule-card">
+<div class="rule-title">Countable Nouns</div>
+<div class="rule-text">Use "a/an" with singular countable nouns (a book, an apple). Use "the" when specific (the book I read). Use no article for plural nouns in general statements (books are useful).</div>
+</div>
+<div class="rule-card">
+<div class="rule-title">Uncountable Nouns</div>
+<div class="rule-text">Never use "a/an" with uncountable nouns (water, information, money). Use "the" when specific (the water in the glass).</div>
+</div>
+<div class="rule-card">
+<div class="rule-title">Proper Nouns</div>
+<div class="rule-text">Usually no article with names (John, Paris). Some exceptions: the United States, the Netherlands, the Thames (rivers, seas).</div>
+</div>
+</div>
 
-        <div id="results" class="results">
-            <div class="analysis-summary">
-                <div style="font-weight: 600; margin-bottom: 15px; color: #00d4aa;">Analysis Summary</div>
-                <div class="summary-item">
-                    <span class="summary-label">Total Articles Found:</span>
-                    <span class="summary-count" id="totalArticles">0</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Potential Errors:</span>
-                    <span class="summary-count" id="errorCount">0</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Accuracy Score:</span>
-                    <span class="summary-count" id="accuracyScore">100%</span>
-                </div>
-            </div>
-
-            <div>
-                <div style="font-weight: 600; margin: 20px 0 15px 0; color: #00d4aa;">Highlighted Text</div>
-                <div id="highlightedText" class="highlighted-text"></div>
-            </div>
-
-            <div id="errorsContainer"></div>
-
-            <div class="rules-section">
-                <div class="rules-title">Article Usage Rules</div>
-                <div class="rule-card">
-                    <div class="rule-title">A vs An</div>
-                    <div class="rule-text">Use "a" before words starting with consonant sounds (a book, a house). Use "an" before words starting with vowel sounds (an apple, an hour).</div>
-                </div>
-                <div class="rule-card">
-                    <div class="rule-title">The (Definite Article)</div>
-                    <div class="rule-text">Use "the" when referring to something specific or already mentioned. Example: I saw a cat. The cat was orange.</div>
-                </div>
-                <div class="rule-card">
-                    <div class="rule-title">Countable Nouns</div>
-                    <div class="rule-text">Use "a/an" with singular countable nouns (a book, an apple). Use "the" when specific (the book I read). No article for plural (books are useful).</div>
-                </div>
-                <div class="rule-card">
-                    <div class="rule-title">Uncountable Nouns</div>
-                    <div class="rule-text">Never use "a/an" with uncountable nouns (water, information, money). Use "the" when specific (the water in the glass).</div>
-                </div>
-                <div class="rule-card">
-                    <div class="rule-title">Proper Nouns</div>
-                    <div class="rule-text">Usually no article with names (John, Paris). Some exceptions: the United States, the Netherlands, the Thames (rivers, seas).</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script type="application/ld+json">
+<script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
@@ -317,105 +108,39 @@
         "applicationCategory": "EducationalApplication"
     }
     </script>
-
-    <script>
-        const uncountableNouns = ['water', 'information', 'money', 'furniture', 'equipment', 'luggage', 'baggage', 'research', 'advice', 'evidence', 'jewelry', 'knowledge', 'progress', 'weather', 'bread', 'rice', 'flour', 'meat', 'fish', 'fruit', 'garbage', 'trash', 'pollution', 'noise', 'oxygen', 'hydrogen', 'nitrogen', 'luck', 'chaos', 'damage', 'improvement', 'assistance', 'homework', 'work', 'play', 'fun', 'entertainment', 'violence', 'employment', 'abuse', 'billfold', 'cash'];
+<script>
+        function inputError(input,message){let error=document.getElementById('inputError');if(!error){error=document.createElement('p');error.id='inputError';error.className='field-error';error.setAttribute('role','status');input.after(error);}error.textContent=message;input.setAttribute('aria-describedby','inputError');input.setAttribute('aria-invalid',message?'true':'false');if(message)input.focus();}
+const uncountableNouns = ['information','advice','furniture','equipment','luggage','baggage','homework','knowledge','progress','weather','money','cash'];
 
         const countableNouns = ['book', 'cat', 'dog', 'house', 'apple', 'car', 'person', 'student', 'teacher', 'child', 'tree', 'flower', 'table', 'chair', 'word', 'sentence', 'language', 'country', 'city', 'mountain', 'river'];
 
         function checkArticles() {
-            const text = document.getElementById('textInput').value.trim();
-            if (!text) {
-                alert('Please paste some text to analyze.');
-                return;
-            }
-
-            const results = document.getElementById('results');
-            results.classList.add('active');
-
-            // Find articles
-            const articleRegex = /\b(a|an|the)\s+(\w+)/gi;
-            const articles = [];
-            const errors = [];
-            let match;
-
-            while ((match = articleRegex.exec(text)) !== null) {
-                const article = match[1].toLowerCase();
-                const nextWord = match[2].toLowerCase();
-                articles.push({ article, nextWord, index: match.index });
-
-                // Check for errors
-                if (article === 'a') {
-                    const vowelSounds = ['a', 'e', 'i', 'o', 'u'];
-                    if (vowelSounds.includes(nextWord[0])) {
-                        errors.push({
-                            error: `"a ${nextWord}"`,
-                            correction: `"an ${nextWord}"`,
-                            rule: 'Use "an" before vowel sounds'
-                        });
-                    }
-                    if (uncountableNouns.includes(nextWord)) {
-                        errors.push({
-                            error: `"a ${nextWord}"`,
-                            correction: `"the ${nextWord}" or just "${nextWord}"`,
-                            rule: `"${nextWord}" is uncountable - do not use "a/an"`
-                        });
-                    }
-                } else if (article === 'an') {
-                    const vowelSounds = ['a', 'e', 'i', 'o', 'u'];
-                    if (!vowelSounds.includes(nextWord[0])) {
-                        errors.push({
-                            error: `"an ${nextWord}"`,
-                            correction: `"a ${nextWord}"`,
-                            rule: 'Use "a" before consonant sounds'
-                        });
-                    }
-                }
-            }
-
-            // Display results
-            document.getElementById('totalArticles').textContent = articles.length;
-            document.getElementById('errorCount').textContent = errors.length;
-            const accuracy = articles.length > 0 ? Math.round(((articles.length - errors.length) / articles.length) * 100) : 100;
-            document.getElementById('accuracyScore').textContent = accuracy + '%';
-
-            // Highlight text
-            let highlightedText = text;
-            articles.forEach(art => {
-                const pattern = new RegExp(`\\b${art.article}\\s+${art.nextWord}\\b`, 'gi');
-                const isError = errors.some(e => e.error.toLowerCase() === `"${art.article} ${art.nextWord}"`);
-                const className = isError ? 'highlight-error' : 'highlight-correct';
-                highlightedText = highlightedText.replace(pattern, `<span class="${className}">${art.article} ${art.nextWord}</span>`);
-            });
-
-            document.getElementById('highlightedText').innerHTML = highlightedText;
-
-            // Display errors
-            const errorsContainer = document.getElementById('errorsContainer');
-            errorsContainer.innerHTML = '';
-
-            if (errors.length > 0) {
-                const errorTitle = document.createElement('div');
-                errorTitle.style.cssText = 'font-weight: 600; margin: 20px 0 15px 0; color: #ff6b6b;';
-                errorTitle.textContent = 'Potential Errors Found';
-                errorsContainer.appendChild(errorTitle);
-
-                errors.forEach((error, index) => {
-                    const errorDiv = document.createElement('div');
-                    errorDiv.className = 'error-item';
-                    errorDiv.innerHTML = `
-                        <div class="error-text">Error ${index + 1}: ${error.error}</div>
-                        <div class="error-message"><span class="label">Correction</span> Use ${error.correction}</div>
-                        <div class="error-message" style="margin-top: 8px;"><span class="label">Rule</span> ${error.rule}</div>
-                    `;
-                    errorsContainer.appendChild(errorDiv);
-                });
-            } else {
-                const successDiv = document.createElement('div');
-                successDiv.className = 'empty-state';
-                successDiv.innerHTML = '<strong style="color: #51cf66; font-size: 1.1rem;">No article errors detected!</strong><p style="margin-top: 10px;">Your text uses articles correctly.</p>';
-                errorsContainer.appendChild(successDiv);
-            }
+ const input=document.getElementById('textInput'),text=input.value;
+ if(!text.trim()){inputError(input,'Enter some text to check.');return;}inputError(input,'');
+ const results=document.getElementById('results');results.classList.add('active');
+ const articles=[...text.matchAll(/\b(a|an|the)\s+([a-z]+)/gi)];let errors=[];
+ const highlighted=document.getElementById('highlightedText');highlighted.replaceChildren();let cursor=0;
+ for(const match of articles){
+  const article=match[1].toLowerCase(),word=match[2].toLowerCase();let issue='';
+  if(article!=='the'){
+   if(uncountableNouns.includes(word))issue='This noun is normally uncountable. Use a suitable unit, or remove a/an when the meaning allows it.';
+   else if(!/^[A-Z]{2}/.test(match[2]) && !/^(herb|historic|hotel)/.test(word)){
+    const vowel=/^(hour|honest|honour|honor|heir)/.test(word)||(/^[aeiou]/.test(word)&&!/^(uni([^nmd]|$)|use|user|usual|euro|one|once|ufo)/.test(word));
+    const expected=vowel?'an':'a';if(article!==expected)issue='Check the sound of '+match[2]+'. The usual article is '+expected+'.';
+   }
+  }
+  highlighted.append(document.createTextNode(text.slice(cursor,match.index)));
+  const span=document.createElement('span');span.className=issue?'highlight-error':'highlight-correct';span.textContent=match[0];highlighted.append(span);cursor=match.index+match[0].length;
+  if(issue)errors.push({phrase:match[0],issue});
+ }
+ highlighted.append(document.createTextNode(text.slice(cursor)));
+ document.getElementById('totalArticles').textContent=articles.length;
+ document.getElementById('errorCount').textContent=errors.length;
+ document.getElementById('accuracyScore').textContent='Not measured';
+ const out=document.getElementById('errorsContainer');out.replaceChildren();
+ const heading=document.createElement('h2');heading.className='result-finding';heading.tabIndex=-1;heading.textContent=errors.length?errors.length+' possible article issues':'No issues found by these rules.';out.append(heading);
+ const limit=document.createElement('p');limit.textContent='This doesn’t prove the text is correct. Missing articles and context are not checked. Names, abbreviations and variable pronunciations need a dictionary.';out.append(limit);
+ errors.forEach(error=>{const p=document.createElement('p');p.className='error-item';p.textContent=error.phrase+'. '+error.issue;out.append(p);});heading.focus();
         }
 
         function clearAll() {
@@ -429,18 +154,23 @@
             }
         });
     </script>
-<div class="el-foot" role="contentinfo">
-  <div class="el-links">
-    <a href="/">Home</a>
-    <a href="/lessons/">Lessons</a>
-    <a href="/tools/">Practice tools</a>
-    <a href="/about/">About</a>
-    <a href="/contact/">Contact</a>
-    <a href="/privacy/">Privacy</a>
-    <button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button>
-  </div>
-  <p>&copy; 2026 englishlearner.org. An independent site. Not connected to any exam board.</p>
-  <p>From the same developer: <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant.</p>
-</div>
+<p class="retained-intro reading">Check a/an/the usage and learn countable/uncountable rules</p><div class="el-note" role="note">
+Experimental tool. This tool uses simple rules and it makes mistakes. Do not rely on its results.
+  For checked explanations, use the <a href="/lessons/">grammar lessons</a> and the <a href="/tools/">practice tools</a>.
+</div><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/articles-a-an-the/">Read the articles lesson</a><a class="btn" href="/tools/">Choose another practice</a></div></section><noscript><p>Interactive practice needs JavaScript. <a href="/lessons/articles-a-an-the/">Read the written study guide</a>.</p></noscript><script>
+if(matchMedia('(min-width:1024px)').matches)document.querySelectorAll('.quiz-settings:not([hidden])').forEach(el=>el.open=true);
+</script><script>
+(function(){
+ const main=document.getElementById('main');
+ const status=document.createElement('p');status.className='typing-status';status.setAttribute('role','status');status.hidden=true;main.append(status);
+ const update=()=>{const input=document.activeElement;if(!input||!main.contains(input)||!input.matches('textarea,input:not([type=radio]):not([type=checkbox])')||!window.visualViewport){status.hidden=true;return;}const feedback=main.querySelector('#feedbackArea,#feedback,#errorsContainer,#verbsContainer,#diagramDisplay');const box=feedback&&feedback.getBoundingClientRect();if(box&&box.top>=0&&box.bottom<visualViewport.height){status.hidden=true;return;}status.textContent=(main.querySelector('#qCounter')||{}).textContent||'Answer not checked';status.style.top=visualViewport.offsetTop+'px';status.hidden=false;};
+ main.addEventListener('focusin',update);main.addEventListener('focusout',()=>setTimeout(update,0));window.addEventListener('scroll',update,{passive:true});if(window.visualViewport)visualViewport.addEventListener('resize',update);
+ main.querySelectorAll('.checker-output .results').forEach(result=>new MutationObserver(()=>{const placeholder=result.parentElement.querySelector('.checker-placeholder');if(placeholder)placeholder.hidden=result.classList.contains('active');}).observe(result,{attributes:true,attributeFilter:['class']}));
+ main.querySelectorAll('a[href^="/lessons/"]').forEach(link=>link.addEventListener('click',()=>{if(window.elTrack)window.elTrack('cta_click',{cta_id:'tool_article-usage-checker_lesson'});}));
+})();
+</script></main>
+<!-- shared-footer-start -->
+<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>It isn’t connected to englishlearner.com.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
+<!-- shared-footer-end -->
 </body>
 </html>

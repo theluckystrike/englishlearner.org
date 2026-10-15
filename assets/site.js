@@ -188,10 +188,19 @@
     }, true);
   }
 
+  /* Internal traffic opt-out. Open any page once with ?el_internal=1 (or =0 to undo). */
+  function isInternal() {
+    try {
+      var m = location.search.match(/[?&]el_internal=([01])/);
+      if (m) { window.localStorage.setItem('el_internal', m[1]); }
+      return window.localStorage.getItem('el_internal') === '1';
+    } catch (e) { return false; }
+  }
+
   function start() {
     wireChoiceLinks();
     wireToolUse();
-    if (!isProduction) { return; }
+    if (!isProduction || isInternal()) { return; }
     var choice = readChoice();
     if (choice === 'denied') { return; }
     if (choice === 'granted') { loadAll(); return; }

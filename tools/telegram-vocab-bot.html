@@ -36,141 +36,63 @@
   ]
 }
 </script>
-<style>
-  :root {
-    --bg: #0f1220;
-    --panel: #1a1f33;
-    --panel2: #222842;
-    --border: #2e3658;
-    --text: #e6e9f5;
-    --muted: #9aa3c4;
-    --accent: #6c8cff;
-    --good: #3ddc97;
-    --bad: #ff6b81;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  nav {
-    background: var(--panel);
-    border-bottom: 1px solid var(--border);
-    padding: 14px 20px;
-    display: flex;
-    gap: 20px;
-    font-weight: 600;
-  }
-  .wrap {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 24px 20px 60px;
-  }
-  h1 { font-size: 1.9rem; line-height: 1.2; margin: 18px 0 8px; }
-  h2 { font-size: 1.35rem; margin: 36px 0 12px; }
-  p { color: var(--text); }
-  .lead { color: var(--muted); font-size: 1.05rem; }
-  .panel {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px;
-    margin: 18px 0;
-  }
-  .panel h3 { margin: 0 0 6px; font-size: 1.05rem; }
-  .panel p.muted { color: var(--muted); margin: 0 0 10px; }
-  .btn {
-    display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-weight: 600;
-  }
-  .btn:hover { text-decoration: none; filter: brightness(1.1); }
-  ol, ul { padding-left: 22px; }
-  ol li, ul li { margin-bottom: 10px; }
-  .related a { display: inline-block; margin-right: 14px; }
-  .badge {
-    display: inline-block;
-    background: var(--panel2);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 0.8rem;
-    padding: 3px 10px;
-    border-radius: 999px;
-    margin-bottom: 10px;
-  }
-  footer {
-    border-top: 1px solid var(--border);
-    background: var(--panel);
-    padding: 24px 20px;
-    color: var(--muted);
-    text-align: center;
-  }
-  footer a { margin: 0 10px; }
-  @media (max-width: 480px) {
-    h1 { font-size: 1.5rem; }
-  }
-</style>
+
 <script src="/assets/site.js" defer></script>
+<link rel="stylesheet" href="/assets/tool.css">
+<meta property="og:image" content="https://englishlearner.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="English Learner free lessons and practice">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
 </head>
 <body>
-<nav>
-  <a href="/">Home</a>
-  <a href="/tools/">Tools</a>
-</nav>
-<div class="wrap">
-  <h1>Learn Vocabulary Inside Telegram Chat</h1>
-  <p class="lead">You do not need a separate app to build vocabulary. If you already spend time in Telegram, a chat-based routine can carry the daily habit for you. Here is what is available today, what is coming, and seven concrete tactics that make chat-based vocabulary study actually work.</p>
+<!-- shared-header-start -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="el-top"><div class="el-top-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><nav class="el-nav" aria-label="Main navigation"><a href="/lessons/">Lessons</a><a href="/tools/" aria-current="true">Practice</a><a href="/tools/level-assessment/" class="nav-wide" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta_id:'nav_level_test'})">Level test</a><a href="/about/" class="nav-wide">About</a></nav></div></header>
+<!-- shared-header-end -->
+<main class="tool-page tool-telegram-vocab-bot" id="main">
 
-  <h2>VocabBot is launching soon</h2>
-  <div class="panel">
-    <span class="badge">Launching soon</span>
-    <p>VocabBot is a Telegram bot built specifically for vocabulary study: a shared catalog of 300 English words across three levels (A2, B1, B2), each with an example sentence and a translation into Russian, Spanish, Portuguese, Indonesian, or German. It is designed to send one daily card at an hour you choose, with buttons for Know, Don't know, and a repeat of the example sentence, and to track a rolling review schedule so words you know keep coming back at longer intervals.</p>
-    <p>VocabBot is not live yet. Follow its page for launch status: <a href="https://tg.zovo.one/bots/vocab/">tg.zovo.one/bots/vocab</a>.</p>
-  </div>
+<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">Learn vocabulary in Telegram</li></ol></nav><h1>Learn vocabulary in Telegram</h1><p class="lead">VocabBot isn’t live yet.</p><p><a class="btn btn-primary" href="/tools/vocabulary-quiz/">Try the vocabulary quiz</a></p>
 
-  <h2>What you can use today, a daily streak bot</h2>
-  <div class="panel">
-    <h3>HabitStreakProBot</h3>
-    <p class="muted">Tap check-ins, a running streak per habit, and a once-a-day prompt.</p>
-    <p>While VocabBot is not yet available, you can still build the single most important part of vocabulary learning inside Telegram right now: a daily streak. <a href="https://tg.zovo.one/bots/habit/">HabitStreakProBot</a> lets you add a habit such as "review 10 words" and prompts you once a day at an hour you set, with a single tap to mark it done. It keeps a running streak per habit, so you get the same accountability a dedicated vocabulary app would give you, paired with whatever word list or flashcard method you already use.</p>
-    <p><a class="btn" href="https://tg.zovo.one/bots/habit/">Set up a daily study streak on Telegram &rarr;</a></p>
-  </div>
-
-  <h2>Seven Tactics for Learning Vocabulary in Chat</h2>
-  <div class="panel">
-    <ol>
-      <li><strong>Use spaced repetition, not one long list.</strong> Review a new word right after you meet it, then again the next day, then a few days later, then about two weeks later. Each successful recall pushes the word further out; a missed one resets it to day one. This single change beats re-reading a static list by a wide margin.</li>
-      <li><strong>Cap new words per day.</strong> Three to five new words a day is plenty. Piling on twenty guarantees most of them fall out of memory within a week. A small, steady batch survives; a big one does not.</li>
-      <li><strong>Attach every word to one example sentence.</strong> A bare translation is easy to forget. A sentence gives the word a job to do, so you remember how it is actually used, not just what it means in isolation.</li>
-      <li><strong>Test yourself before you check the answer.</strong> Look at the word, try to recall the meaning or say a sentence with it, and only then check. The act of forcing recall, even when you get it wrong, strengthens the memory more than simply rereading the answer.</li>
-      <li><strong>Pick one fixed time and protect it.</strong> A study habit anchored to a specific hour, right after breakfast or right before bed, survives longer than one you fit in "whenever." Chat notifications work well for this because the reminder shows up where you already look.</li>
-      <li><strong>Track a streak, not a score.</strong> A visible daily streak is a stronger motivator for a repeating habit than a cumulative score, because it rewards showing up today specifically, not just eventually catching up.</li>
-      <li><strong>Mix levels instead of finishing one before starting the next.</strong> Reviewing easier words alongside new, harder ones keeps recall sharp on both ends. Studying only brand-new words all session tends to blur them together.</li>
-    </ol>
-  </div>
-
-  <h2>Putting It Together</h2>
-  <p>Right now, the practical setup is to pick your own word source, whether that is a textbook list, a set of flashcards, or notes from a lesson, and use <a href="https://tg.zovo.one/bots/habit/">HabitStreakProBot</a> to enforce the daily habit with a tap-to-confirm check-in and a visible streak. When VocabBot launches, it adds the missing piece: a ready-made 300-word catalog with built-in spaced repetition, so the review schedule is handled for you instead of manually tracked. Until then, follow <a href="https://tg.zovo.one/bots/vocab/">tg.zovo.one/bots/vocab</a> for the launch, and browse the full lineup of bots at <a href="https://tg.zovo.one/">Tiny Telegram Tools</a>.</p>
-
-  <h2>Related Tools</h2>
-  <div class="related panel">
-    <a href="/tools/vocabulary-quiz/">Vocabulary Quiz</a>
-    <a href="/tools/idioms-dictionary/">Idioms Dictionary</a>
-  </div>
+<h2>VocabBot is planned</h2>
+<div class="panel">
+<span class="badge">Not live yet</span>
+<p>VocabBot is a planned Telegram bot built specifically for vocabulary study: a shared catalog of 300 English words across three levels (A2, B1, B2), each with an example sentence and a translation into Russian, Spanish, Portuguese, Indonesian, or German. It is designed to send one daily card at an hour you choose, with buttons for Know, Don't know, and a repeat of the example sentence, and to track a rolling review schedule so words you know keep coming back at longer intervals.</p>
+<p>VocabBot is not live yet. Follow its page for launch status: <a href="https://tg.zovo.one/bots/vocab/">tg.zovo.one/bots/vocab</a>.</p>
+</div>
+<h2>What you can use today, a daily streak bot</h2>
+<div class="panel">
+<h3>HabitStreakProBot</h3><p class="helper">This site and the linked Telegram tools share the same developer, Michael Lip.</p>
+<p class="muted">Tap check-ins, a running streak per habit, and a once-a-day prompt.</p>
+<p>While VocabBot is not yet available, you can still build a daily study reminder inside Telegram. <a href="https://tg.zovo.one/bots/habit/">HabitStreakProBot</a> lets you add a habit such as "review 10 words" and prompts you once a day at an hour you set, with a single tap to mark it done. It keeps a running streak per habit, so you can track when you study, paired with whatever word list or flashcard method you already use.</p>
+<p><a class="btn" href="https://tg.zovo.one/bots/habit/">Set up a daily study streak on Telegram →</a></p>
+</div>
+<h2>Seven tactics for learning vocabulary in chat</h2>
+<div class="panel">
+<ol>
+<li>Use spaced repetition, not one long list. Review a new word right after you meet it, then again the next day, then a few days later, then about two weeks later. Each successful recall pushes the word further out; a missed one resets it to day one. Use this schedule as a starting point, and repeat difficult words sooner.</li>
+<li>Cap new words per day. Three to five new words a day is plenty. Start with a batch you can review. Reduce the number if you struggle to remember the earlier words.</li>
+<li>Attach every word to one example sentence. A bare translation is easy to forget. A sentence gives the word a job to do, so you remember how it is actually used, not just what it means in isolation.</li>
+<li>Test yourself before you check the answer. Look at the word, try to recall the meaning or say a sentence with it, and only then check. Check the answer after your attempt, then revisit words you missed.</li>
+<li>Pick one fixed time and protect it. A study habit anchored to a specific hour, right after breakfast or right before bed, survives longer than one you fit in "whenever." Chat notifications work well for this because the reminder shows up where you already look.</li>
+<li>Track a streak, not a score. A visible streak can remind you to return. Use it if it helps, and restart after a missed day.</li>
+<li>Mix levels instead of finishing one before starting the next. Reviewing easier words alongside new, harder ones keeps recall sharp on both ends. Studying only brand-new words all session tends to blur them together.</li>
+</ol>
+</div>
+<h2>Putting it together</h2>
+<p>Right now, the practical setup is to pick your own word source, whether that is a textbook list, a set of flashcards, or notes from a lesson, and use <a href="https://tg.zovo.one/bots/habit/">HabitStreakProBot</a> to enforce the daily habit with a tap-to-confirm check-in and a visible streak. When VocabBot launches, it adds the missing piece: a ready-made 300-word catalog with built-in spaced repetition, so the review schedule is handled for you instead of manually tracked. Until then, follow <a href="https://tg.zovo.one/bots/vocab/">tg.zovo.one/bots/vocab</a> for the launch, and browse the full lineup of bots at <a href="https://tg.zovo.one/">Tiny Telegram Tools</a>.</p>
+<h2>Related tools</h2>
+<div class="related panel">
+<a href="/tools/vocabulary-quiz/">Vocabulary Quiz</a>
+<a href="/tools/idioms-dictionary/">Idioms Dictionary</a>
 </div>
 
-<footer>
-  <a href="/">Home</a>
-  <a href="/tools/">Tools</a>
-  <p>&copy; 2026 EnglishLearner.org</p>
-</footer>
+<p class="retained-intro reading">You do not need a separate app to build vocabulary. If you already spend time in Telegram, a chat-based routine can carry the daily habit for you. Here is what is available today, what is coming, and seven concrete tactics that make chat-based vocabulary study actually work.</p><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/cefr-levels/">Choose what to study</a><a class="btn" href="/tools/">Choose another practice</a></div></section><noscript><p>Interactive practice needs JavaScript. <a href="/lessons/cefr-levels/">Read the written study guide</a>.</p></noscript></main>
+<!-- shared-footer-start -->
+<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>It isn’t connected to englishlearner.com.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
+<!-- shared-footer-end -->
 </body>
 </html>

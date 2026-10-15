@@ -30,90 +30,64 @@
   }
 }
 </script>
-<style>
-:root{--bg:#0e1116;--card:#161b22;--bd:#2a313c;--fg:#e6edf3;--mut:#9aa6b2;--acc:#58a6ff;--acc2:#7ee787;--warn:#f0a05a}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
-nav{display:flex;gap:18px;padding:14px 20px;border-bottom:1px solid var(--bd);background:#11151b;position:sticky;top:0;z-index:5}
-nav a{color:var(--acc);text-decoration:none;font-weight:600;font-size:14px}
-nav a:hover{text-decoration:underline}
-main{max-width:820px;margin:0 auto;padding:24px 20px 60px}
-h1{font-size:27px;line-height:1.25;margin:18px 0 6px}
-h2{font-size:20px;margin:34px 0 10px;border-bottom:1px solid var(--bd);padding-bottom:6px}
-.lede{color:var(--mut);font-size:16px;margin:0 0 8px}
-section#tool{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:20px;margin:22px 0}
-label{display:block;font-weight:600;font-size:14px;margin:14px 0 6px}
-textarea,select{width:100%;background:#0d1117;color:var(--fg);border:1px solid var(--bd);border-radius:8px;padding:11px 12px;font-size:15px;font-family:inherit}
-textarea{min-height:84px;resize:vertical}
-.row{display:flex;gap:14px;flex-wrap:wrap}
-.row>div{flex:1;min-width:160px}
-.opts{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;align-items:center}
-.opts label{display:inline-flex;align-items:center;gap:7px;margin:0;font-weight:500;color:var(--mut);cursor:pointer}
-#out{margin-top:18px;background:#0d1117;border:1px solid var(--bd);border-radius:8px;padding:16px;min-height:48px}
-.word{display:inline-block;margin:0 10px 12px 0;vertical-align:top}
-.word .orig{font-weight:700;font-size:15px}
-.word .ipa{color:var(--acc2);font-size:18px;letter-spacing:.5px}
-.word .syl{color:var(--mut);font-size:12px}
-.stat{display:flex;gap:22px;flex-wrap:wrap;margin-top:14px;color:var(--mut);font-size:13px;border-top:1px solid var(--bd);padding-top:12px}
-.stat b{color:var(--acc);font-size:16px;display:block}
-.legend{font-size:12px;color:var(--mut);margin-top:10px}
-.exact{color:var(--acc2)}.guess{color:var(--warn)}
-p{margin:12px 0}
-a.inl{color:var(--acc)}
-.related a{display:inline-block;margin:4px 14px 4px 0;color:var(--acc);text-decoration:none;font-weight:600}
-.related a:hover{text-decoration:underline}
-footer{border-top:1px solid var(--bd);padding:22px 20px;text-align:center;color:var(--mut);font-size:13px}
-footer a{color:var(--acc);text-decoration:none;margin:0 8px}
-small{color:var(--mut)}
-</style>
+
 <meta name="google-adsense-account" content="ca-pub-2241192243363112">
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/site.js" defer></script>
+<link rel="stylesheet" href="/assets/tool.css">
+<meta property="og:image" content="https://englishlearner.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="English Learner free lessons and practice">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
 </head>
 <body>
-<div class="el-top" role="navigation" aria-label="Site">
-  <a class="el-brand" href="/">English Learner</a>
-  <a href="/lessons/">Lessons</a>
-  <a href="/tools/">Practice tools</a>
-  <a href="/tools/level-assessment/">Level test</a>
-  <a href="/about/">About</a>
+<!-- shared-header-start -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="el-top"><div class="el-top-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><nav class="el-nav" aria-label="Main navigation"><a href="/lessons/">Lessons</a><a href="/tools/" aria-current="true">Practice</a><a href="/tools/level-assessment/" class="nav-wide" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta_id:'nav_level_test'})">Level test</a><a href="/about/" class="nav-wide">About</a></nav></div></header>
+<!-- shared-header-end -->
+<main class="tool-page tool-pronunciation-guide" id="main"><script>
+window.toolResult = function(region, score, total, slug, track) {
+ region.classList.add('is-complete');
+ const placeholder=document.getElementById('resultPlaceholder'); if(placeholder) placeholder.hidden=true;
+ if(track && window.elTrack) window.elTrack('quiz_complete',{tool:slug,score:score,total:total});
+ let heading=region.querySelector('h2'); if(!heading){heading=document.createElement('h2');heading.textContent='Your result';region.prepend(heading);}
+ heading.tabIndex=-1; heading.focus();
+ if(!region.querySelector('.copy-result')){
+  const copy=document.createElement('button');copy.type='button';copy.className='copy-result btn';copy.textContent='Copy my result';
+  copy.onclick=async function(){const value=(region.querySelector('.result-value-long')?region.querySelector('.result-value-long').textContent+'. Rough guide. Grammar and reading only. ':'')+score+' out of '+total+'. Practice only. '+document.querySelector('link[rel=canonical]').href;try{await navigator.clipboard.writeText(value);copy.textContent='Result copied';}catch(e){let output=region.querySelector('.copy-fallback');if(!output){output=document.createElement('textarea');output.className='copy-fallback';output.readOnly=true;output.setAttribute('aria-label','Select the text to copy it');region.append(output);}output.value=value;output.focus();output.select();copy.textContent='Select the text to copy it.';}};
+  region.append(copy);
+ }
+};
+</script>
+<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">Pronunciation guide</li></ol></nav><h1>Pronunciation guide</h1><p class="lead">See dictionary forms and estimated pronunciations.</p><p class="badge badge-experimental">Experimental. Results can be wrong.</p><p class="helper"><a href="/lessons/cefr-levels/">Read the CEFR study guide</a></p>
+<p class="lede">Type English text to see stored pronunciations or rule estimates. Check unfamiliar words against a dictionary recording.</p>
+<section class="checker-work" id="tool"><div class="tool-section">
+<label for="inp">Enter English text to transcribe</label>
+<textarea id="inp" spellcheck="false">English pronunciation is really difficult to learn</textarea>
+<div class="opts">
+<label><input checked="" id="optSyl" type="checkbox"/> Show syllables</label>
+<label><input checked="" id="optStress" type="checkbox"/> Show stress mark (ˈ)</label>
+<label for="optStyle">Accent: </label>
+<div>
+<select aria-label="Accent style" id="optStyle">
+<option selected="" value="ga">General American</option>
+<option value="rp">British estimate</option>
+</select>
 </div>
-<div class="el-note" role="note">
-  <strong>Experimental tool.</strong> This tool uses simple rules and it makes mistakes. Do not rely on its results.
-  For checked explanations, use the <a href="/lessons/">grammar lessons</a> and the <a href="/tools/">practice tools</a>.
 </div>
-<main>
-  <h1>English Pronunciation Guide &amp; IPA Converter</h1>
-  <p class="lede">Type any English word or sentence and get its IPA phonetic spelling, syllable breaks, and stress marks instantly, no sign-up, works offline in your browser.</p>
-
-  <section id="tool">
-    <label for="inp">Enter English text to transcribe</label>
-    <textarea id="inp" spellcheck="false">English pronunciation is really difficult to learn</textarea>
-    <div class="opts">
-      <label><input type="checkbox" id="optSyl" checked> Show syllables</label>
-      <label><input type="checkbox" id="optStress" checked> Show stress mark (ˈ)</label>
-      <label for="optStyle" style="cursor:default">Accent:&nbsp;</label>
-      <div style="max-width:160px;flex:0 0 auto">
-        <select id="optStyle" aria-label="Accent style">
-          <option value="ga" selected>General American</option>
-          <option value="rp">British (RP-ish)</option>
-        </select>
-      </div>
-    </div>
-    <div id="out" aria-live="polite"></div>
-    <div class="legend"><span class="exact">●</span> dictionary match &nbsp; <span class="guess">●</span> rule-based estimate</div>
-    <div class="stat" id="stat"></div>
-  </section>
-
-  <h2>How this pronunciation tool works</h2>
-  <p>English spelling is famously irregular, the letters <em>ough</em> alone have six different sounds (think <em>though</em>, <em>tough</em>, <em>through</em>, <em>cough</em>, <em>bough</em>, <em>thought</em>). Because of that, no single set of rules can perfectly convert spelling to sound. This tool uses a two-stage method to get close.</p>
-  <p><span class="label">Stage 1, dictionary lookup</span> The tool ships with a built-in pronunciation dictionary of several hundred of the most common English words, each stored with its hand-checked IPA (International Phonetic Alphabet) transcription. If your word is in the list, you get an exact, authoritative result, marked with a green dot.</p>
-  <p><span class="label">Stage 2, grapheme-to-phoneme rules</span> When a word is not in the dictionary, the tool falls back to a letter-to-sound algorithm. It scans the word left to right, matching multi-letter spelling patterns (digraphs like <em>sh</em>, <em>ch</em>, <em>th</em>, and vowel teams like <em>ea</em>, <em>oo</em>, <em>igh</em>) before single letters, applies the silent-<em>e</em> rule that lengthens a preceding vowel, and reduces unstressed vowels toward the schwa /ə/. These estimates are marked with an amber dot so you know to double-check them.</p>
-  <p><span class="label">Syllables and stress</span> Syllable count is estimated by counting vowel-sound groups (adjacent vowels count once) and subtracting a silent final <em>e</em>. The primary stress mark ˈ is placed before the strongest syllable using a simple heuristic: two-syllable nouns and adjectives usually stress the first syllable, while the General American and British (RP) toggles swap a few vowel qualities such as the <em>a</em> in <em>bath</em> and the rhotic final <em>r</em>. Treat the output as a study aid, not a substitute for a native-speaker recording.</p>
-
-  </main>
-
+</div><div class="checker-output"><div id="out"></div>
+<div class="legend">Dictionary form   Estimate</div>
+<div aria-live="polite" class="stat" id="stat" role="status"></div>
+</div></section>
+<h2>How this pronunciation tool works</h2>
+<p>English spelling is famously irregular, the letters <em>ough</em> alone have six different sounds (think <em>though</em>, <em>tough</em>, <em>through</em>, <em>cough</em>, <em>bough</em>, <em>thought</em>). Because of that, no single set of rules can perfectly convert spelling to sound. This tool uses a two-stage method to get close.</p>
+<p><span class="label">Stage 1, dictionary lookup</span> The tool ships with a built-in pronunciation dictionary of several hundred of the most common English words, each stored with an IPA (International Phonetic Alphabet) transcription. If your word is in the list, you get one stored pronunciation. Words such as read and use need sentence context. Accent transformations remain estimates.</p>
+<p><span class="label">Stage 2, grapheme-to-phoneme rules</span> When a word is not in the dictionary, the tool falls back to a letter-to-sound algorithm. It scans the word left to right, matching multi-letter spelling patterns (digraphs like <em>sh</em>, <em>ch</em>, <em>th</em>, and vowel teams like <em>ea</em>, <em>oo</em>, <em>igh</em>) before single letters, applies the silent-<em>e</em> rule that lengthens a preceding vowel, and reduces unstressed vowels toward the schwa /ə/. These outputs carry an Estimate label so you know to double-check them.</p>
+<p><span class="label">Syllables and stress</span> Syllable count is estimated by counting vowel-letter groups (adjacent vowels count once) and subtracting a silent final <em>e</em>. For unknown words, the stress mark defaults to the first syllable. This can be wrong. The General American and British (RP) toggles swap a few vowel qualities such as the <em>a</em> in <em>bath</em> and the rhotic final <em>r</em>. Treat the output as a study aid, not a substitute for a native-speaker recording.</p>
 <script>
 (function(){
   "use strict";
@@ -235,7 +209,8 @@ small{color:var(--mut)}
   }
 
   function addStress(ipa, nSyl, withStress){
-    if(!withStress || nSyl<2) return ipa;
+    if(!withStress) return ipa.replace(/[ˈˌ]/g,'');
+    if(nSyl<2) return ipa;
     if(/[ˈ]/.test(ipa)) return ipa; // dictionary already has it
     // place ˈ at the start (first-syllable default heuristic)
     return "ˈ" + ipa;
@@ -263,10 +238,10 @@ small{color:var(--mut)}
       else { ipa = gtp(key); isExact = false; est++; }
       var nSyl = countSyllables(key);
       totalSyl += nSyl;
-      ipa = applyAccent(ipa, style);
+      var original=ipa; ipa = applyAccent(ipa, style);if(ipa!==original && isExact){isExact=false;exact--;est++;}
       ipa = addStress(ipa, nSyl, optStress.checked);
       var sylStr = optSyl.checked ? syllabify(raw, nSyl) : raw;
-      var dot = isExact ? '<span class="exact">●</span>' : '<span class="guess">●</span>';
+      var dot = isExact ? '<span class="exact">Dictionary form, check context</span>' : '<span class="guess">Estimate</span>';
       html += '<span class="word">'
             + '<span class="orig">'+dot+' '+esc(raw)+'</span><br>'
             + '<span class="ipa">/'+esc(ipa)+'/</span>'
@@ -281,25 +256,30 @@ small{color:var(--mut)}
       '<div><b>'+est+'</b>rule estimates</div>';
   }
 
-  inp.addEventListener("input", render);
+  var renderTimer;inp.addEventListener("input", function(){clearTimeout(renderTimer);renderTimer=setTimeout(render,300);});
   optSyl.addEventListener("change", render);
   optStress.addEventListener("change", render);
   optStyle.addEventListener("change", render);
   render(); // prefilled output on load
 })();
 </script>
-<div class="el-foot" role="contentinfo">
-  <div class="el-links">
-    <a href="/">Home</a>
-    <a href="/lessons/">Lessons</a>
-    <a href="/tools/">Practice tools</a>
-    <a href="/about/">About</a>
-    <a href="/contact/">Contact</a>
-    <a href="/privacy/">Privacy</a>
-    <button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button>
-  </div>
-  <p>&copy; 2026 englishlearner.org. An independent site. Not connected to any exam board.</p>
-  <p>From the same developer: <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant.</p>
-</div>
+<div class="el-note" role="note">
+Experimental tool. This tool uses simple rules and it makes mistakes. Do not rely on its results.
+  For checked explanations, use the <a href="/lessons/">grammar lessons</a> and the <a href="/tools/">practice tools</a>.
+</div><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/cefr-levels/">Read the CEFR study guide</a><a class="btn" href="/tools/">Choose another practice</a></div></section><noscript><p>Interactive practice needs JavaScript. <a href="/lessons/cefr-levels/">Read the written study guide</a>.</p></noscript><script>
+if(matchMedia('(min-width:1024px)').matches)document.querySelectorAll('.quiz-settings:not([hidden])').forEach(el=>el.open=true);
+</script><script>
+(function(){
+ const main=document.getElementById('main');
+ const status=document.createElement('p');status.className='typing-status';status.setAttribute('role','status');status.hidden=true;main.append(status);
+ const update=()=>{const input=document.activeElement;if(!input||!main.contains(input)||!input.matches('textarea,input:not([type=radio]):not([type=checkbox])')||!window.visualViewport){status.hidden=true;return;}const feedback=main.querySelector('#feedbackArea,#feedback,#errorsContainer,#verbsContainer,#diagramDisplay');const box=feedback&&feedback.getBoundingClientRect();if(box&&box.top>=0&&box.bottom<visualViewport.height){status.hidden=true;return;}status.textContent=(main.querySelector('#qCounter')||{}).textContent||'Answer not checked';status.style.top=visualViewport.offsetTop+'px';status.hidden=false;};
+ main.addEventListener('focusin',update);main.addEventListener('focusout',()=>setTimeout(update,0));window.addEventListener('scroll',update,{passive:true});if(window.visualViewport)visualViewport.addEventListener('resize',update);
+ main.querySelectorAll('.checker-output .results').forEach(result=>new MutationObserver(()=>{const placeholder=result.parentElement.querySelector('.checker-placeholder');if(placeholder)placeholder.hidden=result.classList.contains('active');}).observe(result,{attributes:true,attributeFilter:['class']}));
+ main.querySelectorAll('a[href^="/lessons/"]').forEach(link=>link.addEventListener('click',()=>{if(window.elTrack)window.elTrack('cta_click',{cta_id:'tool_pronunciation-guide_lesson'});}));
+})();
+</script></main>
+<!-- shared-footer-start -->
+<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><img class="brand-full" src="/assets/img/logo.svg" width="192" height="40" alt="" decoding="async"><img class="brand-mark" src="/assets/img/favicon.svg" width="32" height="32" alt="" decoding="async"></a><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>It isn’t connected to englishlearner.com.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
+<!-- shared-footer-end -->
 </body>
 </html>
