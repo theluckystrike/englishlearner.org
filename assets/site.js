@@ -1,16 +1,20 @@
-/* englishlearner.org: ad loader with a consent gate.
+/* englishlearner.org: Google Analytics 4 and AdSense loader with one consent gate.
    Rules:
-   - Load ads only on englishlearner.org and www.englishlearner.org.
-   - Never load ads on pages marked <html data-no-ads>.
-   - EEA, UK and Switzerland (guessed from the device time zone): load only after Accept.
+   - Load Google code only on englishlearner.org and www.englishlearner.org.
+   - Analytics (GA4 G-GHQNNECRRP) loads on every page. Ads never load on pages marked <html data-no-ads>.
+   - EEA, UK and Switzerland (guessed from the device time zone): load nothing until Accept.
    - If the time zone is unknown or generic (UTC), ask first.
    - Other regions: load on page load, unless the visitor declined before.
-   - "Privacy choices" in the footer reopens the banner in every region. */
+   - "Privacy choices" in the footer reopens the banner in every region.
+   - Google signals and ad personalisation for analytics stay off (set in GA4 admin).
+   Page code can call window.elTrack('event_name', {param: 'value'}) at any time. */
 (function () {
   'use strict';
 
   var PUB = 'ca-pub-2241192243363112';
-  var KEY = 'el_ads_consent';
+  var GA_ID = 'G-GHQNNECRRP';
+  var KEY = 'el_consent_v2';
+  var OLD_KEY = 'el_ads_consent';
   var EXTRA_ZONES = [
     'Atlantic/Reykjavik', 'Atlantic/Canary', 'Atlantic/Madeira', 'Atlantic/Azores',
     'Atlantic/Faroe', 'Atlantic/Jan_Mayen', 'Arctic/Longyearbyen', 'Asia/Nicosia',
@@ -23,10 +27,25 @@
   var host = location.hostname;
   var isProduction = host === 'englishlearner.org' || host === 'www.englishlearner.org';
   var noAds = document.documentElement.hasAttribute('data-no-ads');
-  var loaded = false;
+  var adsLoaded = false;
+  var gaLoaded = false;
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  window.gtag = window.gtag || gtag;
+
+  /* Events queue in dataLayer. They are sent only if GA4 loads. */
+  window.elTrack = function (name, params) {
+    try { window.gtag('event', name, params || {}); } catch (e) { /* never break the page */ }
+  };
 
   function readChoice() {
-    try { return window.localStorage.getItem(KEY); } catch (e) { return null; }
+    try {
+      var v = window.localStorage.getItem(KEY);
+      if (v) { return v; }
+      /* A decline from the old ads-only notice still counts. */
+      return window.localStorage.getItem(OLD_KEY) === 'denied' ? 'denied' : null;
+    } catch (e) { return null; }
   }
 
   function saveChoice(value) {
@@ -44,14 +63,52 @@
     return EXTRA_ZONES.indexOf(zone) !== -1;
   }
 
+  /* Code loads only after Accept, or by default outside the consent regions, so the state is granted. */
+  /* Keep only utm_* and gclid in page_location, so no other query data reaches GA4. */
+  function cleanLocation() {
+    var keep = [];
+    var q = location.search.replace(/^\?/, '').split('&');
+    for (var i = 0; i < q.length; i++) {
+      var k = q[i].split('=')[0];
+      if (/^utm_/.test(k) || k === 'gclid') { keep.push(q[i]); }
+    }
+    return location.origin + location.pathname + (keep.length ? '?' + keep.join('&') : '');
+  }
+
+  function loadAnalytics() {
+    if (gaLoaded || !isProduction) { return; }
+    gaLoaded = true;
+    gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted'
+    });
+    gtag('js', new Date());
+    gtag('config', GA_ID, {
+      page_location: cleanLocation(),
+      allow_google_signals: false,
+      consent_region: needsConsent() ? 'eea' : 'other'
+    });
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
+  }
+
   function loadAds() {
-    if (loaded || !isProduction || noAds) { return; }
-    loaded = true;
+    if (adsLoaded || !isProduction || noAds) { return; }
+    adsLoaded = true;
     var s = document.createElement('script');
     s.async = true;
     s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + PUB;
     s.crossOrigin = 'anonymous';
     document.head.appendChild(s);
+  }
+
+  function loadAll() {
+    loadAnalytics();
+    loadAds();
   }
 
   function closeBanner() {
@@ -65,13 +122,13 @@
     box.id = 'el-consent';
     box.className = 'el-consent';
     box.setAttribute('role', 'dialog');
-    box.setAttribute('aria-label', 'Advertising choice');
+    box.setAttribute('aria-label', 'Privacy choice');
 
     var text = document.createElement('p');
     text.appendChild(document.createTextNode(
-      'This site is free and is paid for by ads from Google AdSense. ' +
-      'If you accept, Google loads ads and may use cookies. ' +
-      'If you decline, no ad code is loaded. '));
+      'This site is free. It uses Google Analytics to count visits and Google AdSense to show ads. ' +
+      'If you accept, Google may use cookies. ' +
+      'If you decline, no Google code is loaded. '));
     var link = document.createElement('a');
     link.href = '/privacy/';
     link.textContent = 'Read the privacy policy';
@@ -90,13 +147,13 @@
     yes.addEventListener('click', function () {
       saveChoice('granted');
       closeBanner();
-      loadAds();
+      loadAll();
     });
     no.addEventListener('click', function () {
-      var hadAds = loaded;
+      var hadCode = adsLoaded || gaLoaded;
       saveChoice('denied');
       closeBanner();
-      if (hadAds) { location.reload(); }
+      if (hadCode) { location.reload(); }
     });
 
     btns.appendChild(yes);
@@ -116,14 +173,30 @@
     }
   }
 
+  /* Generic engagement: the first button press inside <main> on a page = tool_use. */
+  function wireToolUse() {
+    var main = document.querySelector('main');
+    if (!main) { return; }
+    var sent = false;
+    main.addEventListener('click', function (ev) {
+      if (sent) { return; }
+      var t = ev.target;
+      while (t && t !== main && t.tagName !== 'BUTTON') { t = t.parentNode; }
+      if (!t || t === main) { return; }
+      sent = true;
+      window.elTrack('tool_use', { tool_path: location.pathname, control: (t.textContent || '').trim().slice(0, 40) });
+    }, true);
+  }
+
   function start() {
     wireChoiceLinks();
-    if (!isProduction || noAds) { return; }
+    wireToolUse();
+    if (!isProduction) { return; }
     var choice = readChoice();
     if (choice === 'denied') { return; }
-    if (choice === 'granted') { loadAds(); return; }
+    if (choice === 'granted') { loadAll(); return; }
     if (needsConsent()) { showBanner(); return; }
-    loadAds();
+    loadAll();
   }
 
   if (document.readyState === 'loading') {
