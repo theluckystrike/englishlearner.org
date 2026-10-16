@@ -247,3 +247,6 @@ summary{list-style:none}summary::-webkit-details-marker{display:none}
 .support-page .support-presets{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 16px}
 .support-page .support-presets .btn{min-width:64px}
 @media print{.support-card,.support-foot{display:none!important}}
+/* Narrow phones (under 390px): the header fits without a horizontal scroll. */
+@media(max-width:389px){.el-nav a:first-child,.el-nav a:nth-child(2){min-width:0}.brand-name{font-size:17px}}
+@media(max-width:359px){.el-top .brand-name{display:none}}
