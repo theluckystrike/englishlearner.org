@@ -250,3 +250,15 @@ summary{list-style:none}summary::-webkit-details-marker{display:none}
 /* Narrow phones (under 390px): the header fits without a horizontal scroll. */
 @media(max-width:389px){.el-nav a:first-child,.el-nav a:nth-child(2){min-width:0}.brand-name{font-size:17px}}
 @media(max-width:359px){.el-top .brand-name{display:none}}
+
+/* Support v3, scoped to the existing tip blocks. */
+[data-support-cta] [hidden],[data-support-cta][hidden]{display:none!important}
+[data-support-cta] .sct-maker{display:flex;align-items:center;gap:8px;margin:8px 0}
+[data-support-cta] .sct-face{flex:none;border-radius:50%;object-fit:cover}
+[data-support-cta] a[data-rail]{max-width:100%;white-space:normal;box-sizing:border-box}
+[data-support-cta] a[data-rail="bmc"]{display:inline-flex;flex-direction:column;justify-content:center;gap:2px;padding-top:6px;padding-bottom:6px}
+[data-support-cta] a[data-rail] small{font-size:11px;font-weight:400;line-height:1.2}
+[data-support-cta] .sct-dismiss{cursor:pointer;min-height:44px;background:transparent;color:inherit}
+[data-support-cta] .sct-dismiss:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+.sct-costs{width:100%;border-collapse:collapse;margin:16px 0}
+.sct-costs th,.sct-costs td{text-align:left;padding:8px;border-bottom:1px solid currentColor}

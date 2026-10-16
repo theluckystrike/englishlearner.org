@@ -190,23 +190,17 @@
 
   /* Support (tip) cards: count clicks and show the result card only after a result. */
   function wireSupport() {
-    document.addEventListener('click', function (ev) {
-      var a = ev.target && ev.target.closest ? ev.target.closest('[data-support-cta] a[data-rail]') : null;
-      if (!a) { return; }
-      var root = a.closest('[data-support-cta]');
-      try {
-        if (typeof window.gtag === 'function') {
-          window.gtag('event', 'support_click', { cta_position: root.getAttribute('data-support-cta'), rail: a.getAttribute('data-rail') });
-        }
-      } catch (e) { /* never break the page */ }
-    });
     var cards = document.querySelectorAll('[data-support-cta][data-reveal-for]');
     for (var i = 0; i < cards.length; i++) {
       (function (card) {
         var target = document.getElementById(card.getAttribute('data-reveal-for'));
         var when = card.getAttribute('data-reveal-when');
         if (!target || !when || typeof MutationObserver !== 'function') { return; }
-        function update() { card.hidden = !(!target.hidden && target.querySelector(when)); }
+        function update() {
+          if (!target.hidden && target.querySelector(when)) {
+            if (typeof window.sctShown === "function") window.sctShown();
+          } else { card.hidden = true; }
+        }
         new MutationObserver(update).observe(target, { childList: true, attributes: true, attributeFilter: ['hidden', 'class'] });
         update();
       })(cards[i]);
