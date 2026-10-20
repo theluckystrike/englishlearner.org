@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cambridge English Scale score converter to CEFR level</title>
+<meta name="description" content="Convert a Cambridge English Scale score to a grade and CEFR level for A2 Key, B1 Preliminary, B2 First, C1 Advanced and C2 Proficiency.">
+<link rel="canonical" href="https://englishlearner.org/tools/cambridge-english-scale-converter/">
+<meta property="og:title" content="Cambridge English Scale score converter to CEFR level">
+<meta property="og:description" content="Convert a Cambridge English Scale score to a grade and CEFR level for A2 Key, B1 Preliminary, B2 First, C1 Advanced and C2 Proficiency, using the official Cambridge tables.">
+<meta property="og:url" content="https://englishlearner.org/tools/cambridge-english-scale-converter/">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Cambridge English Scale score converter",
+  "description": "Convert a Cambridge English Scale score to a grade and CEFR level for A2 Key, B1 Preliminary, B2 First, C1 Advanced and C2 Proficiency, using the official Cambridge tables.",
+  "url": "https://englishlearner.org/tools/cambridge-english-scale-converter/",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "author": {"@type": "Person", "name": "Michael Lip", "url": "https://zovo.one"}
+}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://englishlearner.org/"}, {"@type": "ListItem", "position": 2, "name": "Practice", "item": "https://englishlearner.org/tools/"}, {"@type": "ListItem", "position": 3, "name": "Cambridge English Scale score converter", "item": "https://englishlearner.org/tools/cambridge-english-scale-converter/"}]}
+</script>
+<meta name="google-adsense-account" content="ca-pub-2241192243363112">
+<script src="/assets/site.js?v=3" defer></script>
+<link rel="stylesheet" href="/assets/tool.css">
+<meta property="og:image:alt" content="English Learner free lessons and practice">
+<link rel="stylesheet" href="/assets/site.css?v=4-github-20261017">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
+<meta property="og:image" content="https://englishlearner.org/assets/og/tools.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F7F2E7">
+<script src="/assets/support-v3.js?v=3" defer></script>
+<script src="/assets/js/cambridge-english-scale-converter.js" defer></script>
+<style>.exam-btn[aria-pressed="true"]{background:var(--color-accent-subtle);border:2px solid var(--color-accent);padding:10px 15px 8px}.practice-marks{margin-top:24px}.practice-marks h2{margin-top:0}.practice-marks select{max-width:100%}.practice-anchors td,.practice-anchors th{white-space:normal}.reading .practice-anchors{display:block;overflow-x:auto}.compare-table{margin-top:8px}</style>
+</head>
+<body>
+<!-- shared-header-start -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="el-top"><div class="el-top-inner"><a class="el-brand" href="/" aria-label="English Learner home"><svg class="brand-icon" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true" focusable="false"><rect class="bi-bg" width="32" height="32" rx="4"/><path class="bi-ink" d="M7 8.5c3.3-.9 6.3-.2 9 2.1 2.7-2.3 5.7-3 9-2.1v15c-3.3-.9-6.3-.2-9 2.1-2.7-2.3-5.7-3-9-2.1z M16 10.6v15 M10 12.5c1.3 0 2.3.4 3.5 1.1 M18.5 13.6c1.2-.7 2.2-1.1 3.5-1.1" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-name">English Learner</span></a><nav class="el-nav" aria-label="Main navigation"><a href="/lessons/">Lessons</a><a href="/tools/" aria-current="true">Practice</a><a href="/tools/level-assessment/" class="nav-wide" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta_id:'nav_level_test'})">Level test</a><a href="/about/" class="nav-wide">About</a></nav></div></header>
+<!-- shared-header-end -->
+<main class="lookup-tool tool-page tool-cambridge-scale-converter" id="main">
+<nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">Cambridge English Scale converter</li></ol></nav>
+<h1>Cambridge English Scale score converter</h1>
+<p class="lead">Type a Cambridge English Scale score and choose your exam. You get the grade and the CEFR level from the official Cambridge tables, and what the same score means on all five exams. You can also turn the marks of an official Cambridge practice test into a scale range.</p>
+<div class="tool-layout">
+<div class="tool-main">
+<form id="converterForm" class="tool-section" novalidate>
+<div class="field">
+<label for="scoreInput">Cambridge English Scale score (80 to 230)</label>
+<input type="text" id="scoreInput" inputmode="numeric" autocomplete="off" maxlength="12" aria-describedby="scoreHelp scoreError" placeholder="173">
+<p id="scoreHelp" class="helper">The overall score is on your Statement of Results.</p>
+<p id="scoreError" class="field-error" role="status"></p>
+</div>
+<fieldset class="field">
+<legend>Which exam did you take?</legend>
+<div class="button-group exam-choice" role="group" aria-label="Exam">
+<button class="btn exam-btn" type="button" data-exam="a2key" aria-pressed="false">A2 Key</button>
+<button class="btn exam-btn" type="button" data-exam="b1pre" aria-pressed="false">B1 Preliminary</button>
+<button class="btn exam-btn" type="button" data-exam="b2first" aria-pressed="false">B2 First</button>
+<button class="btn exam-btn" type="button" data-exam="c1adv" aria-pressed="false">C1 Advanced</button>
+<button class="btn exam-btn" type="button" data-exam="c2prof" aria-pressed="false">C2 Proficiency</button>
+</div>
+</fieldset>
+<div class="button-group">
+<button class="btn btn-primary" id="convertButton" type="submit">Convert score</button>
+<button class="btn" id="clearButton" type="button">Clear</button>
+</div>
+</form>
+<section id="result" class="result-slot" aria-labelledby="resultTitle">
+<h2 id="resultTitle" tabindex="-1">Your result</h2>
+<p id="resultSummary">Your grade and CEFR level appear here when you convert a score.</p>
+<div id="resultDetail"></div>
+<p id="resultStatus" class="helper" role="status" aria-live="polite"></p>
+</section>
+<section id="practice" class="tool-section practice-marks" aria-labelledby="practiceTitle">
+<h2 id="practiceTitle">Practice test marks to a scale range</h2>
+<p class="helper">For official Cambridge practice tests only. Cambridge publishes four marks for each paper. The tool shows the scale range that your mark falls in, and the overall range from the average of the papers.</p>
+<form id="practiceForm" novalidate>
+<div class="field">
+<label for="practiceExam">Practice test for</label>
+<select id="practiceExam">
+<option value="">Choose an exam</option>
+<option value="a2key">A2 Key or A2 Key for Schools</option>
+<option value="b1pre">B1 Preliminary or B1 Preliminary for Schools</option>
+<option value="b2first">B2 First or B2 First for Schools</option>
+<option value="c1adv">C1 Advanced</option>
+<option value="c2prof">C2 Proficiency</option>
+</select>
+</div>
+<div id="practiceFields"></div>
+<p id="practiceError" class="field-error" role="status"></p>
+<div class="button-group">
+<button class="btn btn-primary" id="practiceButton" type="submit">Estimate range</button>
+<button class="btn" id="practiceClear" type="button">Clear marks</button>
+</div>
+</form>
+<div id="practiceResult" aria-live="polite"><p>Choose an exam, enter a mark for each paper and press Estimate range.</p></div>
+</section>
+</div>
+<aside class="tool-support" aria-label="Study help">
+<div class="rule-box"><span class="rule-label">What the score means</span><p>The Cambridge English Scale is a single scale. These five exams report scores from 80 to 230. Each exam reports a band of it. A 173 passes B2 First with Grade B, and the same score is Level B2 at C1 Advanced, not a C1 grade.</p><p><a href="/lessons/cefr-levels/">Read the CEFR levels lesson</a></p></div>
+<p class="helper">Grades and levels come from the official Cambridge English results tables. This converter is independent and not connected to Cambridge or any exam board.</p>
+</aside>
+</div>
+<section class="reading practice-help">
+<h2>How the converter works</h2>
+<h3>The method</h3>
+<p>The converter looks up your score in the official Cambridge English results tables for the exam you choose. It also shows what the same score means on each of the five exams. Each grade and CEFR level in the score converter comes from those tables. The practice section is different. It gives an estimated range, not an exact score. When a score falls outside the reported band for your exam, the tool says so instead of inventing a grade.</p>
+<h3>Scores on the Cambridge English Scale</h3>
+<p>Cambridge reports A2 Key to C2 Proficiency results on the Cambridge English Scale. You get a separate score for each skill, and the average of the skill scores gives the overall result. This converter uses the overall score. A2 Key, B1 Preliminary and B2 First use the same tables for their for Schools versions.</p>
+<h3>The grade and CEFR tables</h3>
+<table class="scale-table">
+<caption>Grade and CEFR level by score band, from the Cambridge English results pages</caption>
+<thead><tr><th scope="col">Exam</th><th scope="col">Score</th><th scope="col">Grade</th><th scope="col">CEFR level</th></tr></thead>
+<tbody>
+<tr><th scope="row" rowspan="4">A2 Key</th><td>140 to 150</td><td>Grade A</td><td>B1</td></tr>
+<tr><td>133 to 139</td><td>Grade B</td><td>A2</td></tr>
+<tr><td>120 to 132</td><td>Grade C</td><td>A2</td></tr>
+<tr><td>100 to 119</td><td>Level A1</td><td>A1</td></tr>
+<tr><th scope="row" rowspan="4">B1 Preliminary</th><td>160 to 170</td><td>Grade A</td><td>B2</td></tr>
+<tr><td>153 to 159</td><td>Grade B</td><td>B1</td></tr>
+<tr><td>140 to 152</td><td>Grade C</td><td>B1</td></tr>
+<tr><td>120 to 139</td><td>Level A2</td><td>A2</td></tr>
+<tr><th scope="row" rowspan="4">B2 First</th><td>180 to 190</td><td>Grade A</td><td>C1</td></tr>
+<tr><td>173 to 179</td><td>Grade B</td><td>B2</td></tr>
+<tr><td>160 to 172</td><td>Grade C</td><td>B2</td></tr>
+<tr><td>140 to 159</td><td>Level B1</td><td>B1</td></tr>
+<tr><th scope="row" rowspan="4">C1 Advanced</th><td>200 to 210</td><td>Grade A</td><td>C2</td></tr>
+<tr><td>193 to 199</td><td>Grade B</td><td>C1</td></tr>
+<tr><td>180 to 192</td><td>Grade C</td><td>C1</td></tr>
+<tr><td>160 to 179</td><td>Level B2</td><td>B2</td></tr>
+<tr><th scope="row" rowspan="4">C2 Proficiency</th><td>220 to 230</td><td>Grade A</td><td>C2</td></tr>
+<tr><td>213 to 219</td><td>Grade B</td><td>C2</td></tr>
+<tr><td>200 to 212</td><td>Grade C</td><td>C2</td></tr>
+<tr><td>180 to 199</td><td>Level C1</td><td>C1</td></tr>
+</tbody>
+</table>
+<h3>Practice test marks</h3>
+<p>The Cambridge guide <a href="https://www.cambridgeenglish.org/images/210434-converting-practice-test-scores-to-cambridge-english-scale-scores.pdf" rel="noopener">Converting practice test scores to Cambridge English Scale scores</a> (November 2023) gives four marks for each paper of the official practice tests. Each mark is the practice test mark that gives that Cambridge English Scale score. The lowest one is the minimum score that the exam reports. For a mark between two published marks, the tool shows a range. The range starts at the lower published score and stops one point below the next published score. The overall score is the average of the paper scores, rounded to the nearest whole number. The guide says that the tables apply only to official Cambridge practice tests, that they do not predict a precise live exam score, and that scores within about three points of a level boundary need care.</p>
+<table class="scale-table practice-anchors">
+<caption>Published practice test marks and the Cambridge English Scale score they give</caption>
+<thead><tr><th scope="col">Exam</th><th scope="col">Paper</th><th scope="col">Mark 1</th><th scope="col">Mark 2</th><th scope="col">Mark 3</th><th scope="col">Lowest reported</th></tr></thead>
+<tbody>
+<tr><th scope="row" rowspan="4">A2 Key</th><td>Reading (of 30)</td><td>28 gives 140</td><td>20 gives 120</td><td>13 gives 100</td><td>7 gives 82</td></tr>
+<tr><td>Writing (of 30)</td><td>26 gives 140</td><td>18 gives 120</td><td>12 gives 100</td><td>8 gives 82</td></tr>
+<tr><td>Listening (of 25)</td><td>23 gives 140</td><td>17 gives 120</td><td>11 gives 100</td><td>6 gives 82</td></tr>
+<tr><td>Speaking (of 45)</td><td>41 gives 140</td><td>27 gives 120</td><td>18 gives 100</td><td>10 gives 82</td></tr>
+<tr><th scope="row" rowspan="4">B1 Preliminary</th><td>Reading (of 32)</td><td>29 gives 160</td><td>23 gives 140</td><td>13 gives 120</td><td>5 gives 102</td></tr>
+<tr><td>Writing (of 40)</td><td>34 gives 160</td><td>24 gives 140</td><td>16 gives 120</td><td>10 gives 102</td></tr>
+<tr><td>Listening (of 25)</td><td>23 gives 160</td><td>18 gives 140</td><td>11 gives 120</td><td>5 gives 102</td></tr>
+<tr><td>Speaking (of 30)</td><td>27 gives 160</td><td>18 gives 140</td><td>12 gives 120</td><td>7 gives 102</td></tr>
+<tr><th scope="row" rowspan="5">B2 First</th><td>Reading (of 42)</td><td>37 gives 180</td><td>24 gives 160</td><td>16 gives 140</td><td>10 gives 122</td></tr>
+<tr><td>Use of English (of 28)</td><td>24 gives 180</td><td>18 gives 160</td><td>11 gives 140</td><td>7 gives 122</td></tr>
+<tr><td>Writing (of 40)</td><td>34 gives 180</td><td>24 gives 160</td><td>16 gives 140</td><td>10 gives 122</td></tr>
+<tr><td>Listening (of 30)</td><td>27 gives 180</td><td>18 gives 160</td><td>12 gives 140</td><td>8 gives 122</td></tr>
+<tr><td>Speaking (of 60)</td><td>54 gives 180</td><td>36 gives 160</td><td>24 gives 140</td><td>14 gives 122</td></tr>
+<tr><th scope="row" rowspan="5">C1 Advanced</th><td>Reading (of 50)</td><td>43 gives 200</td><td>32 gives 180</td><td>23 gives 160</td><td>17 gives 142</td></tr>
+<tr><td>Use of English (of 28)</td><td>23 gives 200</td><td>16 gives 180</td><td>11 gives 160</td><td>8 gives 142</td></tr>
+<tr><td>Writing (of 40)</td><td>34 gives 200</td><td>24 gives 180</td><td>16 gives 160</td><td>10 gives 142</td></tr>
+<tr><td>Listening (of 30)</td><td>26 gives 200</td><td>18 gives 180</td><td>13 gives 160</td><td>11 gives 142</td></tr>
+<tr><td>Speaking (of 75)</td><td>66 gives 200</td><td>45 gives 180</td><td>30 gives 160</td><td>17 gives 142</td></tr>
+<tr><th scope="row" rowspan="5">C2 Proficiency</th><td>Reading (of 44)</td><td>36 gives 220</td><td>28 gives 200</td><td>22 gives 180</td><td>14 gives 162</td></tr>
+<tr><td>Use of English (of 28)</td><td>22 gives 220</td><td>17 gives 200</td><td>13 gives 180</td><td>9 gives 162</td></tr>
+<tr><td>Writing (of 40)</td><td>34 gives 220</td><td>24 gives 200</td><td>16 gives 180</td><td>10 gives 162</td></tr>
+<tr><td>Listening (of 30)</td><td>24 gives 220</td><td>18 gives 200</td><td>14 gives 180</td><td>10 gives 162</td></tr>
+<tr><td>Speaking (of 75)</td><td>66 gives 220</td><td>45 gives 200</td><td>30 gives 180</td><td>17 gives 162</td></tr>
+</tbody>
+</table>
+<h3>Scores with no grade and no certificate</h3>
+<p>A pass is Grade A, B or C. Some scores below a pass still get a certificate at a lower CEFR level. Cambridge also reports a lower band of scores with no grade, no CEFR level and no certificate. A2 Key reports 80 to 99, B1 Preliminary 102 to 119, B2 First 122 to 139, C1 Advanced 142 to 159, and C2 Proficiency 162 to 179. The converter tells you when your score is in this band. Scores outside the reported band for the exam are not reported at all.</p>
+<p>For A2 Key, two official sources disagree. The results page gives 80 to 99. The <a href="https://www.cambridgeenglish.org/Images/664442-a2-statement-of-results-factsheet.pdf" rel="noopener">A2 Key Statement of Results factsheet</a> (May 2026) says that scores below 82 are not reported, and the practice-test guide also gives 82 as the minimum. For 80 and 81 on A2 Key, the converter shows this difference and gives no result.</p>
+<h3>The same score means different things per exam</h3>
+<p>The scale runs across exams, so a score can mean pass at one exam and below pass at the next. A 160 is Grade A at B1 Preliminary, Grade C at B2 First and Level B2 at C1 Advanced. Always convert with the exam you actually took.</p>
+<h3>Limits</h3>
+<p>The score converter uses overall scores. The practice section gives a range from the four published marks for each paper, not an exact score, and it works only for official Cambridge practice tests. The tool does not convert the skill scores of a live exam, and it is not an official Cambridge tool. For your official result, check your Statement of Results. The score tables come from the <a href="https://www.cambridgeenglish.org/exams-and-tests/qualifications/results/" rel="noopener">Cambridge English results page</a>. Cambridge also has its own <a href="https://www.cambridgeenglish.org/exams-and-tests/cambridge-english-scale/" rel="noopener">Cambridge English Scale score converter</a>.</p>
+<h3>Who made this tool</h3>
+<p>Michael Lip built this tool. He is an independent software developer and runs English Learner (see <a href="/about/">About</a>). English Learner is not a school, and it is not an exam board. The tables on this page were taken from the Cambridge pages linked above and checked on 20 October 2026. Before publication, the result for every whole score from 80 to 230 on each of the five exams was checked against the official table. If you find a mistake, tell us through the <a href="/contact/">Contact</a> page.</p>
+</section>
+<section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/cefr-levels/">Read the CEFR levels lesson</a><a class="btn" href="/tools/ielts-toefl-estimator/">Compare IELTS and TOEFL scores</a></div></section>
+<noscript><p>This converter needs JavaScript. The grade tables above also work without it.</p></noscript>
+</main>
+<!-- shared-footer-start -->
+<footer class="el-foot"><div class="footer-inner"><a class="el-brand" href="/" aria-label="English Learner home"><svg class="brand-icon" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true" focusable="false"><rect class="bi-bg" width="32" height="32" rx="4"/><path class="bi-ink" d="M7 8.5c3.3-.9 6.3-.2 9 2.1 2.7-2.3 5.7-3 9-2.1v15c-3.3-.9-6.3-.2-9 2.1-2.7-2.3-5.7-3-9-2.1z M16 10.6v15 M10 12.5c1.3 0 2.3.4 3.5 1.1 M18.5 13.6c1.2-.7 2.2-1.1 3.5-1.1" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-name">English Learner</span></a><section class="support-foot" data-support-cta="footer" aria-labelledby="support-foot-h"><h2 id="support-foot-h" class="sct-maker"><img class="sct-face" src="/assets/michael-128.webp" width="40" height="40" loading="lazy" alt="Michael Lip">Made by Michael, one person and a lot of coffee.</h2><p>If English Learner has helped you, you can buy me a coffee. It honestly makes my day, and I read every note that comes with one.</p><div class="support-actions"><a class="btn btn-primary" data-rail="paypal" href="https://paypal.me/najzzz/5USD" rel="noopener" target="_blank">Buy me a coffee · $5 <small>via PayPal</small></a><a class="btn" data-rail="bmc" href="https://buymeacoffee.com/michaellip" rel="noopener" target="_blank">Card, any amount or monthly</a><a class="btn sct-github" href="https://github.com/sponsors/theluckystrike" data-rail="github" target="_blank" rel="noopener">Sponsor on GitHub<small>monthly or one-time</small></a><a class="support-why" href="/support/">Why I ask</a></div></section><div class="footer-groups"><section><h2>Study</h2><ul><li><a href="/lessons/">Lessons</a></li><li><a href="/lessons/cefr-levels/">English levels</a></li></ul></section><section><h2>Practice</h2><ul><li><a href="/tools/level-assessment/">Level test</a></li><li><a href="/tools/grammar-exercises/">Grammar exercises</a></li><li><a href="/tools/irregular-verbs/">Irregular verbs</a></li><li><a href="/tools/vocabulary-quiz/">Vocabulary quiz</a></li><li><a href="/tools/idioms-dictionary/">Idioms dictionary</a></li><li><a href="/tools/preposition-practice-tool/">Preposition practice</a></li></ul></section><section><h2>Site</h2><ul><li><a href="/about/">About</a></li><li><a href="/services/">Custom tools for teachers</a></li><li><a href="/contact/">Contact</a></li><li><a href="/support/">Support the site</a></li></ul></section><section><h2>Privacy</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><button type="button" class="el-link" data-el-privacy-choices>Privacy choices</button></li></ul></section></div><p>English Learner is an independent site run by Michael Lip.</p><p>&copy; 2026 englishlearner.org. Not connected to any exam board.</p><p class="promotion">From the same developer, <a href="https://www.belikenative.com?ref=satellite" rel="noopener">BeLikeNative</a>, a writing assistant. The link promotes our own product.</p></div></footer>
+<!-- shared-footer-end -->
+</body>
+</html>
