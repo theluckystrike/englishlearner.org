@@ -2,9 +2,15 @@
    Rules:
    - Load Google code only on englishlearner.org and www.englishlearner.org.
    - Analytics (GA4 G-GHQNNECRRP) loads on every page. Ads never load on pages marked <html data-no-ads>.
-   - EEA, UK and Switzerland (guessed from the device time zone): load nothing until Accept.
-   - If the time zone is unknown or generic (UTC), ask first.
+   - EEA, UK and Switzerland: load nothing until Accept. A visitor is in this region if EITHER
+     the device time zone is European (or unknown or generic, such as UTC) OR the IP country is
+     in REGION. The IP country comes from the Cloudflare trace (loc=) of recipetool.net, a site of
+     the same operator: GitHub Pages has no /cdn-cgi/trace. The request sends no cookies and no
+     referrer. A failed lookup, a timeout (TRACE_MS), XX or T1 count as the region.
+   - A European time zone shows the banner at once, with no lookup. Other time zones wait for
+     the lookup at most TRACE_MS before Google code loads or the banner shows.
    - Other regions: load on page load, unless the visitor declined before.
+   - QA: ?el_loc=DE (a REGION code) forces the banner. It can never skip the banner.
    - "Privacy choices" in the footer reopens the banner in every region.
    - Google signals and ad personalisation for analytics stay off (set in GA4 admin).
    Page code can call window.elTrack('event_name', {param: 'value'}) at any time. */
@@ -23,6 +29,13 @@
     'Indian/Mayotte', 'GB', 'GB-Eire', 'Eire', 'Poland', 'Portugal', 'Iceland',
     'CET', 'EET', 'WET', 'MET', 'UTC', 'GMT', 'UCT', 'Universal', 'Zulu'
   ];
+
+  var TRACE = 'https://recipetool.net/cdn-cgi/trace';
+  var TRACE_MS = 800;
+  /* EEA + UK + CH, and EU regions with their own country code (same list as recipetool.net). */
+  var REGION = ('AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE ' +
+    'IS LI NO GB CH AX GF GP MQ RE YT MF').split(' ');
+  var consentRegion = null; /* null until decided for this page view, then true or false */
 
   var host = location.hostname;
   var isProduction = host === 'englishlearner.org' || host === 'www.englishlearner.org';
@@ -56,11 +69,59 @@
     try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { return ''; }
   }
 
-  function needsConsent() {
+  function zoneNeedsConsent() {
     var zone = timeZone();
     if (!zone) { return true; }
     if (zone.indexOf('Europe/') === 0 || zone.indexOf('Etc/') === 0) { return true; }
     return EXTRA_ZONES.indexOf(zone) !== -1;
+  }
+
+  function countryNeedsConsent(cc) {
+    return !cc || cc === 'XX' || cc === 'T1' || REGION.indexOf(cc) !== -1;
+  }
+
+  /* Calls done(country) once: a 2-letter code, or null on error, timeout or no answer. */
+  function lookupCountry(done) {
+    var finished = false;
+    var ctl = window.AbortController ? new AbortController() : null;
+    var timer = null;
+    function finish(cc) {
+      if (finished) { return; }
+      finished = true;
+      if (timer) { clearTimeout(timer); }
+      done(cc);
+    }
+    var qa = /[?&]el_loc=([A-Za-z]{2})/.exec(location.search);
+    if (qa && REGION.indexOf(qa[1].toUpperCase()) !== -1) { finish(qa[1].toUpperCase()); return; }
+    if (!window.fetch) { finish(null); return; }
+    timer = setTimeout(function () {
+      if (ctl) { try { ctl.abort(); } catch (e) { /* ignore */ } }
+      finish(null);
+    }, TRACE_MS);
+    try {
+      window.fetch(TRACE, {
+        credentials: 'omit', cache: 'no-store', mode: 'cors', referrerPolicy: 'no-referrer',
+        signal: ctl ? ctl.signal : undefined
+      })
+        .then(function (r) { return r && r.ok ? r.text() : ''; })
+        .then(function (t) {
+          var m = /^loc=([A-Z0-9]{2})\s*$/m.exec(t || '');
+          finish(m ? m[1] : null);
+        }, function () { finish(null); });
+    } catch (e) { finish(null); }
+  }
+
+  /* done(true) = ask first (banner). True if the time zone OR the IP country is in the region. */
+  function decideRegion(done) {
+    if (zoneNeedsConsent()) { consentRegion = true; done(true); return; }
+    lookupCountry(function (cc) {
+      consentRegion = countryNeedsConsent(cc);
+      done(consentRegion);
+    });
+  }
+
+  function needsConsent() {
+    return consentRegion === null ? zoneNeedsConsent() : consentRegion;
   }
 
   /* Code loads only after Accept, or by default outside the consent regions, so the state is granted. */
@@ -224,8 +285,9 @@
     var choice = readChoice();
     if (choice === 'denied') { return; }
     if (choice === 'granted') { loadAll(); return; }
-    if (needsConsent()) { showBanner(); return; }
-    loadAll();
+    decideRegion(function (ask) {
+      if (ask) { showBanner(); } else { loadAll(); }
+    });
   }
 
   if (document.readyState === 'loading') {
