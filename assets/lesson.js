@@ -7,7 +7,7 @@
   var page = document.querySelector('main[data-lesson]');
   if (!page) return;
   var lesson = page.dataset.lesson;
-  var catalog = ['articles-a-an-the', 'prepositions-in-on-at', 'present-perfect-vs-past-simple', 'countable-uncountable-nouns', 'conditionals', 'cefr-levels', 'past-perfect', 'modal-verbs', 'gerunds-and-infinitives', 'passive-voice'];
+  var catalog = ['articles-a-an-the', 'prepositions-in-on-at', 'present-perfect-vs-past-simple', 'countable-uncountable-nouns', 'conditionals', 'cefr-levels', 'past-perfect', 'modal-verbs', 'gerunds-and-infinitives', 'passive-voice', 'present-simple-vs-present-continuous', 'comparatives-and-superlatives'];
   if (catalog.indexOf(lesson) < 0) return;
   function track(name, params) {
     try { if (typeof window.elTrack === 'function') window.elTrack(name, params); } catch (e) { /* Learning works without analytics. */ }
