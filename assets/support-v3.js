@@ -7,7 +7,8 @@
      <button type="button" data-sct-dismiss>Not now</button>
    </div>
    Call window.sctShown() when the tool shows a result (or let the card count once per page view if it is always visible).
-   Uses are counted only in this browser (localStorage). "Not now" hides the result card for 30 days; the footer block stays. */
+   Uses are counted only in this browser (localStorage). "Not now" hides the result card for 30 days; the footer block stays.
+   data-sct-returning-only (2026-10-28): show that result card only from use 3 on, so it does not compete with the workbook CTA for first-time visitors. */
 (function () {
   var K = 'sct:' + (document.documentElement.getAttribute('data-sct-site') || location.hostname);
   function get(k, d) { try { var v = localStorage.getItem(K + ':' + k); return v === null ? d : v; } catch (e) { return d; } }
@@ -15,6 +16,7 @@
   var RETURNING_AT = 3, SNOOZE_MS = 30 * 864e5;
   function cards() { return Array.prototype.slice.call(document.querySelectorAll('[data-support-cta="result"]')); }
   function snoozed() { return Date.now() < Number(get('snooze', 0)); }
+  function held(card) { return card.hasAttribute('data-sct-returning-only') && Number(get('uses', 0)) < RETURNING_AT; }
   function render(card) {
     var uses = Number(get('uses', 0));
     var ret = uses >= RETURNING_AT;
@@ -27,7 +29,7 @@
   var counted = false;
   window.sctShown = function () {
     if (!counted) { counted = true; set('uses', Number(get('uses', 0)) + 1); }
-    cards().forEach(function (c) { render(c); if (!snoozed()) c.hidden = false; });
+    cards().forEach(function (c) { render(c); if (!snoozed() && !held(c)) c.hidden = false; });
   };
   document.addEventListener('click', function (e) {
     var t = e.target;
@@ -42,7 +44,7 @@
   function init() {
     cards().forEach(function (c) {
       render(c);
-      if (snoozed()) c.hidden = true;
+      if (snoozed() || held(c)) c.hidden = true;
       if (c.hasAttribute('data-sct-always')) window.sctShown();
     });
   }
