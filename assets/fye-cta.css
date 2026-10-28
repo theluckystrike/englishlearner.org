@@ -1,0 +1,30 @@
+/* Fix Your English workbook CTA (2026-10-28). Uses site.css tokens and .btn. Variants: .fye-result .fye-lesson .fye-strip .fye-home */
+.fye{margin:var(--space-section) 0;padding:20px 16px;border:1px solid var(--color-border);border-top:4px solid var(--color-focus);border-radius:8px;background:var(--color-surface);color:var(--color-text);font:16px/24px var(--font-ui);max-width:760px}
+.fye h2,.fye h3{margin:0 0 8px;font:700 var(--type-h3)/1.25 var(--font-reading);color:var(--color-text)}
+.fye p{margin:0 0 12px;font:16px/24px var(--font-ui);max-width:62ch;color:var(--color-text)}
+.fye .fye-kicker{margin:0 0 4px;font:700 14px/21px var(--font-ui);color:var(--color-warning)}
+.fye-zhk{display:block}
+.result-slot .fye{padding:16px 12px}
+.fye .fye-zh{color:var(--color-secondary)}
+.fye-fix{display:grid;gap:4px;margin:0 0 12px;padding:0;list-style:none}
+.fye-fix li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:8px;margin:0;padding:8px 12px;border-radius:6px;font:16px/24px var(--font-ui);color:var(--color-text)}
+.fye-fix .fye-no{background:var(--color-error-bg)}
+.fye-fix .fye-no span{text-decoration:line-through;text-decoration-color:var(--color-error)}
+.fye-fix .fye-ok{background:var(--color-success-bg)}
+.fye-fix b{font-size:14px;color:var(--color-secondary)}
+.fye-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin:4px 0 0}
+.fye-actions .btn{flex:1 1 100%}
+.fye a.fye-more{display:inline-flex;align-items:center;min-height:48px;font-weight:700;color:var(--color-accent)}
+.fye .fye-note{margin:8px 0 0;font:14px/21px var(--font-ui);color:var(--color-secondary)}
+.fye-strip{padding:16px}
+.fye-strip p{margin:0 0 8px}
+.fye-result{margin:24px 0 0;background:var(--color-surface)}
+.fye-home{display:grid;gap:16px;max-width:none}
+.fye-home img{display:block;width:100%;max-width:420px;height:auto;border-radius:6px;background:var(--color-surface-alt)}
+@media(min-width:768px){
+.fye,.result-slot .fye{padding:24px}
+.fye-actions .btn{flex:0 0 auto;min-width:232px}
+.fye-home{grid-template-columns:minmax(0,1fr) 320px;align-items:center;gap:32px}
+}
+@media print{.fye{display:none}}
+.fye-sr{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
