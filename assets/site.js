@@ -151,6 +151,10 @@
       allow_google_signals: false,
       consent_region: needsConsent() ? 'eea' : 'other'
     });
+    /* After config: an event queued before config is not sent. */
+    if (location.pathname === '/fix-your-english/') {
+      gtag('event', 'view_item', { currency: 'USD', value: 6.99, items: [FYE_ITEM] });
+    }
     var s = document.createElement('script');
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
@@ -268,7 +272,7 @@
     }
   }
 
-  /* Workbook funnel for GA4 ecommerce: view_item on the sales page, begin_checkout on a buy click.
+  /* Workbook funnel for GA4 ecommerce: view_item on the sales page (sent in loadAnalytics), begin_checkout on a buy click.
      The shop sends the purchase server-side. When GA4 is loaded (consent given or not needed), the buy
      link carries the GA client and session ids so that purchase joins this visitor's session. */
   var FYE_ITEM = { item_id: 'fye-v1', item_name: 'Fix Your English workbook', price: 6.99, quantity: 1 };
@@ -282,9 +286,6 @@
   }
 
   function wireCheckout() {
-    if (location.pathname === '/fix-your-english/') {
-      window.elTrack('view_item', { currency: 'USD', value: 6.99, items: [FYE_ITEM] });
-    }
     document.addEventListener('click', function (e) {
       var a = e.target && e.target.closest ? e.target.closest('a[href^="https://shop.englishlearner.org/buy/"]') : null;
       if (!a) { return; }
