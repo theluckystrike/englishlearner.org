@@ -268,6 +268,34 @@
     }
   }
 
+  /* Workbook funnel for GA4 ecommerce: view_item on the sales page, begin_checkout on a buy click.
+     The shop sends the purchase server-side. When GA4 is loaded (consent given or not needed), the buy
+     link carries the GA client and session ids so that purchase joins this visitor's session. */
+  var FYE_ITEM = { item_id: 'fye-v1', item_name: 'Fix Your English workbook', price: 6.99, quantity: 1 };
+
+  function gaIds() {
+    var c = document.cookie;
+    var cid = (c.match(/(?:^|; )_ga=GA\d\.\d\.(\d+\.\d+)/) || [])[1] || '';
+    var sess = (c.match(/(?:^|; )_ga_GHQNNECRRP=([^;]+)/) || [])[1] || '';
+    var sid = (sess.match(/^GS2\.\d\.s(\d+)/) || sess.match(/^GS1\.\d\.(\d+)/) || [])[1] || '';
+    return { cid: cid, sid: sid };
+  }
+
+  function wireCheckout() {
+    if (location.pathname === '/fix-your-english/') {
+      window.elTrack('view_item', { currency: 'USD', value: 6.99, items: [FYE_ITEM] });
+    }
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href^="https://shop.englishlearner.org/buy/"]') : null;
+      if (!a) { return; }
+      var src = (a.href.match(/[?&]src=([^&#]+)/) || [])[1] || 'direct';
+      window.elTrack('begin_checkout', { currency: 'USD', value: 6.99, items: [FYE_ITEM], src: src });
+      if (!gaLoaded || /[?&]cid=/.test(a.href)) { return; }
+      var ids = gaIds();
+      if (ids.cid) { a.href += (a.href.indexOf('?') < 0 ? '?' : '&') + 'cid=' + ids.cid + (ids.sid ? '&gsid=' + ids.sid : ''); }
+    }, true);
+  }
+
   /* Internal traffic opt-out. Open any page once with ?el_internal=1 (or =0 to undo). */
   function isInternal() {
     try {
@@ -281,6 +309,7 @@
     wireChoiceLinks();
     wireToolUse();
     wireSupport();
+    wireCheckout();
     if (!isProduction || isInternal()) { return; }
     var choice = readChoice();
     if (choice === 'denied') { return; }
