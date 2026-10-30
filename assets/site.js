@@ -198,7 +198,6 @@
     link.href = '/privacy/';
     link.textContent = 'Read the privacy policy';
     text.appendChild(link);
-    text.appendChild(document.createTextNode('.'));
 
     var btns = document.createElement('div');
     btns.className = 'el-btns';
