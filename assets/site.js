@@ -161,8 +161,18 @@
     document.head.appendChild(s);
   }
 
+  /* No ads on legal, contact, support, sales or checkout pages, even if the page markup forgets data-no-ads. */
+  var NO_AD_PATH = /^\/(privacy|terms|legal|contact|support|services|checkout|fix-your-english|thank)/;
+
+  /* The inline <head> script adds html.ads-likely (reserves the top ad space before first paint)
+     when the time-zone rule says ads will probably load. When the real gate says no, drop it. */
+  function dropReserve() {
+    var h = document.documentElement;
+    h.className = h.className.replace(/\s*\bads-likely\b/g, '');
+  }
+
   function loadAds() {
-    if (adsLoaded || !isProduction || noAds) { return; }
+    if (adsLoaded || !isProduction || noAds || NO_AD_PATH.test(location.pathname)) { dropReserve(); return; }
     adsLoaded = true;
     var s = document.createElement('script');
     s.async = true;
@@ -180,6 +190,7 @@
   function hideSlot(box) {
     box.className = box.className.replace(/\s*\bad-on\b/g, '');
     box.hidden = true;
+    box.style.setProperty('display', 'none', 'important');
   }
 
   function renderSlots() {
@@ -225,17 +236,29 @@
     }
   }
 
-  /* Google sets data-ad-status="unfilled" when it has no ad. A box below the screen collapses.
-     A box already on the screen keeps its space, so the page does not jump. Other states
-     (filled, unfill-optimized) keep the box. */
+  /* Reserved height: 330 px for the top unit on phones, else 280 px (same as site.css). */
+  function reserve(box) {
+    var wide = window.matchMedia && window.matchMedia('(min-width:768px)').matches;
+    return (!wide && box.getAttribute('data-ad-pos') === 'top' ? 330 : 280) + 'px';
+  }
+
+  /* Google sets data-ad-status="unfilled" when it has no ad, and writes min-height:0 !important
+     on the box. A box below the screen collapses. A box on the screen keeps its reserved space
+     (set again with !important), so the page does not jump. Filled and unfill-optimized keep the box. */
   function watchUnfilled(box, ins) {
     if (typeof MutationObserver !== 'function') { return; }
     var mo = new MutationObserver(function () {
-      var st = ins.getAttribute('data-ad-status');
-      if (!st) { return; }
+      if (ins.getAttribute('data-ad-status') !== 'unfilled') { return; }
+      if (box.getBoundingClientRect().top < window.innerHeight) {
+        if (box.style.getPropertyValue('min-height') !== reserve(box)) {
+          box.style.setProperty('min-height', reserve(box), 'important');
+        }
+        return;
+      }
       mo.disconnect();
-      if (st === 'unfilled' && box.getBoundingClientRect().top >= window.innerHeight) { hideSlot(box); }
+      hideSlot(box);
     });
+    mo.observe(box, { attributes: true, attributeFilter: ['style'] });
     mo.observe(ins, { attributes: true, attributeFilter: ['data-ad-status'] });
   }
 
@@ -378,12 +401,12 @@
     wireToolUse();
     wireSupport();
     wireCheckout();
-    if (!isProduction || isInternal()) { return; }
+    if (!isProduction || isInternal()) { dropReserve(); return; }
     var choice = readChoice();
-    if (choice === 'denied') { return; }
+    if (choice === 'denied') { dropReserve(); return; }
     if (choice === 'granted') { loadAll(); return; }
     decideRegion(function (ask) {
-      if (ask) { showBanner(); } else { loadAll(); }
+      if (ask) { dropReserve(); showBanner(); } else { loadAll(); }
     });
   }
 

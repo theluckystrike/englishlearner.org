@@ -282,4 +282,7 @@ summary{list-style:none}summary::-webkit-details-marker{display:none}
 .ad-slot .ad-label{display:block;margin:0 0 4px;font:400 11px/16px var(--font-ui);letter-spacing:.04em;color:var(--color-secondary)}
 .ad-slot ins.adsbygoogle{display:block;max-width:100%}
 .ad-slot.ad-on{min-height:280px}
-@media(min-width:768px){.ad-slot.ad-on{min-height:100px}}
+/* Top unit: space reserved before first paint when html.ads-likely (inline head script). */
+.ads-likely .ad-slot[data-ad-pos="top"]{display:block!important}
+@media(max-width:767px){.ads-likely .ad-slot[data-ad-pos="top"],.ad-slot.ad-on[data-ad-pos="top"]{min-height:330px}}
+@media(min-width:768px){.ads-likely .ad-slot[data-ad-pos="top"],.ad-slot.ad-on{min-height:280px}}

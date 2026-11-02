@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Article usage checker for English</title>
+<script id="el-ads-likely">/* Reserve the top ad space before first paint when the site.js gate will probably load ads. */(function(){try{var h=location.hostname,d=document.documentElement,z="";if(h!=="englishlearner.org"&&h!=="www.englishlearner.org")return;var ls=window.localStorage,c=ls.getItem("el_consent_v2")||(ls.getItem("el_ads_consent")==="denied"?"denied":"");if(/[?&]el_internal=1/.test(location.search)||(ls.getItem("el_internal")==="1"&&!/[?&]el_internal=0/.test(location.search))||c==="denied")return;try{z=Intl.DateTimeFormat().resolvedOptions().timeZone||""}catch(e){}var eu=!z||/^(Europe|Etc)\//.test(z)||" Atlantic/Reykjavik Atlantic/Canary Atlantic/Madeira Atlantic/Azores Atlantic/Faroe Atlantic/Jan_Mayen Arctic/Longyearbyen Asia/Nicosia Asia/Famagusta Africa/Ceuta America/Cayenne America/Guadeloupe America/Martinique America/Marigot America/St_Barthelemy Indian/Reunion Indian/Mayotte GB GB-Eire Eire Poland Portugal Iceland CET EET WET MET UTC GMT UCT Universal Zulu ".indexOf(" "+z+" ")>=0;if(c==="granted"||!eu)d.className+=" ads-likely"}catch(e){}})();</script>
 <meta name="description" content="Check common a and an sound patterns and missing articles in English text, with short explanations and links to the rules.">
 <link rel="canonical" href="https://englishlearner.org/tools/article-usage-checker/">
 <meta property="og:title" content="Article usage checker for English">
@@ -21,10 +22,10 @@
     }
     </script>
 <meta name="google-adsense-account" content="ca-pub-2241192243363112">
-<script src="/assets/site.js?v=5" defer></script>
+<script src="/assets/site.js?v=6" defer></script>
 <link rel="stylesheet" href="/assets/tool.css">
 <meta property="og:image:alt" content="English Learner free lessons and practice">
-<link rel="stylesheet" href="/assets/site.css?v=7-ads-20261102">
+<link rel="stylesheet" href="/assets/site.css?v=8-ads-20261102">
 <link rel="stylesheet" href="/assets/fye-cta.css?v=1">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
@@ -46,7 +47,7 @@
 <nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Practice</a></li><li aria-current="page">Article usage checker</li></ol></nav>
 <h1>Article usage checker</h1>
 <p class="lead">Check a, an and common missing articles.</p>
-<div class="tool-layout">
+<div class="ad-slot" data-ad-pos="top" hidden><span class="ad-label">Advertisements</span></div><div class="tool-layout">
 <div class="tool-main">
 <form id="checkerForm" class="google-anno-skip tool-section" novalidate>
 <div class="field"><label for="textInput">Your English text</label>
@@ -60,7 +61,7 @@
 <h2 id="resultTitle" tabindex="-1">Possible findings</h2>
 <p id="resultSummary">Your result appears here when you check the text.</p>
 <div id="findings"></div><div id="forms"></div><div id="notes"></div>
-</section><div class="ad-slot" data-ad-pos="top" hidden><span class="ad-label">Advertisement</span></div>
+</section>
 <p id="resultStatus" class="helper" role="status" aria-live="polite"></p>
 </div>
 <aside class="tool-support" aria-label="Study help">
@@ -71,7 +72,7 @@
 </div>
 <aside class="fye fye-strip" aria-labelledby="fye-cta-h" data-fye="tool-article-usage-checker"><div><p class="fye-kicker">Workbook for Chinese speakers <span class="fye-zhk" lang="zh-Hans">英语纠错练习册</span></p><h2 id="fye-cta-h">Still forget a, an and the?</h2><p>Chinese has no articles. Fix Your English explains article mistakes in Chinese and gives you 240 exercises from A2 to C1 with answers.</p></div><div class="fye-actions"><a class="btn btn-primary" href="https://shop.englishlearner.org/buy/fix-your-english?src=tool-article-usage-checker" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta:'fye',src:'tool-article-usage-checker'})">Get the workbook · US$6.99</a><a class="fye-more" href="/fix-your-english/" onclick="window.elTrack &amp;&amp; window.elTrack('cta_click',{cta:'fye_page',src:'tool-article-usage-checker'})">See what is inside</a></div></aside>
 
-<div class="ad-slot" data-ad-pos="mid" hidden><span class="ad-label">Advertisement</span></div><section class="reading practice-help"><h2>Article rules and limits</h2>
+<div class="ad-slot" data-ad-pos="mid" hidden><span class="ad-label">Advertisements</span></div><section class="reading practice-help"><h2>Article rules and limits</h2>
 <h3>Choose a or an by sound</h3><p>Use a before a consonant sound, as in a book or a university. Use an before a vowel sound, as in an apple or an hour.</p><p>Letters can sound different from their names in words. An MBA starts with the sound of the letter M.</p>
 <h3>Use the for a known thing</h3><p>Use the when the reader knows which thing you mean. For example, I saw a cat. The cat was orange.</p>
 <h3>Singular and plural nouns</h3><p>A singular countable noun usually needs a word such as a, the or my. I am a student needs a. Books are useful needs no article because it means books in general.</p><p>Some fixed phrases have no article, as in go to school. Use the school when you mean a known building.</p>
@@ -107,7 +108,7 @@
 </ol></details>
 <h3>How to check articles in your own writing</h3>
 <p>Read your text once for nouns only. For each singular countable noun, make sure it has a word in front of it, such as a, an, the, my, this or every. For each plural or uncountable noun, ask whether you mean that thing in general (no article) or a specific one the reader knows (the). Then read the text aloud and listen to the first sound after every a and an. This two-step check finds most article errors before a teacher or a tool does.</p>
-</section><div class="ad-slot" data-ad-pos="end" hidden><span class="ad-label">Advertisement</span></div><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/articles-a-an-the/">Read the articles lesson</a><a class="btn" href="/tools/grammar-exercises/?lesson=articles-a-an-the">Practise articles</a></div></section>
+</section><div class="ad-slot" data-ad-pos="end" hidden><span class="ad-label">Advertisements</span></div><section class="next-step"><h2>Next step</h2><div class="next-step-actions"><a class="btn btn-primary" href="/lessons/articles-a-an-the/">Read the articles lesson</a><a class="btn" href="/tools/grammar-exercises/?lesson=articles-a-an-the">Practise articles</a></div></section>
 <noscript><p>This checker needs JavaScript. <a href="/lessons/articles-a-an-the/">Read the written lesson</a>.</p></noscript>
 <p id="typingStatus" class="typing-status" role="status" hidden>Answer not checked</p>
 </main>
