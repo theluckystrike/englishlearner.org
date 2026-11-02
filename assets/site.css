@@ -273,3 +273,11 @@ summary{list-style:none}summary::-webkit-details-marker{display:none}
 .short-answer{margin:18px 0;padding:14px 18px;border-left:3px solid var(--color-accent);background:var(--color-accent-subtle);border-radius:6px}
 .short-answer p{margin:0 0 6px}
 .short-answer .updated{margin:0;font-size:.85rem;color:var(--color-muted)}
+
+/* Manual AdSense units (2026-11-02). site.js shows a box only after the consent gate allows ads. */
+.ad-slot{display:block;margin:24px 0;text-align:center;clear:both;width:100%}
+.ad-slot[hidden]{display:none}
+.ad-slot .ad-label{display:block;margin:0 0 4px;font:400 11px/16px var(--font-ui);letter-spacing:.04em;color:var(--color-secondary)}
+.ad-slot ins.adsbygoogle{display:block;max-width:100%}
+.ad-slot.ad-on{min-height:280px}
+@media(min-width:768px){.ad-slot.ad-on{min-height:100px}}

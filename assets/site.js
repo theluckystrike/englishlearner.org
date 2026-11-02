@@ -169,6 +169,60 @@
     s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + PUB;
     s.crossOrigin = 'anonymous';
     document.head.appendChild(s);
+    renderSlots();
+  }
+
+  /* Manual display units. The page has empty <div class="ad-slot" data-ad-pos="top|mid|end" hidden>
+     boxes. This is the one place for the unit IDs (one per position). Units show only when
+     loadAds() runs, so the consent gate above also controls them. */
+  var SLOTS = { top: '5693152633', mid: '1902081438', end: '1255214171' };
+
+  function hideSlot(box) {
+    box.className = box.className.replace(/\s*\bad-on\b/g, '');
+    box.hidden = true;
+  }
+
+  function renderSlots() {
+    var boxes = document.querySelectorAll('.ad-slot[data-ad-pos]');
+    var lastBottom = null;
+    for (var i = 0; i < boxes.length && i < 3; i++) {
+      var box = boxes[i];
+      var id = SLOTS[box.getAttribute('data-ad-pos')];
+      if (!id || box.getAttribute('data-ad-done')) { continue; }
+      box.hidden = false;
+      box.className += ' ad-on';
+      var r = box.getBoundingClientRect();
+      /* Keep at least one screen between two units. Drop a box that is too close. */
+      if (lastBottom !== null && r.top - lastBottom < window.innerHeight) {
+        box.parentNode.removeChild(box);
+        continue;
+      }
+      lastBottom = r.bottom;
+      box.setAttribute('data-ad-done', '1');
+      box.setAttribute('data-ad-client', PUB);
+      box.setAttribute('data-ad-slot-id', id);
+      var ins = document.createElement('ins');
+      ins.className = 'adsbygoogle';
+      ins.style.display = 'block';
+      ins.setAttribute('data-ad-client', PUB);
+      ins.setAttribute('data-ad-slot', id);
+      ins.setAttribute('data-ad-format', 'auto');
+      ins.setAttribute('data-full-width-responsive', 'true');
+      box.appendChild(ins);
+      watchUnfilled(box, ins);
+      try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) { /* never break the page */ }
+    }
+  }
+
+  /* Google sets data-ad-status="unfilled" when it has no ad: then remove the reserved space. */
+  function watchUnfilled(box, ins) {
+    if (typeof MutationObserver !== 'function') { return; }
+    var mo = new MutationObserver(function () {
+      var st = ins.getAttribute('data-ad-status');
+      if (st === 'unfilled') { hideSlot(box); mo.disconnect(); }
+      else if (st === 'filled') { mo.disconnect(); }
+    });
+    mo.observe(ins, { attributes: true, attributeFilter: ['data-ad-status'] });
   }
 
   function loadAll() {
