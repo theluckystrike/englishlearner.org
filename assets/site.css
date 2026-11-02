@@ -275,7 +275,9 @@ summary{list-style:none}summary::-webkit-details-marker{display:none}
 .short-answer .updated{margin:0;font-size:.85rem;color:var(--color-muted)}
 
 /* Manual AdSense units (2026-11-02). site.js shows a box only after the consent gate allows ads. */
-.ad-slot{display:block;margin:24px 0;text-align:center;clear:both;width:100%}
+.ad-slot{display:block;margin:24px 0;text-align:center;clear:both;width:100%;min-width:0}
+/* A full-width-responsive ad is as wide as the screen. Grid items must not grow with it. */
+.hero>*,.lesson-layout>*,.tool-layout>*{min-width:0}
 .ad-slot[hidden]{display:none}
 .ad-slot .ad-label{display:block;margin:0 0 4px;font:400 11px/16px var(--font-ui);letter-spacing:.04em;color:var(--color-secondary)}
 .ad-slot ins.adsbygoogle{display:block;max-width:100%}
