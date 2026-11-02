@@ -185,19 +185,30 @@
   function renderSlots() {
     var boxes = document.querySelectorAll('.ad-slot[data-ad-pos]');
     var lastBottom = null;
-    for (var i = 0; i < boxes.length && i < 3; i++) {
+    /* Density: 1 unit when the main content is shorter than about 2 screens, and reserved
+       ad space at most 30% of the main content height. */
+    var main = document.querySelector('main') || document.body;
+    var mainH = main.getBoundingClientRect().height;
+    var maxUnits = mainH < 2 * window.innerHeight ? 1 : 3;
+    var used = 0, adH = 0;
+    for (var i = 0; i < boxes.length; i++) {
       var box = boxes[i];
       var id = SLOTS[box.getAttribute('data-ad-pos')];
       if (!id || box.getAttribute('data-ad-done')) { continue; }
+      if (used >= maxUnits) { box.parentNode.removeChild(box); continue; }
+      /* The box is visible with its reserved height BEFORE adsbygoogle.push (Amendment A rule 1). */
       box.hidden = false;
       box.className += ' ad-on';
       var r = box.getBoundingClientRect();
-      /* Keep at least one screen between two units. Drop a box that is too close. */
-      if (lastBottom !== null && r.top - lastBottom < window.innerHeight) {
+      /* Keep at least one screen between two units, and ads at most 30% of the content. */
+      if ((lastBottom !== null && r.top - lastBottom < window.innerHeight) ||
+          (used > 0 && (adH + r.height) > 0.3 * mainH)) {
         box.parentNode.removeChild(box);
         continue;
       }
       lastBottom = r.bottom;
+      used++;
+      adH += r.height;
       box.setAttribute('data-ad-done', '1');
       box.setAttribute('data-ad-client', PUB);
       box.setAttribute('data-ad-slot-id', id);
@@ -214,13 +225,16 @@
     }
   }
 
-  /* Google sets data-ad-status="unfilled" when it has no ad: then remove the reserved space. */
+  /* Google sets data-ad-status="unfilled" when it has no ad. A box below the screen collapses.
+     A box already on the screen keeps its space, so the page does not jump. Other states
+     (filled, unfill-optimized) keep the box. */
   function watchUnfilled(box, ins) {
     if (typeof MutationObserver !== 'function') { return; }
     var mo = new MutationObserver(function () {
       var st = ins.getAttribute('data-ad-status');
-      if (st === 'unfilled') { hideSlot(box); mo.disconnect(); }
-      else if (st === 'filled') { mo.disconnect(); }
+      if (!st) { return; }
+      mo.disconnect();
+      if (st === 'unfilled' && box.getBoundingClientRect().top >= window.innerHeight) { hideSlot(box); }
     });
     mo.observe(ins, { attributes: true, attributeFilter: ['data-ad-status'] });
   }
