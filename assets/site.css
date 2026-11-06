@@ -297,3 +297,7 @@ summary{list-style:none}summary::-webkit-details-marker{display:none}
 .el-top-inner{flex-wrap:wrap;height:auto;min-height:calc(var(--header-height) - 1px)}
 .el-nav{flex-wrap:wrap}
 .ad-slot{max-width:100%;overflow:hidden}
+.voice-option,.voice-choice button,.eg-play{min-height:48px;min-width:48px}
+a[data-zpc]{display:inline-flex;align-items:center;min-height:48px}
+.el-nav a{min-width:48px}
+.el-nav a[href="/fix-your-english/"]{border:1px solid currentColor;border-radius:999px;padding:0 14px;min-height:48px}
