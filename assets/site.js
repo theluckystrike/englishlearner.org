@@ -409,7 +409,7 @@
       var a = e.target && e.target.closest ? e.target.closest('a[href^="https://shop.englishlearner.org/buy/"]') : null;
       if (!a) { return; }
       var src = (a.href.match(/[?&]src=([^&#]+)/) || [])[1] || 'direct';
-      window.elTrack('begin_checkout', { currency: 'USD', value: 6.99, items: [FYE_ITEM], src: src });
+      window.elTrack('begin_checkout', { currency: 'USD', value: 6.99, items: [FYE_ITEM], src: src, cta_id: (a.id || '').replace(/^cta-/, '') || ('fye_' + src) });
       if (!gaLoaded) { return; }
       function addIds() {
         if (/[?&]cid=/.test(a.href)) { return; }
