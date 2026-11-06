@@ -47,9 +47,29 @@
   function gtag() { window.dataLayer.push(arguments); }
   window.gtag = window.gtag || gtag;
 
-  /* Events queue in dataLayer. They are sent only if GA4 loads. */
+  /* Test traffic (2026-11-06). A page opened with ?traffic_type=internal sends every GA4 hit with traffic_type=internal,
+     so the GA4 internal traffic filter can drop it. ?el_internal=1 (below) still turns GA4 off completely. */
+  var TEST = /[?&]traffic_type=internal(&|#|$)/.test(location.search);
+  try { if (TEST) { window.sessionStorage.setItem('el_test', '1'); } TEST = TEST || window.sessionStorage.getItem('el_test') === '1'; } catch (e) {}
+
+  /* Events queue in dataLayer. They are sent only if GA4 loads.
+     Fast clicks (2026-11-06). A click can open the next page before gtag.js has loaded, and the event is lost.
+     So each event is also held in sessionStorage until gtag.js loads. The next page sends what is still held, with handoff=1.
+     Every cta_click gets a cta_id. Old calls that pass cta and src get cta_id = cta_src. */
+  var HKEY = 'el_hold_v1';
+  function held() { try { return JSON.parse(window.sessionStorage.getItem(HKEY) || '[]') || []; } catch (e) { return []; } }
+  function hold(list) { try { if (list.length) { window.sessionStorage.setItem(HKEY, JSON.stringify(list.slice(-10))); } else { window.sessionStorage.removeItem(HKEY); } } catch (e) {} }
   window.elTrack = function (name, params) {
-    try { window.gtag('event', name, params || {}); } catch (e) { /* never break the page */ }
+    try {
+      var p = {}, k;
+      params = params || {};
+      for (k in params) { if (Object.prototype.hasOwnProperty.call(params, k)) { p[k] = params[k]; } }
+      if (name === 'cta_click' && !p.cta_id && p.cta) { p.cta_id = String(p.cta) + (p.src ? '_' + p.src : ''); }
+      p.transport_type = 'beacon';
+      if (TEST) { p.traffic_type = 'internal'; }
+      window.gtag('event', name, p);
+      if (!window.google_tag_data && name !== 'view_item') { var q = held(); q.push([name, p]); hold(q); }
+    } catch (e) { /* never break the page */ }
   };
 
   function readChoice() {
@@ -146,11 +166,19 @@
       ad_personalization: 'granted'
     });
     gtag('js', new Date());
-    gtag('config', GA_ID, {
+    var cfg = {
       page_location: cleanLocation(),
       allow_google_signals: false,
       consent_region: needsConsent() ? 'eea' : 'other'
-    });
+    };
+    if (TEST) { cfg.traffic_type = 'internal'; }
+    gtag('config', GA_ID, cfg);
+    /* Send the events that the last page held (a fast click), then clear the hold when gtag.js has loaded. */
+    var prev = held();
+    hold([]);
+    for (var j = 0; j < prev.length; j++) {
+      if (prev[j] && typeof prev[j][0] === 'string' && prev[j][1]) { prev[j][1].handoff = '1'; gtag('event', prev[j][0], prev[j][1]); }
+    }
     /* After config: an event queued before config is not sent. */
     if (location.pathname === '/fix-your-english/') {
       gtag('event', 'view_item', { currency: 'USD', value: 6.99, items: [FYE_ITEM] });
@@ -158,6 +186,7 @@
     var s = document.createElement('script');
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    s.onload = function () { setTimeout(function () { hold([]); }, 1500); };
     document.head.appendChild(s);
   }
 

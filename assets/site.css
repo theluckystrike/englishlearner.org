@@ -286,3 +286,6 @@ summary{list-style:none}summary::-webkit-details-marker{display:none}
 .ads-likely .ad-slot[data-ad-pos="top"]{display:block!important}
 @media(max-width:767px){.ads-likely .ad-slot[data-ad-pos="top"],.ad-slot.ad-on[data-ad-pos="top"]{min-height:330px}}
 @media(min-width:768px){.ads-likely .ad-slot[data-ad-pos="top"],.ad-slot.ad-on{min-height:280px}}
+/* 2026-11-06 CRO round 2. Phones show the Workbook link in the header. Below 430 px the brand keeps its icon only (the link keeps aria-label). */
+@media(max-width:767px){.el-nav a.nav-wide[href="/fix-your-english/"]{display:inline-flex;font-weight:700}}
+@media(max-width:429px){.el-brand .brand-name{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.el-nav{gap:4px}.el-nav a{padding:0 6px}}
