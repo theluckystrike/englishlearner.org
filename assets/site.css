@@ -293,3 +293,7 @@ summary{list-style:none}summary::-webkit-details-marker{display:none}
 .sales .buy-box .fine a{display:inline-flex;align-items:center;min-height:48px}
 .el-top .el-brand{min-width:48px}
 .breadcrumb a{display:inline-flex;align-items:center;min-height:48px;min-width:48px}
+/* 200 % text and narrow windows. The header may wrap instead of overflowing. Ad slots never push the page wider. */
+.el-top-inner{flex-wrap:wrap;height:auto;min-height:calc(var(--header-height) - 1px)}
+.el-nav{flex-wrap:wrap}
+.ad-slot{max-width:100%;overflow:hidden}

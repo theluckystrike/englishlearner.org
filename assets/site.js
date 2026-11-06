@@ -311,7 +311,7 @@
 
     var text = document.createElement('p');
     text.appendChild(document.createTextNode(
-      'This site is free. It uses Google Analytics to count visits and Google AdSense to show ads. ' +
+      'The lessons and tools are free. The site uses Google Analytics to count visits and Google AdSense to show ads. ' +
       'If you accept, Google may use cookies. ' +
       'If you decline, no Google code is loaded. '));
     var link = document.createElement('a');
@@ -410,9 +410,24 @@
       if (!a) { return; }
       var src = (a.href.match(/[?&]src=([^&#]+)/) || [])[1] || 'direct';
       window.elTrack('begin_checkout', { currency: 'USD', value: 6.99, items: [FYE_ITEM], src: src });
-      if (!gaLoaded || /[?&]cid=/.test(a.href)) { return; }
-      var ids = gaIds();
-      if (ids.cid) { a.href += (a.href.indexOf('?') < 0 ? '?' : '&') + 'cid=' + ids.cid + (ids.sid ? '&gsid=' + ids.sid : ''); }
+      if (!gaLoaded) { return; }
+      function addIds() {
+        if (/[?&]cid=/.test(a.href)) { return; }
+        var ids = gaIds();
+        if (ids.cid) { a.href += (a.href.indexOf('?') < 0 ? '?' : '&') + 'cid=' + ids.cid + (ids.sid ? '&gsid=' + ids.sid : ''); }
+      }
+      /* Fast click (2026-11-06). The shop is another site, so a held event cannot be sent later. When GA4 is on but
+         gtag.js has not loaded yet, wait for it (at most 1.5 s), give it 300 ms to send, then open the shop. */
+      var plain = e.button === 0 && !(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) && a.target !== '_blank';
+      if (!plain || window.google_tag_data) { addIds(); return; }
+      e.preventDefault();
+      var start = Date.now(), gone = false;
+      function go() { if (gone) { return; } gone = true; addIds(); window.location.href = a.href; }
+      (function wait() {
+        if (window.google_tag_data) { setTimeout(go, 300); return; }
+        if (Date.now() - start > 1500) { go(); return; }
+        setTimeout(wait, 50);
+      })();
     }, true);
   }
 
