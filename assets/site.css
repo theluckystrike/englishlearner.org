@@ -291,3 +291,5 @@ summary{list-style:none}summary::-webkit-details-marker{display:none}
 @media(max-width:429px){.el-brand .brand-name{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.el-nav{gap:4px}.el-nav a{padding:0 6px}}
 .hero .meta-paid a{display:inline-flex;align-items:center;min-height:48px}
 .sales .buy-box .fine a{display:inline-flex;align-items:center;min-height:48px}
+.el-top .el-brand{min-width:48px}
+.breadcrumb a{display:inline-flex;align-items:center;min-height:48px;min-width:48px}
