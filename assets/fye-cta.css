@@ -28,3 +28,16 @@
 }
 @media print{.fye{display:none}}
 .fye-sr{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+/* Level test result card for Chinese visitors (2026-11-08). Text stays at 16px or more. */
+.fye-cn .fye-kicker{font-size:16px;line-height:24px}
+.fye-cn .fye-kicker span{margin-left:6px}
+.fye-cn h3{font-size:22px;line-height:1.35}
+.fye-gaps{display:grid;gap:6px;margin:0 0 12px;padding:0;list-style:none}
+.fye-gaps li{margin:0;padding:8px 12px;border-left:4px solid var(--color-accent);border-radius:4px;background:var(--color-bg);font:16px/24px var(--font-ui);color:var(--color-text)}
+.fye-gaps .fye-zh{color:var(--color-secondary)}
+.fye-gaps .fye-unit{display:block;color:var(--color-secondary)}
+.fye-cn .fye-actions{margin:12px 0 8px}
+.fye-cn .fye-pay{margin:0 0 8px;font:16px/24px var(--font-ui);color:var(--color-secondary)}
+.fye-cn .fye-pay a{padding-block:14px;color:var(--color-accent)}
+.fye-cn .fye-zhs{margin-left:6px}
+.fye-cn{margin-bottom:20px}
