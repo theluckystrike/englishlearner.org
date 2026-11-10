@@ -106,19 +106,22 @@
       return '<li><b>' + x.en + '</b> <span class="fye-zh" lang="zh-Hans">' + x.zh + '</span>'
         + '<span class="fye-unit">' + x.label + ' · ' + (x.n === 1 ? '1 question missed' : x.n + ' questions missed') + '</span></li>';
     }).join('');
-    var lead = g.length
-      ? '<p>You missed questions on these points. The workbook has a unit for each, with a short rule and 10 exercises with answers.</p><ul class="fye-gaps">' + rows + '</ul>'
-      : '<p>The ' + L + ' pack has 6 units, each with a short rule and 10 exercises with answers.</p>';
+    /* G10-L5: the result asks "what do I study next", so the card leads with the 30-day plan for this level.
+       Every plan in the workbook has 30 days of 15 to 20 minute tasks (shop-20261028/content/plans.json). */
+    var lead = '<p>The workbook has a 30-day ' + L + ' plan. Each day is one task of 15 to 20 minutes.</p>'
+      + (g.length
+        ? '<p>Start with the points you missed in this test. The workbook covers each one with a short rule and exercises with answers.</p><ul class="fye-gaps">' + rows + '</ul>'
+        : '');
     var onBuy = "window.elTrack&&(window.elTrack('cta_click',{cta_id:'buy_level-result-zh',cta:'fye',src:'level-result-zh',level:'" + L + "'}),window.elTrack('mm_cta_click',{sku:'fye-v1',placement:'level-result-zh'}))";
     var onSample = "window.elTrack&&(window.elTrack('cta_click',{cta_id:'fye_sample_level-result-zh',src:'level-result-zh',level:'" + L + "'}),window.elTrack('mm_cta_click',{sku:'fye-v1',placement:'level-result-zh-sample'}))";
     return '<aside class="fye fye-result fye-cn" aria-labelledby="fye-cta-h" data-fye="level-result-zh" data-level="' + L + '">'
       + '<p class="fye-kicker">Fix Your English <span lang="zh-Hans">英语纠错练习册</span></p>'
-      + '<h3 id="fye-cta-h" lang="zh-Hans">你的结果是 ' + L + '。' + (g.length ? '下面是你答错的语法点。' : '') + '</h3>'
+      + '<h3 id="fye-cta-h" lang="zh-Hans">你的结果是 ' + L + '。下一步，按 30 天计划学习。</h3>'
       + lead
-      + '<p>You get the ' + L + ' pack with a 30-day plan, the other three level packs, and 60 common mistakes with notes in Chinese. PDF and phone reader.</p>'
+      + '<p>You also get the other three level packs and 60 common mistakes with notes in Chinese. PDF and phone reader.</p>'
       + '<div class="fye-actions"><a id="cta-buy_level-result-zh" class="btn btn-primary" href="' + BUY + '" onclick="' + onBuy + '">Get the workbook · US$6.99</a>'
       + '<a id="cta-fye_sample_level-result-zh" class="fye-more" href="' + SAMPLE + '" onclick="' + onSample + '">Free sample (PDF) <span class="fye-zhs" lang="zh-Hans">免费样章</span></a></div>'
-      + '<p class="fye-pay" lang="zh-Hans">可用开通了境外网上支付的银联、Visa 或 Mastercard 卡，也可用 Apple Pay 或 Google Pay。暂不支持支付宝和微信支付。7 天内可全额退款。</p>'
+      + '<p class="fye-pay" lang="zh-Hans">可用开通了境外网上支付的银联、Visa 或 Mastercard 卡，也可用 Apple Pay 或 Google Pay。暂不支持支付宝和微信支付。7 天内发邮件至 support@zovo.one 可全额退款。</p>'
       + '<p class="fye-pay">UnionPay, Visa, Mastercard, Apple Pay or Google Pay. Alipay and WeChat Pay are not available. One payment. If it does not help you, email <a href="mailto:support@zovo.one">support@zovo.one</a> within 7 days for a full refund.</p>'
       + '</aside>';
   }

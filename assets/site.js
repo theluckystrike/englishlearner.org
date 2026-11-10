@@ -404,14 +404,35 @@
     return { cid: cid, sid: sid };
   }
 
+  /* Submit the buy link as a form POST. The shop opens Stripe only for a POST with go=1 from our pages. */
+  function postBuy(href) {
+    var u;
+    try { u = new URL(href); } catch (err) { return false; }
+    if (!document.body || typeof u.searchParams === 'undefined') { return false; }
+    var f = document.createElement('form');
+    f.method = 'post';
+    f.action = u.origin + u.pathname;
+    f.style.display = 'none';
+    var v = { src: u.searchParams.get('src') || 'direct', cid: u.searchParams.get('cid') || '', gsid: u.searchParams.get('gsid') || '', go: '1' };
+    for (var k in v) {
+      if (!v[k]) { continue; }
+      var i = document.createElement('input');
+      i.type = 'hidden'; i.name = k; i.value = v[k];
+      f.appendChild(i);
+    }
+    document.body.appendChild(f);
+    f.submit();
+    return true;
+  }
+
   function wireCheckout() {
     document.addEventListener('click', function (e) {
       var a = e.target && e.target.closest ? e.target.closest('a[href^="https://shop.englishlearner.org/buy/"]') : null;
       if (!a) { return; }
       var src = (a.href.match(/[?&]src=([^&#]+)/) || [])[1] || 'direct';
       window.elTrack('begin_checkout', { currency: 'USD', value: 6.99, items: [FYE_ITEM], src: src, cta_id: (a.id || '').replace(/^cta-/, '') || ('fye_' + src) });
-      if (!gaLoaded) { return; }
       function addIds() {
+        if (!gaLoaded) { return; }
         if (/[?&]cid=/.test(a.href)) { return; }
         var ids = gaIds();
         if (ids.cid) { a.href += (a.href.indexOf('?') < 0 ? '?' : '&') + 'cid=' + ids.cid + (ids.sid ? '&gsid=' + ids.sid : ''); }
@@ -419,10 +440,13 @@
       /* Fast click (2026-11-06). The shop is another site, so a held event cannot be sent later. When GA4 is on but
          gtag.js has not loaded yet, wait for it (at most 1.5 s), give it 300 ms to send, then open the shop. */
       var plain = e.button === 0 && !(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) && a.target !== '_blank';
-      if (!plain || window.google_tag_data) { addIds(); return; }
+      if (!plain) { addIds(); return; }
+      /* G10-L5 (2026-11-10). A plain click sends a form POST straight to the shop, so the buyer lands on Stripe
+         in one step. A GET of the buy link (bots, link checkers, new tab) gets a plain page and creates no session. */
       e.preventDefault();
       var start = Date.now(), gone = false;
-      function go() { if (gone) { return; } gone = true; addIds(); window.location.href = a.href; }
+      function go() { if (gone) { return; } gone = true; addIds(); if (!postBuy(a.href)) { window.location.href = a.href; } }
+      if (!gaLoaded || window.google_tag_data) { go(); return; }
       (function wait() {
         if (window.google_tag_data) { setTimeout(go, 300); return; }
         if (Date.now() - start > 1500) { go(); return; }
