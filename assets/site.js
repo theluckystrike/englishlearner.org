@@ -426,9 +426,15 @@
   }
 
   function wireCheckout() {
+    /* One page-wide guard against a double click or a second buy button. The pageshow reset lets a visitor who
+       comes back with the Back button (page restored from the back/forward cache) click again. */
+    var buyGone = false;
+    window.addEventListener('pageshow', function () { buyGone = false; });
     document.addEventListener('click', function (e) {
       var a = e.target && e.target.closest ? e.target.closest('a[href^="https://shop.englishlearner.org/buy/"]') : null;
       if (!a) { return; }
+      var plainClick = e.button === 0 && !(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) && a.target !== '_blank';
+      if (buyGone && plainClick) { e.preventDefault(); return; }
       var src = (a.href.match(/[?&]src=([^&#]+)/) || [])[1] || 'direct';
       window.elTrack('begin_checkout', { currency: 'USD', value: 6.99, items: [FYE_ITEM], src: src, cta_id: (a.id || '').replace(/^cta-/, '') || ('fye_' + src) });
       function addIds() {
@@ -439,13 +445,13 @@
       }
       /* Fast click (2026-11-06). The shop is another site, so a held event cannot be sent later. When GA4 is on but
          gtag.js has not loaded yet, wait for it (at most 1.5 s), give it 300 ms to send, then open the shop. */
-      var plain = e.button === 0 && !(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) && a.target !== '_blank';
-      if (!plain) { addIds(); return; }
+      if (!plainClick) { addIds(); return; }
       /* G10-L5 (2026-11-10). A plain click sends a form POST straight to the shop, so the buyer lands on Stripe
          in one step. A GET of the buy link (bots, link checkers, new tab) gets a plain page and creates no session. */
       e.preventDefault();
-      var start = Date.now(), gone = false;
-      function go() { if (gone) { return; } gone = true; addIds(); if (!postBuy(a.href)) { window.location.href = a.href; } }
+      var start = Date.now();
+      buyGone = true;
+      function go() { addIds(); if (!postBuy(a.href)) { window.location.href = a.href; } }
       if (!gaLoaded || window.google_tag_data) { go(); return; }
       (function wait() {
         if (window.google_tag_data) { setTimeout(go, 300); return; }
