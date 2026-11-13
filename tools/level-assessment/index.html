@@ -42,8 +42,8 @@
 <link rel="stylesheet" href="/assets/tool.css">
 <meta property="og:image:alt" content="English Learner free lessons and practice">
 <link rel="stylesheet" href="/assets/site.css?v=13-cro-20261106">
-<link rel="stylesheet" href="/assets/fye-cta.css?v=2">
-<script src="/assets/fye-level-offer.js?v=2" defer></script>
+<link rel="stylesheet" href="/assets/fye-cta.css?v=3">
+<script src="/assets/fye-level-offer.js?v=3" data-cro="fye-level-offer-js" defer></script>
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
@@ -255,8 +255,8 @@ window.toolResult = function(region, score, total, slug, track) {
             return { level, perLevel, correct, total };
         }
 
-        // Workbook CTA after the score table (2026-11-08). Only Chinese visitors with a result from A2 to C1 see it,
-        // and it names the workbook units for the questions they missed. Logic in /assets/fye-level-offer.js.
+        // Workbook CTA ABOVE the score table (2026-11-13). Every completer sees it, at every level and in every language.
+        // Free part: level + top 3 missed points. Paid part: the US$6.99 workbook. Logic in /assets/fye-level-offer.js.
         function fyeCard(level) {
             return window.elFyeOffer ? window.elFyeOffer.card(level, state.answers) : '';
         }
@@ -274,7 +274,7 @@ window.toolResult = function(region, score, total, slug, track) {
             saveHistory(levelLabel, pct);
 
             resultPanel.style.display = 'block';
-            resultPanel.innerHTML = `<div class="level-content"><h2 tabindex="-1">Your rough CEFR level</h2><span class="badge">Rough guide</span><p class="result-value-long">${levelLabel}</p><p>Grammar and reading only. This isn’t an official result.</p><p>${study}</p><p>${res.correct} out of ${res.total} correct.</p><p>${passedAny ? 'A typical description of this level follows. This test did not measure all these skills. '+desc : desc}</p><table><caption>Your score at each level</caption><thead><tr><th scope="col">Level</th><th scope="col">Correct</th><th scope="col">Threshold met</th></tr></thead><tbody>${levelNames.map((l,i)=>`<tr><th scope="row">${l}</th><td>${res.perLevel[i].correct} out of ${res.perLevel[i].total}</td><td>${res.perLevel[i].correct>=PASS_MARK?'Yes':'No'}</td></tr>`).join('')}</tbody></table><p>Three correct answers meet a level’s threshold. The result stops at the first lower level you miss.</p>${fyeCard(res.level)}<button type="button" id="retakeTest">Retake test</button></div>`;
+            resultPanel.innerHTML = `<div class="level-content"><h2 tabindex="-1">Your rough CEFR level</h2><span class="badge">Rough guide</span><p class="result-value-long">${levelLabel}</p><p>Grammar and reading only. This isn’t an official result.</p><p>${study}</p><p>${res.correct} out of ${res.total} correct.</p>${fyeCard(res.level)}<p>${passedAny ? 'A typical description of this level follows. This test did not measure all these skills. '+desc : desc}</p><table><caption>Your score at each level</caption><thead><tr><th scope="col">Level</th><th scope="col">Correct</th><th scope="col">Threshold met</th></tr></thead><tbody>${levelNames.map((l,i)=>`<tr><th scope="row">${l}</th><td>${res.perLevel[i].correct} out of ${res.perLevel[i].total}</td><td>${res.perLevel[i].correct>=PASS_MARK?'Yes':'No'}</td></tr>`).join('')}</tbody></table><p>Three correct answers meet a level’s threshold. The result stops at the first lower level you miss.</p><button type="button" id="retakeTest">Retake test</button></div>`;
             document.getElementById('retakeTest').onclick=resetQuiz;
             if (window.elFyeOffer) window.elFyeOffer.wire(resultPanel, res.level);
             toolResult(resultPanel,res.correct,res.total,'level-assessment',false);

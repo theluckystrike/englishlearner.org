@@ -41,3 +41,8 @@
 .fye-cn .fye-pay a{padding-block:14px;color:var(--color-accent)}
 .fye-cn .fye-zhs{margin-left:6px}
 .fye-cn{margin-bottom:20px}
+/* 2026-11-13 CRO: level result card for every completer. Free part, lesson links, payment note in a closed details box. */
+.fye-result .fye-free-h{margin:8px 0}
+.fye-gaps a.fye-free{margin-left:6px;font-weight:600;color:var(--color-accent)}
+.fye-paybox{margin:8px 0 0;font:15px/22px var(--font-ui);color:var(--color-secondary)}
+.fye-paybox summary{cursor:pointer;min-height:44px;display:flex;align-items:center}
