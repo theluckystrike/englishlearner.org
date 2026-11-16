@@ -436,7 +436,7 @@
       var plainClick = e.button === 0 && !(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) && a.target !== '_blank';
       if (buyGone && plainClick) { e.preventDefault(); return; }
       var src = (a.href.match(/[?&]src=([^&#]+)/) || [])[1] || 'direct';
-      window.elTrack('begin_checkout', { currency: 'USD', value: 6.99, items: [FYE_ITEM], src: src, cta_id: (a.id || '').replace(/^cta-/, '') || ('fye_' + src) });
+      window.elTrack('begin_checkout', { product: 'Fix Your English workbook', price: 6.99, currency: 'USD', value: 6.99, items: [FYE_ITEM], src: src, cta_id: (a.id || '').replace(/^cta-/, '') || ('fye_' + src) });
       function addIds() {
         if (!gaLoaded) { return; }
         if (/[?&]cid=/.test(a.href)) { return; }
@@ -461,6 +461,36 @@
     }, true);
   }
 
+  /* Sprint 3 (2026-11-16, data-cro sprint-20261116-notready): "Not ready? Email me this link" next to the buy button.
+     Sends the address to fleet-leads (opt-in, one link email and one reminder). Honeypot hp stops simple bots. */
+  function wireNotReady() {
+    document.addEventListener('submit', function (e) {
+      var f = e.target;
+      if (!f || !f.classList || !f.classList.contains('s3-notready')) { return; }
+      e.preventDefault();
+      var hp = f.querySelector('input[name="hp"]');
+      if (hp && hp.value) { return; }
+      var em = f.querySelector('input[name="email"]');
+      var msg = f.querySelector('.s3-nr-msg');
+      var email = em ? String(em.value || '').trim() : '';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { if (msg) { msg.textContent = 'Please enter a valid email address.'; } return; }
+      var offer = f.getAttribute('data-offer') || 'englishlearner-notready';
+      var price = f.getAttribute('data-price') || '6.99';
+      var btn = f.querySelector('button');
+      if (btn) { btn.disabled = true; }
+      fetch('https://fleet-leads.lipmichal.workers.dev/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, offer_id: offer, page: location.href, price: price, hp: '' }) })
+        .then(function (r) { return r.ok ? r.json().catch(function () { return {}; }) : Promise.reject(r.status); })
+        .then(function () {
+          if (msg) { msg.textContent = 'Check your inbox to confirm.'; }
+          if (typeof window.gtag === 'function' && window.elTrack) {
+            window.elTrack('generate_lead', { site: 'englishlearner.org', offer_id: offer, price: parseFloat(price), currency: 'USD' });
+          }
+        })
+        .catch(function () { if (msg) { msg.textContent = 'Sorry, that did not work. Please try again.'; } if (btn) { btn.disabled = false; } });
+    });
+  }
+
   /* Internal traffic opt-out. Open any page once with ?el_internal=1 (or =0 to undo). */
   function isInternal() {
     try {
@@ -475,6 +505,7 @@
     wireToolUse();
     wireSupport();
     wireCheckout();
+    wireNotReady();
     if (!isProduction || isInternal()) { dropReserve(); return; }
     var choice = readChoice();
     if (choice === 'denied') { dropReserve(); return; }

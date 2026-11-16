@@ -53,3 +53,12 @@
 .fye-top .btn{min-height:48px}
 .fye-top .fye-note{margin:6px 0 0;font:14px/20px var(--font-ui)}
 @media(min-width:768px){.fye-top{padding:16px}}
+
+/* Sprint 3 (2026-11-16): pre-pay box and "email me this link" form after the buy button (sprint-20261116-paybox / -notready). */
+.s3-paybox,.s3-notready{flex:1 1 100%}
+.s3-paybox{margin:.5rem 0;padding:.5rem .75rem;border:1px solid var(--color-border,rgba(0,0,0,.15));border-radius:8px;font-size:13px;line-height:1.4;color:inherit}
+.fye .s3-paybox p,.s3-paybox p{margin:.15rem 0;font:13px/1.4 var(--font-ui,inherit);color:inherit;max-width:none}
+.s3-notready{font-size:13px;margin:.25rem 0 .75rem;position:relative;color:inherit}
+.s3-notready input[type=email]{max-width:200px;padding:4px 6px;font-size:14px;color:inherit;background:transparent;border:1px solid var(--color-border,rgba(0,0,0,.3));border-radius:4px}
+.s3-notready button{font-size:13px;padding:4px 10px;margin-left:4px;color:inherit;background:transparent;border:1px solid currentColor;border-radius:4px;cursor:pointer}
+.s3-notready small{display:block;opacity:.75}
