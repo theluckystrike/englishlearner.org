@@ -39,6 +39,8 @@
     <meta property="og:url" content="https://englishlearner.org/tools/level-assessment/">
 <meta name="google-adsense-account" content="ca-pub-2241192243363112">
 <script src="/assets/site.js?v=10" defer></script>
+<script>window.__s3NotReady=1;/* site.js handles .s3-notready */</script>
+<script src="/assets/s3-postresult.js?v=2" defer></script>
 <link rel="stylesheet" href="/assets/tool.css">
 <meta property="og:image:alt" content="English Learner free lessons and practice">
 <link rel="stylesheet" href="/assets/site.css?v=13-cro-20261106">
@@ -92,6 +94,39 @@ window.toolResult = function(region, score, total, slug, track) {
 </div>
 
 <div class="google-anno-skip" id="resultPanel" style="display:none"></div>
+<style>[data-s3-post][hidden]{display:none!important}.s3-post{max-width:760px;margin:20px 0;padding:16px 18px;border:2px solid #1c1917;border-radius:12px;background:#fffbf5;color:#1c1917;line-height:1.55;box-sizing:border-box;font-size:15px}.s3-post.s3-in{animation:s3in .35s ease-out}@keyframes s3in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}.s3-post .s3-h{margin:0 0 6px;font-size:17px;font-weight:700;color:#1c1917}.s3-post>p{margin:0 0 10px;color:#1c1917}.s3-post a.s3-buy,.s3-post button.s3-buy{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border:0;border-radius:999px;background:#1c1917;color:#fff!important;font:inherit;font-weight:700;text-decoration:none!important;cursor:pointer;max-width:100%;box-sizing:border-box}.s3-post a.s3-buy:focus-visible,.s3-post button.s3-buy:focus-visible{outline:3px solid #d97706;outline-offset:3px}.s3-paybox{margin:.5rem 0;padding:.5rem .75rem;border:1px solid rgba(0,0,0,.15);border-radius:8px;font-size:13px;line-height:1.4;color:#1c1917;background:#fff}.s3-paybox p{margin:.15rem 0;font-size:13px}.s3-notready{font-size:13px;margin:.25rem 0 0;position:relative;color:#1c1917}.s3-notready input[type=email]{max-width:200px;padding:4px 6px;font-size:14px}.s3-notready button{font-size:13px;padding:4px 10px;margin-left:4px}.s3-notready small{display:block;opacity:.75}</style>
+<aside id="el-cefr-offer" class="s3-post" data-cro-offer="sprint-20261116-el-cefr" hidden data-cro="sprint-20261116-postresult" data-s3-post data-s3-site="englishlearner" data-s3-product="el_cefr_report" data-s3-price="4.99" data-s3-name="CEFR Level Report + 4-Week Plan" data-s3-bc="self" data-s3-manual aria-label="Next step">
+<p class="s3-h">Get your full CEFR report and a 4-week plan for <span data-cefr-lv>your level</span></p>
+<p>A PDF built from your result: what <span data-cefr-lv>your level</span> means, the test questions for your level and the next one with the right answers, the five free lessons to work on first, and a 4-week plan (about 25 minutes a day, 5 days a week) that ends with a retest. Your score for every level is on the download page. <strong>$4.99 once.</strong></p>
+<a class="s3-buy" href="https://buy.stripe.com/5kQ4gA6Eq3Fu0tv6IJ43S3U" data-cefr-buy id="cta-el_cefr_report" rel="nofollow">Get my CEFR report, $4.99</a>
+<div class="s3-paybox" data-cro="sprint-20261116-paybox">
+ <p><strong>$4.99</strong> once - a PDF level report for your result and a 4-week study plan that uses this site's free lessons and tools.</p>
+ <p>Instant download after payment · 7-day refund, no questions asked</p>
+ <p>Secure checkout by Stripe - the page shows BeLikeNative, our company account</p>
+</div>
+<form class="s3-notready" data-cro="sprint-20261116-notready" data-offer="englishlearner-notready" data-price="4.99" data-offer-name="CEFR Level Report + 4-Week Plan" novalidate>
+ <label>Not ready? Email me this link <input type="email" name="email" required placeholder="you@email.com" autocomplete="email"></label>
+ <input type="text" name="hp" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+ <button type="submit">Email me</button>
+ <small>We email you this link once and one reminder. Unsubscribe any time.</small>
+ <span class="s3-nr-msg" role="status"></span>
+</form>
+</aside>
+<script>/* sprint-20261116 (lane D2): CEFR report offer, shown after the test result. The buy link carries the
+result as client_reference_id (level + correct answers per level, no personal data) so the paid report matches it. */
+window.elCefrOffer = function (res) {
+  var box = document.getElementById('el-cefr-offer'); if (!box || !res || !res.perLevel) return;
+  var names = ['A1','A2','B1','B2','C1','C2'], lv = res.level >= 0 ? names[res.level] : 'pre-A1';
+  var ref = lv.toLowerCase() + '_' + res.perLevel.map(function (x) { return Math.max(0, Math.min(5, x.correct | 0)); }).join('');
+  Array.prototype.forEach.call(box.querySelectorAll('[data-cefr-lv]'), function (el) { el.textContent = lv === 'pre-A1' ? 'your starting point (A1)' : lv; });
+  var a = box.querySelector('[data-cefr-buy]'); a.href = a.href.split('?')[0] + '?client_reference_id=' + encodeURIComponent(ref);
+  a.textContent = 'Get my ' + (lv === 'pre-A1' ? 'A1' : lv) + ' report, $4.99';
+  var f = box.querySelector('form.s3-notready'); if (f) f.setAttribute('data-offer-name', 'CEFR Level Report ' + lv + ' (' + ref + ')');
+  try { localStorage.setItem('el_cefr_last', ref); } catch (_) {}
+  box.dispatchEvent(new Event('s3:show'));
+};
+</script>
+
 
 <div id="historySection">
 <h2>Your past results on this device</h2>
@@ -276,7 +311,7 @@ window.toolResult = function(region, score, total, slug, track) {
             resultPanel.style.display = 'block';
             resultPanel.innerHTML = `<div class="level-content"><h2 tabindex="-1">Your rough CEFR level</h2><span class="badge">Rough guide</span><p class="result-value-long">${levelLabel}</p><p>Grammar and reading only. This isn’t an official result.</p><p>${study}</p><p>${res.correct} out of ${res.total} correct.</p>${fyeCard(res.level)}<p>${passedAny ? 'A typical description of this level follows. This test did not measure all these skills. '+desc : desc}</p><table><caption>Your score at each level</caption><thead><tr><th scope="col">Level</th><th scope="col">Correct</th><th scope="col">Threshold met</th></tr></thead><tbody>${levelNames.map((l,i)=>`<tr><th scope="row">${l}</th><td>${res.perLevel[i].correct} out of ${res.perLevel[i].total}</td><td>${res.perLevel[i].correct>=PASS_MARK?'Yes':'No'}</td></tr>`).join('')}</tbody></table><p>Three correct answers meet a level’s threshold. The result stops at the first lower level you miss.</p><button type="button" id="retakeTest">Retake test</button></div>`;
             document.getElementById('retakeTest').onclick=resetQuiz;
-            if (window.elFyeOffer) window.elFyeOffer.wire(resultPanel, res.level);
+            if (window.elFyeOffer) window.elFyeOffer.wire(resultPanel, res.level); if (window.elCefrOffer) window.elCefrOffer(res);
             toolResult(resultPanel,res.correct,res.total,'level-assessment',false);
             // hide question area
             document.getElementById('questionArea').style.display = 'none';
