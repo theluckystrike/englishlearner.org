@@ -18,6 +18,10 @@
   'use strict';
 
   var PUB = 'ca-pub-2241192243363112';
+  /* ADS_APPROVED: false while AdSense shows the site as "Getting ready". Then no space is reserved and an
+     unfilled box collapses at any position, so a reviewer never sees an empty ad box. The ad code and the
+     adsbygoogle push still run. Set to true when AdSense says "Ready", and also ADS_APPROVED=true in the inline head script. */
+  var ADS_APPROVED = false;
   var GA_ID = 'G-GHQNNECRRP';
   var KEY = 'el_consent_v2';
   var OLD_KEY = 'el_ads_consent';
@@ -204,6 +208,7 @@
   }
 
   function loadAds() {
+    if (!ADS_APPROVED) { dropReserve(); }
     if (adsLoaded || !isProduction || noAds || NO_AD_PATH.test(location.pathname)) { dropReserve(); return; }
     adsLoaded = true;
     var s = document.createElement('script');
@@ -241,7 +246,8 @@
       if (used >= maxUnits) { box.parentNode.removeChild(box); continue; }
       /* The box is visible with its reserved height BEFORE adsbygoogle.push (Amendment A rule 1). */
       box.hidden = false;
-      box.className += ' ad-on';
+      /* Not approved: no reserved height, no label and no margin until Google fills the box. */
+      box.className += ADS_APPROVED ? ' ad-on' : ' ad-wait';
       var r = box.getBoundingClientRect();
       /* Keep at least one screen between two units, and ads at most 30% of the content. */
       if ((lastBottom !== null && r.top - lastBottom < window.innerHeight) ||
@@ -280,8 +286,10 @@
   function watchUnfilled(box, ins) {
     if (typeof MutationObserver !== 'function') { return; }
     var mo = new MutationObserver(function () {
-      if (ins.getAttribute('data-ad-status') !== 'unfilled') { return; }
-      if (box.getBoundingClientRect().top < window.innerHeight) {
+      var st = ins.getAttribute('data-ad-status');
+      if (!ADS_APPROVED && st && st !== 'unfilled') { box.className = box.className.replace(/\s*\bad-wait\b/g, ''); return; }
+      if (st !== 'unfilled') { return; }
+      if (ADS_APPROVED && box.getBoundingClientRect().top < window.innerHeight) {
         if (box.style.getPropertyValue('min-height') !== reserve(box)) {
           box.style.setProperty('min-height', reserve(box), 'important');
         }
