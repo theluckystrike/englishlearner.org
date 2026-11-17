@@ -58,7 +58,8 @@
     }
     if (b.getAttribute('data-s3-bc') === 'self') {
       Array.prototype.forEach.call(b.querySelectorAll('a.s3-buy'), function (a) {
-        a.addEventListener('click', function () { track('begin_checkout', meta(b)); });
+        /* sprint-20261117-c-cefr: cta_click and begin_checkout on the same buy link, once per click (no double count). */
+        a.addEventListener('click', function () { var m = meta(b); track('cta_click', { cta_id: (a.id || '').replace(/^cta-/, '') || ('buy_' + m.product), product: m.product, price: m.price, placement: 'postresult' }); track('begin_checkout', m); });
       });
     }
     Array.prototype.forEach.call(b.querySelectorAll('button[data-s3-checkout]'), function (btn) {

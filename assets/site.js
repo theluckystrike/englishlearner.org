@@ -65,6 +65,9 @@
       params = params || {};
       for (k in params) { if (Object.prototype.hasOwnProperty.call(params, k)) { p[k] = params[k]; } }
       if (name === 'cta_click' && !p.cta_id && p.cta) { p.cta_id = String(p.cta) + (p.src ? '_' + p.src : ''); }
+      /* sprint-20261117-c-navclick: cta_click counts only clicks that open a checkout (shop /buy/, Stripe, Pro buy).
+         Links to lessons, the level test, the sales page or the sample are sent as nav_click (same params). */
+      if (name === 'cta_click' && !/^(fye_(?!page|sample|questions)|buy_|sa_pro_buy|el_cefr)/.test(String(p.cta_id || ''))) { name = 'nav_click'; }
       p.transport_type = 'beacon';
       if (TEST) { p.traffic_type = 'internal'; }
       window.gtag('event', name, p);
@@ -413,7 +416,8 @@
     f.method = 'post';
     f.action = u.origin + u.pathname;
     f.style.display = 'none';
-    var v = { src: u.searchParams.get('src') || 'direct', cid: u.searchParams.get('cid') || '', gsid: u.searchParams.get('gsid') || '', go: '1' };
+    /* js (sprint-20261117-c-js): the shop accepts a POST from englishlearner.org only with this field set by script (lane B gate). */
+    var v = { src: u.searchParams.get('src') || 'direct', cid: u.searchParams.get('cid') || '', gsid: u.searchParams.get('gsid') || '', go: '1', js: String(Date.now()) };
     for (var k in v) {
       if (!v[k]) { continue; }
       var i = document.createElement('input');
